@@ -37,6 +37,13 @@ WORLDS = [
             ("03_terminal_rpg", "Project 03: Terminal RPG"),
         ],
     ),
+    (
+        "World 4: Saving and Structure",
+        [
+            ("11_combat_log", "Mission 11: Combat Log"),
+        ],
+        [],
+    ),
 ]
 
 SYMBOLS = {

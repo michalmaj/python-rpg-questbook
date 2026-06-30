@@ -48,7 +48,7 @@
 
 | # | Mission | Concept |
 |---|---------|---------|
-| 11 | Combat Log | files, CSV |
+| 11 | [Combat Log](missions/11_combat_log/README.md) | open, write, CSV |
 | 12 | Save Game | JSON |
 | 13 | Split the Game | modules |
 | 14 | Hero Dataclass | dataclasses |
