@@ -37,7 +37,7 @@
 |---|---------|---------|
 | 07 | [Monster Dictionary](missions/07_monster_dictionary/README.md) | dictionaries |
 | 08 | [Attack Function](missions/08_attack_function/README.md) | functions, def, return |
-| 09 | Dice Rolls | random |
+| 09 | [Dice Rolls](missions/09_dice_rolls/README.md) | import, random.randint |
 | 10 | Safe Input | exceptions |
 
 **Boss Fight:** Project 03: Terminal RPG
