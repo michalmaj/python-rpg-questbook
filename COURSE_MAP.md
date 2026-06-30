@@ -11,7 +11,7 @@
 
 | # | Mission | Concept |
 |---|---------|---------|
-| 01 | [Hero Stats](missions/01_hero_stats/README.md) | variables, dict |
+| 01 | [Hero Stats](missions/01_hero_stats/README.md) | variables, str, int |
 | 02 | [Damage and Healing](missions/02_damage_and_healing/README.md) | arithmetic, min/max |
 | 03 | [Choose Your Hero](missions/03_choose_your_hero/README.md) | input, if/elif/else |
 
@@ -23,9 +23,9 @@
 
 | # | Mission | Concept |
 |---|---------|---------|
-| 04 | Combat Conditions | if/elif/else, comparison operators |
-| 05 | Turn-Based Loop | while loop |
-| 06 | Inventory Lists | lists |
+| 04 | [Combat Loop](missions/04_combat_loop/README.md) | while loop |
+| 05 | Winning and Losing | for loop, range() |
+| 06 | Hero Inventory | lists |
 
 **Boss Fight:** Project 02: Turn-Based Combat
 
