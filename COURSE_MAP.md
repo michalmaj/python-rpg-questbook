@@ -25,7 +25,7 @@
 |---|---------|---------|
 | 04 | [Combat Loop](missions/04_combat_loop/README.md) | while loop |
 | 05 | [Arena Challenge](missions/05_arena_challenge/README.md) | for loop, range() |
-| 06 | Hero Inventory | lists |
+| 06 | [Hero Inventory](missions/06_hero_inventory/README.md) | lists, append, len |
 
 **Boss Fight:** Project 02: Turn-Based Combat
 

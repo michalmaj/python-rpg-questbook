@@ -21,6 +21,7 @@ WORLDS = [
         [
             ("04_combat_loop", "Mission 04: Combat Loop"),
             ("05_arena_challenge", "Mission 05: Arena Challenge"),
+            ("06_hero_inventory", "Mission 06: Hero Inventory"),
         ],
         [],
     ),
