@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+.venv/
+
+# uv
+uv.lock
+
+# OS / editors
+.DS_Store
+.vscode/
+.idea/
+
+# Local collaboration files (not for the repo)
+AGENT_BRIEF.md
+CLAUDE.md
+brainstorm*.md
+brainstorm*/
+docs/superpowers/
+
+# Student progress (local only)
+.progress
+
+# Course-generated outputs
+*.log
+combat_log.csv
+save_game.json
+plots/

@@ -1,0 +1,77 @@
+# Course Map
+
+> This file is your GPS — read it, but do not edit it.
+> Track your progress: `uv run python tools/course_status.py`
+
+---
+
+## Part 1: Python Core
+
+### World 1: First Hero
+
+| # | Mission | Concept |
+|---|---------|---------|
+| 01 | [Hero Stats](missions/01_hero_stats/README.md) | variables, dict |
+| 02 | [Damage and Healing](missions/02_damage_and_healing/README.md) | arithmetic, min/max |
+| 03 | [Choose Your Hero](missions/03_choose_your_hero/README.md) | input, if/elif/else |
+
+**Boss Fight:** [Project 01: Battle Calculator](projects/01_battle_calculator/README.md)
+
+---
+
+### World 2: Combat Logic *(coming soon)*
+
+| # | Mission | Concept |
+|---|---------|---------|
+| 04 | Combat Conditions | if/elif/else, comparison operators |
+| 05 | Turn-Based Loop | while loop |
+| 06 | Inventory Lists | lists |
+
+**Boss Fight:** Project 02: Turn-Based Combat
+
+---
+
+### World 3: Character Data *(coming soon)*
+
+| # | Mission | Concept |
+|---|---------|---------|
+| 07 | Monster Dictionary | dictionaries |
+| 08 | Attack Function | functions |
+| 09 | Dice Rolls | random |
+| 10 | Safe Input | exceptions |
+
+**Boss Fight:** Project 03: Terminal RPG
+
+---
+
+### World 4: Saving and Structure *(coming soon)*
+
+| # | Mission | Concept |
+|---|---------|---------|
+| 11 | Combat Log | files, CSV |
+| 12 | Save Game | JSON |
+| 13 | Split the Game | modules |
+| 14 | Hero Dataclass | dataclasses |
+| 15 | Test the Damage | pytest |
+
+**Boss Fight:** Project 04 is your full Terminal RPG.
+
+---
+
+## Part 2: Game Data Analysis *(coming soon)*
+
+After you build the RPG, you will analyze the game data.
+
+| # | Mission | Concept |
+|---|---------|---------|
+| 16 | Dice Are Data | NumPy arrays |
+| 17 | Damage Distributions | NumPy statistics |
+| 18 | Read Combat Logs | Pandas |
+| 19 | Filter and Group | Pandas groupby |
+| 20 | Plot the Results | Matplotlib |
+
+**Final Boss:** Project 05: Game Analytics Report
+
+---
+
+*Is the game balanced? You will find out.*
