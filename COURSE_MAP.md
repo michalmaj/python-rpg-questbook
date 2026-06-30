@@ -40,7 +40,7 @@
 | 09 | [Dice Rolls](missions/09_dice_rolls/README.md) | import, random.randint |
 | 10 | [Safe Input](missions/10_safe_input/README.md) | try/except, ValueError |
 
-**Boss Fight:** Project 03: Terminal RPG
+**Boss Fight:** [Project 03: Terminal RPG](projects/03_terminal_rpg/README.md)
 
 ---
 

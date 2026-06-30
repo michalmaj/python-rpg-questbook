@@ -33,7 +33,9 @@ WORLDS = [
             ("09_dice_rolls", "Mission 09: Dice Rolls"),
             ("10_safe_input", "Mission 10: Safe Input"),
         ],
-        [],
+        [
+            ("03_terminal_rpg", "Project 03: Terminal RPG"),
+        ],
     ),
 ]
 
