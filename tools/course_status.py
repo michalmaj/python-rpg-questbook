@@ -54,6 +54,7 @@ WORLDS = [
         "Part 2: Game Data Analysis",
         [
             ("16_dice_are_data", "Mission 16: Dice Are Data"),
+            ("17_damage_distributions", "Mission 17: Damage Distributions"),
         ],
         [],
     ),
