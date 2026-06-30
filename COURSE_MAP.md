@@ -50,7 +50,7 @@
 |---|---------|---------|
 | 11 | [Combat Log](missions/11_combat_log/README.md) | open, write, CSV |
 | 12 | [Save Game](missions/12_save_game/README.md) | json.dump, json.load |
-| 13 | Split the Game | modules |
+| 13 | [Split the Game](missions/13_split_the_game/README.md) | modules, from X import Y |
 | 14 | Hero Dataclass | dataclasses |
 | 15 | Test the Damage | pytest |
 
