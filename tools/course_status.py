@@ -41,6 +41,7 @@ WORLDS = [
         "World 4: Saving and Structure",
         [
             ("11_combat_log", "Mission 11: Combat Log"),
+            ("12_save_game", "Mission 12: Save Game"),
         ],
         [],
     ),
