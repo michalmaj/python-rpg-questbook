@@ -50,6 +50,13 @@ WORLDS = [
             ("04_full_rpg", "Project 04: Full Terminal RPG"),
         ],
     ),
+    (
+        "Part 2: Game Data Analysis",
+        [
+            ("16_dice_are_data", "Mission 16: Dice Are Data"),
+        ],
+        [],
+    ),
 ]
 
 SYMBOLS = {
