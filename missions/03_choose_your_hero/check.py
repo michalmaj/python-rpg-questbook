@@ -29,12 +29,14 @@ def main() -> None:
     assert mage.get("class") == "Mage", f'mage["class"]: expected "Mage", got {mage.get("class")!r}'
     assert mage.get("hp") == 80, f'mage["hp"]: expected 80, got {mage.get("hp")}'
     assert mage.get("damage") == 25, f'mage["damage"]: expected 25, got {mage.get("damage")}'
+    assert mage.get("bonus") == "spell", f'mage["bonus"]: expected "spell", got {mage.get("bonus")!r}'
 
     rogue = choose_hero_class("rogue")
     assert rogue is not None, 'choose_hero_class("rogue") returned None'
     assert rogue.get("class") == "Rogue", f'rogue["class"]: expected "Rogue", got {rogue.get("class")!r}'
     assert rogue.get("hp") == 100, f'rogue["hp"]: expected 100, got {rogue.get("hp")}'
     assert rogue.get("damage") == 20, f'rogue["damage"]: expected 20, got {rogue.get("damage")}'
+    assert rogue.get("bonus") == "crit", f'rogue["bonus"]: expected "crit", got {rogue.get("bonus")!r}'
 
     unknown = choose_hero_class("wizard")
     assert unknown is None, 'choose_hero_class("wizard") should return None, not a dict'
