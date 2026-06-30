@@ -30,6 +30,7 @@ WORLDS = [
         [
             ("07_monster_dictionary", "Mission 07: Monster Dictionary"),
             ("08_attack_function", "Mission 08: Attack Function"),
+            ("09_dice_rolls", "Mission 09: Dice Rolls"),
         ],
         [],
     ),
