@@ -43,6 +43,7 @@ WORLDS = [
             ("11_combat_log", "Mission 11: Combat Log"),
             ("12_save_game", "Mission 12: Save Game"),
             ("13_split_the_game", "Mission 13: Split the Game"),
+            ("14_hero_dataclass", "Mission 14: Hero Dataclass"),
         ],
         [],
     ),
