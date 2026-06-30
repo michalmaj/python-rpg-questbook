@@ -25,6 +25,13 @@ WORLDS = [
         ],
         [],
     ),
+    (
+        "World 3: Character Data",
+        [
+            ("07_monster_dictionary", "Mission 07: Monster Dictionary"),
+        ],
+        [],
+    ),
 ]
 
 SYMBOLS = {

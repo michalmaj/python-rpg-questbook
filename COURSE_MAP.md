@@ -35,7 +35,7 @@
 
 | # | Mission | Concept |
 |---|---------|---------|
-| 07 | Monster Dictionary | dictionaries |
+| 07 | [Monster Dictionary](missions/07_monster_dictionary/README.md) | dictionaries |
 | 08 | Attack Function | functions |
 | 09 | Dice Rolls | random |
 | 10 | Safe Input | exceptions |
