@@ -59,7 +59,9 @@ WORLDS = [
             ("19_filter_and_group", "Mission 19: Filter and Group"),
             ("20_plot_the_results", "Mission 20: Plot the Results"),
         ],
-        [],
+        [
+            ("05_analytics_report", "Project 05: Game Analytics Report"),
+        ],
     ),
 ]
 
