@@ -1,9 +1,11 @@
 import json
+import subprocess
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).parents[2]
 PROGRESS_FILE = REPO_ROOT / ".progress"
 PROJECT_ID = "01_battle_calculator"
+TASK_PATH = "projects/01_battle_calculator/battle_calculator.py"
 
 
 def _update_progress(status: str) -> None:
@@ -14,48 +16,42 @@ def _update_progress(status: str) -> None:
     PROGRESS_FILE.write_text(json.dumps(data, indent=2))
 
 
+def run_script(inputs: list[str]) -> str:
+    result = subprocess.run(
+        ["uv", "run", "python", TASK_PATH],
+        input="\n".join(inputs) + "\n",
+        capture_output=True,
+        text=True,
+        cwd=REPO_ROOT,
+    )
+    return result.stdout
+
+
 def main() -> None:
-    from battle_calculator import (
-        get_hero_stats,
-        calculate_damage,
-        calculate_healing,
-        summarize_battle,
+    # Warrior, no potion: 120 hp - 20 damage = 100 hp → survives
+    out = run_script(["warrior", "no"])
+    assert "Warrior" in out, f"warrior: expected 'Warrior' in output\n{out}"
+    assert "100" in out, f"warrior: expected hp=100 after 20 damage (120 - 20 = 100)\n{out}"
+    assert "stands" in out.lower() or "remaining" in out.lower(), (
+        f"warrior survives — expected a survival message in output\n{out}"
     )
 
-    warrior = get_hero_stats("warrior")
-    assert warrior is not None, 'get_hero_stats("warrior") returned None'
-    assert warrior.get("class") == "Warrior", f'expected "Warrior", got {warrior.get("class")!r}'
-    assert warrior.get("hp") == 120, f'warrior hp: expected 120, got {warrior.get("hp")}'
-    assert warrior.get("damage") == 15, f'warrior damage: expected 15, got {warrior.get("damage")}'
-    assert warrior.get("gold") == 50, f'warrior["gold"]: expected 50, got {warrior.get("gold")}'
+    # Rogue, yes potion: 100 hp - 20 = 80, heal 25 → 100 (capped at max_hp=100)
+    out = run_script(["rogue", "yes"])
+    assert "Rogue" in out, f"rogue: expected 'Rogue' in output\n{out}"
+    assert "You healed! HP: 100" in out, (
+        f"rogue: after healing, expected 'You healed! HP: 100' (80 + 25 = 105, capped to 100)\n{out}"
+    )
 
-    mage = get_hero_stats("mage")
-    assert mage is not None, 'get_hero_stats("mage") returned None'
-    assert mage.get("hp") == 80, f'mage hp: expected 80, got {mage.get("hp")}'
-    assert mage.get("damage") == 25, f'mage damage: expected 25, got {mage.get("damage")}'
-
-    rogue = get_hero_stats("rogue")
-    assert rogue is not None, 'get_hero_stats("rogue") returned None'
-    assert rogue.get("hp") == 100, f'rogue hp: expected 100, got {rogue.get("hp")}'
-
-    assert get_hero_stats("wizard") is None, 'get_hero_stats("wizard") should return None'
-
-    assert calculate_damage(100, 30) == 70, "calculate_damage(100, 30): expected 70"
-    assert calculate_damage(20, 50) == 0, "calculate_damage(20, 50): HP cannot go below 0"
-
-    assert calculate_healing(70, 20, 100) == 90, "calculate_healing(70, 20, 100): expected 90"
-    assert calculate_healing(90, 20, 100) == 100, "calculate_healing(90, 20, 100): HP cannot exceed max_hp"
-
-    alive = summarize_battle("Warrior", 65)
-    assert "Warrior" in alive and "65" in alive, \
-        'summarize_battle("Warrior", 65): should mention "Warrior" and "65"'
-
-    fallen = summarize_battle("Mage", 0)
-    assert "Mage" in fallen, 'summarize_battle("Mage", 0): should mention "Mage"'
+    # Unknown class → error message
+    out = run_script(["bard"])
+    assert "bard" in out.lower() or "unknown" in out.lower(), (
+        f"unknown class: expected an error message in output\n{out}"
+    )
 
     _update_progress("complete")
     print("✅ Project 01 complete: Battle Calculator")
-    print("   World 1 is clear. Check your progress:")
+    print("\n   World 1 is clear! Check your progress:")
     print("   uv run python tools/course_status.py")
 
 
