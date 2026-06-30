@@ -31,9 +31,9 @@ It should return a dictionary with these exact values:
 **Reminder — how to build a dictionary:**
 
 ```python
-my_dict = {
-    "key": "value",
-    "number": 42,
+hero = {
+    "name": "Ada",
+    "hp": 100,
 }
 ```
 
