@@ -5,6 +5,7 @@ description = "A quest-based Python course from first script to terminal RPG and
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "matplotlib>=3.11.0",
     "numpy>=2.5.0",
     "pandas>=3.0.3",
 ]

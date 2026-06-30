@@ -57,6 +57,7 @@ WORLDS = [
             ("17_damage_distributions", "Mission 17: Damage Distributions"),
             ("18_read_combat_logs", "Mission 18: Read Combat Logs"),
             ("19_filter_and_group", "Mission 19: Filter and Group"),
+            ("20_plot_the_results", "Mission 20: Plot the Results"),
         ],
         [],
     ),
