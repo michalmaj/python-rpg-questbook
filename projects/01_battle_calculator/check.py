@@ -27,6 +27,7 @@ def main() -> None:
     assert warrior.get("class") == "Warrior", f'expected "Warrior", got {warrior.get("class")!r}'
     assert warrior.get("hp") == 120, f'warrior hp: expected 120, got {warrior.get("hp")}'
     assert warrior.get("damage") == 15, f'warrior damage: expected 15, got {warrior.get("damage")}'
+    assert warrior.get("gold") == 50, f'warrior["gold"]: expected 50, got {warrior.get("gold")}'
 
     mage = get_hero_stats("mage")
     assert mage is not None, 'get_hero_stats("mage") returned None'
