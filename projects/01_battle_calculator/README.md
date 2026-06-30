@@ -7,6 +7,7 @@
 ## Goal
 
 Combine everything from Missions 01–03 into a small interactive battle simulator.
+No functions — just a single script that runs from top to bottom.
 
 ## What you will build
 
@@ -20,16 +21,14 @@ A terminal program where the player:
 
 ## Your task
 
-Open `battle_calculator.py`. Complete the four functions marked with `TODO`:
+Open `battle_calculator.py`. Fill in four `TODO` sections:
 
-| Function | What it does |
-|----------|-------------|
-| `get_hero_stats(hero_class)` | Returns stats for the chosen class, or `None` if unknown |
-| `calculate_damage(hero_hp, damage)` | Reduces HP (minimum 0) |
-| `calculate_healing(hero_hp, heal_amount, max_hp)` | Restores HP (maximum `max_hp`) |
-| `summarize_battle(hero_class, final_hp)` | Returns a summary string |
-
-You have already written similar logic in Missions 01–03. This time, you are putting it all together.
+| Step | What to do |
+|------|-----------|
+| 1 | Set `hero_name`, `hero_hp`, `hero_damage` using `if` / `elif` / `else` — same pattern as Mission 03 |
+| 2 | Calculate `hero_hp` after `monster_damage`. HP cannot go below `0` — same pattern as Mission 02 |
+| 3 | Calculate `hero_hp` after `potion_heal`. HP cannot exceed `max_hp` — same pattern as Mission 02 |
+| 4 | Print the right summary: survived or fallen — use the f-string patterns from Mission 01 |
 
 ## Run
 
@@ -42,20 +41,6 @@ uv run python projects/01_battle_calculator/battle_calculator.py
 ```bash
 uv run python projects/01_battle_calculator/check.py
 ```
-
-## Tests
-
-These are the same checks, written in a more professional style. Come back to these after Mission 15 when you learn about pytest:
-
-```bash
-uv run pytest projects/01_battle_calculator -v
-```
-
-## Side quest
-
-Add a `calculate_gold_reward(monster_level: int) -> int` function.
-It should return `monster_level * 10` gold.
-Print the gold reward after the battle summary.
 
 ---
 

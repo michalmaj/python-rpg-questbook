@@ -8,33 +8,30 @@ Store your hero's basic information using Python variables.
 
 - How to create variables
 - Basic data types: `str` and `int`
-- How to build and return a dictionary
+- How to print values with f-strings
 
 ## Game problem
 
 Every RPG hero needs stats: a name, hit points, attack damage, and gold.
-We need a way to store all of this in one place so the rest of the game can use it.
+We need to give each of these a name and a value so the rest of the game can use them.
 
 ## Your task
 
-Open `task.py` and complete the function `get_hero_stats()`.
+Open `task.py`. You will see four variables, each set to `None`.
+Replace each `None` with the correct value:
 
-It should return a dictionary with these exact values:
+| Variable      | Value   | Type  |
+|---------------|---------|-------|
+| `hero_name`   | `"Ada"` | `str` |
+| `hero_hp`     | `100`   | `int` |
+| `hero_damage` | `15`    | `int` |
+| `hero_gold`   | `50`    | `int` |
 
-| Key        | Value   | Type  |
-|------------|---------|-------|
-| `"name"`   | `"Ada"` | `str` |
-| `"hp"`     | `100`   | `int` |
-| `"damage"` | `15`    | `int` |
-| `"gold"`   | `50`    | `int` |
-
-**Reminder — how to build a dictionary:**
+**Reminder — variables in Python:**
 
 ```python
-hero = {
-    "name": "Ada",
-    "hp": 100,
-}
+hero_name = "Ada"    # text (string) — always in quotes
+hero_hp = 100        # whole number (int) — no quotes
 ```
 
 ## Run
@@ -60,12 +57,12 @@ You should see:
 
 ## Side quest
 
-Add two more stats to your dictionary:
+Add two more variables:
 
-- `"level"` → start at `1`
-- `"armor"` → start at `5`
+- `hero_level = 1`
+- `hero_armor = 5`
 
-Update the print block in `task.py` to display them.
+Update the `print` lines in `task.py` to display them too.
 
 ---
 

@@ -1,27 +1,27 @@
-def apply_damage(hero_hp: int, damage: int) -> int:
-    # TODO: Subtract damage from hero_hp.
-    # HP cannot go below 0.
-    # Return the new HP value.
-    pass
+# Mission 02: Damage and Healing
+#
+# The hero starts with 100 HP.
+# Use arithmetic to track HP through three events.
 
+hero_hp = 100
+max_hp = 100
+monster_damage = 30
+potion_heal = 20
+big_hit = 200
 
-def apply_healing(hero_hp: int, heal_amount: int, max_hp: int) -> int:
-    # TODO: Add heal_amount to hero_hp.
-    # HP cannot exceed max_hp.
-    # Return the new HP value.
-    pass
+# TODO: Hero takes monster_damage. HP cannot go below 0.
+# Hint: max(0, value)
+hp_after_attack = None
 
+# TODO: Hero drinks a potion. HP cannot exceed max_hp.
+# Hint: min(max_hp, value)
+hp_after_healing = None
 
-if __name__ == "__main__":
-    hp = 100
-    print(f"Starting HP:       {hp}")
+# TODO: Hero takes big_hit damage. HP cannot go below 0.
+hp_after_big_hit = None
 
-    hp = apply_damage(hp, 30)
-    print(f"After 30 damage:   {hp}")
-
-    hp = apply_healing(hp, 20, 100)
-    print(f"After healing 20:  {hp}")
-
-    hp = apply_damage(hp, 200)
-    print(f"After 200 damage:  {hp}")
-    print(f"(HP cannot go below 0)")
+print("=== HP Log ===")
+print(f"Starting HP:    {hero_hp}")
+print(f"After attack:   {hp_after_attack}")
+print(f"After healing:  {hp_after_healing}")
+print(f"After big hit:  {hp_after_big_hit}")

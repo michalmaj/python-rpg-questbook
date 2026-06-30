@@ -2,57 +2,44 @@
 
 ## Goal
 
-Write functions that update your hero's HP during combat.
+Calculate how your hero's HP changes during combat.
 
 ## You will learn
 
 - Arithmetic operators: `-`, `+`
-- How to use `min()` and `max()` to clamp a value within a range
-- How to write functions with multiple parameters and a return value
+- How to use `min()` and `max()` to keep a value in range
+- Chaining calculations step by step
 
 ## Game problem
 
 During a battle, the hero takes damage and sometimes drinks a potion to heal.
 HP must stay between `0` (dead) and `max_hp` (full health).
-We need two functions that handle both changes correctly.
 
 ## Your task
 
-Open `task.py` and complete two functions.
+Open `task.py`. You will see three variables set to `None`.
+Replace each `None` with the correct arithmetic expression:
 
-### apply_damage
+| Variable           | What to calculate                                           | Expected |
+|--------------------|-------------------------------------------------------------|----------|
+| `hp_after_attack`  | `hero_hp` minus `monster_damage`. Cannot go below `0`.      | `70`     |
+| `hp_after_healing` | `hp_after_attack` plus `potion_heal`. Cannot exceed `max_hp`. | `90`   |
+| `hp_after_big_hit` | `hp_after_healing` minus `big_hit`. Cannot go below `0`.    | `0`      |
 
-```python
-def apply_damage(hero_hp: int, damage: int) -> int:
-```
-
-Subtract `damage` from `hero_hp`. HP cannot go below `0`.
-
-**Examples:**
-- `apply_damage(100, 30)` → `70`
-- `apply_damage(20, 50)` → `0` (not `-30`)
-
-**Hint:** `max(0, value)` returns `0` if `value` is negative.
-
-### apply_healing
+**How to clamp a value:**
 
 ```python
-def apply_healing(hero_hp: int, heal_amount: int, max_hp: int) -> int:
+max(0, value)        # if value is negative, returns 0 instead
+min(max_hp, value)   # if value exceeds max_hp, returns max_hp instead
 ```
-
-Add `heal_amount` to `hero_hp`. HP cannot exceed `max_hp`.
-
-**Examples:**
-- `apply_healing(70, 20, 100)` → `90`
-- `apply_healing(90, 20, 100)` → `100` (not `110`)
-
-**Hint:** `min(max_hp, value)` returns `max_hp` if `value` is too high.
 
 ## Run
 
 ```bash
 uv run python missions/02_damage_and_healing/task.py
 ```
+
+You should see the HP change after each event.
 
 ## Check
 
@@ -62,15 +49,14 @@ uv run python missions/02_damage_and_healing/check.py
 
 ## Side quest
 
-Write a third function:
+Add a fourth calculation:
 
 ```python
-def is_alive(hero_hp: int) -> bool:
-    ...
+second_hit = 15
+hp_after_second_hit = ...  # hp_after_big_hit minus second_hit, cannot go below 0
 ```
 
-Return `True` if `hero_hp > 0`, and `False` otherwise.
-Add a print to `task.py` that shows whether the hero is still alive after each attack.
+Then add a print line to show `hp_after_second_hit`.
 
 ---
 

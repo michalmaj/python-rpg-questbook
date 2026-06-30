@@ -1,64 +1,62 @@
-"""Project 01: Battle Calculator
+# Project 01: Battle Calculator
+#
+# Combine what you learned in Missions 01-03:
+# - variables and types (Mission 01)
+# - arithmetic and min/max (Mission 02)
+# - input and if/elif/else (Mission 03)
+#
+# There are no functions here — work top to bottom.
 
-Combine what you learned in Missions 01-03 to build a small battle simulator.
-Each function below should feel familiar — you wrote similar logic in the missions.
-"""
+print("=== Battle Calculator ===\n")
 
+# --- Step 1: Choose your class ---
 
-def get_hero_stats(hero_class: str) -> dict | None:
-    # TODO: Return stats for the chosen hero class, or None if unknown.
-    #
-    # "warrior" → {"class": "Warrior", "hp": 120, "damage": 15, "gold": 50}
-    # "mage"    → {"class": "Mage",    "hp": 80,  "damage": 25, "gold": 50}
-    # "rogue"   → {"class": "Rogue",   "hp": 100, "damage": 20, "gold": 50}
-    pass
+hero_class = input("Choose your class: warrior / mage / rogue\n> ").strip().lower()
 
+hero_name = None
+hero_hp = None
+hero_damage = None
+hero_gold = 50
 
-def calculate_damage(hero_hp: int, damage: int) -> int:
-    # TODO: Subtract damage from hero_hp. HP cannot go below 0.
-    pass
+# TODO: Set hero_name, hero_hp, and hero_damage based on hero_class.
+#
+# warrior → hero_name = "Warrior", hero_hp = 120, hero_damage = 15
+# mage    → hero_name = "Mage",    hero_hp = 80,  hero_damage = 25
+# rogue   → hero_name = "Rogue",   hero_hp = 100, hero_damage = 20
 
+if hero_name is None:
+    print(f"\nUnknown class: {hero_class!r}")
+    print("Valid choices: warrior, mage, rogue")
+else:
+    max_hp = hero_hp
 
-def calculate_healing(hero_hp: int, heal_amount: int, max_hp: int) -> int:
-    # TODO: Add heal_amount to hero_hp. HP cannot exceed max_hp.
-    pass
+    print(f"\n{hero_name} enters the arena!")
+    print(f"HP: {hero_hp}  |  Damage: {hero_damage}  |  Gold: {hero_gold}\n")
 
+    # --- Step 2: Monster attacks ---
 
-def summarize_battle(hero_class: str, final_hp: int) -> str:
-    # TODO: Return a summary string.
-    # If final_hp > 0:  "Warrior stands with 65 HP remaining."
-    # If final_hp == 0: "Mage has fallen."
-    pass
+    monster_damage = 20
 
+    # TODO: Calculate hero_hp after taking monster_damage. HP cannot go below 0.
+    # Hint: max(0, value)
+    hero_hp = None
 
-if __name__ == "__main__":
-    print("=== Battle Calculator ===\n")
-    print("Choose your class: warrior / mage / rogue")
-    choice = input("> ").strip().lower()
+    print(f"The monster deals {monster_damage} damage!")
+    print(f"Your HP: {hero_hp}")
 
-    hero = get_hero_stats(choice)
-    if not hero:
-        print(f"Unknown class: {choice!r}")
-    else:
-        max_hp = hero["hp"]
-        current_hp = max_hp
-        print(f"\n{hero['class']} steps into the arena!")
-        print(f"HP: {current_hp}  |  Damage: {hero['damage']}\n")
+    # --- Step 3: Use a potion? ---
 
-        try:
-            damage_input = input("Monster attacks! How much damage? ").strip()
-            damage = int(damage_input)
-        except ValueError:
-            print("That's not a number. Defaulting to 20 damage.")
-            damage = 20
+    use_potion = input("\nUse a potion? (yes/no)\n> ").strip().lower()
 
-        current_hp = calculate_damage(current_hp, damage)
-        print(f"After {damage} damage: {current_hp} HP")
+    if use_potion == "yes":
+        potion_heal = 25
+        # TODO: Calculate hero_hp after healing. HP cannot exceed max_hp.
+        # Hint: min(max_hp, value)
+        hero_hp = None
+        print(f"You healed! HP: {hero_hp}")
 
-        heal_input = input("Use a potion? (yes/no) ").strip().lower()
-        if heal_input == "yes":
-            current_hp = calculate_healing(current_hp, 25, max_hp)
-            print(f"After healing: {current_hp} HP")
+    # --- Step 4: Battle summary ---
 
-        print()
-        print(summarize_battle(hero["class"], current_hp))
+    print("\n=== Battle Summary ===")
+    # TODO: If hero_hp > 0, print: f"{hero_name} stands with {hero_hp} HP remaining."
+    #       Otherwise, print: f"{hero_name} has fallen."

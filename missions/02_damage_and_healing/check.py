@@ -15,25 +15,17 @@ def _update_progress(status: str) -> None:
 
 
 def main() -> None:
-    from task import apply_damage, apply_healing
+    import task
 
-    result = apply_damage(100, 30)
-    assert result == 70, f"apply_damage(100, 30): expected 70, got {result}"
-
-    result = apply_damage(100, 100)
-    assert result == 0, f"apply_damage(100, 100): expected 0, got {result}"
-
-    result = apply_damage(20, 50)
-    assert result == 0, f"apply_damage(20, 50): HP cannot go below 0, got {result}"
-
-    result = apply_healing(70, 20, 100)
-    assert result == 90, f"apply_healing(70, 20, 100): expected 90, got {result}"
-
-    result = apply_healing(90, 20, 100)
-    assert result == 100, f"apply_healing(90, 20, 100): expected 100 (max_hp), got {result}"
-
-    result = apply_healing(100, 20, 100)
-    assert result == 100, f"apply_healing(100, 20, 100): already at max, got {result}"
+    assert task.hp_after_attack == 70, (
+        f"hp_after_attack: expected 70 (100 - 30), got {task.hp_after_attack!r}"
+    )
+    assert task.hp_after_healing == 90, (
+        f"hp_after_healing: expected 90 (70 + 20), got {task.hp_after_healing!r}"
+    )
+    assert task.hp_after_big_hit == 0, (
+        f"hp_after_big_hit: expected 0 (cannot go below 0), got {task.hp_after_big_hit!r}"
+    )
 
     _update_progress("complete")
     print("✅ Mission 02 complete: Damage and Healing")
