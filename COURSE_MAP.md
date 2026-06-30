@@ -52,7 +52,7 @@
 | 12 | [Save Game](missions/12_save_game/README.md) | json.dump, json.load |
 | 13 | [Split the Game](missions/13_split_the_game/README.md) | modules, from X import Y |
 | 14 | [Hero Dataclass](missions/14_hero_dataclass/README.md) | dataclasses, type annotations |
-| 15 | Test the Damage | pytest |
+| 15 | [Test the Damage](missions/15_test_the_damage/README.md) | pytest, assert |
 
 **Boss Fight:** Project 04 is your full Terminal RPG.
 
