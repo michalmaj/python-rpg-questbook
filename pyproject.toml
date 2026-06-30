@@ -1,0 +1,22 @@
+[project]
+name = "python-rpg-questbook"
+version = "0.1.0"
+description = "A quest-based Python course from first script to terminal RPG and game-data analysis."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "numpy>=2.5.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0.0",
+    "ruff>=0.8.0",
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]

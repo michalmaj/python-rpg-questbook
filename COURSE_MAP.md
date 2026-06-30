@@ -64,7 +64,7 @@ After you build the RPG, you will analyze the game data.
 
 | # | Mission | Concept |
 |---|---------|---------|
-| 16 | Dice Are Data | NumPy arrays |
+| 16 | [Dice Are Data](missions/16_dice_are_data/README.md) | NumPy arrays, np.random.randint |
 | 17 | Damage Distributions | NumPy statistics |
 | 18 | Read Combat Logs | Pandas |
 | 19 | Filter and Group | Pandas groupby |
