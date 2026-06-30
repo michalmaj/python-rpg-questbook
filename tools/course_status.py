@@ -55,6 +55,7 @@ WORLDS = [
         [
             ("16_dice_are_data", "Mission 16: Dice Are Data"),
             ("17_damage_distributions", "Mission 17: Damage Distributions"),
+            ("18_read_combat_logs", "Mission 18: Read Combat Logs"),
         ],
         [],
     ),
