@@ -46,7 +46,9 @@ WORLDS = [
             ("14_hero_dataclass", "Mission 14: Hero Dataclass"),
             ("15_test_the_damage", "Mission 15: Test the Damage"),
         ],
-        [],
+        [
+            ("04_full_rpg", "Project 04: Full Terminal RPG"),
+        ],
     ),
 ]
 

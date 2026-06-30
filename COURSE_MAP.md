@@ -54,7 +54,7 @@
 | 14 | [Hero Dataclass](missions/14_hero_dataclass/README.md) | dataclasses, type annotations |
 | 15 | [Test the Damage](missions/15_test_the_damage/README.md) | pytest, assert |
 
-**Boss Fight:** Project 04 is your full Terminal RPG.
+**Boss Fight:** [Project 04: Full Terminal RPG](projects/04_full_rpg/README.md)
 
 ---
 
