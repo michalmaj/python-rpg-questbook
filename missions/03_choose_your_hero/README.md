@@ -13,33 +13,34 @@ Let the player pick a hero class at the start of the game.
 ## Game problem
 
 Before the battle begins, the player should choose a class.
-Each class has different stats — the warrior is tough, the mage hits hard, the rogue is balanced.
+Each class has different stats — the warrior is tough, the mage hits hard, the rogue is fast.
 The game needs to translate the player's text input into actual numbers.
 
 ## Your task
 
-Open `task.py` and complete `choose_hero_class(choice)`.
+Open `task.py`. After the `input()` line you will see four variables set to `None`.
+Use `if` / `elif` / `elif` / `else` to set them based on `hero_class`:
 
-The function receives a string and should return a dictionary:
-
-| Input        | `"class"` | `"hp"` | `"damage"` | `"bonus"` |
-|--------------|-----------|--------|------------|-----------|
-| `"warrior"`  | `"Warrior"` | `120` | `15` | `"armor"` |
-| `"mage"`     | `"Mage"`    | `80`  | `25` | `"spell"` |
-| `"rogue"`    | `"Rogue"`   | `100` | `20` | `"crit"`  |
-| anything else | — | — | — | return `None` |
+| Input       | `hero_name`  | `hero_hp` | `hero_damage` | `hero_bonus` |
+|-------------|--------------|-----------|---------------|--------------|
+| `"warrior"` | `"Warrior"`  | `120`     | `15`          | `"armor"`    |
+| `"mage"`    | `"Mage"`     | `80`      | `25`          | `"spell"`    |
+| `"rogue"`   | `"Rogue"`    | `100`     | `20`          | `"crit"`     |
 
 **Reminder — if/elif/else:**
 
 ```python
-if choice == "warrior":
-    return { ... }
-elif choice == "mage":
-    return { ... }
-elif choice == "rogue":
-    return { ... }
+if hero_class == "warrior":
+    hero_name = "Warrior"
+    hero_hp = 120
+    hero_damage = 15
+    hero_bonus = "armor"
+elif hero_class == "mage":
+    # ...
+elif hero_class == "rogue":
+    # ...
 else:
-    return None
+    pass  # hero_name stays None → the error message below will print
 ```
 
 ## Run
@@ -52,7 +53,7 @@ Type `warrior`, `mage`, or `rogue` when prompted.
 
 ## Check
 
-The check does not use `input()` — it calls your function directly with different values:
+The check runs your script three times with different inputs and reads the output:
 
 ```bash
 uv run python missions/03_choose_your_hero/check.py
@@ -60,15 +61,7 @@ uv run python missions/03_choose_your_hero/check.py
 
 ## Side quest
 
-What happens if the player types `"Warrior"` with a capital W?
-
-Add `.lower()` to the input line so both `"warrior"` and `"Warrior"` work:
-
-```python
-choice = input("> ").strip().lower()
-```
-
-The check already passes lowercase — this is about making the game friendlier for real players.
+The input line already has `.strip().lower()` — so `"Warrior"` and `"WARRIOR"` both become `"warrior"` before the `if` check. Try it: run the script and type `Warrior` with a capital W. It should work!
 
 ---
 

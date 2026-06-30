@@ -1,9 +1,11 @@
 import json
+import subprocess
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).parents[2]
 PROGRESS_FILE = REPO_ROOT / ".progress"
 MISSION_ID = "03_choose_your_hero"
+TASK_PATH = "missions/03_choose_your_hero/task.py"
 
 
 def _update_progress(status: str) -> None:
@@ -14,32 +16,40 @@ def _update_progress(status: str) -> None:
     PROGRESS_FILE.write_text(json.dumps(data, indent=2))
 
 
+def run_task(choice: str) -> str:
+    result = subprocess.run(
+        ["uv", "run", "python", TASK_PATH],
+        input=choice + "\n",
+        capture_output=True,
+        text=True,
+        cwd=REPO_ROOT,
+    )
+    return result.stdout
+
+
 def main() -> None:
-    from task import choose_hero_class
+    warrior_out = run_task("warrior")
+    assert "Warrior" in warrior_out, f'warrior: expected "Warrior" in output\n{warrior_out}'
+    assert "120" in warrior_out, f"warrior: expected hp=120 in output\n{warrior_out}"
+    assert "15" in warrior_out, f"warrior: expected damage=15 in output\n{warrior_out}"
+    assert "armor" in warrior_out, f'warrior: expected bonus="armor" in output\n{warrior_out}'
 
-    warrior = choose_hero_class("warrior")
-    assert warrior is not None, 'choose_hero_class("warrior") returned None'
-    assert warrior.get("class") == "Warrior", f'warrior["class"]: expected "Warrior", got {warrior.get("class")!r}'
-    assert warrior.get("hp") == 120, f'warrior["hp"]: expected 120, got {warrior.get("hp")}'
-    assert warrior.get("damage") == 15, f'warrior["damage"]: expected 15, got {warrior.get("damage")}'
-    assert warrior.get("bonus") == "armor", f'warrior["bonus"]: expected "armor", got {warrior.get("bonus")!r}'
+    mage_out = run_task("mage")
+    assert "Mage" in mage_out, f'mage: expected "Mage" in output\n{mage_out}'
+    assert "80" in mage_out, f"mage: expected hp=80 in output\n{mage_out}"
+    assert "25" in mage_out, f"mage: expected damage=25 in output\n{mage_out}"
+    assert "spell" in mage_out, f'mage: expected bonus="spell" in output\n{mage_out}'
 
-    mage = choose_hero_class("mage")
-    assert mage is not None, 'choose_hero_class("mage") returned None'
-    assert mage.get("class") == "Mage", f'mage["class"]: expected "Mage", got {mage.get("class")!r}'
-    assert mage.get("hp") == 80, f'mage["hp"]: expected 80, got {mage.get("hp")}'
-    assert mage.get("damage") == 25, f'mage["damage"]: expected 25, got {mage.get("damage")}'
-    assert mage.get("bonus") == "spell", f'mage["bonus"]: expected "spell", got {mage.get("bonus")!r}'
+    rogue_out = run_task("rogue")
+    assert "Rogue" in rogue_out, f'rogue: expected "Rogue" in output\n{rogue_out}'
+    assert "100" in rogue_out, f"rogue: expected hp=100 in output\n{rogue_out}"
+    assert "20" in rogue_out, f"rogue: expected damage=20 in output\n{rogue_out}"
+    assert "crit" in rogue_out, f'rogue: expected bonus="crit" in output\n{rogue_out}'
 
-    rogue = choose_hero_class("rogue")
-    assert rogue is not None, 'choose_hero_class("rogue") returned None'
-    assert rogue.get("class") == "Rogue", f'rogue["class"]: expected "Rogue", got {rogue.get("class")!r}'
-    assert rogue.get("hp") == 100, f'rogue["hp"]: expected 100, got {rogue.get("hp")}'
-    assert rogue.get("damage") == 20, f'rogue["damage"]: expected 20, got {rogue.get("damage")}'
-    assert rogue.get("bonus") == "crit", f'rogue["bonus"]: expected "crit", got {rogue.get("bonus")!r}'
-
-    unknown = choose_hero_class("wizard")
-    assert unknown is None, 'choose_hero_class("wizard") should return None, not a dict'
+    unknown_out = run_task("wizard")
+    assert "wizard" in unknown_out.lower() or "unknown" in unknown_out.lower(), (
+        f"unknown class: expected an error message in output\n{unknown_out}"
+    )
 
     _update_progress("complete")
     print("✅ Mission 03 complete: Choose Your Hero")
