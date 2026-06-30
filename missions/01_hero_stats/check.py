@@ -15,15 +15,12 @@ def _update_progress(status: str) -> None:
 
 
 def main() -> None:
-    from task import get_hero_stats
+    import task
 
-    stats = get_hero_stats()
-
-    assert isinstance(stats, dict), "get_hero_stats() must return a dict, not None or pass"
-    assert stats.get("name") == "Ada", f'name: expected "Ada", got {stats.get("name")!r}'
-    assert stats.get("hp") == 100, f"hp: expected 100, got {stats.get('hp')!r}"
-    assert stats.get("damage") == 15, f"damage: expected 15, got {stats.get('damage')!r}"
-    assert stats.get("gold") == 50, f"gold: expected 50, got {stats.get('gold')!r}"
+    assert task.hero_name == "Ada", f'hero_name: expected "Ada", got {task.hero_name!r}'
+    assert task.hero_hp == 100, f"hero_hp: expected 100, got {task.hero_hp!r}"
+    assert task.hero_damage == 15, f"hero_damage: expected 15, got {task.hero_damage!r}"
+    assert task.hero_gold == 50, f"hero_gold: expected 50, got {task.hero_gold!r}"
 
     _update_progress("complete")
     print("✅ Mission 01 complete: Hero Stats")
