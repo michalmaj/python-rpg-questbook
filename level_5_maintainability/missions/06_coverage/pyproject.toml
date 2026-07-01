@@ -1,0 +1,22 @@
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+
+# TODO: Add coverage configuration sections to this file.
+# You need two sections:
+#
+#   1. tool.coverage.run  — what to measure
+#      source = ["rpg"]
+#      omit = ["test_*.py"]
+#
+#   2. tool.coverage.report  — how to display and enforce the threshold
+#      fail_under = 80
+#      show_missing = true
+#
+# Then run: uv run pytest --cov=rpg --cov-report=term-missing
