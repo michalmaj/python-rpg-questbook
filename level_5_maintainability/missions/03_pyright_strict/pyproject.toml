@@ -1,0 +1,17 @@
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = ["B008"]  # typer.Option() in function defaults is the intended pattern
+
+[tool.mypy]
+strict = true
+ignore_missing_imports = true
+
+# TODO: add a pyright configuration section with strict mode
+# Add the following section below and run: uv run python -m pyright task.py
+#
+#   pythonVersion = "3.12"
+#   typeCheckingMode = "strict"
