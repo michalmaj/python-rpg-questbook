@@ -5,10 +5,12 @@ REPO_ROOT = Path(__file__).parent.parent
 LEVEL1_ROOT = REPO_ROOT / "level_1_python_basics"
 LEVEL2_ROOT = REPO_ROOT / "level_2_oop_and_design"
 LEVEL3_ROOT = REPO_ROOT / "level_3_validation_and_persistence"
+LEVEL4_ROOT = REPO_ROOT / "level_4_interfaces"
 
 LEVEL1_PROGRESS_FILE = LEVEL1_ROOT / ".progress"
 LEVEL2_PROGRESS_FILE = LEVEL2_ROOT / ".progress"
 LEVEL3_PROGRESS_FILE = LEVEL3_ROOT / ".progress"
+LEVEL4_PROGRESS_FILE = LEVEL4_ROOT / ".progress"
 
 LEVEL1_WORLDS = [
     (
@@ -136,6 +138,35 @@ LEVEL3_WORLDS = [
     ),
 ]
 
+LEVEL4_WORLDS = [
+    (
+        "World 1: Command Line Interface",
+        [
+            ("01_argparse_baseline", "Mission 01: argparse Baseline"),
+            ("02_typer_cli", "Mission 02: Typer CLI"),
+        ],
+        [],
+    ),
+    (
+        "World 2: Logging and Observability",
+        [
+            ("03_stdlib_logging", "Mission 03: stdlib logging"),
+            ("04_log_files", "Mission 04: Log Files"),
+        ],
+        [],
+    ),
+    (
+        "World 3: User-Facing Output",
+        [
+            ("05_rich_terminal_output", "Mission 05: Rich Terminal Output"),
+            ("06_session_reports", "Mission 06: Session Reports"),
+        ],
+        [
+            ("01_installable_cli_tool", "Boss Fight: Installable CLI Tool"),
+        ],
+    ),
+]
+
 SYMBOLS = {
     "complete": "✓",
     "in_progress": "~",
@@ -191,6 +222,7 @@ def main() -> None:
     l1_progress = load_progress(LEVEL1_PROGRESS_FILE)
     l2_progress = load_progress(LEVEL2_PROGRESS_FILE)
     l3_progress = load_progress(LEVEL3_PROGRESS_FILE)
+    l4_progress = load_progress(LEVEL4_PROGRESS_FILE)
 
     print()
     print("Python RPG Questbook — Your Progress")
@@ -204,6 +236,8 @@ def main() -> None:
                 "level_2_oop_and_design", next_up)
     print_level("Level 3: Validation and Persistence", LEVEL3_WORLDS, l3_progress,
                 "level_3_validation_and_persistence", next_up)
+    print_level("Level 4: Interfaces and Reports", LEVEL4_WORLDS, l4_progress,
+                "level_4_interfaces", next_up)
 
     print()
     if next_up[0]:
