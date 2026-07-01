@@ -29,7 +29,10 @@ if not conftest.exists():
     print("❌ conftest.py not found")
     raise SystemExit(1)
 conf_src = conftest.read_text()
-fixture_count = conf_src.count("@pytest.fixture")
+fixture_count = sum(
+    1 for ln in conf_src.splitlines()
+    if "@pytest.fixture" in ln and not ln.lstrip().startswith("#")
+)
 if fixture_count < 3:
     print(f"❌ Only {fixture_count} @pytest.fixture found in conftest.py (need ≥ 3)")
     raise SystemExit(1)
