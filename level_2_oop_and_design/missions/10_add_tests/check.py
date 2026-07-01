@@ -37,12 +37,18 @@ def main() -> None:
         print("❌ Some tests are failing or incomplete. Fix test_combat.py and try again.")
         raise SystemExit(1)
 
-    # Extra check: make sure students actually wrote assertions (not just pass)
+    # Extra check: make sure students actually wrote real assert statements (not just comments or pass)
+    import ast
     test_source = (MISSION_DIR / "test_combat.py").read_text()
-    assert_count = test_source.count("assert ")
+    try:
+        tree = ast.parse(test_source)
+    except SyntaxError as e:
+        print(f"❌ test_combat.py has a syntax error: {e}")
+        raise SystemExit(1)
+    assert_count = sum(isinstance(node, ast.Assert) for node in ast.walk(tree))
     if assert_count < 5:
-        print(f"❌ Found only {assert_count} assert statement(s). Each test needs at least one assert.")
-        print("   Replace 'pass' with an assert statement in each test function.")
+        print(f"❌ Found only {assert_count} real assert statement(s) in test_combat.py.")
+        print("   Each test function needs at least one assert. Replace 'pass' with an assert.")
         raise SystemExit(1)
 
     update_progress("10_add_tests")

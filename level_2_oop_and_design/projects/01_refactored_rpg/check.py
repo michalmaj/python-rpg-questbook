@@ -108,10 +108,16 @@ def main() -> None:
         print("❌ Tests are failing. Fix tests/test_combat.py and try again.")
         raise SystemExit(1)
 
+    import ast as _ast
     test_source = (PROJECT_DIR / "tests" / "test_combat.py").read_text()
-    assert_count = test_source.count("assert ")
+    try:
+        tree = _ast.parse(test_source)
+    except SyntaxError as e:
+        print(f"❌ tests/test_combat.py has a syntax error: {e}")
+        raise SystemExit(1)
+    assert_count = sum(isinstance(node, _ast.Assert) for node in _ast.walk(tree))
     if assert_count < 5:
-        print(f"❌ Found {assert_count} assert(s). Write at least 5 test assertions.")
+        print(f"❌ Found {assert_count} real assert statement(s). Write at least 5.")
         raise SystemExit(1)
 
     # ── Done ──────────────────────────────────────────────────────────────────
