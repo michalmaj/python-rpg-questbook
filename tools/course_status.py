@@ -77,7 +77,11 @@ SYMBOLS = {
 def load_progress() -> dict:
     if not PROGRESS_FILE.exists():
         return {"missions": {}, "projects": {}}
-    return json.loads(PROGRESS_FILE.read_text())
+    try:
+        return json.loads(PROGRESS_FILE.read_text())
+    except json.JSONDecodeError:
+        print("Warning: .progress file is corrupted. Starting from empty progress.")
+        return {"missions": {}, "projects": {}}
 
 
 def main() -> None:

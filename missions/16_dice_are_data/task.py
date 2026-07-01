@@ -18,8 +18,11 @@ min_roll = None  # replace None with rolls.min()
 max_roll = None  # replace None with rolls.max()
 
 if __name__ == "__main__":
-    print(f"Rolls (first 10): {rolls[:10]}")
-    print(f"Total damage:     {total_damage}")
-    print(f"Average roll:     {average_roll:.2f}")
-    print(f"Min roll:         {min_roll}")
-    print(f"Max roll:         {max_roll}")
+    if rolls is None:
+        print("Fill in the TODO above first: rolls = np.random.randint(...)")
+    else:
+        print(f"Rolls (first 10): {rolls[:10]}")
+        print(f"Total damage:     {total_damage}")
+        print(f"Average roll:     {average_roll:.2f}")
+        print(f"Min roll:         {min_roll}")
+        print(f"Max roll:         {max_roll}")
