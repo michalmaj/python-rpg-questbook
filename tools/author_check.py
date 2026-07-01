@@ -6,11 +6,11 @@ Run from the repo root:
 This is not a student tool — it checks the repo for authoring mistakes.
 """
 
-import subprocess
 import sys
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).parents[1]
+LEVEL1_ROOT = REPO_ROOT / "level_1_python_basics"
 
 MISSIONS = [
     "01_hero_stats", "02_damage_and_healing", "03_choose_your_hero",
@@ -53,7 +53,7 @@ def check(condition: bool, msg_ok: str, msg_fail: str, warn: bool = False) -> No
 print("Checking folder structure…")
 
 for mission_id in MISSIONS:
-    folder = REPO_ROOT / "missions" / mission_id
+    folder = LEVEL1_ROOT / "missions" / mission_id
     check(folder.exists(), f"missions/{mission_id}/ exists", f"MISSING: missions/{mission_id}/")
     if folder.exists():
         required = MISSION_FILE_EXCEPTIONS.get(mission_id, REQUIRED_MISSION_FILES)
@@ -62,7 +62,7 @@ for mission_id in MISSIONS:
             check(fpath.exists(), f"  {mission_id}/{fname}", f"MISSING: missions/{mission_id}/{fname}")
 
 for project_id in PROJECTS:
-    folder = REPO_ROOT / "projects" / project_id
+    folder = LEVEL1_ROOT / "projects" / project_id
     check(folder.exists(), f"projects/{project_id}/ exists", f"MISSING: projects/{project_id}/")
     if folder.exists():
         for fname in REQUIRED_PROJECT_FILES:
@@ -74,8 +74,8 @@ for project_id in PROJECTS:
 print("Checking check.py hygiene…")
 
 all_checks = (
-    [REPO_ROOT / "missions" / m / "check.py" for m in MISSIONS]
-    + [REPO_ROOT / "projects" / p / "check.py" for p in PROJECTS]
+    [LEVEL1_ROOT / "missions" / m / "check.py" for m in MISSIONS]
+    + [LEVEL1_ROOT / "projects" / p / "check.py" for p in PROJECTS]
 )
 
 for path in all_checks:
@@ -100,10 +100,10 @@ print("Checking README next-mission links…")
 
 import re
 
-LINK_PATTERN = re.compile(r"`(missions/[\w/._-]+|projects/[\w/._-]+)`")
+LINK_PATTERN = re.compile(r"`(level_1_python_basics/(?:missions|projects)/[\w/._-]+)`")
 
 for mission_id in MISSIONS:
-    readme = REPO_ROOT / "missions" / mission_id / "README.md"
+    readme = LEVEL1_ROOT / "missions" / mission_id / "README.md"
     if not readme.exists():
         continue
     text = readme.read_text()
@@ -116,7 +116,7 @@ for mission_id in MISSIONS:
         )
 
 for project_id in PROJECTS:
-    readme = REPO_ROOT / "projects" / project_id / "README.md"
+    readme = LEVEL1_ROOT / "projects" / project_id / "README.md"
     if not readme.exists():
         continue
     text = readme.read_text()

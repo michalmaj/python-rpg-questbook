@@ -24,7 +24,7 @@ You need [uv](https://docs.astral.sh/uv/) installed. If you completed the setup 
 git clone https://github.com/michalmaj/python-rpg-questbook.git
 cd python-rpg-questbook
 uv sync
-uv run python main.py
+uv run python level_1_python_basics/main.py
 ```
 
 ## How to use this course
@@ -41,10 +41,10 @@ For each mission:
 #    Open: missions/01_hero_stats/task.py
 
 # 3. Run your code
-uv run python missions/01_hero_stats/task.py
+uv run python level_1_python_basics/missions/01_hero_stats/task.py
 
 # 4. Check your solution
-uv run python missions/01_hero_stats/check.py
+uv run python level_1_python_basics/missions/01_hero_stats/check.py
 ```
 
 ## Track your progress
@@ -71,8 +71,8 @@ until you fill them in.
 The correct workflow is always per-mission:
 
 ```bash
-uv run python missions/01_hero_stats/task.py    # run your code
-uv run python missions/01_hero_stats/check.py   # verify your solution
+uv run python level_1_python_basics/missions/01_hero_stats/task.py    # run your code
+uv run python level_1_python_basics/missions/01_hero_stats/check.py   # verify your solution
 ```
 
 Global `pytest` and `ruff` are tools for the course author, not for students.
