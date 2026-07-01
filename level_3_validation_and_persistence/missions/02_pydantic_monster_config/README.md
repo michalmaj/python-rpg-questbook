@@ -78,12 +78,6 @@ Open `task.py` and define:
 
 Uncomment the lines in `main()` and run the file to see Pydantic in action.
 
-## Install Pydantic
-
-```bash
-uv add pydantic
-```
-
 ## Run
 
 ```bash

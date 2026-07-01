@@ -7,7 +7,8 @@ and the game logic doesn't need to know which backend is running.
 
 from pathlib import Path
 
-from rpg.domain import CombatLogRow, Hero, HeroClass
+from rpg.domain import Hero, HeroClass
+from rpg.schemas import CombatLogRow
 from rpg.log_repo import CsvCombatLogRepository, SqliteCombatLogRepository
 from rpg.save_repo import JsonSaveRepository, SqliteSaveRepository
 

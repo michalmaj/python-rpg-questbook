@@ -3,61 +3,47 @@
 # Port SaveRepository (Protocol), JsonSaveRepository (from Mission 05),
 # and implement SqliteSaveRepository.
 #
-# SaveGameModel is provided below — same as Mission 04.
+# SaveGameModel lives in rpg/schemas.py (boundary models).
+# This module adds to_hero() / from_hero() as module-level helpers
+# so save_repo.py stays decoupled from Pydantic details.
 
 import json  # noqa: F401
 import sqlite3  # noqa: F401
 from pathlib import Path
 from typing import Protocol
 
-from pydantic import BaseModel, Field
-
-from rpg.domain import Hero, HeroClass  # noqa: F401
-
-CURRENT_SCHEMA_VERSION = 1
+from rpg.domain import Hero, HeroClass
+from rpg.schemas import CURRENT_SCHEMA_VERSION, SaveGameModel  # noqa: F401
 
 
-class SaveGameModel(BaseModel):
-    schema_version: int = Field(default=CURRENT_SCHEMA_VERSION, ge=1)
-    name:       str
-    hero_class: str
-    hp:         int = Field(ge=0)
-    max_hp:     int = Field(gt=0)
-    atk:        int = Field(ge=1)
-    def_:       int = Field(ge=0)
-    potions:    int = Field(ge=0)
-    gold:       int = Field(ge=0)
-    wins:       int = Field(ge=0)
-    losses:     int = Field(ge=0)
+def _model_to_hero(model: SaveGameModel) -> Hero:
+    return Hero(
+        name=model.name,
+        hero_class=HeroClass(model.hero_class),
+        hp=model.hp,
+        max_hp=model.max_hp,
+        atk=model.atk,
+        def_=model.def_,
+        potions=model.potions,
+        gold=model.gold,
+        wins=model.wins,
+        losses=model.losses,
+    )
 
-    def to_hero(self) -> Hero:
-        return Hero(
-            name=self.name,
-            hero_class=HeroClass(self.hero_class),
-            hp=self.hp,
-            max_hp=self.max_hp,
-            atk=self.atk,
-            def_=self.def_,
-            potions=self.potions,
-            gold=self.gold,
-            wins=self.wins,
-            losses=self.losses,
-        )
 
-    @classmethod
-    def from_hero(cls, hero: Hero) -> "SaveGameModel":
-        return cls(
-            name=hero.name,
-            hero_class=hero.hero_class.value,
-            hp=hero.hp,
-            max_hp=hero.max_hp,
-            atk=hero.atk,
-            def_=hero.def_,
-            potions=hero.potions,
-            gold=hero.gold,
-            wins=hero.wins,
-            losses=hero.losses,
-        )
+def _hero_to_model(hero: Hero) -> SaveGameModel:
+    return SaveGameModel(
+        name=hero.name,
+        hero_class=hero.hero_class.value,
+        hp=hero.hp,
+        max_hp=hero.max_hp,
+        atk=hero.atk,
+        def_=hero.def_,
+        potions=hero.potions,
+        gold=hero.gold,
+        wins=hero.wins,
+        losses=hero.losses,
+    )
 
 
 class SaveRepository(Protocol):
