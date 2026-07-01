@@ -47,14 +47,30 @@ After Mission 06 you have `CombatLogRepository`. Today you add:
 projects/01_sqlite_repository_backend/
 ├── rpg/
 │   ├── __init__.py
-│   ├── domain.py        # Hero, HeroClass, CombatLogRow (from missions)
+│   ├── domain.py        # Hero, HeroClass — pure domain (no Pydantic)
+│   ├── schemas.py       # SaveGameModel, CombatLogRow — Pydantic boundary models
 │   ├── save_repo.py     # SaveRepository Protocol + JsonSaveRepository + SqliteSaveRepository
 │   └── log_repo.py      # CombatLogRepository Protocol + CsvCombatLogRepository + SqliteCombatLogRepository
 ├── task.py              # wire everything together, run a demo session
 └── check.py             # verifies both SQLite implementations
 ```
 
-The `rpg/domain.py`, `rpg/save_repo.py`, and `rpg/log_repo.py` files contain the finished code from missions 04–06 plus your new SQLite classes.
+## Steps — read before you start
+
+**Step 1: port `JsonSaveRepository` from Mission 05.**
+Open `rpg/save_repo.py`. The helper functions `_model_to_hero()` and `_hero_to_model()` are already provided. Implement `JsonSaveRepository.save()` and `.load()` the same way you did in M05.
+
+**Step 2: port `CsvCombatLogRepository` from Mission 06.**
+Open `rpg/log_repo.py`. Implement `CsvCombatLogRepository.append()` and `.read_all()` the same way you did in M06. Note: `CombatLogRow` now comes from `rpg/schemas.py`, not `rpg/domain.py`.
+
+**Step 3: implement `SqliteSaveRepository`.**
+Use `sqlite3` (standard library, no install needed). See the design below.
+
+**Step 4: implement `SqliteCombatLogRepository`.**
+See the design below.
+
+**Step 5: run `task.py` and confirm both backends work.**
+`task.py` runs the same `run_demo()` function with a JSON backend and a SQLite backend. The game logic is identical in both cases — only the backend changes.
 
 ## sqlite3 primer
 
