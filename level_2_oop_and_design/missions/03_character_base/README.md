@@ -13,21 +13,13 @@ Identify duplicated logic in `hero_attacks()` and `monster_attacks()`, then extr
 
 ## Game problem
 
-Look at `hero_attacks()` and `monster_attacks()` in the legacy code. The damage formula appears in both:
+Hero and Monster share the same fundamental state: a name, HP, attack power, and defence. They also share the same behaviour: they can take damage, and they can be alive or dead.
 
-```python
-# hero_attacks:
-dmg = hero_atk + bonus + roll(6) - monster["def"]
-if dmg < 1:
-    dmg = 1
+Right now both classes store this separately, with no connection between them. Add a third class `Character` as the base, and both `Hero` and `Monster` get those shared attributes and methods for free.
 
-# monster_attacks:
-dmg = monster["atk"] + roll(6) - hero_def
-if dmg < 1:
-    dmg = 1
-```
-
-Same structure. Different numbers. If you ever want to change the formula — cap damage differently, add armour penetration — you must remember to change it in two places. That is how bugs are born.
+> **Note on the damage formula:** `hero_attacks()` and `monster_attacks()` also look similar, but the right tool there is a **pure function** (`compute_damage`), not inheritance. Inheritance is for shared *identity* — things that are genuinely the same kind of thing. A formula is a rule, not an identity. You will extract `compute_damage` in Mission 09.
+>
+> Rule of thumb: if two classes *are* the same kind of thing (both are characters), use inheritance. If two functions *do* the same calculation, extract a function.
 
 ## Python concept
 

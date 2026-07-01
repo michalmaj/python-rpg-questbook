@@ -13,6 +13,7 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).parents[1]
 LEVEL1_ROOT = REPO_ROOT / "level_1_python_basics"
 LEVEL2_ROOT = REPO_ROOT / "level_2_oop_and_design"
+LEVEL3_ROOT = REPO_ROOT / "level_3_validation_and_persistence"
 
 # ── Level 1 content ───────────────────────────────────────────────────────────
 
@@ -51,6 +52,20 @@ L2_MISSION_FILE_EXCEPTIONS: dict[str, set[str]] = {
     # M10 uses test_combat.py and combat.py instead of task.py
     "10_add_tests": {"README.md", "test_combat.py", "combat.py", "check.py"},
 }
+
+# ── Level 3 content ───────────────────────────────────────────────────────────
+
+L3_MISSIONS = [
+    "01_external_data_is_untrusted", "02_pydantic_monster_config",
+    "03_load_game_catalogs", "04_save_and_load_game_json",
+    "05_repository_pattern", "06_combat_log_repository", "07_settings_and_paths",
+]
+
+L3_PROJECTS = [
+    "01_sqlite_repository_backend",
+]
+
+L3_MISSION_FILE_EXCEPTIONS: dict[str, set[str]] = {}
 
 # ── Shared config ─────────────────────────────────────────────────────────────
 
@@ -126,11 +141,12 @@ def check_hygiene(level_root: Path, missions: list[str], projects: list[str]) ->
         )
 
 
-# Matches backtick paths for both levels, e.g.
+# Matches backtick paths for all levels, e.g.
 # `level_1_python_basics/missions/02_damage/README.md`
-# `level_2_oop_and_design/missions/03_character_base/README.md`
+# `level_3_validation_and_persistence/missions/01_external_data_is_untrusted/README.md`
 LINK_PATTERN = re.compile(
-    r"`(level_(?:1_python_basics|2_oop_and_design)/(?:missions|projects)/[\w/._-]+)`"
+    r"`(level_(?:1_python_basics|2_oop_and_design|3_validation_and_persistence)"
+    r"/(?:missions|projects)/[\w/._-]+)`"
 )
 
 
@@ -168,15 +184,22 @@ check_folder_structure(LEVEL1_ROOT, L1_MISSIONS, L1_PROJECTS, L1_MISSION_FILE_EX
 print("Checking Level 2 folder structure…")
 check_folder_structure(LEVEL2_ROOT, L2_MISSIONS, L2_PROJECTS, L2_MISSION_FILE_EXCEPTIONS, "level_2")
 
+print("Checking Level 3 folder structure…")
+check_folder_structure(LEVEL3_ROOT, L3_MISSIONS, L3_PROJECTS, L3_MISSION_FILE_EXCEPTIONS, "level_3")
+
 print("Checking check.py hygiene (Level 1)…")
 check_hygiene(LEVEL1_ROOT, L1_MISSIONS, L1_PROJECTS)
 
 print("Checking check.py hygiene (Level 2)…")
 check_hygiene(LEVEL2_ROOT, L2_MISSIONS, L2_PROJECTS)
 
+print("Checking check.py hygiene (Level 3)…")
+check_hygiene(LEVEL3_ROOT, L3_MISSIONS, L3_PROJECTS)
+
 print("Checking README next-mission links…")
 check_readme_links(LEVEL1_ROOT, L1_MISSIONS, L1_PROJECTS, "level_1")
 check_readme_links(LEVEL2_ROOT, L2_MISSIONS, L2_PROJECTS, "level_2")
+check_readme_links(LEVEL3_ROOT, L3_MISSIONS, L3_PROJECTS, "level_3")
 
 print("Checking COURSE_MAP.md links…")
 course_map = REPO_ROOT / "COURSE_MAP.md"

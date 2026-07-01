@@ -4,9 +4,11 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).parent.parent
 LEVEL1_ROOT = REPO_ROOT / "level_1_python_basics"
 LEVEL2_ROOT = REPO_ROOT / "level_2_oop_and_design"
+LEVEL3_ROOT = REPO_ROOT / "level_3_validation_and_persistence"
 
 LEVEL1_PROGRESS_FILE = LEVEL1_ROOT / ".progress"
 LEVEL2_PROGRESS_FILE = LEVEL2_ROOT / ".progress"
+LEVEL3_PROGRESS_FILE = LEVEL3_ROOT / ".progress"
 
 LEVEL1_WORLDS = [
     (
@@ -104,6 +106,36 @@ LEVEL2_WORLDS = [
     ),
 ]
 
+LEVEL3_WORLDS = [
+    (
+        "World 1: Trusted Data",
+        [
+            ("01_external_data_is_untrusted", "Mission 01: External Data Is Untrusted"),
+            ("02_pydantic_monster_config", "Mission 02: Pydantic Monster Config"),
+            ("03_load_game_catalogs", "Mission 03: Load Game Catalogs"),
+        ],
+        [],
+    ),
+    (
+        "World 2: Persistence",
+        [
+            ("04_save_and_load_game_json", "Mission 04: Save and Load Game JSON"),
+            ("05_repository_pattern", "Mission 05: Repository Pattern"),
+        ],
+        [],
+    ),
+    (
+        "World 3: Integration",
+        [
+            ("06_combat_log_repository", "Mission 06: Combat Log Repository"),
+            ("07_settings_and_paths", "Mission 07: Settings and Paths"),
+        ],
+        [
+            ("01_sqlite_repository_backend", "Boss Fight: SQLite Repository Backend"),
+        ],
+    ),
+]
+
 SYMBOLS = {
     "complete": "✓",
     "in_progress": "~",
@@ -158,6 +190,7 @@ def print_level(
 def main() -> None:
     l1_progress = load_progress(LEVEL1_PROGRESS_FILE)
     l2_progress = load_progress(LEVEL2_PROGRESS_FILE)
+    l3_progress = load_progress(LEVEL3_PROGRESS_FILE)
 
     print()
     print("Python RPG Questbook — Your Progress")
@@ -169,6 +202,8 @@ def main() -> None:
                 "level_1_python_basics", next_up)
     print_level("Level 2: OOP and Design", LEVEL2_WORLDS, l2_progress,
                 "level_2_oop_and_design", next_up)
+    print_level("Level 3: Validation and Persistence", LEVEL3_WORLDS, l3_progress,
+                "level_3_validation_and_persistence", next_up)
 
     print()
     if next_up[0]:

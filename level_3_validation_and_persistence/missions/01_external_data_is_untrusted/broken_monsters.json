@@ -1,0 +1,9 @@
+{
+  "monsters": [
+    {"name": "Goblin",  "hp": 30,   "atk": 8,     "def": 2, "gold": 10},
+    {"name": "Ghost",   "hp": -50,  "atk": 8,     "def": 2, "gold": 15},
+    {"name": "Slime",   "hp": "lots","atk": 5,    "def": 1, "gold": 5},
+    {"name": "Bandit",               "atk": 10,   "def": 3, "gold": 20},
+    {"name": "Ogre",    "hp": 60,   "atk": 14,    "def": 5, "gold": 30, "secret_power": "fire"}
+  ]
+}
