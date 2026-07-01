@@ -26,7 +26,11 @@ packages = ["level_4_interfaces/projects/01_installable_cli_tool/rpg"]
 
 [dependency-groups]
 dev = [
+    "mypy>=1.10",
+    "pre-commit>=3.0",
+    "pyright>=1.1",
     "pytest>=8.0.0",
+    "pytest-cov>=5.0",
     "ruff>=0.8.0",
 ]
 
