@@ -87,4 +87,4 @@ You can store any type as a value — including booleans.
 
 ---
 
-Next mission: `missions/08_attack_function/README.md`
+Next mission: `level_1_python_basics/missions/08_attack_function/README.md`

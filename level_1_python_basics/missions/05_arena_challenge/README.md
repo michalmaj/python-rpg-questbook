@@ -86,4 +86,4 @@ Switch back to `while` from Mission 04 — which loop fits better for each quest
 
 ---
 
-Next mission: `missions/06_hero_inventory/README.md`
+Next mission: `level_1_python_basics/missions/06_hero_inventory/README.md`

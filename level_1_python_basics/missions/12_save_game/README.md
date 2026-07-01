@@ -80,4 +80,4 @@ Save and reload. The list round-trips perfectly through JSON.
 
 ---
 
-Next mission: `missions/13_split_the_game/README.md`
+Next mission: `level_1_python_basics/missions/13_split_the_game/README.md`

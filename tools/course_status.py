@@ -2,7 +2,8 @@ import json
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).parent.parent
-PROGRESS_FILE = REPO_ROOT / ".progress"
+LEVEL1_ROOT = REPO_ROOT / "level_1_python_basics"
+PROGRESS_FILE = LEVEL1_ROOT / ".progress"
 
 WORLDS = [
     (
@@ -105,14 +106,14 @@ def main() -> None:
             symbol = SYMBOLS[status]
             print(f"  [{symbol}] {mission_name}")
             if status != "complete" and next_up is None:
-                next_up = f"missions/{mission_id}/README.md"
+                next_up = f"level_1_python_basics/missions/{mission_id}/README.md"
 
         for project_id, project_name in projects:
             status = projects_progress.get(project_id, "not_started")
             symbol = SYMBOLS[status]
             print(f"  [{symbol}] {project_name}")
             if status != "complete" and next_up is None:
-                next_up = f"projects/{project_id}/README.md"
+                next_up = f"level_1_python_basics/projects/{project_id}/README.md"
 
     print()
     if next_up:

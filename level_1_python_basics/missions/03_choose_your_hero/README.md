@@ -65,4 +65,4 @@ The input line already has `.strip().lower()` — so `"Warrior"` and `"WARRIOR"`
 
 ---
 
-Next up: `projects/01_battle_calculator/README.md`
+Next up: `level_1_python_basics/projects/01_battle_calculator/README.md`

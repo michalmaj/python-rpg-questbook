@@ -99,4 +99,4 @@ Remove `plt.close()` between Chart 1 and Chart 2. Both datasets get drawn on the
 
 ---
 
-Course complete! Final boss: `projects/05_analytics_report/README.md`
+Course complete! Final boss: `level_1_python_basics/projects/05_analytics_report/README.md`

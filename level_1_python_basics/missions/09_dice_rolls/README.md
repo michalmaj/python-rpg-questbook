@@ -69,4 +69,4 @@ Add an attack type to your combat output. Run it a few times to see different re
 
 ---
 
-Next mission: `missions/10_safe_input/README.md`
+Next mission: `level_1_python_basics/missions/10_safe_input/README.md`

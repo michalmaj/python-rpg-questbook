@@ -58,7 +58,7 @@ def main() -> None:
 
     _update_progress("complete")
     print("✅ Mission 19 complete: Filter and Group")
-    print("   Next mission: missions/20_plot_the_results/README.md")
+    print("   Next mission: level_1_python_basics/missions/20_plot_the_results/README.md")
 
 
 if __name__ == "__main__":

@@ -60,4 +60,4 @@ Then add a print line to show `hp_after_second_hit`.
 
 ---
 
-Next mission: `missions/03_choose_your_hero/README.md`
+Next mission: `level_1_python_basics/missions/03_choose_your_hero/README.md`

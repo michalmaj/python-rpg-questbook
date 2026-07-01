@@ -98,4 +98,4 @@ This exact workflow — mean, std, percentiles — is used everywhere data matte
 
 ---
 
-Next mission: `missions/18_read_combat_logs/README.md`
+Next mission: `level_1_python_basics/missions/18_read_combat_logs/README.md`

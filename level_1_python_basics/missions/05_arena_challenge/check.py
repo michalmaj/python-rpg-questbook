@@ -28,7 +28,7 @@ def main() -> None:
 
     _update_progress("complete")
     print("✅ Mission 05 complete: Arena Challenge")
-    print("   Next mission: missions/06_hero_inventory/README.md")
+    print("   Next mission: level_1_python_basics/missions/06_hero_inventory/README.md")
 
 
 if __name__ == "__main__":

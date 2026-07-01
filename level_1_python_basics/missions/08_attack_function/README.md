@@ -88,4 +88,4 @@ Add type hints to both functions. The code runs identically — hints are just d
 
 ---
 
-Next mission: `missions/09_dice_rolls/README.md`
+Next mission: `level_1_python_basics/missions/09_dice_rolls/README.md`

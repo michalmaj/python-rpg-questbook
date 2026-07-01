@@ -77,4 +77,4 @@ Try making the monster tougher: `monster_hp = 200`. Does the hero stand a chance
 
 ---
 
-Next mission: `missions/05_arena_challenge/README.md`
+Next mission: `level_1_python_basics/missions/05_arena_challenge/README.md`

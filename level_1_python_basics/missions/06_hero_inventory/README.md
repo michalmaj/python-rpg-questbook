@@ -85,4 +85,4 @@ print(len(inventory))  # should be 4 now
 
 ---
 
-Next mission: `missions/07_monster_dictionary/README.md`
+Next mission: `level_1_python_basics/missions/07_monster_dictionary/README.md`

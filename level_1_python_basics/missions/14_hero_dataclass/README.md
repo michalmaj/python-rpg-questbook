@@ -109,4 +109,4 @@ Dataclasses are used everywhere Python needs structured data: API responses, dat
 
 ---
 
-Next mission: `missions/15_test_the_damage/README.md`
+Next mission: `level_1_python_basics/missions/15_test_the_damage/README.md`

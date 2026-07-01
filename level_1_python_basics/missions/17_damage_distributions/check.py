@@ -52,7 +52,7 @@ def main() -> None:
 
     _update_progress("complete")
     print("✅ Mission 17 complete: Damage Distributions")
-    print("   Next mission: missions/18_read_combat_logs/README.md")
+    print("   Next mission: level_1_python_basics/missions/18_read_combat_logs/README.md")
 
 
 if __name__ == "__main__":

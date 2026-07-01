@@ -135,4 +135,4 @@ Every Python project uses modules. `import json`, `import random`, `from pathlib
 
 ---
 
-Next mission: `missions/14_hero_dataclass/README.md`
+Next mission: `level_1_python_basics/missions/14_hero_dataclass/README.md`

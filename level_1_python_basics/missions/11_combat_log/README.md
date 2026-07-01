@@ -73,4 +73,4 @@ with open("combat_log.csv", "r") as f:
 
 ---
 
-Next mission: `missions/12_save_game/README.md`
+Next mission: `level_1_python_basics/missions/12_save_game/README.md`

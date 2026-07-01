@@ -91,4 +91,4 @@ A `for` loop that contains a `while` loop is the standard pattern for "process e
 
 ---
 
-*World 2 clear. Next: `missions/07_monster_dictionary/README.md`*
+*World 2 clear. Next: `level_1_python_basics/missions/07_monster_dictionary/README.md`*

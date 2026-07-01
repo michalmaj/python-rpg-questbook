@@ -30,7 +30,7 @@ A single script (`analytics.py`) that:
 | `analytics.py` | Edit — 4 sections of TODOs |
 | `check.py` | Run to verify |
 
-Data files live in their respective mission folders (`missions/18_…` and `missions/19_…`) — no copying needed.
+Data files live in their respective mission folders (`level_1_python_basics/missions/18_…` and `level_1_python_basics/missions/19_…`) — no copying needed.
 
 ## Your tasks
 

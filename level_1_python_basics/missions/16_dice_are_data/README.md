@@ -100,4 +100,4 @@ NumPy is the foundation of scientific Python. Pandas, Matplotlib, TensorFlow, an
 
 ---
 
-Next mission: `missions/17_damage_distributions/README.md`
+Next mission: `level_1_python_basics/missions/17_damage_distributions/README.md`

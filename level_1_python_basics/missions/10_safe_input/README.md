@@ -75,4 +75,4 @@ Then try a third input type: what happens with `"3.5"` (a float as a string)?
 
 ---
 
-Next up: `projects/03_terminal_rpg/README.md`
+Next up: `level_1_python_basics/projects/03_terminal_rpg/README.md`

@@ -112,4 +112,4 @@ Every serious Python project has a `tests/` folder. Before code ships, the full 
 
 ---
 
-Next mission: `projects/04_full_rpg/README.md`
+Next mission: `level_1_python_basics/projects/04_full_rpg/README.md`

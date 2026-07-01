@@ -49,7 +49,7 @@ def main() -> None:
 
     _update_progress("complete")
     print("✅ Mission 10 complete: Safe Input")
-    print("   Next up: projects/03_terminal_rpg/README.md")
+    print("   Next up: level_1_python_basics/projects/03_terminal_rpg/README.md")
 
 
 if __name__ == "__main__":

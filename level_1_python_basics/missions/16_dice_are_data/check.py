@@ -43,7 +43,7 @@ def main() -> None:
 
     _update_progress("complete")
     print("✅ Mission 16 complete: Dice Are Data")
-    print("   Next mission: missions/17_damage_distributions/README.md")
+    print("   Next mission: level_1_python_basics/missions/17_damage_distributions/README.md")
 
 
 if __name__ == "__main__":

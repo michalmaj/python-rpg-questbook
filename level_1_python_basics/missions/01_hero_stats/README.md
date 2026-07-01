@@ -66,4 +66,4 @@ Update the `print` lines in `task.py` to display them too.
 
 ---
 
-Next mission: `missions/02_damage_and_healing/README.md`
+Next mission: `level_1_python_basics/missions/02_damage_and_healing/README.md`

@@ -40,7 +40,7 @@ def main() -> None:
 
     _update_progress("complete")
     print("✅ Mission 11 complete: Combat Log")
-    print("   Next mission: missions/12_save_game/README.md")
+    print("   Next mission: level_1_python_basics/missions/12_save_game/README.md")
 
 
 if __name__ == "__main__":

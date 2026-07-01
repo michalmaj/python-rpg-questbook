@@ -96,4 +96,4 @@ Add a healing potion. Every 3 rounds, the hero drinks a potion and heals 20 HP (
 
 ---
 
-*You have completed World 4. Next: `missions/16_dice_are_data/README.md`*
+*You have completed World 4. Next: `level_1_python_basics/missions/16_dice_are_data/README.md`*
