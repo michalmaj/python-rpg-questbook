@@ -7,6 +7,19 @@ from datetime import datetime
 from pathlib import Path
 
 task_path = Path(__file__).parent / "task.py"
+PROGRESS_FILE = Path(__file__).parents[2] / ".progress"
+
+
+def update_progress(mission_id: str) -> None:
+    progress: dict = {"missions": {}, "projects": {}}
+    if PROGRESS_FILE.exists():
+        try:
+            progress = json.loads(PROGRESS_FILE.read_text())
+        except json.JSONDecodeError:
+            pass
+    progress["missions"][mission_id] = "complete"
+    PROGRESS_FILE.parent.mkdir(parents=True, exist_ok=True)
+    PROGRESS_FILE.write_text(json.dumps(progress, indent=2))
 
 spec = importlib.util.spec_from_file_location("task06", task_path)
 assert spec and spec.loader
@@ -139,4 +152,5 @@ with tempfile.TemporaryDirectory() as tmp:
         raise SystemExit(1)
     print("✓ generate_reports() uses .json and .md suffixes")
 
+update_progress("06_session_reports")
 print("\n✅ Mission 06 complete!")

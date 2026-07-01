@@ -67,6 +67,11 @@ level_3_validation_and_persistence/ ← Pydantic, repository pattern, SQLite
   missions/                         ← 7 missions
   projects/                         ← boss fight: SQLite backend
 
+level_4_interfaces/                 ← CLI, logging, Rich output, reports, entry points
+  starter_verbose_rpg/              ← the interface-smelly app you will improve
+  missions/                         ← 6 missions
+  projects/                         ← boss fight: installable CLI tool
+
 tools/                              ← helper scripts (course_status, author_check)
 ```
 

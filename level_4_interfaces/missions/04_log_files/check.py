@@ -1,11 +1,25 @@
 """Check: Mission 04 — log files."""
 
 import importlib.util
+import json
 import logging
 import tempfile
 from pathlib import Path
 
 task_path = Path(__file__).parent / "task.py"
+PROGRESS_FILE = Path(__file__).parents[2] / ".progress"
+
+
+def update_progress(mission_id: str) -> None:
+    progress: dict = {"missions": {}, "projects": {}}
+    if PROGRESS_FILE.exists():
+        try:
+            progress = json.loads(PROGRESS_FILE.read_text())
+        except json.JSONDecodeError:
+            pass
+    progress["missions"][mission_id] = "complete"
+    PROGRESS_FILE.parent.mkdir(parents=True, exist_ok=True)
+    PROGRESS_FILE.write_text(json.dumps(progress, indent=2))
 
 spec = importlib.util.spec_from_file_location("task04", task_path)
 assert spec and spec.loader
@@ -126,4 +140,5 @@ if remaining:
     raise SystemExit(1)
 print("✓ All '# USE combat_logger' markers replaced")
 
+update_progress("04_log_files")
 print("\n✅ Mission 04 complete!")

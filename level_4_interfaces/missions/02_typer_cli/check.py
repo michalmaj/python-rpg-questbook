@@ -1,11 +1,25 @@
 """Check: Mission 02 — Typer CLI."""
 
+import json
 import shutil
 import subprocess
 import sys
 from pathlib import Path
 
 task = Path(__file__).parent / "task.py"
+PROGRESS_FILE = Path(__file__).parents[2] / ".progress"
+
+
+def update_progress(mission_id: str) -> None:
+    progress: dict = {"missions": {}, "projects": {}}
+    if PROGRESS_FILE.exists():
+        try:
+            progress = json.loads(PROGRESS_FILE.read_text())
+        except json.JSONDecodeError:
+            pass
+    progress["missions"][mission_id] = "complete"
+    PROGRESS_FILE.parent.mkdir(parents=True, exist_ok=True)
+    PROGRESS_FILE.write_text(json.dumps(progress, indent=2))
 
 
 def run(args: list[str], *, expect_fail: bool = False) -> subprocess.CompletedProcess:
@@ -27,8 +41,8 @@ def run(args: list[str], *, expect_fail: bool = False) -> subprocess.CompletedPr
 # ── verify app = typer.Typer() exists ────────────────────────────────────────
 
 task_src = task.read_text()
-if "typer.Typer()" not in task_src:
-    print("❌ app = typer.Typer() not found in task.py")
+if "typer.Typer(" not in task_src:
+    print("❌ app = typer.Typer(...) not found in task.py")
     raise SystemExit(1)
 print("✓ typer.Typer() present")
 
@@ -100,4 +114,5 @@ if "import argparse" in task_src:
     raise SystemExit(1)
 print("✓ no argparse import")
 
+update_progress("02_typer_cli")
 print("\n✅ Mission 02 complete!")

@@ -14,6 +14,16 @@ dependencies = [
     "typer>=0.12",
 ]
 
+[project.scripts]
+rpg = "rpg.cli:app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["level_4_interfaces/projects/01_installable_cli_tool/rpg"]
+
 [dependency-groups]
 dev = [
     "pytest>=8.0.0",

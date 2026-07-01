@@ -1,10 +1,25 @@
 """Check: Mission 03 — stdlib logging."""
 
+import ast
 import importlib.util
+import json
 import logging
 from pathlib import Path
 
 task_path = Path(__file__).parent / "task.py"
+PROGRESS_FILE = Path(__file__).parents[2] / ".progress"
+
+
+def update_progress(mission_id: str) -> None:
+    progress: dict = {"missions": {}, "projects": {}}
+    if PROGRESS_FILE.exists():
+        try:
+            progress = json.loads(PROGRESS_FILE.read_text())
+        except json.JSONDecodeError:
+            pass
+    progress["missions"][mission_id] = "complete"
+    PROGRESS_FILE.parent.mkdir(parents=True, exist_ok=True)
+    PROGRESS_FILE.write_text(json.dumps(progress, indent=2))
 
 # ── load the module without running main() ────────────────────────────────────
 
@@ -83,4 +98,29 @@ if root_level != logging.WARNING:
     raise SystemExit(1)
 print("✓ setup_logging('WARNING') sets correct level")
 
+# ── main() calls setup_logging() ─────────────────────────────────────────────
+
+try:
+    tree = ast.parse(task_src)
+except SyntaxError:
+    pass
+else:
+    main_func = next(
+        (node for node in ast.walk(tree)
+         if isinstance(node, ast.FunctionDef) and node.name == "main"),
+        None,
+    )
+    if main_func:
+        calls_in_main = [
+            node for node in ast.walk(main_func)
+            if isinstance(node, ast.Call)
+            and isinstance(node.func, ast.Name)
+            and node.func.id == "setup_logging"
+        ]
+        if not calls_in_main:
+            print("❌ main() does not call setup_logging() — logging is defined but never activated when the game runs")
+            raise SystemExit(1)
+        print("✓ main() calls setup_logging()")
+
+update_progress("03_stdlib_logging")
 print("\n✅ Mission 03 complete!")
