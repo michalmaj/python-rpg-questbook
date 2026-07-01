@@ -1,3 +1,4 @@
+import sys
 import csv
 import json
 import subprocess
@@ -22,7 +23,7 @@ def _update_progress(status: str) -> None:
 
 def main() -> None:
     result = subprocess.run(
-        ["uv", "run", "python", "projects/04_full_rpg/rpg.py"],
+        [sys.executable, "projects/04_full_rpg/rpg.py"],
         input="Ada\n",
         capture_output=True,
         text=True,

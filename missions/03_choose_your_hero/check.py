@@ -1,3 +1,4 @@
+import sys
 import json
 import subprocess
 from pathlib import Path
@@ -18,7 +19,7 @@ def _update_progress(status: str) -> None:
 
 def run_task(choice: str) -> str:
     result = subprocess.run(
-        ["uv", "run", "python", TASK_PATH],
+        [sys.executable, TASK_PATH],
         input=choice + "\n",
         capture_output=True,
         text=True,

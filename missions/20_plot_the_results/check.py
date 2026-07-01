@@ -1,3 +1,4 @@
+import sys
 import json
 import subprocess
 from pathlib import Path
@@ -20,7 +21,7 @@ def _update_progress(status: str) -> None:
 
 def main() -> None:
     result = subprocess.run(
-        ["uv", "run", "python", "missions/20_plot_the_results/task.py"],
+        [sys.executable, "missions/20_plot_the_results/task.py"],
         capture_output=True,
         text=True,
         cwd=REPO_ROOT,
