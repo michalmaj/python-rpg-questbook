@@ -27,7 +27,7 @@
 | 05 | [Arena Challenge](missions/05_arena_challenge/README.md) | for loop, range() |
 | 06 | [Hero Inventory](missions/06_hero_inventory/README.md) | lists, append, len |
 
-**Boss Fight:** Project 02: Turn-Based Combat *(coming soon)*
+**Boss Fight:** [Project 02: Turn-Based Combat](projects/02_turn_based_combat/README.md)
 
 ---
 
