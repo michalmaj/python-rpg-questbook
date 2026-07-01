@@ -12,9 +12,6 @@ htmlcov/
 # Virtual environments
 .venv/
 
-# uv
-uv.lock
-
 # OS / editors
 .DS_Store
 .vscode/
