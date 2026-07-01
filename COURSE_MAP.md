@@ -144,3 +144,35 @@ External data is untrusted. Validate at boundaries, isolate persistence from dom
 | 07 | [Settings and Paths](level_3_validation_and_persistence/missions/07_settings_and_paths/README.md) | `pydantic-settings`, `env_prefix`, `get_settings()` |
 
 **Boss Fight:** [Project 01: SQLite Repository Backend](level_3_validation_and_persistence/projects/01_sqlite_repository_backend/README.md)
+
+---
+
+## Level 4: Interfaces and Reports
+
+**Prerequisite:** Level 3 complete
+
+The game has domain logic, validation, and persistence.
+Now it needs a real interface: CLI commands, logging, readable terminal output, and reports.
+
+### World 1: Command Line Interface
+
+| # | Mission | Concept |
+|---|---------|---------|
+| 01 | [argparse Baseline](level_4_interfaces/missions/01_argparse_baseline/README.md) | `argparse`, subcommands, `add_subparsers`, `choices=` |
+| 02 | [Typer CLI](level_4_interfaces/missions/02_typer_cli/README.md) | `typer.Typer()`, `@app.command()`, type hints as CLI contract |
+
+### World 2: Logging and Observability
+
+| # | Mission | Concept |
+|---|---------|---------|
+| 03 | [stdlib logging](level_4_interfaces/missions/03_stdlib_logging/README.md) | `logging.getLogger()`, levels, `logger.exception()` |
+| 04 | [Log Files](level_4_interfaces/missions/04_log_files/README.md) | `FileHandler`, logger hierarchy, `RotatingFileHandler` |
+
+### World 3: User-Facing Output
+
+| # | Mission | Concept |
+|---|---------|---------|
+| 05 | [Rich Terminal Output](level_4_interfaces/missions/05_rich_terminal_output/README.md) | `Console`, `Table`, `Panel`, `stderr=True` |
+| 06 | [Session Reports](level_4_interfaces/missions/06_session_reports/README.md) | Pydantic report model, `model_dump_json()`, Markdown output |
+
+**Boss Fight:** [Project 01: Installable CLI Tool](level_4_interfaces/projects/01_installable_cli_tool/README.md)

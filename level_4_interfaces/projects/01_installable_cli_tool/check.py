@@ -1,13 +1,27 @@
 """Check: Boss Fight — Installable CLI Tool."""
 
+import json
 import subprocess
 import sys
-import tempfile
 from pathlib import Path
 
 project_dir = Path(__file__).parent
 task = project_dir / "task.py"
 rpg_dir = project_dir / "rpg"
+PROGRESS_FILE = Path(__file__).parents[2] / ".progress"
+
+
+def update_progress(project_id: str) -> None:
+    progress: dict = {"missions": {}, "projects": {}}
+    if PROGRESS_FILE.exists():
+        try:
+            progress = json.loads(PROGRESS_FILE.read_text())
+        except json.JSONDecodeError:
+            pass
+    progress["projects"][project_id] = "complete"
+    PROGRESS_FILE.parent.mkdir(parents=True, exist_ok=True)
+    PROGRESS_FILE.write_text(json.dumps(progress, indent=2))
+
 
 # ── domain purity check ───────────────────────────────────────────────────────
 
@@ -18,11 +32,11 @@ for forbidden in ("BaseModel", "from pydantic", "import typer", "from rich"):
         raise SystemExit(1)
 print("✓ rpg/domain.py is pure (no Pydantic, no Typer, no Rich)")
 
-# ── cli.py has app = typer.Typer() ───────────────────────────────────────────
+# ── cli.py has app = typer.Typer(...) ────────────────────────────────────────
 
 cli_src = (rpg_dir / "cli.py").read_text()
-if "typer.Typer()" not in cli_src:
-    print("❌ rpg/cli.py: typer.Typer() not found")
+if "typer.Typer(" not in cli_src:
+    print("❌ rpg/cli.py: typer.Typer(...) not found")
     raise SystemExit(1)
 print("✓ rpg/cli.py has typer.Typer()")
 
@@ -51,24 +65,22 @@ print("✓ task.py --help works and lists commands")
 
 # ── new-game command ──────────────────────────────────────────────────────────
 
-with tempfile.TemporaryDirectory() as tmp:
-    # We cannot easily override SAVE_FILE without env, so just verify it doesn't crash
-    result = subprocess.run(
-        [sys.executable, str(task), "new-game", "--name", "CheckHero", "--class", "warrior"],
-        capture_output=True, text=True, cwd=str(project_dir),
-    )
-    if result.returncode != 0:
-        stdout = result.stdout.strip()
-        stderr = result.stderr.strip()
-        if "NotImplementedError" in stderr or "TODO" in stdout:
-            print("⚠  new-game not yet implemented — skipping functional check")
-        else:
-            print(f"❌ new-game failed:\n{stdout}\n{stderr}")
-            raise SystemExit(1)
-    elif "CheckHero" in result.stdout or "warrior" in result.stdout.lower():
-        print("✓ new-game creates hero")
+result = subprocess.run(
+    [sys.executable, str(task), "new-game", "--name", "CheckHero", "--class", "warrior"],
+    capture_output=True, text=True, cwd=str(project_dir),
+)
+if result.returncode != 0:
+    stdout = result.stdout.strip()
+    stderr = result.stderr.strip()
+    if "NotImplementedError" in stderr or "TODO" in stdout:
+        print("⚠  new-game not yet implemented — skipping functional check")
     else:
-        print("✓ new-game ran without error")
+        print(f"❌ new-game failed:\n{stdout}\n{stderr}")
+        raise SystemExit(1)
+elif "CheckHero" in result.stdout or "warrior" in result.stdout.lower():
+    print("✓ new-game creates hero")
+else:
+    print("✓ new-game ran without error")
 
 # ── schemas.py has SessionSummary and SaveGameModel ──────────────────────────
 
@@ -97,18 +109,40 @@ for fn in ("setup_logging", "add_file_handler", "setup_log_files"):
         raise SystemExit(1)
 print("✓ rpg/logging_setup.py has setup_logging, add_file_handler, setup_log_files")
 
-# ── pyproject.toml check ─────────────────────────────────────────────────────
+# ── [project.scripts] required in pyproject.toml ─────────────────────────────
 
 pyproject = Path(__file__).parents[3] / "pyproject.toml"
-if pyproject.exists():
-    content = pyproject.read_text()
-    if "project.scripts" in content and "rpg" in content:
-        print("✓ [project.scripts] with 'rpg' found in pyproject.toml")
-    else:
-        print("⚠  [project.scripts] not found in pyproject.toml — add it and run uv sync")
-else:
-    print("⚠  pyproject.toml not found at repo root")
+if not pyproject.exists():
+    print("❌ pyproject.toml not found at repo root")
+    raise SystemExit(1)
+content = pyproject.read_text()
+if "project.scripts" not in content or "rpg" not in content:
+    print("❌ [project.scripts] with 'rpg' not found in pyproject.toml")
+    print("   Add this to pyproject.toml and run 'uv sync':")
+    print("   [project.scripts]")
+    print("   rpg = \"rpg.cli:app\"")
+    raise SystemExit(1)
+print("✓ [project.scripts] with 'rpg' found in pyproject.toml")
 
+# ── uv run rpg --help works ───────────────────────────────────────────────────
+
+result = subprocess.run(
+    ["uv", "run", "rpg", "--help"],
+    capture_output=True, text=True,
+    cwd=str(Path(__file__).parents[3]),
+)
+if result.returncode != 0:
+    print("❌ 'uv run rpg --help' failed — run 'uv sync' first, then re-check")
+    print(result.stderr)
+    raise SystemExit(1)
+uv_help = result.stdout + result.stderr
+for cmd in ("new-game", "simulate", "status"):
+    if cmd not in uv_help:
+        print(f"❌ 'uv run rpg --help' does not mention '{cmd}'")
+        raise SystemExit(1)
+print("✓ 'uv run rpg --help' works and lists commands")
+
+update_progress("01_installable_cli_tool")
 print("\n✅ Boss fight structure verified!")
 print("   Implement the TODO sections in rpg/game.py, rpg/cli.py, rpg/output.py,")
 print("   rpg/logging_setup.py, and rpg/schemas.py to complete the boss fight.")

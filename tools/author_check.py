@@ -265,6 +265,29 @@ if course_map.exists():
             f"COURSE_MAP BROKEN link: '{match.group(1)}'",
         )
 
+print("Checking level documentation coverage…")
+readme_text = (REPO_ROOT / "README.md").read_text() if (REPO_ROOT / "README.md").exists() else ""
+course_map_text = course_map.read_text() if course_map.exists() else ""
+_level_checks = [
+    (LEVEL1_ROOT, "level_1_python_basics", "Level 1"),
+    (LEVEL2_ROOT, "level_2_oop_and_design", "Level 2"),
+    (LEVEL3_ROOT, "level_3_validation_and_persistence", "Level 3"),
+    (LEVEL4_ROOT, "level_4_interfaces", "Level 4"),
+]
+for level_root, level_dir, label in _level_checks:
+    if not level_root.exists():
+        continue
+    check(
+        level_dir in course_map_text,
+        f"COURSE_MAP.md documents {label}",
+        f"COURSE_MAP.md is missing {label} ({level_dir}) — add a section for it",
+    )
+    check(
+        level_dir in readme_text,
+        f"README.md documents {label}",
+        f"README.md is missing {label} ({level_dir}) — add it to the course structure",
+    )
+
 # ── Report ────────────────────────────────────────────────────────────────────
 
 print()

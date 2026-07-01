@@ -2,11 +2,25 @@
 
 import importlib.util
 import io
+import json
 from pathlib import Path
 
 from rich.console import Console
 
 task_path = Path(__file__).parent / "task.py"
+PROGRESS_FILE = Path(__file__).parents[2] / ".progress"
+
+
+def update_progress(mission_id: str) -> None:
+    progress: dict = {"missions": {}, "projects": {}}
+    if PROGRESS_FILE.exists():
+        try:
+            progress = json.loads(PROGRESS_FILE.read_text())
+        except json.JSONDecodeError:
+            pass
+    progress["missions"][mission_id] = "complete"
+    PROGRESS_FILE.parent.mkdir(parents=True, exist_ok=True)
+    PROGRESS_FILE.write_text(json.dumps(progress, indent=2))
 
 spec = importlib.util.spec_from_file_location("task05", task_path)
 assert spec and spec.loader
@@ -157,4 +171,5 @@ for start_fn, end_fn in fn_sections:
             raise SystemExit(1)
 print("✓ No raw print() in the four output functions")
 
+update_progress("05_rich_terminal_output")
 print("\n✅ Mission 05 complete!")

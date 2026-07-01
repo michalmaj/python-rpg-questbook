@@ -1,11 +1,25 @@
 """Check: Mission 01 — argparse baseline."""
 
+import json
 import shutil
 import subprocess
 import sys
 from pathlib import Path
 
 task = Path(__file__).parent / "task.py"
+PROGRESS_FILE = Path(__file__).parents[2] / ".progress"
+
+
+def update_progress(mission_id: str) -> None:
+    progress: dict = {"missions": {}, "projects": {}}
+    if PROGRESS_FILE.exists():
+        try:
+            progress = json.loads(PROGRESS_FILE.read_text())
+        except json.JSONDecodeError:
+            pass
+    progress["missions"][mission_id] = "complete"
+    PROGRESS_FILE.parent.mkdir(parents=True, exist_ok=True)
+    PROGRESS_FILE.write_text(json.dumps(progress, indent=2))
 
 
 def run(args: list[str], *, expect_fail: bool = False) -> subprocess.CompletedProcess:
@@ -80,4 +94,5 @@ print("✓ no subcommand exits with code 1")
 subprocess.run([sys.executable, str(task), "--help"], capture_output=True)
 print("✓ --help does not crash")
 
+update_progress("01_argparse_baseline")
 print("\n✅ Mission 01 complete!")
