@@ -36,6 +36,8 @@ if __name__ == "__main__":
     except AssertionError as e:
         _update_progress("in_progress")
         print(f"❌ Not quite: {e}")
+        raise SystemExit(1)
     except Exception as e:
         _update_progress("in_progress")
         print(f"❌ Error: {e}")
+        raise SystemExit(1)
