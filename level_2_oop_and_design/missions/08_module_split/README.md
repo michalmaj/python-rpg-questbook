@@ -58,7 +58,7 @@ Your task is to fill in the `compute_damage` function in `combat.py` and make th
 ## Run
 
 ```bash
-uv run python level_2_oop_and_design/missions/08_module_split/game.py
+uv run python level_2_oop_and_design/missions/08_module_split/task.py
 ```
 
 ## Check

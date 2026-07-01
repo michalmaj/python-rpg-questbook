@@ -59,6 +59,15 @@ The `: int` after `self.hp` annotates the attribute type. It is optional but hel
 
 Open `task.py`. The `Character`, `Hero`, and `Monster` classes from Mission 03 are provided without type hints. Add hints to every parameter, return type, and attribute.
 
+> **Heads-up — there is an intentional logic bug in `use_potion`:**
+> ```python
+> self.hp = min(self.hp + heal_amount, self.hp)   # always evaluates to self.hp
+> ```
+> Type hints will not catch this — the types are all correct (`int + int`, `min(int, int)`).
+> This is deliberate: it shows that type hints verify *types*, not *logic*.
+> You will write a test that catches this kind of bug in Mission 10.
+> Leave the bug in place for now — your task is type annotations only.
+
 ## Run
 
 ```bash
