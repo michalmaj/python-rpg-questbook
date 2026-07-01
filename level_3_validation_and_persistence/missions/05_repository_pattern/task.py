@@ -190,12 +190,19 @@ def run_game_session(repo: SaveRepository) -> None:
 def main() -> None:
     print("=== JSON backend ===")
     json_repo = JsonSaveRepository(SAVES_DIR / "save_game.json")
-    run_game_session(json_repo)
+    try:
+        run_game_session(json_repo)
+    except NotImplementedError:
+        print("TODO: implement JsonSaveRepository.save() and .load() first.")
+        return
 
     print("\n=== In-memory backend ===")
     mem_repo = InMemorySaveRepository()
-    run_game_session(mem_repo)
-    run_game_session(mem_repo)   # second run should load the saved hero
+    try:
+        run_game_session(mem_repo)
+        run_game_session(mem_repo)   # second run should load the saved hero
+    except NotImplementedError:
+        print("TODO: implement InMemorySaveRepository.save() and .load() first.")
 
 
 if __name__ == "__main__":

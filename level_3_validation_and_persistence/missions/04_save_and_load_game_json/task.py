@@ -128,17 +128,24 @@ def main() -> None:
         losses=1,
     )
 
-    print("Saving hero...")
-    save_game(hero)
-    print(f"  Saved to {SAVE_FILE}")
-    print(f"  Contents:\n{SAVE_FILE.read_text()}")
+    try:
+        print("Saving hero...")
+        save_game(hero)
+        print(f"  Saved to {SAVE_FILE}")
+        print(f"  Contents:\n{SAVE_FILE.read_text()}")
+    except NotImplementedError:
+        print("TODO: implement SaveGameModel fields, from_hero(), and save_game() first.")
+        return
 
-    print("\nLoading hero...")
-    loaded = load_game()
-    if loaded:
-        print(f"  Loaded: {loaded.name} ({loaded.hero_class.value}), HP={loaded.hp}, gold={loaded.gold}")
-    else:
-        print("  No save file found.")
+    try:
+        print("\nLoading hero...")
+        loaded = load_game()
+        if loaded:
+            print(f"  Loaded: {loaded.name} ({loaded.hero_class.value}), HP={loaded.hp}, gold={loaded.gold}")
+        else:
+            print("  No save file found.")
+    except NotImplementedError:
+        print("TODO: implement to_hero() and load_game() first.")
 
 
 if __name__ == "__main__":
