@@ -1,0 +1,9 @@
+battle_id,turn,hero_name,hero_class,monster,action,damage_dealt,damage_taken,hero_hp,monster_hp,result
+1,1,Ada,warrior,Goblin,attack,12,4,96,18,ongoing
+1,2,Ada,warrior,Goblin,attack,15,6,90,3,ongoing
+1,3,Ada,warrior,Goblin,attack,14,0,90,0,win
+2,1,Ada,warrior,Orc,attack,10,8,82,40,ongoing
+2,2,Ada,warrior,Orc,potion,0,0,112,40,ongoing
+2,3,Ada,warrior,Orc,attack,13,9,103,27,ongoing
+2,4,Ada,warrior,Orc,attack,11,7,96,16,ongoing
+2,5,Ada,warrior,Orc,attack,16,0,96,0,win
