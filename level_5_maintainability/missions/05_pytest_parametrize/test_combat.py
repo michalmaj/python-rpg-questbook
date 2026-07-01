@@ -37,3 +37,12 @@ def test_use_potion_empty(make_hero: object) -> None:
 #
 # Hint: create heroes/monsters with specific stats to control outcomes.
 # Use simulate_turn(hero, monster, hero_roll=6, monster_roll=1) etc.
+#
+# @pytest.mark.parametrize("hero_roll,monster_roll,hero_survives,monster_survives", [
+#     (6, 1, ???, ???),   # hero rolls max, monster rolls min
+#     (1, 6, ???, ???),   # hero rolls min, monster rolls max
+# ], ids=["hero_strong_hit", "monster_strong_hit"])
+# def test_simulate_turn_outcomes(warrior, goblin, hero_roll, monster_roll, hero_survives, monster_survives):
+#     hero_alive, monster_alive = simulate_turn(warrior, goblin, hero_roll, monster_roll)
+#     assert hero_alive == hero_survives
+#     assert monster_alive == monster_survives

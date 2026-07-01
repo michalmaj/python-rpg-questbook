@@ -40,7 +40,7 @@ print(f"✓ {param_count} @pytest.mark.parametrize decorators found")
 # ── ids= used in at least one parametrize call ───────────────────────────────
 
 if not any(
-    "@pytest.mark.parametrize" in ln and "ids=" in ln and not ln.lstrip().startswith("#")
+    "ids=" in ln and not ln.lstrip().startswith("#")
     for ln in src.splitlines()
 ):
     print("❌ ids= not found — add ids=[...] to at least one @pytest.mark.parametrize call")
