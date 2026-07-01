@@ -23,7 +23,9 @@ WORLDS = [
             ("05_arena_challenge", "Mission 05: Arena Challenge"),
             ("06_hero_inventory", "Mission 06: Hero Inventory"),
         ],
-        [],
+        [
+            ("02_turn_based_combat", "Project 02: Turn-Based Combat"),
+        ],
     ),
     (
         "World 3: Character Data",
