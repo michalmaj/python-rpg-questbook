@@ -112,3 +112,35 @@ You inherited messy code. Now you fix it.
 | 10 | [Add Tests](level_2_oop_and_design/missions/10_add_tests/README.md) | pytest, test discovery, assertions |
 
 **Boss Fight:** [Project 01: Refactored RPG](level_2_oop_and_design/projects/01_refactored_rpg/README.md)
+
+---
+
+## Level 3: Validation and Persistence
+
+**Prerequisite:** Level 2 complete
+
+External data is untrusted. Validate at boundaries, isolate persistence from domain logic.
+
+### World 1: Trusted Data
+
+| # | Mission | Concept |
+|---|---------|---------|
+| 01 | [External Data Is Untrusted](level_3_validation_and_persistence/missions/01_external_data_is_untrusted/README.md) | why raw `json.load()` is dangerous |
+| 02 | [Pydantic Monster Config](level_3_validation_and_persistence/missions/02_pydantic_monster_config/README.md) | `BaseModel`, `Field`, `ValidationError` |
+| 03 | [Load Game Catalogs](level_3_validation_and_persistence/missions/03_load_game_catalogs/README.md) | `to_domain()` — Pydantic model → domain dataclass |
+
+### World 2: Persistence
+
+| # | Mission | Concept |
+|---|---------|---------|
+| 04 | [Save and Load Game JSON](level_3_validation_and_persistence/missions/04_save_and_load_game_json/README.md) | `SaveGameModel`, `schema_version`, round-trip JSON |
+| 05 | [Repository Pattern](level_3_validation_and_persistence/missions/05_repository_pattern/README.md) | `Protocol`, `JsonSaveRepository`, `InMemorySaveRepository` |
+
+### World 3: Integration
+
+| # | Mission | Concept |
+|---|---------|---------|
+| 06 | [Combat Log Repository](level_3_validation_and_persistence/missions/06_combat_log_repository/README.md) | `Literal`, `CsvCombatLogRepository`, validated log rows |
+| 07 | [Settings and Paths](level_3_validation_and_persistence/missions/07_settings_and_paths/README.md) | `pydantic-settings`, `env_prefix`, `get_settings()` |
+
+**Boss Fight:** [Project 01: SQLite Repository Backend](level_3_validation_and_persistence/projects/01_sqlite_repository_backend/README.md)
