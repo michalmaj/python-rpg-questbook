@@ -87,6 +87,8 @@ Implement:
 
 ## Run
 
+> Before you complete the TODOs, running `task.py` will print a friendly reminder instead of crashing.
+
 ```bash
 uv run python level_3_validation_and_persistence/missions/05_repository_pattern/task.py
 ```

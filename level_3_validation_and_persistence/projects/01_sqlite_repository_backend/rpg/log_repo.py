@@ -8,7 +8,7 @@ import sqlite3  # noqa: F401
 from pathlib import Path
 from typing import Protocol
 
-from rpg.domain import CombatLogRow  # noqa: F401
+from rpg.schemas import CombatLogRow  # noqa: F401
 
 FIELDNAMES = [
     "battle_id", "turn", "hero_name", "hero_class", "monster",

@@ -41,15 +41,22 @@ def main() -> None:
         save_mod = load("rpg/save_repo.py")
         log_mod = load("rpg/log_repo.py")
         domain_mod = load("rpg/domain.py")
+        schemas_mod = load("rpg/schemas.py")
     except Exception as e:
         print(f"❌ Could not import project modules: {e}")
+        raise SystemExit(1)
+
+    # domain.py must be free of Pydantic
+    domain_src = (project_dir / "rpg" / "domain.py").read_text()
+    if "BaseModel" in domain_src or "from pydantic" in domain_src:
+        print("❌ rpg/domain.py imports Pydantic — domain must be pure dataclasses/enums only.")
         raise SystemExit(1)
 
     SqliteSaveRepository = getattr(save_mod, "SqliteSaveRepository", None)
     SqliteCombatLogRepository = getattr(log_mod, "SqliteCombatLogRepository", None)
     Hero = getattr(domain_mod, "Hero", None)
     HeroClass = getattr(domain_mod, "HeroClass", None)
-    CombatLogRow = getattr(domain_mod, "CombatLogRow", None)
+    CombatLogRow = getattr(schemas_mod, "CombatLogRow", None)
 
     for name, obj in [("SqliteSaveRepository", SqliteSaveRepository),
                       ("SqliteCombatLogRepository", SqliteCombatLogRepository),

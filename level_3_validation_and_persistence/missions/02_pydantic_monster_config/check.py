@@ -19,6 +19,18 @@ def update_progress(mission_id: str) -> None:
     PROGRESS_FILE.write_text(json.dumps(progress, indent=2))
 
 
+def _should_fail(model_cls, data: dict, label: str) -> None:
+    """Assert that model_cls.model_validate(data) raises an exception."""
+    try:
+        model_cls.model_validate(data)
+        print(f"❌ {label}: expected ValidationError, but validation passed.")
+        raise SystemExit(1)
+    except SystemExit:
+        raise
+    except Exception:
+        pass  # expected
+
+
 def main() -> None:
     task_path = Path(__file__).parent / "task.py"
 
@@ -31,19 +43,15 @@ def main() -> None:
         print(f"❌ Could not import task.py: {e}")
         raise SystemExit(1)
 
-    # Check MonsterConfig exists
     MonsterConfig = getattr(task, "MonsterConfig", None)
-    if MonsterConfig is None:
-        print("❌ MonsterConfig not found in task.py.")
-        raise SystemExit(1)
-
-    # Check WeaponConfig exists
     WeaponConfig = getattr(task, "WeaponConfig", None)
-    if WeaponConfig is None:
-        print("❌ WeaponConfig not found in task.py.")
-        raise SystemExit(1)
 
-    # MonsterConfig — valid goblin via alias
+    for name, obj in [("MonsterConfig", MonsterConfig), ("WeaponConfig", WeaponConfig)]:
+        if obj is None:
+            print(f"❌ {name} not found in task.py.")
+            raise SystemExit(1)
+
+    # ── MonsterConfig: valid monster via "def" alias ───────────────────────────
     try:
         m = MonsterConfig.model_validate({"name": "Goblin", "hp": 30, "atk": 8, "def": 2, "gold": 10})
     except Exception as e:
@@ -54,26 +62,33 @@ def main() -> None:
         print(f"❌ MonsterConfig.hp should be 30, got {m.hp}")
         raise SystemExit(1)
     if m.def_ != 2:
-        print(f"❌ MonsterConfig.def_ should be 2, got {m.def_!r} (check alias='def')")
+        print(f"❌ MonsterConfig.def_ should be 2, got {m.def_!r} — check alias='def'")
+        raise SystemExit(1)
+    if m.atk != 8:
+        print(f"❌ MonsterConfig.atk should be 8, got {m.atk}")
+        raise SystemExit(1)
+    if m.gold != 10:
+        print(f"❌ MonsterConfig.gold should be 10, got {m.gold}")
         raise SystemExit(1)
 
-    # MonsterConfig — negative hp must fail
-    try:
-        MonsterConfig.model_validate({"name": "Ghost", "hp": -50, "atk": 8, "def": 2, "gold": 15})
-        print("❌ MonsterConfig accepted hp=-50 — Field(gt=0) is missing.")
-        raise SystemExit(1)
-    except Exception:
-        pass
+    # ── MonsterConfig: must reject invalid data ────────────────────────────────
+    _should_fail(MonsterConfig,
+                 {"name": "Ghost", "hp": -50, "atk": 8, "def": 2, "gold": 15},
+                 "hp=-50 (Field gt=0 missing)")
+    _should_fail(MonsterConfig,
+                 {"name": "Slime", "hp": 0, "atk": 5, "def": 1, "gold": 5},
+                 "hp=0 (Field gt=0 missing)")
+    _should_fail(MonsterConfig,
+                 {"name": "Bandit", "atk": 10, "def": 3, "gold": 20},
+                 "hp missing")
+    _should_fail(MonsterConfig,
+                 {"name": "Weakling", "hp": 10, "atk": 0, "def": 0, "gold": 0},
+                 "atk=0 (Field ge=1 missing)")
+    _should_fail(MonsterConfig,
+                 {"name": "Thief", "hp": 20, "atk": 5, "def": 0, "gold": -1},
+                 "gold=-1 (Field ge=0 missing)")
 
-    # MonsterConfig — missing hp must fail
-    try:
-        MonsterConfig.model_validate({"name": "Bandit", "atk": 10, "def": 3, "gold": 20})
-        print("❌ MonsterConfig accepted a monster with no 'hp' field.")
-        raise SystemExit(1)
-    except Exception:
-        pass
-
-    # WeaponConfig — valid
+    # ── WeaponConfig: valid weapon ─────────────────────────────────────────────
     try:
         w = WeaponConfig.model_validate({"name": "Iron Sword", "atk_bonus": 2, "price": 50})
     except Exception as e:
@@ -83,16 +98,22 @@ def main() -> None:
     if w.atk_bonus != 2:
         print(f"❌ WeaponConfig.atk_bonus should be 2, got {w.atk_bonus}")
         raise SystemExit(1)
-
-    # WeaponConfig — negative atk_bonus must fail
-    try:
-        WeaponConfig.model_validate({"name": "Cursed Blade", "atk_bonus": -5, "price": 0})
-        print("❌ WeaponConfig accepted atk_bonus=-5 — Field(ge=0) is missing.")
+    if w.price != 50:
+        print(f"❌ WeaponConfig.price should be 50, got {w.price}")
         raise SystemExit(1)
-    except Exception:
-        pass
 
-    print("✅ Mission 02 complete — MonsterConfig and WeaponConfig validate correctly.")
+    # ── WeaponConfig: must reject invalid data ─────────────────────────────────
+    _should_fail(WeaponConfig,
+                 {"name": "Cursed Blade", "atk_bonus": -5, "price": 0},
+                 "atk_bonus=-5 (Field ge=0 missing)")
+    _should_fail(WeaponConfig,
+                 {"name": "Priceless Gem", "atk_bonus": 0, "price": -100},
+                 "price=-100 (Field ge=0 missing)")
+    _should_fail(WeaponConfig,
+                 {"atk_bonus": 3, "price": 50},
+                 "name missing")
+
+    print("✅ Mission 02 complete — MonsterConfig and WeaponConfig validate all constraints.")
     update_progress("02_pydantic_monster_config")
 
 

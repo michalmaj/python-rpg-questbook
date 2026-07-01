@@ -105,12 +105,20 @@ def load_weapons(path: Path = DATA_DIR / "weapons.json") -> list[Weapon]:
 
 
 def main() -> None:
-    monsters = load_monsters()
+    try:
+        monsters = load_monsters()
+    except NotImplementedError:
+        print("TODO: implement MonsterConfig.to_domain() and load_monsters() first.")
+        return
     print(f"Loaded {len(monsters)} monsters:")
     for m in monsters:
         print(f"  {m.name}: hp={m.hp}, atk={m.atk}, def={m.def_}")
 
-    weapons = load_weapons()
+    try:
+        weapons = load_weapons()
+    except NotImplementedError:
+        print("TODO: implement WeaponConfig.to_domain() and load_weapons() first.")
+        return
     print(f"\nLoaded {len(weapons)} weapons:")
     for w in weapons:
         print(f"  {w.name}: +{w.atk_bonus} atk, {w.price} gold")

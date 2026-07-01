@@ -139,10 +139,18 @@ def main() -> None:
         hero_hp=96, monster_hp=0, result="win",
     )
 
-    repo.append(row1)
-    repo.append(row2)
+    try:
+        repo.append(row1)
+        repo.append(row2)
+    except NotImplementedError:
+        print("TODO: implement CsvCombatLogRepository.append() first.")
+        return
 
-    rows = repo.read_all()
+    try:
+        rows = repo.read_all()
+    except NotImplementedError:
+        print("TODO: implement CsvCombatLogRepository.read_all() first.")
+        return
     print(f"Logged {len(rows)} turns:")
     for r in rows:
         print(f"  Turn {r.turn}: {r.action}, dealt={r.damage_dealt}, result={r.result}")

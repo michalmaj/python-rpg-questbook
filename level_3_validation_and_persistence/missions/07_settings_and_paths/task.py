@@ -20,9 +20,6 @@ variables or a .env file.
 
 from pathlib import Path
 
-# Uncomment and install pydantic-settings:
-#   uv add pydantic-settings
-#
 # from pydantic import Field
 # from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -31,10 +28,10 @@ _LEVEL3_ROOT = _REPO_ROOT / "level_3_validation_and_persistence"
 
 
 # ---------------------------------------------------------------------------
-# TODO: Define GameSettings
+# TODO: Define GameSettings using BaseSettings from pydantic-settings
 #
-# Use BaseSettings from pydantic-settings so values can be overridden
-# via environment variables (e.g. export RPG_SAVES_DIR=/tmp/test_saves).
+# Values can be overridden via environment variables
+# (e.g. export RPG_SAVES_DIR=/tmp/test_saves).
 #
 # Required fields (with defaults):
 #   data_dir   : Path = _LEVEL3_ROOT / "starter_raw_rpg" / "data"
@@ -51,11 +48,6 @@ _LEVEL3_ROOT = _REPO_ROOT / "level_3_validation_and_persistence"
 #       model_config = SettingsConfigDict(env_prefix="RPG_", env_file=".env")
 #       data_dir: Path = _LEVEL3_ROOT / "starter_raw_rpg" / "data"
 #       ...
-#
-# If you don't have pydantic-settings, use a plain Pydantic BaseModel:
-#   class GameSettings(BaseModel):
-#       data_dir: Path = ...
-#   (No env var support, but the same structure and type safety.)
 # ---------------------------------------------------------------------------
 
 # class GameSettings(BaseSettings):
