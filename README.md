@@ -21,7 +21,7 @@ No abstract examples. Every line of code does something in the game.
 You need [uv](https://docs.astral.sh/uv/) installed. If you completed the setup course, you already have it.
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/python-rpg-questbook.git
+git clone https://github.com/michalmaj/python-rpg-questbook.git
 cd python-rpg-questbook
 uv sync
 uv run python main.py

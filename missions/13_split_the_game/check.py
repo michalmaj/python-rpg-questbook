@@ -29,7 +29,7 @@ def main() -> None:
     assert is_alive(0) is False, "is_alive(0): expected False"
 
     result = subprocess.run(
-        ["uv", "run", "python", "missions/13_split_the_game/task.py"],
+        [sys.executable, "missions/13_split_the_game/task.py"],
         capture_output=True,
         text=True,
         cwd=REPO_ROOT,
@@ -52,6 +52,8 @@ if __name__ == "__main__":
     except AssertionError as e:
         _update_progress("in_progress")
         print(f"❌ Not quite: {e}")
+        raise SystemExit(1)
     except Exception as e:
         _update_progress("in_progress")
         print(f"❌ Error: {e}")
+        raise SystemExit(1)

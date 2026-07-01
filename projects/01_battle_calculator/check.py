@@ -1,3 +1,4 @@
+import sys
 import json
 import subprocess
 from pathlib import Path
@@ -18,7 +19,7 @@ def _update_progress(status: str) -> None:
 
 def run_script(inputs: list[str]) -> str:
     result = subprocess.run(
-        ["uv", "run", "python", TASK_PATH],
+        [sys.executable, TASK_PATH],
         input="\n".join(inputs) + "\n",
         capture_output=True,
         text=True,
@@ -61,6 +62,8 @@ if __name__ == "__main__":
     except AssertionError as e:
         _update_progress("in_progress")
         print(f"❌ Not quite: {e}")
+        raise SystemExit(1)
     except Exception as e:
         _update_progress("in_progress")
         print(f"❌ Error: {e}")
+        raise SystemExit(1)

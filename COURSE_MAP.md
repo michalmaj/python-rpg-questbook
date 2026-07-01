@@ -19,7 +19,7 @@
 
 ---
 
-### World 2: Combat Logic *(coming soon)*
+### World 2: Combat Logic
 
 | # | Mission | Concept |
 |---|---------|---------|
@@ -27,11 +27,11 @@
 | 05 | [Arena Challenge](missions/05_arena_challenge/README.md) | for loop, range() |
 | 06 | [Hero Inventory](missions/06_hero_inventory/README.md) | lists, append, len |
 
-**Boss Fight:** Project 02: Turn-Based Combat
+**Boss Fight:** Project 02: Turn-Based Combat *(coming soon)*
 
 ---
 
-### World 3: Character Data *(coming soon)*
+### World 3: Character Data
 
 | # | Mission | Concept |
 |---|---------|---------|
@@ -44,7 +44,7 @@
 
 ---
 
-### World 4: Saving and Structure *(coming soon)*
+### World 4: Saving and Structure
 
 | # | Mission | Concept |
 |---|---------|---------|
@@ -58,7 +58,7 @@
 
 ---
 
-## Part 2: Game Data Analysis *(coming soon)*
+## Part 2: Game Data Analysis
 
 After you build the RPG, you will analyze the game data.
 
