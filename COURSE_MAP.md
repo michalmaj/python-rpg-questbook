@@ -75,3 +75,40 @@ After you build the RPG, you will analyze the game data.
 ---
 
 *Is the game balanced? You will find out.*
+
+---
+
+## Level 2: OOP and Design
+
+**Prerequisite:** Level 1 complete
+
+You inherited messy code. Now you fix it.
+
+### World 1: Objects
+
+| # | Mission | Concept |
+|---|---------|---------|
+| 01 | [Extract Hero](level_2_oop_and_design/missions/01_extract_hero/README.md) | classes, `__init__`, instance attributes |
+| 02 | [Monster Class](level_2_oop_and_design/missions/02_monster_class/README.md) | methods, `self`, behaviour on objects |
+| 03 | [Character Base](level_2_oop_and_design/missions/03_character_base/README.md) | inheritance, `super().__init__()` |
+
+**Boss Fight:** *(coming after World 2)*
+
+### World 2: Design
+
+| # | Mission | Concept |
+|---|---------|---------|
+| 04 | [Type Hints](level_2_oop_and_design/missions/04_type_hints/README.md) | annotations, `->`, mypy |
+| 05 | [Enums](level_2_oop_and_design/missions/05_enums/README.md) | `Enum`, replacing magic strings |
+| 06 | [Properties](level_2_oop_and_design/missions/06_properties/README.md) | `@property`, computed attributes |
+| 07 | [Dataclasses](level_2_oop_and_design/missions/07_dataclasses/README.md) | `@dataclass`, generated `__init__` |
+
+### World 3: Structure
+
+| # | Mission | Concept |
+|---|---------|---------|
+| 08 | [Module Split](level_2_oop_and_design/missions/08_module_split/README.md) | packages, `__init__.py`, single responsibility |
+| 09 | [Pure Functions](level_2_oop_and_design/missions/09_pure_functions/README.md) | side effects, testable logic |
+| 10 | [Add Tests](level_2_oop_and_design/missions/10_add_tests/README.md) | pytest, test discovery, assertions |
+
+**Boss Fight:** [Project 01: Refactored RPG](level_2_oop_and_design/projects/01_refactored_rpg/README.md)
