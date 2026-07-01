@@ -60,3 +60,19 @@ missions/    ← short focused exercises (one concept each)
 projects/    ← larger challenges that combine what you learned
 tools/       ← helper scripts
 ```
+
+## Note on global commands
+
+This repository contains intentionally incomplete starter files. Running
+`uv run pytest` or `uv run ruff check .` at the start of the course will
+show errors — that is expected. Starter files are meant to be incomplete
+until you fill them in.
+
+The correct workflow is always per-mission:
+
+```bash
+uv run python missions/01_hero_stats/task.py    # run your code
+uv run python missions/01_hero_stats/check.py   # verify your solution
+```
+
+Global `pytest` and `ruff` are tools for the course author, not for students.

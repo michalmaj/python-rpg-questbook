@@ -18,9 +18,12 @@ min_hero_hp = None  # replace None with df["hero_hp"].min()
 final_round = None  # replace None with df[df["boss_hp"] == 0]["round"].values[0]
 
 if __name__ == "__main__":
-    print(df)
-    print()
-    print(f"Rounds fought:    {len(df)}")
-    print(f"Avg hero HP:      {avg_hero_hp:.1f}")
-    print(f"Lowest hero HP:   {min_hero_hp}")
-    print(f"Boss defeated on: round {final_round}")
+    if df is None:
+        print("Fill in the TODO above first: df = pd.read_csv(LOG_FILE)")
+    else:
+        print(df)
+        print()
+        print(f"Rounds fought:    {len(df)}")
+        print(f"Avg hero HP:      {avg_hero_hp:.1f}" if avg_hero_hp is not None else "Avg hero HP:      TODO")
+        print(f"Lowest hero HP:   {min_hero_hp}")
+        print(f"Boss defeated on: round {final_round}")
