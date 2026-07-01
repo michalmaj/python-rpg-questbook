@@ -74,42 +74,34 @@ def main() -> None:
         print("❌ get_settings() should return the same instance on repeated calls (caching).")
         raise SystemExit(1)
 
-    # Environment variable override (only if BaseSettings is used)
-    env_override_supported = True
-    try:
-        import pydantic_settings  # noqa: F401
-    except ImportError:
-        env_override_supported = False
+    # Environment variable override — required (pydantic-settings is a project dependency)
+    if hasattr(task, "_settings"):
+        task._settings = None
 
-    if env_override_supported:
-        # Reset the cache so a fresh instance is created with the env var
-        if hasattr(task, "_settings"):
-            task._settings = None
-
-        import tempfile
-        with tempfile.TemporaryDirectory() as tmp:
-            os.environ["RPG_SAVES_DIR"] = tmp
-            try:
-                overridden = GameSettings()  # type: ignore[call-arg]
-                if str(overridden.saves_dir) != tmp:
-                    print(
-                        f"❌ RPG_SAVES_DIR env var should override saves_dir. "
-                        f"Expected {tmp}, got {overridden.saves_dir}"
-                    )
-                    raise SystemExit(1)
-            except Exception as e:
-                print(f"❌ GameSettings() with env var raised: {e}")
+    import tempfile
+    with tempfile.TemporaryDirectory() as tmp:
+        os.environ["RPG_SAVES_DIR"] = tmp
+        try:
+            overridden = GameSettings()  # type: ignore[call-arg]
+            if str(overridden.saves_dir) != tmp:
+                print(
+                    f"❌ RPG_SAVES_DIR env var should override saves_dir. "
+                    f"Expected {tmp}, got {overridden.saves_dir}\n"
+                    f"   Make sure GameSettings uses BaseSettings (not BaseModel) "
+                    f"with SettingsConfigDict(env_prefix='RPG_')."
+                )
                 raise SystemExit(1)
-            finally:
-                del os.environ["RPG_SAVES_DIR"]
-                if hasattr(task, "_settings"):
-                    task._settings = None
+        except SystemExit:
+            raise
+        except Exception as e:
+            print(f"❌ GameSettings() with RPG_SAVES_DIR set raised: {e}")
+            raise SystemExit(1)
+        finally:
+            del os.environ["RPG_SAVES_DIR"]
+            if hasattr(task, "_settings"):
+                task._settings = None
 
-    print("✅ Mission 07 complete — GameSettings is defined and get_settings() caches correctly.")
-    if env_override_supported:
-        print("   (pydantic-settings detected — env var override also verified.)")
-    else:
-        print("   (pydantic-settings not installed — env var override skipped.)")
+    print("✅ Mission 07 complete — GameSettings caches correctly and RPG_SAVES_DIR override works.")
     update_progress("07_settings_and_paths")
 
 

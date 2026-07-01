@@ -81,17 +81,13 @@ All modules call `get_settings()` — the settings object is created once and sh
 
 Open `task.py`.
 
-1. **Install pydantic-settings:**
-   ```bash
-   uv add pydantic-settings
-   ```
-   If you prefer to keep it simple, use a plain `BaseModel` instead (no env var support, but same structure).
+1. **Define `GameSettings`** using `BaseSettings` (from `pydantic-settings`, already installed)
+   with fields: `data_dir`, `saves_dir`, `log_file`, `max_potions`.
+   Add `model_config = SettingsConfigDict(env_prefix="RPG_", env_file=".env")`.
 
-2. **Define `GameSettings`** with fields: `data_dir`, `saves_dir`, `log_file`, `max_potions`. Add `model_config` with `env_prefix="RPG_"`.
+2. **Define `get_settings() -> GameSettings`** with module-level caching.
 
-3. **Define `get_settings() -> GameSettings`** with module-level caching.
-
-4. Uncomment the lines in `main()` and run.
+3. Uncomment the lines in `main()` and run.
 
 ## Run
 

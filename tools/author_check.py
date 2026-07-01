@@ -8,6 +8,7 @@ This is not a student tool — it checks the repo for authoring mistakes.
 
 import re
 import sys
+import tomllib
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).parents[1]
@@ -176,6 +177,26 @@ def check_readme_links(level_root: Path, missions: list[str], projects: list[str
             )
 
 
+def check_dependencies() -> None:
+    """Verify pyproject.toml contains dependencies required by each level."""
+    pyproject = REPO_ROOT / "pyproject.toml"
+    if not pyproject.exists():
+        errors.append("  ✗ pyproject.toml not found")
+        return
+    with pyproject.open("rb") as f:
+        data = tomllib.load(f)
+    deps: list[str] = data.get("project", {}).get("dependencies", [])
+    dep_names = {re.split(r"[>=<!]", d)[0].strip().lower() for d in deps}
+
+    if LEVEL3_ROOT.exists():
+        for required in ("pydantic", "pydantic-settings"):
+            check(
+                required.lower() in dep_names,
+                f"pyproject.toml: '{required}' listed (required by Level 3)",
+                f"pyproject.toml: MISSING '{required}' — Level 3 imports it",
+            )
+
+
 # ── Run all checks ────────────────────────────────────────────────────────────
 
 print("Checking Level 1 folder structure…")
@@ -200,6 +221,9 @@ print("Checking README next-mission links…")
 check_readme_links(LEVEL1_ROOT, L1_MISSIONS, L1_PROJECTS, "level_1")
 check_readme_links(LEVEL2_ROOT, L2_MISSIONS, L2_PROJECTS, "level_2")
 check_readme_links(LEVEL3_ROOT, L3_MISSIONS, L3_PROJECTS, "level_3")
+
+print("Checking pyproject.toml dependencies…")
+check_dependencies()
 
 print("Checking COURSE_MAP.md links…")
 course_map = REPO_ROOT / "COURSE_MAP.md"

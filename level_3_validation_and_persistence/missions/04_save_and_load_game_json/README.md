@@ -73,6 +73,8 @@ Open `task.py`.
 
 ## Run
 
+> Before you complete the TODOs, running `task.py` will print a friendly reminder instead of crashing.
+
 ```bash
 uv run python level_3_validation_and_persistence/missions/04_save_and_load_game_json/task.py
 ```
