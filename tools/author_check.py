@@ -15,6 +15,7 @@ REPO_ROOT = Path(__file__).parents[1]
 LEVEL1_ROOT = REPO_ROOT / "level_1_python_basics"
 LEVEL2_ROOT = REPO_ROOT / "level_2_oop_and_design"
 LEVEL3_ROOT = REPO_ROOT / "level_3_validation_and_persistence"
+LEVEL4_ROOT = REPO_ROOT / "level_4_interfaces"
 
 # ── Level 1 content ───────────────────────────────────────────────────────────
 
@@ -67,6 +68,19 @@ L3_PROJECTS = [
 ]
 
 L3_MISSION_FILE_EXCEPTIONS: dict[str, set[str]] = {}
+
+# ── Level 4 content ───────────────────────────────────────────────────────────
+
+L4_MISSIONS = [
+    "01_argparse_baseline", "02_typer_cli", "03_stdlib_logging",
+    "04_log_files", "05_rich_terminal_output", "06_session_reports",
+]
+
+L4_PROJECTS = [
+    "01_installable_cli_tool",
+]
+
+L4_MISSION_FILE_EXCEPTIONS: dict[str, set[str]] = {}
 
 # ── Shared config ─────────────────────────────────────────────────────────────
 
@@ -146,7 +160,7 @@ def check_hygiene(level_root: Path, missions: list[str], projects: list[str]) ->
 # `level_1_python_basics/missions/02_damage/README.md`
 # `level_3_validation_and_persistence/missions/01_external_data_is_untrusted/README.md`
 LINK_PATTERN = re.compile(
-    r"`(level_(?:1_python_basics|2_oop_and_design|3_validation_and_persistence)"
+    r"`(level_(?:1_python_basics|2_oop_and_design|3_validation_and_persistence|4_interfaces)"
     r"/(?:missions|projects)/[\w/._-]+)`"
 )
 
@@ -196,6 +210,14 @@ def check_dependencies() -> None:
                 f"pyproject.toml: MISSING '{required}' — Level 3 imports it",
             )
 
+    if LEVEL4_ROOT.exists():
+        for required in ("typer", "rich"):
+            check(
+                required.lower() in dep_names,
+                f"pyproject.toml: '{required}' listed (required by Level 4)",
+                f"pyproject.toml: MISSING '{required}' — Level 4 imports it",
+            )
+
 
 # ── Run all checks ────────────────────────────────────────────────────────────
 
@@ -208,6 +230,9 @@ check_folder_structure(LEVEL2_ROOT, L2_MISSIONS, L2_PROJECTS, L2_MISSION_FILE_EX
 print("Checking Level 3 folder structure…")
 check_folder_structure(LEVEL3_ROOT, L3_MISSIONS, L3_PROJECTS, L3_MISSION_FILE_EXCEPTIONS, "level_3")
 
+print("Checking Level 4 folder structure…")
+check_folder_structure(LEVEL4_ROOT, L4_MISSIONS, L4_PROJECTS, L4_MISSION_FILE_EXCEPTIONS, "level_4")
+
 print("Checking check.py hygiene (Level 1)…")
 check_hygiene(LEVEL1_ROOT, L1_MISSIONS, L1_PROJECTS)
 
@@ -217,10 +242,14 @@ check_hygiene(LEVEL2_ROOT, L2_MISSIONS, L2_PROJECTS)
 print("Checking check.py hygiene (Level 3)…")
 check_hygiene(LEVEL3_ROOT, L3_MISSIONS, L3_PROJECTS)
 
+print("Checking check.py hygiene (Level 4)…")
+check_hygiene(LEVEL4_ROOT, L4_MISSIONS, L4_PROJECTS)
+
 print("Checking README next-mission links…")
 check_readme_links(LEVEL1_ROOT, L1_MISSIONS, L1_PROJECTS, "level_1")
 check_readme_links(LEVEL2_ROOT, L2_MISSIONS, L2_PROJECTS, "level_2")
 check_readme_links(LEVEL3_ROOT, L3_MISSIONS, L3_PROJECTS, "level_3")
+check_readme_links(LEVEL4_ROOT, L4_MISSIONS, L4_PROJECTS, "level_4")
 
 print("Checking pyproject.toml dependencies…")
 check_dependencies()

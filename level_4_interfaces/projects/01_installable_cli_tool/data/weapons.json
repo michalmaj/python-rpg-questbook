@@ -1,0 +1,7 @@
+{
+  "weapons": [
+    {"name": "Iron Sword",    "atk_bonus": 2, "price": 50},
+    {"name": "Fire Staff",    "atk_bonus": 5, "price": 100},
+    {"name": "Shadow Dagger", "atk_bonus": 3, "price": 75}
+  ]
+}
