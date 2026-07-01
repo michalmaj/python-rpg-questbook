@@ -48,7 +48,10 @@ if not test_file.exists():
     print("❌ test_combat.py not found")
     raise SystemExit(1)
 test_src = test_file.read_text()
-test_count = test_src.count("def test_")
+test_count = sum(
+    1 for ln in test_src.splitlines()
+    if "def test_" in ln and not ln.lstrip().startswith("#")
+)
 if test_count < 5:
     print(f"❌ Only {test_count} test_ functions found in test_combat.py (need ≥ 5)")
     raise SystemExit(1)
