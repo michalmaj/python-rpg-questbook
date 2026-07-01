@@ -31,7 +31,7 @@ def main() -> None:
 
     _update_progress("complete")
     print("✅ Mission 04 complete: Combat Loop")
-    print("   Next mission: missions/05_winning_and_losing/README.md")
+    print("   Next mission: missions/05_arena_challenge/README.md")
 
 
 if __name__ == "__main__":

@@ -1,8 +1,8 @@
 from dataclasses import dataclass
-import csv
-import json
+import csv  # noqa: F401
+import json  # noqa: F401
 
-from combat import apply_damage, is_alive, roll_damage
+from combat import apply_damage, is_alive, roll_damage  # noqa: F401
 
 
 @dataclass
@@ -17,7 +17,8 @@ class Hero:
 
 hero_name = input("Enter your hero's name: ")
 
-# TODO 1: Create your Hero — uncomment ONE of the three lines below.
+# TODO 1: Create your Hero — uncomment ONE of the three lines below,
+#         then uncomment the two print lines marked TODO 1b.
 #
 # Warrior: high HP, moderate damage
 # hero = Hero(name=hero_name, hero_class="Warrior", hp=120, max_hp=120, damage_min=10, damage_max=20)
@@ -37,8 +38,9 @@ boss_damage_max = 20
 combat_log = []
 round_number = 0
 
-print(f"\n{hero.name} the {hero.hero_class} faces the {boss_name}!")
-print("-" * 40)
+# TODO 1b: Uncomment these two lines after completing TODO 1.
+# print(f"\n{hero.name} the {hero.hero_class} faces the {boss_name}!")
+# print("-" * 40)
 
 # TODO 2: Write the combat loop.
 # Both hero and boss attack each round. The boss only attacks if it is still alive.
