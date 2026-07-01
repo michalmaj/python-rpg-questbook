@@ -3,9 +3,12 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).parent.parent
 LEVEL1_ROOT = REPO_ROOT / "level_1_python_basics"
-PROGRESS_FILE = LEVEL1_ROOT / ".progress"
+LEVEL2_ROOT = REPO_ROOT / "level_2_oop_and_design"
 
-WORLDS = [
+LEVEL1_PROGRESS_FILE = LEVEL1_ROOT / ".progress"
+LEVEL2_PROGRESS_FILE = LEVEL2_ROOT / ".progress"
+
+LEVEL1_WORLDS = [
     (
         "World 1: First Hero",
         [
@@ -68,6 +71,39 @@ WORLDS = [
     ),
 ]
 
+LEVEL2_WORLDS = [
+    (
+        "World 1: Objects",
+        [
+            ("01_extract_hero", "Mission 01: Extract Hero"),
+            ("02_monster_class", "Mission 02: Monster Class"),
+            ("03_character_base", "Mission 03: Character Base"),
+        ],
+        [],
+    ),
+    (
+        "World 2: Design",
+        [
+            ("04_type_hints", "Mission 04: Type Hints"),
+            ("05_enums", "Mission 05: Enums"),
+            ("06_properties", "Mission 06: Properties"),
+            ("07_dataclasses", "Mission 07: Dataclasses"),
+        ],
+        [],
+    ),
+    (
+        "World 3: Structure",
+        [
+            ("08_module_split", "Mission 08: Module Split"),
+            ("09_pure_functions", "Mission 09: Pure Functions"),
+            ("10_add_tests", "Mission 10: Add Tests"),
+        ],
+        [
+            ("01_refactored_rpg", "Project 01: Refactored RPG"),
+        ],
+    ),
+]
+
 SYMBOLS = {
     "complete": "✓",
     "in_progress": "~",
@@ -75,51 +111,70 @@ SYMBOLS = {
 }
 
 
-def load_progress() -> dict:
-    if not PROGRESS_FILE.exists():
+def load_progress(progress_file: Path) -> dict:
+    if not progress_file.exists():
         return {"missions": {}, "projects": {}}
     try:
-        return json.loads(PROGRESS_FILE.read_text())
+        return json.loads(progress_file.read_text())
     except json.JSONDecodeError:
-        print("Warning: .progress file is corrupted. Starting from empty progress.")
+        print(f"Warning: {progress_file.name} is corrupted. Starting from empty progress.")
         return {"missions": {}, "projects": {}}
 
 
-def main() -> None:
-    progress = load_progress()
+def print_level(
+    level_name: str,
+    worlds: list,
+    progress: dict,
+    level_prefix: str,
+    next_up_ref: list,
+) -> None:
+    print()
+    print(level_name)
+    print("─" * 40)
+
     missions_progress = progress.get("missions", {})
     projects_progress = progress.get("projects", {})
 
-    print()
-    print("Python RPG Questbook — Your Progress")
-    print("=" * 40)
-
-    next_up = None
-
-    for world_name, missions, projects in WORLDS:
+    for world_name, missions, projects in worlds:
         print()
-        print(world_name)
+        print(f"  {world_name}")
         print()
 
         for mission_id, mission_name in missions:
             status = missions_progress.get(mission_id, "not_started")
             symbol = SYMBOLS[status]
-            print(f"  [{symbol}] {mission_name}")
-            if status != "complete" and next_up is None:
-                next_up = f"level_1_python_basics/missions/{mission_id}/README.md"
+            print(f"    [{symbol}] {mission_name}")
+            if status != "complete" and not next_up_ref[0]:
+                next_up_ref[0] = f"{level_prefix}/missions/{mission_id}/README.md"
 
         for project_id, project_name in projects:
             status = projects_progress.get(project_id, "not_started")
             symbol = SYMBOLS[status]
-            print(f"  [{symbol}] {project_name}")
-            if status != "complete" and next_up is None:
-                next_up = f"level_1_python_basics/projects/{project_id}/README.md"
+            print(f"    [{symbol}] {project_name}")
+            if status != "complete" and not next_up_ref[0]:
+                next_up_ref[0] = f"{level_prefix}/projects/{project_id}/README.md"
+
+
+def main() -> None:
+    l1_progress = load_progress(LEVEL1_PROGRESS_FILE)
+    l2_progress = load_progress(LEVEL2_PROGRESS_FILE)
 
     print()
-    if next_up:
-        print(f"Next up: {next_up}")
+    print("Python RPG Questbook — Your Progress")
+    print("=" * 40)
+
+    next_up: list[str | None] = [None]
+
+    print_level("Level 1: Python Basics", LEVEL1_WORLDS, l1_progress,
+                "level_1_python_basics", next_up)
+    print_level("Level 2: OOP and Design", LEVEL2_WORLDS, l2_progress,
+                "level_2_oop_and_design", next_up)
+
+    print()
+    if next_up[0]:
+        print(f"Next up: {next_up[0]}")
     else:
-        print("All worlds complete! Open COURSE_MAP.md for what's next.")
+        print("All levels complete! Open COURSE_MAP.md for what's next.")
     print()
 
 
