@@ -1,5 +1,6 @@
 import json
 import subprocess
+import sys
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).parents[2]
@@ -17,7 +18,7 @@ def _update_progress(status: str) -> None:
 
 def main() -> None:
     result = subprocess.run(
-        ["uv", "run", "pytest", "missions/15_test_the_damage/test_combat.py", "-v"],
+        [sys.executable, "-m", "pytest", "missions/15_test_the_damage/test_combat.py", "-v"],
         capture_output=True,
         text=True,
         cwd=REPO_ROOT,

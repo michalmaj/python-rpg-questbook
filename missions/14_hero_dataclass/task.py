@@ -13,12 +13,12 @@ class Hero:
 
 # TODO: Create a Hero named "Ada", class "Warrior", hp=100, max_hp=100, level=1, gold=50
 hero = Hero(
-    name=...,
-    hero_class=...,
-    hp=...,
-    max_hp=...,
-    level=...,
-    gold=...,
+    name=None,
+    hero_class=None,
+    hp=None,
+    max_hp=None,
+    level=None,
+    gold=None,
 )
 
 # TODO: Take 30 damage — subtract 30 from hero.hp
