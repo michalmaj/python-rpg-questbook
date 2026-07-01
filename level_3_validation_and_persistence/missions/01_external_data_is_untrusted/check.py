@@ -19,10 +19,13 @@ def update_progress(mission_id: str) -> None:
     PROGRESS_FILE.write_text(json.dumps(progress, indent=2))
 
 
+def _has_field_error(errors: list, field: str) -> bool:
+    return any(field.lower() in e.lower() for e in errors)
+
+
 def main() -> None:
     task_path = Path(__file__).parent / "task.py"
 
-    # Import student module
     import importlib.util
     spec = importlib.util.spec_from_file_location("task", task_path)
     task = importlib.util.module_from_spec(spec)  # type: ignore[arg-type]
@@ -37,42 +40,62 @@ def main() -> None:
         print("❌ validate_monster() not found in task.py.")
         raise SystemExit(1)
 
-    # Load broken monsters
-    broken_file = Path(__file__).parent / "broken_monsters.json"
-    with open(broken_file) as f:
-        monsters = json.load(f)["monsters"]
-
-    # Goblin (index 0) is valid
-    errors = fn(monsters[0])
+    # --- valid monster: no errors ---
+    valid = {"name": "Goblin", "hp": 30, "atk": 8, "def": 2, "gold": 10}
+    errors = fn(valid)
     if errors:
-        print(f"❌ Goblin should be valid but got errors: {errors}")
+        print(f"❌ Valid Goblin should produce no errors, got: {errors}")
         raise SystemExit(1)
 
-    # Ghost (index 1): hp is -50 — must catch negative hp
-    errors = fn(monsters[1])
-    if not any("hp" in e.lower() for e in errors):
-        print("❌ Ghost has hp=-50 but validate_monster() did not report an hp error.")
+    # --- hp: negative ---
+    errors = fn({"name": "Ghost", "hp": -50, "atk": 8, "def": 2, "gold": 15})
+    if not _has_field_error(errors, "hp"):
+        print("❌ hp=-50 was not caught (expected an hp error).")
         raise SystemExit(1)
 
-    # Slime (index 2): hp is "lots" (str) — must catch wrong type
-    errors = fn(monsters[2])
-    if not any("hp" in e.lower() for e in errors):
-        print('❌ Slime has hp="lots" (str) but validate_monster() did not report an hp error.')
+    # --- hp: wrong type (str) ---
+    errors = fn({"name": "Slime", "hp": "lots", "atk": 5, "def": 1, "gold": 5})
+    if not _has_field_error(errors, "hp"):
+        print('❌ hp="lots" (str) was not caught (expected an hp error).')
         raise SystemExit(1)
 
-    # Bandit (index 3): hp is missing — must catch missing field
-    errors = fn(monsters[3])
-    if not any("hp" in e.lower() for e in errors):
-        print("❌ Bandit is missing 'hp' but validate_monster() did not report an hp error.")
+    # --- hp: missing ---
+    errors = fn({"name": "Bandit", "atk": 10, "def": 3, "gold": 20})
+    if not _has_field_error(errors, "hp"):
+        print("❌ Missing 'hp' was not caught (expected an hp error).")
         raise SystemExit(1)
 
-    # Ogre (index 4): has extra field "secret_power" — should still be valid
-    errors = fn(monsters[4])
+    # --- name: missing ---
+    errors = fn({"hp": 30, "atk": 8, "def": 2, "gold": 10})
+    if not _has_field_error(errors, "name"):
+        print("❌ Missing 'name' was not caught (expected a name error).")
+        raise SystemExit(1)
+
+    # --- name: wrong type (int) ---
+    errors = fn({"name": 42, "hp": 30, "atk": 8, "def": 2, "gold": 10})
+    if not _has_field_error(errors, "name"):
+        print("❌ name=42 (int) was not caught (expected a name error).")
+        raise SystemExit(1)
+
+    # --- atk: zero (must be >= 1) ---
+    errors = fn({"name": "Weak", "hp": 10, "atk": 0, "def": 2, "gold": 5})
+    if not _has_field_error(errors, "atk"):
+        print("❌ atk=0 was not caught (expected an atk error; atk must be >= 1).")
+        raise SystemExit(1)
+
+    # --- gold: negative ---
+    errors = fn({"name": "Thief", "hp": 20, "atk": 5, "def": 1, "gold": -10})
+    if not _has_field_error(errors, "gold"):
+        print("❌ gold=-10 was not caught (expected a gold error).")
+        raise SystemExit(1)
+
+    # --- extra field: should still be valid ---
+    errors = fn({"name": "Ogre", "hp": 60, "atk": 14, "def": 5, "gold": 30, "secret_power": "fire"})
     if errors:
-        print(f"❌ Ogre has an unknown extra field but should still be considered valid. Got: {errors}")
+        print(f"❌ Monster with unknown extra field should be valid. Got: {errors}")
         raise SystemExit(1)
 
-    print("✅ Mission 01 complete — validate_monster() catches all four problems.")
+    print("✅ Mission 01 complete — validate_monster() catches all required problems.")
     update_progress("01_external_data_is_untrusted")
 
 
