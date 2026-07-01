@@ -60,6 +60,22 @@ class MonsterConfig(BaseModel):
 
 With this, both `{"def": 2}` (JSON) and `def_=2` (Python keyword arg) work.
 
+> **Parsing vs strict validation**
+>
+> By default Pydantic *parses* (coerces) data, not just validates it. This means:
+> - `"30"` (string) can become `30` (int) — Pydantic converts it automatically
+> - `"lots"` cannot become an int — Pydantic raises `ValidationError`
+>
+> So Pydantic is lenient about types it can safely convert, and strict about types it cannot.
+> If you want Pydantic to reject `"30"` even though it looks like an int, use `strict=True`:
+>
+> ```python
+> hp: int = Field(gt=0, strict=True)
+> ```
+>
+> For this course we use the default (parsing) mode — it handles common real-world cases like
+> CSV data where everything starts as a string.
+
 ## Your task
 
 Open `task.py` and define:
