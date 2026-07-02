@@ -136,7 +136,44 @@ for cmd in ("new-game", "simulate", "status"):
         raise SystemExit(1)
 print("✓ 'uv run rpg --help' works and lists commands")
 
+# ── functional: status ────────────────────────────────────────────────────────
+
+result = subprocess.run(
+    [sys.executable, str(task), "status"],
+    capture_output=True, text=True, cwd=str(project_dir),
+)
+if result.returncode != 0:
+    print("❌ status failed — implement the status command in rpg/cli.py")
+    print(result.stdout[-1000:])
+    print(result.stderr[-500:])
+    raise SystemExit(1)
+print("✓ status works")
+
+# ── functional: simulate ──────────────────────────────────────────────────────
+
+result = subprocess.run(
+    [sys.executable, str(task), "simulate", "--battles", "2"],
+    capture_output=True, text=True, cwd=str(project_dir),
+)
+if result.returncode != 0:
+    print("❌ simulate failed — implement the simulate command in rpg/cli.py")
+    print(result.stdout[-1000:])
+    print(result.stderr[-500:])
+    raise SystemExit(1)
+print("✓ simulate works")
+
+# ── functional: report ────────────────────────────────────────────────────────
+
+result = subprocess.run(
+    [sys.executable, str(task), "report"],
+    capture_output=True, text=True, cwd=str(project_dir),
+)
+if result.returncode != 0:
+    print("❌ report failed — implement the report command in rpg/cli.py")
+    print(result.stdout[-1000:])
+    print(result.stderr[-500:])
+    raise SystemExit(1)
+print("✓ report works")
+
 update_progress("01_installable_cli_tool")
-print("\n✅ Boss fight structure verified!")
-print("   Implement the TODO sections in rpg/game.py, rpg/cli.py, rpg/output.py,")
-print("   rpg/logging_setup.py, and rpg/schemas.py to complete the boss fight.")
+print("\n✅ Boss fight complete! All CLI commands work end-to-end.")
