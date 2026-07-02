@@ -27,4 +27,4 @@ cd starter_service_ready_rpg
 uv run pytest tests/ -q
 ```
 
-All 7 tests should pass before you start Mission 01.
+All 10 tests should pass before you start Mission 01.
