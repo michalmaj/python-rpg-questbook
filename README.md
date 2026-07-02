@@ -77,6 +77,11 @@ level_5_maintainability/            ← Level 5: Production Quality and Maintain
   missions/                         ←   9 missions: ruff, mypy, pyright, fixtures, parametrize, coverage,
   projects/                         ←              error handling, pre-commit, GitHub Actions CI
 
+level_6_api/                        ← Level 6: API Interface with FastAPI
+  starter_service_ready_rpg/        ←   Working RPG engine with service layer (your API will call this)
+  missions/                         ←   8 missions: FastAPI, schemas, routers, DI, errors, tests, OpenAPI
+  projects/                         ←   boss fight: RPG Battle API (7 endpoints, JSON persistence)
+
 tools/                              ← helper scripts (course_status, author_check)
 ```
 
