@@ -50,6 +50,32 @@ if depends_count == 0:
     raise SystemExit(1)
 print(f"✓ Depends() used in {depends_count} router file(s)")
 
+# ── no manual instantiation in routers (smell-removal check) ─────────────────
+
+_smell_patterns = ("MonsterRepository(", "BattleService(")
+_router_files = (
+    mission / "task/routers/monsters.py",
+    mission / "task/routers/battles.py",
+    mission / "task/routers/sessions.py",
+)
+
+for _router_path in _router_files:
+    if not _router_path.exists():
+        continue
+    _rel = f"task/routers/{_router_path.name}"
+    for _line in _router_path.read_text().splitlines():
+        if _line.lstrip().startswith("#"):
+            continue
+        for _pattern in _smell_patterns:
+            if _pattern in _line:
+                print(
+                    f"❌ {_rel}: '{_pattern}' found outside comments — "
+                    "use Depends() instead of instantiating manually"
+                )
+                raise SystemExit(1)
+
+print("✓ No manual MonsterRepository()/BattleService() instantiation in routers")
+
 # ── functional: existing endpoints still work ────────────────────────────────
 
 try:
