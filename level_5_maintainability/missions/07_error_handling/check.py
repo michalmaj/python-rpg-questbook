@@ -80,6 +80,14 @@ if silent_count > 0:
     raise SystemExit(1)
 print(f"✓ No silent exception swallowing found")
 
+# ── no raw error printing in save_hero (Smell C) ─────────────────────────────
+
+if 'print(f"Save failed:' in src or "print(f'Save failed:" in src:
+    print("❌ Smell C not fixed: save_hero still prints raw error to the user")
+    print("   Replace 'print(f\"Save failed: {e}\")' with 'raise SaveFileError(...) from e'")
+    raise SystemExit(1)
+print("✓ No raw error printing found in save_hero")
+
 # ── raise ... from e used at least once ──────────────────────────────────────
 
 if not re.search(r"\braise\s+\w+[^#\n]*\bfrom\s+(?:e|exc|err)\b", src):

@@ -288,7 +288,7 @@ check_readme_links(LEVEL2_ROOT, L2_MISSIONS, L2_PROJECTS, "level_2")
 check_readme_links(LEVEL3_ROOT, L3_MISSIONS, L3_PROJECTS, "level_3")
 check_readme_links(LEVEL4_ROOT, L4_MISSIONS, L4_PROJECTS, "level_4")
 
-print("Checking README next-mission links…")
+print("Checking README next-mission links (Level 5)…")
 check_readme_links(LEVEL5_ROOT, L5_MISSIONS, L5_PROJECTS, "level_5")
 
 print("Checking pyproject.toml dependencies…")

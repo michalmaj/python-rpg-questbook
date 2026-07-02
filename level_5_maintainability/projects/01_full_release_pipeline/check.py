@@ -103,6 +103,19 @@ if result.returncode != 0:
     raise SystemExit(1)
 print("✓ mypy --strict passes")
 
+# ── pyright passes ────────────────────────────────────────────────────────────
+
+print("Running pyright...")
+result = subprocess.run(
+    [sys.executable, "-m", "pyright", str(rpg_py), "--project", str(project)],
+    capture_output=True, text=True, cwd=str(project),
+)
+if result.returncode != 0:
+    print("❌ pyright failed — fix type errors and ensure [tool.pyright] has typeCheckingMode = 'strict'")
+    print(result.stdout[-2000:])
+    raise SystemExit(1)
+print("✓ pyright passed")
+
 # ── tests exist and pass ──────────────────────────────────────────────────────
 
 if not tests_dir.exists() or not list(tests_dir.glob("test_*.py")):

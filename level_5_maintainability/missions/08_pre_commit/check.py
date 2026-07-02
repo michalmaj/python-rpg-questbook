@@ -47,10 +47,15 @@ print("✓ .pre-commit-config.yaml has repos, ruff, ruff-format, mypy, pinned re
 
 # ── pre-commit run --all-files passes ─────────────────────────────────────────
 
-result = subprocess.run(
-    ["pre-commit", "run", "--all-files", "--config", str(config)],
-    capture_output=True, text=True, cwd=str(mission),
-)
+try:
+    result = subprocess.run(
+        ["pre-commit", "run", "--all-files", "--config", str(config)],
+        capture_output=True, text=True, cwd=str(mission),
+    )
+except FileNotFoundError:
+    print("❌ pre-commit not found in PATH")
+    print("   Install it first: uv tool install pre-commit")
+    raise SystemExit(1)
 if result.returncode != 0:
     print("❌ pre-commit run --all-files fails:")
     print(result.stdout[-2000:])

@@ -53,13 +53,19 @@ print("✓ ci.yml has trigger, jobs, uv, ruff, mypy, pytest, matrix [3.12, 3.13]
 
 # ── steps are in correct order: ruff before mypy before pytest ───────────────
 
-ruff_pos = content.find("ruff")
-mypy_pos = content.find("mypy")
-pytest_pos = content.find("pytest")
-if not (ruff_pos < mypy_pos < pytest_pos):
-    print("❌ Steps should be ordered: ruff → mypy → pytest (fast checks first)")
+# Check step ordering: ruff → mypy → pytest
+run_lines = [(i, ln) for i, ln in enumerate(content.splitlines()) if "run:" in ln]
+ruff_lines = [i for i, ln in run_lines if "ruff" in ln]
+mypy_lines = [i for i, ln in run_lines if "mypy" in ln]
+pytest_lines = [i for i, ln in run_lines if "pytest" in ln]
+if not ruff_lines or not mypy_lines or not pytest_lines:
+    print("❌ ci.yml must have run: steps for ruff, mypy, and pytest")
     raise SystemExit(1)
-print("✓ Steps ordered correctly: ruff → mypy → pytest")
+if not (min(ruff_lines) < min(mypy_lines) < min(pytest_lines)):
+    print("❌ Step order must be: ruff → mypy → pytest")
+    print("   (ruff catches style issues before type checking)")
+    raise SystemExit(1)
+print("✓ Step ordering correct: ruff → mypy → pytest")
 
 # ── local tools pass on task.py ──────────────────────────────────────────────
 
