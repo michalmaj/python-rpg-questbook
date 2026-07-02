@@ -70,17 +70,11 @@ result = subprocess.run(
     capture_output=True, text=True, cwd=str(project_dir),
 )
 if result.returncode != 0:
-    stdout = result.stdout.strip()
-    stderr = result.stderr.strip()
-    if "NotImplementedError" in stderr or "TODO" in stdout:
-        print("⚠  new-game not yet implemented — skipping functional check")
-    else:
-        print(f"❌ new-game failed:\n{stdout}\n{stderr}")
-        raise SystemExit(1)
-elif "CheckHero" in result.stdout or "warrior" in result.stdout.lower():
-    print("✓ new-game creates hero")
-else:
-    print("✓ new-game ran without error")
+    print("❌ new-game failed — implement the new-game command in rpg/cli.py")
+    print(result.stdout[-1000:])
+    print(result.stderr[-500:])
+    raise SystemExit(1)
+print("✓ new-game works")
 
 # ── schemas.py has SessionSummary and SaveGameModel ──────────────────────────
 
