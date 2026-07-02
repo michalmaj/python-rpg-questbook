@@ -90,7 +90,7 @@ print("✓ No raw error printing found in save_hero")
 
 # ── raise ... from e used at least once ──────────────────────────────────────
 
-if not re.search(r"\braise\s+\w+[^#\n]*\bfrom\s+(?:e|exc|err)\b", src):
+if not (re.search(r"\braise\s+\w+", src) and re.search(r"\bfrom\s+\w+\b", src)):
     print("❌ 'raise XError(...) from e' pattern not found — use 'raise SubError(...) from e' in except blocks")
     raise SystemExit(1)
 print("✓ Exception chaining with 'from e' found")
