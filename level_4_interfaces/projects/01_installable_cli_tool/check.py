@@ -114,7 +114,7 @@ if "project.scripts" not in content or "rpg" not in content:
     print("❌ [project.scripts] with 'rpg' not found in pyproject.toml")
     print("   Add this to pyproject.toml and run 'uv sync':")
     print("   [project.scripts]")
-    print("   rpg = \"rpg.cli:app\"")
+    print("   rpg = \"rpg.cli:main\"")
     raise SystemExit(1)
 print("✓ [project.scripts] with 'rpg' found in pyproject.toml")
 
