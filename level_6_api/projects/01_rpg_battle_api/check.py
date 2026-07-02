@@ -3,6 +3,7 @@
 import json
 import subprocess
 import sys
+import tempfile
 from pathlib import Path
 
 project = Path(__file__).parent
@@ -37,7 +38,6 @@ from fastapi.testclient import TestClient
 from rpg.api.dependencies import get_session_repo  # type: ignore[import]
 from rpg.repositories import SessionRepository  # type: ignore[import]
 
-import tempfile
 _tmp = tempfile.mkdtemp()
 app.dependency_overrides[get_session_repo] = lambda: SessionRepository(Path(_tmp))
 client = TestClient(app, raise_server_exceptions=False)
@@ -116,8 +116,8 @@ if r.status_code != 200:
     print(f"❌ GET /reports/{{id}} returned {r.status_code}: {r.text[:200]}")
     raise SystemExit(1)
 body = r.text if isinstance(r.text, str) else str(r.json())
-if "##" not in body and "#" not in body:
-    print("❌ GET /reports/{id} response should contain Markdown (## header)")
+if "##" not in body:
+    print("❌ GET /reports/{id} body does not contain '##' — implement BattleResult.to_markdown()")
     raise SystemExit(1)
 print("✓ GET /reports/{id} → 200, Markdown content")
 
