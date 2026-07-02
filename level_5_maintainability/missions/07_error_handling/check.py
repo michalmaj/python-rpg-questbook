@@ -70,24 +70,22 @@ print("✓ No bare except:")
 
 # ── no silent except Exception: pass ─────────────────────────────────────────
 
-# Flag patterns like: "except Exception:" or "except Exception as e:" followed immediately
-# by pass or return None with no logging/re-raise in between
-silent_patterns = re.findall(
-    r"except Exception(?:\s+as\s+\w+)?\s*:\s*\n\s*(pass|return None)\s*\n",
+# Find lines that are ONLY pass/return-nothing after an except Exception block
+silent_count = len(re.findall(
+    r"except Exception(?:\s+as\s+\w+)?\s*:\s*\n\s*(pass\b|return \[\]|return None\b)[^\n]*\n",
     src,
-)
-if silent_patterns:
-    print(f"❌ Found {len(silent_patterns)} silent 'except Exception: pass/return None' pattern(s)")
-    print("   Either log the error, re-raise as a specific RPGError, or handle meaningfully")
+))
+if silent_count > 0:
+    print(f"❌ Found {silent_count} silent exception handler(s) — use 'raise XError(...) from e' instead")
     raise SystemExit(1)
-print("✓ No silent except Exception: pass patterns")
+print(f"✓ No silent exception swallowing found")
 
 # ── raise ... from e used at least once ──────────────────────────────────────
 
-if "from e" not in src and "from exc" not in src and "from err" not in src:
-    print("❌ 'raise XError(...) from e' pattern not found — preserve exception chain context")
+if not re.search(r"\braise\s+\w+[^#\n]*\bfrom\s+(?:e|exc|err)\b", src):
+    print("❌ 'raise XError(...) from e' pattern not found — use 'raise SubError(...) from e' in except blocks")
     raise SystemExit(1)
-print("✓ Exception chaining (raise X from e) used")
+print("✓ Exception chaining with 'from e' found")
 
 update_progress("07_error_handling")
 print("\n✅ Mission 07 complete!")

@@ -214,7 +214,7 @@ def load_hero_classes() -> dict[str, dict[str, int | str]]:
     try:
         with open(DATA_DIR / "hero_classes.json") as f:
             return json.load(f)  # type: ignore[no-any-return]
-    except Exception:
+    except Exception:  # Smell D: return {} hides catalog errors; fix like Smell A
         return {}
 
 

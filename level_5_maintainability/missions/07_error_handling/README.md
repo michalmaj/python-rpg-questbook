@@ -219,6 +219,25 @@ def save_hero(hero: Hero) -> None:
         raise SaveFileError(f"Could not write save file: {SAVE_FILE}") from e
 ```
 
+### Step 4b — (Bonus) Fix `load_hero_classes()` (Smell D)
+
+`load_hero_classes()` has a hidden smell marked `# Smell D` in `task.py`: its `except Exception: return {}` silently discards errors when `hero_classes.json` is missing or corrupt, causing `make_hero()` to fall back to hardcoded defaults with no explanation.
+
+Fix it the same way as Smell A — raise a specific `RPGError` subclass (e.g. `MonsterLoadError` or a new `HeroClassLoadError`) with `from e`:
+
+```python
+def load_hero_classes() -> dict[str, dict[str, int | str]]:
+    try:
+        with open(DATA_DIR / "hero_classes.json") as f:
+            return json.load(f)
+    except FileNotFoundError as e:
+        raise MonsterLoadError(f"hero_classes.json not found: {DATA_DIR}") from e
+    except json.JSONDecodeError as e:
+        raise MonsterLoadError("hero_classes.json contains invalid JSON") from e
+```
+
+This is optional but recommended practice — silence only where you truly intend it.
+
 ### Step 5 — Run `check.py`
 
 ```bash
