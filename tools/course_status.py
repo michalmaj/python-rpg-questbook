@@ -12,6 +12,9 @@ LEVEL2_PROGRESS_FILE = LEVEL2_ROOT / ".progress"
 LEVEL3_PROGRESS_FILE = LEVEL3_ROOT / ".progress"
 LEVEL4_PROGRESS_FILE = LEVEL4_ROOT / ".progress"
 
+LEVEL5_ROOT = REPO_ROOT / "level_5_maintainability"
+LEVEL5_PROGRESS_FILE = LEVEL5_ROOT / ".progress"
+
 LEVEL1_WORLDS = [
     (
         "World 1: First Hero",
@@ -167,6 +170,38 @@ LEVEL4_WORLDS = [
     ),
 ]
 
+LEVEL5_WORLDS = [
+    (
+        "World 1: Static Analysis",
+        [
+            ("01_ruff_linting", "Mission 01: ruff Linting"),
+            ("02_mypy_type_checking", "Mission 02: mypy Type Checking"),
+            ("03_pyright_strict", "Mission 03: pyright Strict"),
+        ],
+        [],
+    ),
+    (
+        "World 2: Testing",
+        [
+            ("04_pytest_fixtures", "Mission 04: pytest Fixtures"),
+            ("05_pytest_parametrize", "Mission 05: pytest Parametrize"),
+            ("06_coverage", "Mission 06: Coverage"),
+        ],
+        [],
+    ),
+    (
+        "World 3: CI/CD and Polish",
+        [
+            ("07_error_handling", "Mission 07: Error Handling"),
+            ("08_pre_commit", "Mission 08: pre-commit"),
+            ("09_github_actions_ci", "Mission 09: GitHub Actions CI"),
+        ],
+        [
+            ("01_full_release_pipeline", "Boss Fight: Full Release Pipeline"),
+        ],
+    ),
+]
+
 SYMBOLS = {
     "complete": "✓",
     "in_progress": "~",
@@ -223,6 +258,7 @@ def main() -> None:
     l2_progress = load_progress(LEVEL2_PROGRESS_FILE)
     l3_progress = load_progress(LEVEL3_PROGRESS_FILE)
     l4_progress = load_progress(LEVEL4_PROGRESS_FILE)
+    l5_progress = load_progress(LEVEL5_PROGRESS_FILE)
 
     print()
     print("Python RPG Questbook — Your Progress")
@@ -238,6 +274,8 @@ def main() -> None:
                 "level_3_validation_and_persistence", next_up)
     print_level("Level 4: Interfaces and Reports", LEVEL4_WORLDS, l4_progress,
                 "level_4_interfaces", next_up)
+    print_level("Level 5: Production Quality and Maintainability", LEVEL5_WORLDS, l5_progress,
+                "level_5_maintainability", next_up)
 
     print()
     if next_up[0]:

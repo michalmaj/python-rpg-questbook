@@ -16,6 +16,7 @@ LEVEL1_ROOT = REPO_ROOT / "level_1_python_basics"
 LEVEL2_ROOT = REPO_ROOT / "level_2_oop_and_design"
 LEVEL3_ROOT = REPO_ROOT / "level_3_validation_and_persistence"
 LEVEL4_ROOT = REPO_ROOT / "level_4_interfaces"
+LEVEL5_ROOT = REPO_ROOT / "level_5_maintainability"
 
 # ── Level 1 content ───────────────────────────────────────────────────────────
 
@@ -81,6 +82,25 @@ L4_PROJECTS = [
 ]
 
 L4_MISSION_FILE_EXCEPTIONS: dict[str, set[str]] = {}
+
+# ── Level 5 content ───────────────────────────────────────────────────────────
+
+L5_MISSIONS = [
+    "01_ruff_linting", "02_mypy_type_checking", "03_pyright_strict",
+    "04_pytest_fixtures", "05_pytest_parametrize", "06_coverage",
+    "07_error_handling", "08_pre_commit", "09_github_actions_ci",
+]
+
+L5_PROJECTS = [
+    "01_full_release_pipeline",
+]
+
+L5_MISSION_FILE_EXCEPTIONS: dict[str, set[str]] = {
+    # M04-M06 use rpg.py + conftest.py + test_combat.py instead of task.py
+    "04_pytest_fixtures": {"README.md", "rpg.py", "conftest.py", "test_combat.py", "check.py"},
+    "05_pytest_parametrize": {"README.md", "rpg.py", "conftest.py", "test_combat.py", "check.py"},
+    "06_coverage": {"README.md", "rpg.py", "conftest.py", "test_combat.py", "pyproject.toml", "check.py"},
+}
 
 # ── Shared config ─────────────────────────────────────────────────────────────
 
@@ -160,7 +180,8 @@ def check_hygiene(level_root: Path, missions: list[str], projects: list[str]) ->
 # `level_1_python_basics/missions/02_damage/README.md`
 # `level_3_validation_and_persistence/missions/01_external_data_is_untrusted/README.md`
 LINK_PATTERN = re.compile(
-    r"`(level_(?:1_python_basics|2_oop_and_design|3_validation_and_persistence|4_interfaces)"
+    r"`(level_(?:1_python_basics|2_oop_and_design|3_validation_and_persistence"
+    r"|4_interfaces|5_maintainability)"
     r"/(?:missions|projects)/[\w/._-]+)`"
 )
 
@@ -218,6 +239,16 @@ def check_dependencies() -> None:
                 f"pyproject.toml: MISSING '{required}' — Level 4 imports it",
             )
 
+    if LEVEL5_ROOT.exists():
+        dev_deps: list[str] = data.get("dependency-groups", {}).get("dev", [])
+        dev_dep_names = {re.split(r"[>=<!]", d)[0].strip().lower() for d in dev_deps}
+        for required in ("mypy", "pyright", "pytest-cov"):
+            check(
+                required.lower() in dev_dep_names,
+                f"pyproject.toml dev: '{required}' listed (required by Level 5)",
+                f"pyproject.toml dev: MISSING '{required}' — Level 5 needs it",
+            )
+
 
 # ── Run all checks ────────────────────────────────────────────────────────────
 
@@ -233,6 +264,9 @@ check_folder_structure(LEVEL3_ROOT, L3_MISSIONS, L3_PROJECTS, L3_MISSION_FILE_EX
 print("Checking Level 4 folder structure…")
 check_folder_structure(LEVEL4_ROOT, L4_MISSIONS, L4_PROJECTS, L4_MISSION_FILE_EXCEPTIONS, "level_4")
 
+print("Checking Level 5 folder structure…")
+check_folder_structure(LEVEL5_ROOT, L5_MISSIONS, L5_PROJECTS, L5_MISSION_FILE_EXCEPTIONS, "level_5")
+
 print("Checking check.py hygiene (Level 1)…")
 check_hygiene(LEVEL1_ROOT, L1_MISSIONS, L1_PROJECTS)
 
@@ -245,11 +279,17 @@ check_hygiene(LEVEL3_ROOT, L3_MISSIONS, L3_PROJECTS)
 print("Checking check.py hygiene (Level 4)…")
 check_hygiene(LEVEL4_ROOT, L4_MISSIONS, L4_PROJECTS)
 
+print("Checking check.py hygiene (Level 5)…")
+check_hygiene(LEVEL5_ROOT, L5_MISSIONS, L5_PROJECTS)
+
 print("Checking README next-mission links…")
 check_readme_links(LEVEL1_ROOT, L1_MISSIONS, L1_PROJECTS, "level_1")
 check_readme_links(LEVEL2_ROOT, L2_MISSIONS, L2_PROJECTS, "level_2")
 check_readme_links(LEVEL3_ROOT, L3_MISSIONS, L3_PROJECTS, "level_3")
 check_readme_links(LEVEL4_ROOT, L4_MISSIONS, L4_PROJECTS, "level_4")
+
+print("Checking README next-mission links…")
+check_readme_links(LEVEL5_ROOT, L5_MISSIONS, L5_PROJECTS, "level_5")
 
 print("Checking pyproject.toml dependencies…")
 check_dependencies()
@@ -273,6 +313,7 @@ _level_checks = [
     (LEVEL2_ROOT, "level_2_oop_and_design", "Level 2"),
     (LEVEL3_ROOT, "level_3_validation_and_persistence", "Level 3"),
     (LEVEL4_ROOT, "level_4_interfaces", "Level 4"),
+    (LEVEL5_ROOT, "level_5_maintainability", "Level 5"),
 ]
 for level_root, level_dir, label in _level_checks:
     if not level_root.exists():
