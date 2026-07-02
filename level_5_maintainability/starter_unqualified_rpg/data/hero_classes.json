@@ -1,0 +1,5 @@
+{
+  "warrior": {"hp": 120, "atk": 12, "def": 5,  "description": "High HP, balanced attack"},
+  "mage":    {"hp":  80, "atk": 18, "def": 2,  "description": "Low HP, high attack"},
+  "rogue":   {"hp":  96, "atk": 14, "def": 3,  "description": "Medium HP, quick strikes"}
+}

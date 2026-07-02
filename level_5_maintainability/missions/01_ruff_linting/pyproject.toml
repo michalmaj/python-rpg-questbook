@@ -1,0 +1,9 @@
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+
+[tool.ruff.lint]
+# TODO: add rule categories. Start with: select = ["E", "F", "I", "UP", "B"]
+# Then run: uv run ruff check task.py
+# Fix the errors, then run: uv run ruff format task.py
+select = []

@@ -1,0 +1,8 @@
+{
+  "monsters": [
+    {"name": "Goblin",   "hp": 30, "atk": 8,  "def": 2, "gold": 10},
+    {"name": "Orc",      "hp": 50, "atk": 12, "def": 4, "gold": 20},
+    {"name": "Skeleton", "hp": 25, "atk": 7,  "def": 1, "gold": 8},
+    {"name": "Troll",    "hp": 80, "atk": 15, "def": 6, "gold": 35}
+  ]
+}

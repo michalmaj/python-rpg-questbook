@@ -176,3 +176,39 @@ Now it needs a real interface: CLI commands, logging, readable terminal output, 
 | 06 | [Session Reports](level_4_interfaces/missions/06_session_reports/README.md) | Pydantic report model, `model_dump_json()`, Markdown output |
 
 **Boss Fight:** [Project 01: Installable CLI Tool](level_4_interfaces/projects/01_installable_cli_tool/README.md)
+
+---
+
+## Level 5: Production Quality and Maintainability
+
+> **Prerequisite:** Level 4 complete (installable CLI with Typer, Rich, logging, session reports).
+
+**Central thesis:** Your tool works. Now can a new developer understand it, change it safely, and ship it with confidence?
+
+### World 1: Static Analysis
+
+| Mission | Concept | Key tool |
+|---------|---------|----------|
+| [M01: ruff Linting](level_5_maintainability/missions/01_ruff_linting/README.md) | Lint + style | ruff |
+| [M02: mypy Type Checking](level_5_maintainability/missions/02_mypy_type_checking/README.md) | Static types | mypy --strict |
+| [M03: pyright Strict](level_5_maintainability/missions/03_pyright_strict/README.md) | Second type checker | pyright --strict |
+
+### World 2: Testing
+
+| Mission | Concept | Key tool |
+|---------|---------|----------|
+| [M04: pytest Fixtures](level_5_maintainability/missions/04_pytest_fixtures/README.md) | Test setup | @pytest.fixture |
+| [M05: pytest Parametrize](level_5_maintainability/missions/05_pytest_parametrize/README.md) | Edge cases | @pytest.mark.parametrize |
+| [M06: Coverage](level_5_maintainability/missions/06_coverage/README.md) | Test coverage | pytest-cov |
+
+### World 3: CI/CD and Polish
+
+| Mission | Concept | Key tool |
+|---------|---------|----------|
+| [M07: Error Handling](level_5_maintainability/missions/07_error_handling/README.md) | Exception hierarchy | RPGError |
+| [M08: pre-commit](level_5_maintainability/missions/08_pre_commit/README.md) | Local quality gate | pre-commit |
+| [M09: GitHub Actions CI](level_5_maintainability/missions/09_github_actions_ci/README.md) | Remote CI | GitHub Actions |
+
+### Boss Fight
+
+[Full Release Pipeline](level_5_maintainability/projects/01_full_release_pipeline/README.md) — wire all 9 tools, write CHANGELOG, tag v1.0.0.

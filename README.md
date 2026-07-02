@@ -72,6 +72,11 @@ level_4_interfaces/                 ← CLI, logging, Rich output, reports, entr
   missions/                         ← 6 missions
   projects/                         ← boss fight: installable CLI tool
 
+level_5_maintainability/            ← Level 5: Production Quality and Maintainability
+  starter_unqualified_rpg/          ←   Fully working RPG with 6 quality smells (your starting point)
+  missions/                         ←   9 missions: ruff, mypy, pyright, fixtures, parametrize, coverage,
+  projects/                         ←              error handling, pre-commit, GitHub Actions CI
+
 tools/                              ← helper scripts (course_status, author_check)
 ```
 
