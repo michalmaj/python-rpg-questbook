@@ -70,17 +70,11 @@ result = subprocess.run(
     capture_output=True, text=True, cwd=str(project_dir),
 )
 if result.returncode != 0:
-    stdout = result.stdout.strip()
-    stderr = result.stderr.strip()
-    if "NotImplementedError" in stderr or "TODO" in stdout:
-        print("⚠  new-game not yet implemented — skipping functional check")
-    else:
-        print(f"❌ new-game failed:\n{stdout}\n{stderr}")
-        raise SystemExit(1)
-elif "CheckHero" in result.stdout or "warrior" in result.stdout.lower():
-    print("✓ new-game creates hero")
-else:
-    print("✓ new-game ran without error")
+    print("❌ new-game failed — implement the new-game command in rpg/cli.py")
+    print(result.stdout[-1000:])
+    print(result.stderr[-500:])
+    raise SystemExit(1)
+print("✓ new-game works")
 
 # ── schemas.py has SessionSummary and SaveGameModel ──────────────────────────
 
@@ -120,7 +114,7 @@ if "project.scripts" not in content or "rpg" not in content:
     print("❌ [project.scripts] with 'rpg' not found in pyproject.toml")
     print("   Add this to pyproject.toml and run 'uv sync':")
     print("   [project.scripts]")
-    print("   rpg = \"rpg.cli:app\"")
+    print("   rpg = \"rpg.cli:main\"")
     raise SystemExit(1)
 print("✓ [project.scripts] with 'rpg' found in pyproject.toml")
 
@@ -142,7 +136,44 @@ for cmd in ("new-game", "simulate", "status"):
         raise SystemExit(1)
 print("✓ 'uv run rpg --help' works and lists commands")
 
+# ── functional: status ────────────────────────────────────────────────────────
+
+result = subprocess.run(
+    [sys.executable, str(task), "status"],
+    capture_output=True, text=True, cwd=str(project_dir),
+)
+if result.returncode != 0:
+    print("❌ status failed — implement the status command in rpg/cli.py")
+    print(result.stdout[-1000:])
+    print(result.stderr[-500:])
+    raise SystemExit(1)
+print("✓ status works")
+
+# ── functional: simulate ──────────────────────────────────────────────────────
+
+result = subprocess.run(
+    [sys.executable, str(task), "simulate", "--battles", "2"],
+    capture_output=True, text=True, cwd=str(project_dir),
+)
+if result.returncode != 0:
+    print("❌ simulate failed — implement the simulate command in rpg/cli.py")
+    print(result.stdout[-1000:])
+    print(result.stderr[-500:])
+    raise SystemExit(1)
+print("✓ simulate works")
+
+# ── functional: report ────────────────────────────────────────────────────────
+
+result = subprocess.run(
+    [sys.executable, str(task), "report"],
+    capture_output=True, text=True, cwd=str(project_dir),
+)
+if result.returncode != 0:
+    print("❌ report failed — implement the report command in rpg/cli.py")
+    print(result.stdout[-1000:])
+    print(result.stderr[-500:])
+    raise SystemExit(1)
+print("✓ report works")
+
 update_progress("01_installable_cli_tool")
-print("\n✅ Boss fight structure verified!")
-print("   Implement the TODO sections in rpg/game.py, rpg/cli.py, rpg/output.py,")
-print("   rpg/logging_setup.py, and rpg/schemas.py to complete the boss fight.")
+print("\n✅ Boss fight complete! All CLI commands work end-to-end.")

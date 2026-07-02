@@ -9,6 +9,10 @@
 A fully working RPG with all Level 4 concepts — but with 6 labeled quality smells:
 no type annotations, no tests, bare excepts, no custom exceptions, no pre-commit, no CI.
 
+> **Note:** This is a simplified, self-contained training version prepared for quality tooling exercises.
+> It runs as `uv run python main.py` (single file), not as an installable package like the Level 4 boss fight.
+> The goal here is practicing ruff, mypy, pytest, coverage, pre-commit, and CI — not re-implementing the package structure.
+
 Run it first: `cd starter_unqualified_rpg && uv run python main.py new-game --name Ada --class warrior`
 
 ## Missions
