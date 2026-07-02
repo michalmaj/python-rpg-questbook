@@ -1,6 +1,7 @@
 # level_6_api/missions/08_openapi_and_api_polish/check.py
 """Check: Mission 08 — OpenAPI and API Polish."""
 import json
+import subprocess
 import sys
 from pathlib import Path
 
@@ -51,6 +52,25 @@ if tags_count < 2:
     raise SystemExit(1)
 print(f"✓ tags= used on {tags_count} routers")
 
+# ── summary= used on at least 3 endpoints ────────────────────────────────────
+
+router_files = [
+    Path(__file__).parent / "task/routers/monsters.py",
+    Path(__file__).parent / "task/routers/battles.py",
+    Path(__file__).parent / "task/routers/sessions.py",
+    Path(__file__).parent / "task/routers/heroes.py",
+]
+summary_count = 0
+for rf in router_files:
+    if rf.exists():
+        for line in rf.read_text().splitlines():
+            if "summary=" in line and not line.lstrip().startswith("#"):
+                summary_count += 1
+if summary_count < 3:
+    print(f"❌ Add summary= to at least 3 endpoints")
+    raise SystemExit(1)
+print(f"✓ At least 3 endpoints have summary=")
+
 # ── OpenAPI schema has tags ────────────────────────────────────────────────────
 
 r = client.get("/openapi.json")
@@ -77,6 +97,29 @@ if not schema.get("info", {}).get("description"):
     print("❌ OpenAPI info.description is empty — add description= to FastAPI()")
     raise SystemExit(1)
 print("✓ OpenAPI info has description")
+
+# ── GET /docs returns 200 ─────────────────────────────────────────────────────
+
+resp = client.get("/docs")
+if resp.status_code != 200:
+    print(f"❌ GET /docs returned {resp.status_code} (expected 200)")
+    raise SystemExit(1)
+print("✓ GET /docs returns 200")
+
+# ── Pre-built tests pass ──────────────────────────────────────────────────────
+
+result = subprocess.run(
+    [sys.executable, "-m", "pytest", "task/tests/test_api.py", "-q", "--tb=short"],
+    capture_output=True,
+    text=True,
+    cwd=str(Path(__file__).parent),
+    env={**__import__("os").environ, "PYTHONPATH": str(Path(__file__).parent)},
+)
+if result.returncode != 0:
+    print("❌ Pre-built tests failed:")
+    print(result.stdout[-2000:])
+    raise SystemExit(1)
+print("✓ Pre-built tests pass")
 
 update_progress("08_openapi_and_api_polish")
 print("\n✅ Mission 08 complete!")
