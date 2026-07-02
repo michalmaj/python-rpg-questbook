@@ -87,12 +87,13 @@ def list_monsters() -> list[MonsterOut]:
 ```
 
 **Step 6 — Add `POST /battle/simulate`**
+
+Add `import dataclasses` to the top-level imports block, then add the endpoint:
 ```python
 @app.post("/battle/simulate", response_model=BattleResultOut)
 def simulate_battle(req: BattleRequest) -> BattleResultOut:
     hero = create_hero(req.hero_name, req.hero_class)
     result = _service.simulate(hero, req.monster_name)
-    import dataclasses
     return BattleResultOut(**dataclasses.asdict(result))
 ```
 

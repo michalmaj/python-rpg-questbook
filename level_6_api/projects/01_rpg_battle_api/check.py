@@ -113,13 +113,17 @@ print("✓ GET /sessions/nonexistent → 404")
 
 r = client.get(f"/reports/{session_id}")
 if r.status_code != 200:
-    print(f"❌ GET /reports/{{id}} returned {r.status_code}: {r.text[:200]}")
+    print(f"❌ GET /reports/{{id}} returned {r.status_code}")
     raise SystemExit(1)
-body = r.text if isinstance(r.text, str) else str(r.json())
+body = r.text
+content_type = r.headers.get("content-type", "")
+if "text/plain" not in content_type:
+    print(f"❌ GET /reports/{{id}} content-type is '{content_type}' — return PlainTextResponse")
+    raise SystemExit(1)
 if "##" not in body:
     print("❌ GET /reports/{id} body does not contain '##' — implement BattleResult.to_markdown()")
     raise SystemExit(1)
-print("✓ GET /reports/{id} → 200, Markdown content")
+print("✓ GET /reports/{id} returns Markdown with ## header")
 
 # ── Gate 9: pytest test_api.py ────────────────────────────────────────────────
 

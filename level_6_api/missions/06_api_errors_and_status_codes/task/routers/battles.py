@@ -1,19 +1,11 @@
 # level_6_api/missions/06_api_errors_and_status_codes/task/routers/battles.py
 from fastapi import APIRouter, Depends
-from pydantic import BaseModel
 
 from task.dependencies import get_battle_service
-from task.rpg.domain import HeroClass
 from task.rpg.services import BattleService, create_hero
-from task.schemas import BattleResultOut
+from task.schemas import BattleRequest, BattleResultOut
 
 router = APIRouter()
-
-
-class BattleRequest(BaseModel):
-    hero_name: str
-    hero_class: HeroClass
-    monster_name: str
 
 
 # TODO: Add ErrorOut schema to task/schemas.py with a `detail: str` field

@@ -13,6 +13,7 @@ class MonsterOut(BaseModel):
 
 class BattleRequest(BaseModel):
     hero_name: str
+    hero_class: str
     monster_name: str
 
 

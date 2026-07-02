@@ -2,21 +2,13 @@
 import uuid
 
 from fastapi import APIRouter, Depends, HTTPException
-from pydantic import BaseModel
 
 from task.dependencies import get_battle_service, get_session_repo
-from task.rpg.domain import HeroClass
 from task.rpg.repositories import SessionRepository
 from task.rpg.services import BattleService, create_hero
-from task.schemas import BattleResultOut
+from task.schemas import BattleRequest, BattleResultOut
 
 router = APIRouter()
-
-
-class BattleRequest(BaseModel):
-    hero_name: str
-    hero_class: HeroClass
-    monster_name: str
 
 
 # TODO 3: Add a summary argument to session endpoint decorators.
