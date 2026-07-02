@@ -15,6 +15,9 @@ LEVEL4_PROGRESS_FILE = LEVEL4_ROOT / ".progress"
 LEVEL5_ROOT = REPO_ROOT / "level_5_maintainability"
 LEVEL5_PROGRESS_FILE = LEVEL5_ROOT / ".progress"
 
+LEVEL6_ROOT = REPO_ROOT / "level_6_api"
+LEVEL6_PROGRESS_FILE = LEVEL6_ROOT / ".progress"
+
 LEVEL1_WORLDS = [
     (
         "World 1: First Hero",
@@ -202,6 +205,37 @@ LEVEL5_WORLDS = [
     ),
 ]
 
+LEVEL6_WORLDS = [
+    (
+        "World 1: HTTP Basics",
+        [
+            ("01_first_fastapi_app", "Mission 01: First FastAPI App"),
+            ("02_request_response_schemas", "Mission 02: Request/Response Schemas"),
+            ("03_routes_call_services", "Mission 03: Routes Call Services"),
+        ],
+        [],
+    ),
+    (
+        "World 2: Structure and DI",
+        [
+            ("04_api_routers", "Mission 04: API Routers"),
+            ("05_dependencies_and_repositories", "Mission 05: Dependencies and Repositories"),
+            ("06_api_errors_and_status_codes", "Mission 06: API Errors and Status Codes"),
+        ],
+        [],
+    ),
+    (
+        "World 3: Quality and Polish",
+        [
+            ("07_api_tests", "Mission 07: API Tests"),
+            ("08_openapi_and_api_polish", "Mission 08: OpenAPI and API Polish"),
+        ],
+        [
+            ("01_rpg_battle_api", "Boss Fight: RPG Battle API"),
+        ],
+    ),
+]
+
 SYMBOLS = {
     "complete": "✓",
     "in_progress": "~",
@@ -259,6 +293,7 @@ def main() -> None:
     l3_progress = load_progress(LEVEL3_PROGRESS_FILE)
     l4_progress = load_progress(LEVEL4_PROGRESS_FILE)
     l5_progress = load_progress(LEVEL5_PROGRESS_FILE)
+    l6_progress = load_progress(LEVEL6_PROGRESS_FILE)
 
     print()
     print("Python RPG Questbook — Your Progress")
@@ -276,6 +311,8 @@ def main() -> None:
                 "level_4_interfaces", next_up)
     print_level("Level 5: Production Quality and Maintainability", LEVEL5_WORLDS, l5_progress,
                 "level_5_maintainability", next_up)
+    print_level("Level 6: API Interface with FastAPI", LEVEL6_WORLDS, l6_progress,
+                "level_6_api", next_up)
 
     print()
     if next_up[0]:

@@ -17,6 +17,7 @@ LEVEL2_ROOT = REPO_ROOT / "level_2_oop_and_design"
 LEVEL3_ROOT = REPO_ROOT / "level_3_validation_and_persistence"
 LEVEL4_ROOT = REPO_ROOT / "level_4_interfaces"
 LEVEL5_ROOT = REPO_ROOT / "level_5_maintainability"
+LEVEL6_ROOT = REPO_ROOT / "level_6_api"
 
 # ── Level 1 content ───────────────────────────────────────────────────────────
 
@@ -102,6 +103,32 @@ L5_MISSION_FILE_EXCEPTIONS: dict[str, set[str]] = {
     "06_coverage": {"README.md", "rpg.py", "conftest.py", "test_combat.py", "pyproject.toml", "check.py"},
 }
 
+# ── Level 6 content ───────────────────────────────────────────────────────────
+
+L6_MISSIONS = [
+    "01_first_fastapi_app", "02_request_response_schemas",
+    "03_routes_call_services", "04_api_routers",
+    "05_dependencies_and_repositories", "06_api_errors_and_status_codes",
+    "07_api_tests", "08_openapi_and_api_polish",
+]
+
+L6_PROJECTS = [
+    "01_rpg_battle_api",
+]
+
+L6_MISSION_FILE_EXCEPTIONS: dict[str, set[str]] = {
+    # M01-M03: task.py + rpg/ subpackage (pre-written service)
+    "01_first_fastapi_app": {"README.md", "task.py", "check.py", "rpg/__init__.py"},
+    "02_request_response_schemas": {"README.md", "task.py", "check.py", "rpg/__init__.py"},
+    "03_routes_call_services": {"README.md", "task.py", "check.py", "rpg/__init__.py"},
+    # M04-M08: task/ package pattern
+    "04_api_routers": {"README.md", "check.py", "task/__init__.py", "task/config.py"},
+    "05_dependencies_and_repositories": {"README.md", "check.py", "task/__init__.py", "task/config.py"},
+    "06_api_errors_and_status_codes": {"README.md", "check.py", "task/__init__.py", "task/config.py"},
+    "07_api_tests": {"README.md", "check.py", "task/__init__.py", "task/config.py", "pyproject.toml"},
+    "08_openapi_and_api_polish": {"README.md", "check.py", "task/__init__.py", "task/config.py"},
+}
+
 # ── Shared config ─────────────────────────────────────────────────────────────
 
 REQUIRED_MISSION_FILES: set[str] = {"README.md", "task.py", "check.py"}
@@ -181,7 +208,7 @@ def check_hygiene(level_root: Path, missions: list[str], projects: list[str]) ->
 # `level_3_validation_and_persistence/missions/01_external_data_is_untrusted/README.md`
 LINK_PATTERN = re.compile(
     r"`(level_(?:1_python_basics|2_oop_and_design|3_validation_and_persistence"
-    r"|4_interfaces|5_maintainability)"
+    r"|4_interfaces|5_maintainability|6_api)"
     r"/(?:missions|projects)/[\w/._-]+)`"
 )
 
@@ -221,7 +248,7 @@ def check_dependencies() -> None:
     with pyproject.open("rb") as f:
         data = tomllib.load(f)
     deps: list[str] = data.get("project", {}).get("dependencies", [])
-    dep_names = {re.split(r"[>=<!]", d)[0].strip().lower() for d in deps}
+    dep_names = {re.split(r"[\[>=<!]", d)[0].strip().lower() for d in deps}
 
     if LEVEL3_ROOT.exists():
         for required in ("pydantic", "pydantic-settings"):
@@ -249,6 +276,14 @@ def check_dependencies() -> None:
                 f"pyproject.toml dev: MISSING '{required}' — Level 5 needs it",
             )
 
+    if LEVEL6_ROOT.exists():
+        for required in ("fastapi", "httpx"):
+            check(
+                required.lower() in dep_names,
+                f"pyproject.toml: '{required}' listed (required by Level 6)",
+                f"pyproject.toml: MISSING '{required}' — Level 6 imports it",
+            )
+
 
 # ── Run all checks ────────────────────────────────────────────────────────────
 
@@ -267,6 +302,9 @@ check_folder_structure(LEVEL4_ROOT, L4_MISSIONS, L4_PROJECTS, L4_MISSION_FILE_EX
 print("Checking Level 5 folder structure…")
 check_folder_structure(LEVEL5_ROOT, L5_MISSIONS, L5_PROJECTS, L5_MISSION_FILE_EXCEPTIONS, "level_5")
 
+print("Checking Level 6 folder structure…")
+check_folder_structure(LEVEL6_ROOT, L6_MISSIONS, L6_PROJECTS, L6_MISSION_FILE_EXCEPTIONS, "level_6")
+
 print("Checking check.py hygiene (Level 1)…")
 check_hygiene(LEVEL1_ROOT, L1_MISSIONS, L1_PROJECTS)
 
@@ -282,6 +320,9 @@ check_hygiene(LEVEL4_ROOT, L4_MISSIONS, L4_PROJECTS)
 print("Checking check.py hygiene (Level 5)…")
 check_hygiene(LEVEL5_ROOT, L5_MISSIONS, L5_PROJECTS)
 
+print("Checking check.py hygiene (Level 6)…")
+check_hygiene(LEVEL6_ROOT, L6_MISSIONS, L6_PROJECTS)
+
 print("Checking README next-mission links…")
 check_readme_links(LEVEL1_ROOT, L1_MISSIONS, L1_PROJECTS, "level_1")
 check_readme_links(LEVEL2_ROOT, L2_MISSIONS, L2_PROJECTS, "level_2")
@@ -290,6 +331,9 @@ check_readme_links(LEVEL4_ROOT, L4_MISSIONS, L4_PROJECTS, "level_4")
 
 print("Checking README next-mission links (Level 5)…")
 check_readme_links(LEVEL5_ROOT, L5_MISSIONS, L5_PROJECTS, "level_5")
+
+print("Checking README next-mission links (Level 6)…")
+check_readme_links(LEVEL6_ROOT, L6_MISSIONS, L6_PROJECTS, "level_6")
 
 print("Checking pyproject.toml dependencies…")
 check_dependencies()
@@ -314,6 +358,7 @@ _level_checks = [
     (LEVEL3_ROOT, "level_3_validation_and_persistence", "Level 3"),
     (LEVEL4_ROOT, "level_4_interfaces", "Level 4"),
     (LEVEL5_ROOT, "level_5_maintainability", "Level 5"),
+    (LEVEL6_ROOT, "level_6_api", "Level 6"),
 ]
 for level_root, level_dir, label in _level_checks:
     if not level_root.exists():

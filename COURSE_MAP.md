@@ -212,3 +212,38 @@ Now it needs a real interface: CLI commands, logging, readable terminal output, 
 ### Boss Fight
 
 [Full Release Pipeline](level_5_maintainability/projects/01_full_release_pipeline/README.md) — wire all 9 tools, write CHANGELOG, tag v1.0.0.
+
+---
+
+## Level 6: API Interface with FastAPI
+
+> **Prerequisite:** Level 5 complete (production-quality CLI with tests and CI).
+
+**Central thesis:** The RPG engine works — now expose it to the world. FastAPI turns Python functions into documented, type-safe HTTP endpoints in minutes.
+
+### World 1: HTTP Basics
+
+| Mission | Concept | Key tool |
+|---------|---------|----------|
+| [M01: First FastAPI App](level_6_api/missions/01_first_fastapi_app/README.md) | App setup, /docs | FastAPI, uvicorn |
+| [M02: Request/Response Schemas](level_6_api/missions/02_request_response_schemas/README.md) | Pydantic schemas for HTTP | BaseModel |
+| [M03: Routes Call Services](level_6_api/missions/03_routes_call_services/README.md) | Thin routes, no logic | service layer |
+
+### World 2: Structure and DI
+
+| Mission | Concept | Key tool |
+|---------|---------|----------|
+| [M04: API Routers](level_6_api/missions/04_api_routers/README.md) | File split | APIRouter |
+| [M05: Dependencies and Repositories](level_6_api/missions/05_dependencies_and_repositories/README.md) | DI factories | Depends() |
+| [M06: API Errors and Status Codes](level_6_api/missions/06_api_errors_and_status_codes/README.md) | Error handling | HTTPException |
+
+### World 3: Quality and Polish
+
+| Mission | Concept | Key tool |
+|---------|---------|----------|
+| [M07: API Tests](level_6_api/missions/07_api_tests/README.md) | HTTP-level tests | TestClient |
+| [M08: OpenAPI and API Polish](level_6_api/missions/08_openapi_and_api_polish/README.md) | Docs polish | tags, descriptions |
+
+### Boss Fight
+
+[RPG Battle API](level_6_api/projects/01_rpg_battle_api/README.md) — wire all 8 concepts into a fully tested 7-endpoint battle API with JSON session persistence.
