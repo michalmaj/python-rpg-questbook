@@ -23,9 +23,27 @@ def update_progress(mission_id: str) -> None:
 
 mission = Path(__file__).parent
 
+# ── ErrorOut schema defined ───────────────────────────────────────────────────
+
+schemas_file = mission / "task/schemas.py"
+routers_dir = mission / "task/routers"
+
+error_out_found = False
+if schemas_file.exists() and "class ErrorOut" in schemas_file.read_text():
+    error_out_found = True
+else:
+    for f in routers_dir.glob("*.py"):
+        if "class ErrorOut" in f.read_text():
+            error_out_found = True
+            break
+
+if not error_out_found:
+    print("❌ ErrorOut schema not found — create it in task/schemas.py")
+    raise SystemExit(1)
+print("✓ ErrorOut schema defined")
+
 # ── HTTPException used ────────────────────────────────────────────────────────
 
-routers_dir = mission / "task/routers"
 http_exc_count = sum(
     1 for f in routers_dir.glob("*.py")
     if "HTTPException" in f.read_text()
@@ -87,6 +105,23 @@ if not r.json():
     print("❌ GET /heroes/classes returned empty list")
     raise SystemExit(1)
 print(f"✓ GET /heroes/classes → 200, {len(r.json())} classes")
+
+# GET /monsters/Goblin → 200 with name key
+r = client.get("/monsters/Goblin")
+if r.status_code != 200:
+    print(f"❌ GET /monsters/Goblin returned {r.status_code}")
+    raise SystemExit(1)
+if "name" not in r.json():
+    print("❌ GET /monsters/Goblin response missing 'name' key")
+    raise SystemExit(1)
+print("✓ GET /monsters/Goblin → 200")
+
+# GET /monsters/NonExistentMonster → 404
+r = client.get("/monsters/NonExistentMonster")
+if r.status_code != 404:
+    print(f"❌ Unknown monster should return 404, got {r.status_code}")
+    raise SystemExit(1)
+print("✓ GET /monsters/NonExistentMonster → 404")
 
 update_progress("06_api_errors_and_status_codes")
 print("\n✅ Mission 06 complete!")

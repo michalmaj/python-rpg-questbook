@@ -5,6 +5,7 @@ from pydantic import BaseModel
 from task.dependencies import get_battle_service
 from task.rpg.domain import HeroClass
 from task.rpg.services import BattleService, create_hero
+from task.schemas import BattleResultOut
 
 router = APIRouter()
 
@@ -13,14 +14,6 @@ class BattleRequest(BaseModel):
     hero_name: str
     hero_class: HeroClass
     monster_name: str
-
-
-class BattleResultOut(BaseModel):
-    hero_name: str
-    monster_name: str
-    winner: str
-    rounds: int
-    gold_earned: int
 
 
 # TODO: Add ErrorOut schema to task/schemas.py with a `detail: str` field
