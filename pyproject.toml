@@ -40,3 +40,5 @@ target-version = "py312"
 
 [tool.pytest.ini_options]
 pythonpath = ["."]
+# Per-mission tests require cwd=mission (run via check.py, not repo root)
+norecursedirs = ["*/missions", "*/projects"]
