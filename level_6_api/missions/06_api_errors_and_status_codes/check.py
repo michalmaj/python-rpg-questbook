@@ -123,5 +123,15 @@ if r.status_code != 404:
     raise SystemExit(1)
 print("✓ GET /monsters/NonExistentMonster → 404")
 
+# invalid hero_class → 422
+r = client.post(
+    "/battle/simulate",
+    json={"hero_name": "Ada", "hero_class": "invalid_class", "monster_name": "Goblin"},
+)
+if r.status_code != 422:
+    print(f"❌ Invalid hero_class should return 422, got {r.status_code}")
+    raise SystemExit(1)
+print("✓ POST /battle/simulate with invalid hero_class → 422")
+
 update_progress("06_api_errors_and_status_codes")
 print("\n✅ Mission 06 complete!")

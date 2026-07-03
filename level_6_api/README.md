@@ -36,6 +36,15 @@ fully tested 7-endpoint battle API with JSON session persistence.
 
 ## How to start
 
+Run from the repo root:
+
 ```bash
 uv run python tools/course_status.py
+```
+
+To check your progress on a mission, run from its folder:
+
+```bash
+cd level_6_api/missions/01_first_fastapi_app
+uv run python check.py
 ```

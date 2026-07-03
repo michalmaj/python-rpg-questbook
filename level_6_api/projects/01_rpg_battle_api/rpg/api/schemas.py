@@ -1,10 +1,30 @@
 """API Pydantic schemas — separate from domain dataclasses."""
-# TODO: Define these schemas:
-#
-# class MonsterOut(BaseModel): name, hp, atk, def_, gold
-# class HeroClassOut — just str is fine, list[str] from /heroes/classes
-# class BattleRequest(BaseModel): hero_name, hero_class (HeroClass), monster_name
-# class BattleResultOut(BaseModel): hero_name, monster_name, winner, rounds, gold_earned
-# class SessionCreated(BaseModel): session_id (str)
-#
-# Hint: from pydantic import BaseModel
+from pydantic import BaseModel
+
+from rpg.domain import HeroClass
+
+
+class MonsterOut(BaseModel):
+    name: str
+    hp: int
+    atk: int
+    defense: int
+    gold: int
+
+
+class BattleRequest(BaseModel):
+    hero_name: str
+    hero_class: HeroClass
+    monster_name: str
+
+
+class BattleResultOut(BaseModel):
+    hero_name: str
+    monster_name: str
+    winner: str
+    rounds: int
+    gold_earned: int
+
+
+class SessionCreated(BaseModel):
+    session_id: str
