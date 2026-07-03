@@ -13,7 +13,7 @@ router = APIRouter()
 def list_monsters(
     service: BattleService = Depends(get_battle_service),
 ) -> list[MonsterOut]:
-    return [MonsterOut(**vars(m)) for m in service.get_available_monsters()]
+    return [MonsterOut(name=m.name, hp=m.hp, atk=m.atk, defense=m.def_, gold=m.gold) for m in service.get_available_monsters()]
 
 
 @router.get("/monsters/{name}", response_model=MonsterOut)
@@ -24,4 +24,4 @@ def get_monster(
     # TODO: Replace the line below with proper HTTPException handling
     # If monster not found, it will crash with AttributeError (500) — fix it!
     monster = repo.get(name)
-    return MonsterOut(**vars(monster))
+    return MonsterOut(name=monster.name, hp=monster.hp, atk=monster.atk, defense=monster.def_, gold=monster.gold)
