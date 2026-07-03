@@ -10,7 +10,7 @@ router = APIRouter()
 #    - Simulate the battle (use get_battle_service)
 #    - Generate a UUID session_id (import uuid; session_id = str(uuid.uuid4()))
 #    - Save result via session_repo.save(session_id, result)
-#    - Return {"session_id": session_id} with status_code=201
+#    - Return SessionCreated(session_id=session_id) with status_code=201
 #
 # 2. GET /sessions/{session_id} — retrieve a stored battle result
 #    - Look up result = session_repo.get(session_id)
