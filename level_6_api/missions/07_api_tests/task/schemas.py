@@ -29,3 +29,7 @@ class BattleResultOut(BaseModel):
 
 class ErrorOut(BaseModel):
     detail: str
+
+
+class SessionCreated(BaseModel):
+    session_id: str
