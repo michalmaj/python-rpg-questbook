@@ -247,3 +247,24 @@ Now it needs a real interface: CLI commands, logging, readable terminal output, 
 ### Boss Fight
 
 [RPG Battle API](level_6_api/projects/01_rpg_battle_api/README.md) — wire all 8 concepts into a fully tested 7-endpoint battle API with JSON session persistence.
+
+---
+
+## Level 7: Concurrency and Background Work
+
+> **Prerequisite:** Level 6 complete (FastAPI API with tests).
+
+**Central thesis:** The API works — but long operations block it. Learn to return a `job_id` immediately and execute work in the background.
+
+| # | Mission | Skill |
+|---|---------|-------|
+| 01 | [Blocking vs Background Work](level_7_concurrency_and_background_work/missions/01_blocking_vs_background_work/README.md) | See the blocking problem |
+| 02 | [asyncio Basics](level_7_concurrency_and_background_work/missions/02_asyncio_basics/README.md) | async/await, gather, wait_for |
+| 03 | [Async API Endpoints](level_7_concurrency_and_background_work/missions/03_async_api_endpoints/README.md) | async def in FastAPI; I/O vs CPU |
+| 04 | [Background Jobs](level_7_concurrency_and_background_work/missions/04_background_jobs/README.md) | job_id pattern, threading.Thread |
+| 05 | [Job Status Repository](level_7_concurrency_and_background_work/missions/05_job_status_repository/README.md) | JobRepository Protocol |
+| 06 | [Thread Pool for Blocking I/O](level_7_concurrency_and_background_work/missions/06_thread_pool_for_blocking_io/README.md) | ThreadPoolExecutor |
+| 07 | [Process Pool for CPU Work](level_7_concurrency_and_background_work/missions/07_process_pool_for_cpu_work/README.md) | ProcessPoolExecutor |
+| 08 | [Testing Background Work](level_7_concurrency_and_background_work/missions/08_testing_background_work/README.md) | SyncWorker, deterministic tests |
+
+**Boss Fight:** [Concurrent Tournament Runner](level_7_concurrency_and_background_work/projects/01_concurrent_tournament_runner/README.md)
