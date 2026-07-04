@@ -2,7 +2,7 @@ from functools import lru_cache
 from pathlib import Path
 from rpg.repositories import MonsterRepository
 from rpg.services import SimulationService
-from jobs.jobs import InMemoryJobRepository, JsonJobRepository, JobRepository, BackgroundWorker
+from jobs.jobs import JsonJobRepository, JobRepository, BackgroundWorker
 
 _DATA = Path(__file__).parent.parent / "data"
 _job_repo: JobRepository = JsonJobRepository(_DATA / "jobs")

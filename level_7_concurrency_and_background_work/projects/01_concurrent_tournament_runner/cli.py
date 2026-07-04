@@ -1,5 +1,4 @@
 """CLI for the Concurrent Tournament Runner."""
-import time
 import typer
 from api.dependencies import get_job_repo, get_simulation_service, get_worker
 from jobs.jobs import JobStatus
@@ -46,7 +45,11 @@ def report(job_id: str) -> None:
     if job.status != JobStatus.completed:
         typer.echo(f"Job not completed yet (status: {job.status})", err=True)
         raise typer.Exit(1)
-    summary = TournamentSummary(**job.result)
+    summary = TournamentSummary(
+        total_battles=job.result["total_battles"],
+        hero_wins=job.result["hero_wins"],
+        monster_wins=job.result["monster_wins"],
+    )
     typer.echo(summary.to_markdown())
 
 
