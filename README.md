@@ -82,6 +82,11 @@ level_6_api/                        ← Level 6: API Interface with FastAPI
   missions/                         ←   8 missions: FastAPI, schemas, routers, DI, errors, tests, OpenAPI
   projects/                         ←   boss fight: RPG Battle API (7 endpoints, JSON persistence)
 
+level_7_concurrency_and_background_work/  ← Level 7: Concurrency and Background Work
+  starter_blocking_rpg_api/         ←   Blocking tournament API (your starting point)
+  missions/                         ←   8 missions: asyncio, async endpoints, job_id, ThreadPoolExecutor,
+  projects/                         ←              ProcessPoolExecutor, SyncWorker, deterministic tests
+
 tools/                              ← helper scripts (course_status, author_check)
 ```
 

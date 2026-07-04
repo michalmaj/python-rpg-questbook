@@ -18,6 +18,9 @@ LEVEL5_PROGRESS_FILE = LEVEL5_ROOT / ".progress"
 LEVEL6_ROOT = REPO_ROOT / "level_6_api"
 LEVEL6_PROGRESS_FILE = LEVEL6_ROOT / ".progress"
 
+LEVEL7_ROOT = REPO_ROOT / "level_7_concurrency_and_background_work"
+LEVEL7_PROGRESS_FILE = LEVEL7_ROOT / ".progress"
+
 LEVEL1_WORLDS = [
     (
         "World 1: First Hero",
@@ -236,6 +239,37 @@ LEVEL6_WORLDS = [
     ),
 ]
 
+LEVEL7_WORLDS = [
+    (
+        "World 1: Fundamentals",
+        [
+            ("01_blocking_vs_background_work", "Mission 01: Blocking vs Background Work"),
+            ("02_asyncio_basics", "Mission 02: asyncio Basics"),
+        ],
+        [],
+    ),
+    (
+        "World 2: Background Jobs",
+        [
+            ("03_async_api_endpoints", "Mission 03: Async API Endpoints"),
+            ("04_background_jobs", "Mission 04: Background Jobs"),
+            ("05_job_status_repository", "Mission 05: Job Status Repository"),
+        ],
+        [],
+    ),
+    (
+        "World 3: Parallel Execution",
+        [
+            ("06_thread_pool_for_blocking_io", "Mission 06: Thread Pool for Blocking I/O"),
+            ("07_process_pool_for_cpu_work", "Mission 07: Process Pool for CPU Work"),
+            ("08_testing_background_work", "Mission 08: Testing Background Work"),
+        ],
+        [
+            ("01_concurrent_tournament_runner", "Boss Fight: Concurrent Tournament Runner"),
+        ],
+    ),
+]
+
 SYMBOLS = {
     "complete": "✓",
     "in_progress": "~",
@@ -294,6 +328,7 @@ def main() -> None:
     l4_progress = load_progress(LEVEL4_PROGRESS_FILE)
     l5_progress = load_progress(LEVEL5_PROGRESS_FILE)
     l6_progress = load_progress(LEVEL6_PROGRESS_FILE)
+    l7_progress = load_progress(LEVEL7_PROGRESS_FILE)
 
     print()
     print("Python RPG Questbook — Your Progress")
@@ -313,6 +348,8 @@ def main() -> None:
                 "level_5_maintainability", next_up)
     print_level("Level 6: API Interface with FastAPI", LEVEL6_WORLDS, l6_progress,
                 "level_6_api", next_up)
+    print_level("Level 7: Concurrency and Background Work", LEVEL7_WORLDS, l7_progress,
+                "level_7_concurrency_and_background_work", next_up)
 
     print()
     if next_up[0]:

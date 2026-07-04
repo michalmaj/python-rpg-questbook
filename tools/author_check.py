@@ -18,6 +18,7 @@ LEVEL3_ROOT = REPO_ROOT / "level_3_validation_and_persistence"
 LEVEL4_ROOT = REPO_ROOT / "level_4_interfaces"
 LEVEL5_ROOT = REPO_ROOT / "level_5_maintainability"
 LEVEL6_ROOT = REPO_ROOT / "level_6_api"
+LEVEL7_ROOT = REPO_ROOT / "level_7_concurrency_and_background_work"
 
 # ── Level 1 content ───────────────────────────────────────────────────────────
 
@@ -129,6 +130,31 @@ L6_MISSION_FILE_EXCEPTIONS: dict[str, set[str]] = {
     "08_openapi_and_api_polish": {"README.md", "check.py", "task/__init__.py", "task/config.py"},
 }
 
+# ── Level 7 content ───────────────────────────────────────────────────────────
+
+L7_MISSIONS = [
+    "01_blocking_vs_background_work",
+    "02_asyncio_basics",
+    "03_async_api_endpoints",
+    "04_background_jobs",
+    "05_job_status_repository",
+    "06_thread_pool_for_blocking_io",
+    "07_process_pool_for_cpu_work",
+    "08_testing_background_work",
+]
+
+L7_PROJECTS = [
+    "01_concurrent_tournament_runner",
+]
+
+L7_MISSION_FILE_EXCEPTIONS: dict[str, set[str]] = {
+    # task/ package missions (no task.py at top level)
+    "03_async_api_endpoints": {"README.md", "check.py", "task/__init__.py"},
+    "04_background_jobs": {"README.md", "check.py", "task/__init__.py"},
+    "05_job_status_repository": {"README.md", "check.py", "task/__init__.py"},
+    "08_testing_background_work": {"README.md", "check.py", "task/__init__.py"},
+}
+
 # ── Shared config ─────────────────────────────────────────────────────────────
 
 REQUIRED_MISSION_FILES: set[str] = {"README.md", "task.py", "check.py"}
@@ -208,7 +234,7 @@ def check_hygiene(level_root: Path, missions: list[str], projects: list[str]) ->
 # `level_3_validation_and_persistence/missions/01_external_data_is_untrusted/README.md`
 LINK_PATTERN = re.compile(
     r"`(level_(?:1_python_basics|2_oop_and_design|3_validation_and_persistence"
-    r"|4_interfaces|5_maintainability|6_api)"
+    r"|4_interfaces|5_maintainability|6_api|7_concurrency_and_background_work)"
     r"/(?:missions|projects)/[\w/._-]+)`"
 )
 
@@ -305,6 +331,9 @@ check_folder_structure(LEVEL5_ROOT, L5_MISSIONS, L5_PROJECTS, L5_MISSION_FILE_EX
 print("Checking Level 6 folder structure…")
 check_folder_structure(LEVEL6_ROOT, L6_MISSIONS, L6_PROJECTS, L6_MISSION_FILE_EXCEPTIONS, "level_6")
 
+print("Checking Level 7 folder structure…")
+check_folder_structure(LEVEL7_ROOT, L7_MISSIONS, L7_PROJECTS, L7_MISSION_FILE_EXCEPTIONS, "level_7")
+
 print("Checking check.py hygiene (Level 1)…")
 check_hygiene(LEVEL1_ROOT, L1_MISSIONS, L1_PROJECTS)
 
@@ -322,6 +351,9 @@ check_hygiene(LEVEL5_ROOT, L5_MISSIONS, L5_PROJECTS)
 
 print("Checking check.py hygiene (Level 6)…")
 check_hygiene(LEVEL6_ROOT, L6_MISSIONS, L6_PROJECTS)
+
+print("Checking check.py hygiene (Level 7)…")
+check_hygiene(LEVEL7_ROOT, L7_MISSIONS, L7_PROJECTS)
 
 print("Checking README next-mission links…")
 check_readme_links(LEVEL1_ROOT, L1_MISSIONS, L1_PROJECTS, "level_1")
@@ -359,6 +391,7 @@ _level_checks = [
     (LEVEL4_ROOT, "level_4_interfaces", "Level 4"),
     (LEVEL5_ROOT, "level_5_maintainability", "Level 5"),
     (LEVEL6_ROOT, "level_6_api", "Level 6"),
+    (LEVEL7_ROOT, "level_7_concurrency_and_background_work", "Level 7"),
 ]
 for level_root, level_dir, label in _level_checks:
     if not level_root.exists():
