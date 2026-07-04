@@ -4,7 +4,6 @@ Goal:  Use ThreadPoolExecutor to export session reports concurrently.
        I/O-bound work (reading files, writing files) benefits from threads.
 Check: uv run python check.py
 """
-import time
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 

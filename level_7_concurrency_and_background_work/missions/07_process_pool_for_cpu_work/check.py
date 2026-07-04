@@ -26,6 +26,10 @@ except ImportError as exc:
     print(f"❌ Cannot import from task.py: {exc}")
     raise SystemExit(1)
 
+# ProcessPoolExecutor (macOS "spawn" start method) re-imports this script in worker
+# processes. Without this guard, each worker would re-run all the checks, causing
+# BrokenProcessPool errors. The import above must stay at module level to catch
+# missing functions early; all check logic lives inside the guard.
 if __name__ == "__main__":
     N = 2000
 
