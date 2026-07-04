@@ -29,10 +29,7 @@ def start_tournament(
     worker: BackgroundWorker = Depends(get_worker),
     svc: SimulationService = Depends(get_simulation_service),
 ) -> JobStarted:
-    job_id = str(uuid.uuid4())
-    job_repo.create(job_id)
-    worker.submit(job_id, lambda: svc.simulate_tournament(req.battles).to_dict())
-    return JobStarted(job_id=job_id)
+    raise NotImplementedError
 
 
 # TODO 2: GET /tournaments/{job_id} — poll job status
@@ -44,10 +41,7 @@ def get_tournament(
     job_id: str,
     job_repo: JobRepository = Depends(get_job_repo),
 ) -> JobOut:
-    job = job_repo.get(job_id)
-    if job is None:
-        raise HTTPException(status_code=404, detail="Job not found")
-    return JobOut(job_id=job.id, status=job.status, result=job.result, error=job.error)
+    raise NotImplementedError
 
 
 # TODO 3: GET /tournaments/{job_id}/report — Markdown report
@@ -60,14 +54,4 @@ def get_report(
     job_id: str,
     job_repo: JobRepository = Depends(get_job_repo),
 ) -> PlainTextResponse:
-    job = job_repo.get(job_id)
-    if job is None:
-        raise HTTPException(status_code=404, detail="Job not found")
-    if job.status != JobStatus.completed:
-        raise HTTPException(status_code=425, detail="Job not completed yet")
-    summary = TournamentSummary(
-        total_battles=job.result["total_battles"],
-        hero_wins=job.result["hero_wins"],
-        monster_wins=job.result["monster_wins"],
-    )
-    return PlainTextResponse(summary.to_markdown())
+    raise NotImplementedError
