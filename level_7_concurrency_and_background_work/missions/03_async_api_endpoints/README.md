@@ -50,3 +50,7 @@ uv run python check.py
 ```
 
 Run from the mission folder (`03_async_api_endpoints/`).
+
+---
+
+**Next:** [Mission 04 — Background Jobs](../04_background_jobs/README.md)

@@ -97,3 +97,7 @@ The check verifies:
   - *Parallelism:* tasks run simultaneously on multiple cores (that's `ProcessPoolExecutor`, covered in M07).
 - **`asyncio.wait_for` = timeout enforcement.** It's how you stop waiting after a deadline.
 - **Timing is the proof.** If gather is working correctly, 3 fetches take ~0.05s, not 0.15s. The check.py verifies this.
+
+---
+
+**Next:** [Mission 03 — Async API Endpoints](../03_async_api_endpoints/README.md)

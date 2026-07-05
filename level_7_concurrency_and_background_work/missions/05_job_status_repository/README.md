@@ -52,3 +52,7 @@ Run from this mission's folder. The checker first validates `InMemoryJobReposito
 > thread. It works for a single Uvicorn process but is not a replacement for a durable task
 > queue (Celery, RQ, Dramatiq). It has no graceful shutdown, no retry logic, and no
 > coordination between multiple workers or processes.
+
+---
+
+**Next:** [Mission 06 — Thread Pool for Blocking I/O](../06_thread_pool_for_blocking_io/README.md)

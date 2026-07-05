@@ -27,6 +27,10 @@ The global `_jobs` dict works for a single process, but it has problems:
 
 Mission 05 fixes this with a proper `JobRepository`.
 
+---
+
+**Next:** [Mission 05 — Job Status Repository](../05_job_status_repository/README.md)
+
 ## How to check
 
 Run from this folder:

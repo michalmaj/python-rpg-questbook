@@ -64,3 +64,7 @@ Five pre-made battle session JSON files (session-001.json through session-005.js
 - `hero_name`, `monster_name`, `winner`, `rounds`, `gold_earned`
 
 Your function reads these and exports them as Markdown reports.
+
+---
+
+**Next:** [Mission 07 — Process Pool for CPU Work](../07_process_pool_for_cpu_work/README.md)
