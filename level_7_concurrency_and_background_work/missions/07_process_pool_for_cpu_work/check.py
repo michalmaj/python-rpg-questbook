@@ -62,12 +62,24 @@ if __name__ == "__main__":
         raise SystemExit(1)
     print(f"✓ simulate_tournament_parallel({N}, workers=4): {par_time:.3f}s")
 
-    # verify ProcessPoolExecutor used
+    # verify ProcessPoolExecutor is actually used inside simulate_tournament_parallel
+    import ast
+
     src = (Path(__file__).parent / "task.py").read_text()
-    if "ProcessPoolExecutor" not in src:
-        print("❌ task.py must use ProcessPoolExecutor")
+    tree = ast.parse(src)
+    parallel_func = next(
+        (n for n in ast.walk(tree) if isinstance(n, ast.FunctionDef) and n.name == "simulate_tournament_parallel"),
+        None,
+    )
+    if parallel_func is None:
+        print("❌ simulate_tournament_parallel not found in task.py")
         raise SystemExit(1)
-    print("✓ ProcessPoolExecutor used in task.py")
+
+    func_src = ast.get_source_segment(src, parallel_func) or ""
+    if "ProcessPoolExecutor" not in func_src:
+        print("❌ simulate_tournament_parallel must use ProcessPoolExecutor (found import but not used in the function body)")
+        raise SystemExit(1)
+    print("✓ ProcessPoolExecutor used inside simulate_tournament_parallel")
 
     update_progress("07_process_pool_for_cpu_work")
     print("\n✅ Mission 07 complete! ProcessPoolExecutor for CPU-bound simulation.")
