@@ -87,4 +87,4 @@ Every serious Python project has a test suite. Django, FastAPI, NumPy, Pandas â€
 
 **World 3 complete!** You are ready for the boss fight.
 
-**Boss Fight:** `level_2_oop_and_design/projects/01_refactored_rpg/README.md`
+**Boss Fight:** `level_2_oop_and_design/projects/03_refactored_rpg/README.md`
