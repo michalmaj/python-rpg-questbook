@@ -1,7 +1,7 @@
 """Mission 05: Job Status Repository.
 
 Goal:  Refactor the global _jobs dict into a proper JobRepository.
-       Use BackgroundWorker for production, SyncWorker in tests.
+       Use BackgroundWorker for local/single-process use, SyncWorker in tests.
 Check: uv run python check.py (from mission folder)
 """
 from fastapi import FastAPI
