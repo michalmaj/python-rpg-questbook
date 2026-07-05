@@ -67,12 +67,24 @@ with tempfile.TemporaryDirectory() as tmp:
         raise SystemExit(1)
     print("✓ Exported Markdown contains '## Battle Report'")
 
-# verify ThreadPoolExecutor used
+# verify ThreadPoolExecutor is actually used inside export_sessions_parallel
+import ast
+
 src = (Path(__file__).parent / "task.py").read_text()
-if "ThreadPoolExecutor" not in src:
-    print("❌ task.py must use ThreadPoolExecutor")
+tree = ast.parse(src)
+parallel_func = next(
+    (n for n in ast.walk(tree) if isinstance(n, ast.FunctionDef) and n.name == "export_sessions_parallel"),
+    None,
+)
+if parallel_func is None:
+    print("❌ export_sessions_parallel not found in task.py")
     raise SystemExit(1)
-print("✓ ThreadPoolExecutor used in task.py")
+
+func_src = ast.get_source_segment(src, parallel_func) or ""
+if "ThreadPoolExecutor" not in func_src:
+    print("❌ export_sessions_parallel must use ThreadPoolExecutor (found import but not used in the function body)")
+    raise SystemExit(1)
+print("✓ ThreadPoolExecutor used inside export_sessions_parallel")
 
 update_progress("06_thread_pool_for_blocking_io")
 print("\n✅ Mission 06 complete! ThreadPoolExecutor for I/O-bound work.")
