@@ -92,7 +92,7 @@ You inherited messy code. Now you fix it.
 | 02 | [Monster Class](level_2_oop_and_design/missions/02_monster_class/README.md) | methods, `self`, behaviour on objects |
 | 03 | [Character Base](level_2_oop_and_design/missions/03_character_base/README.md) | inheritance, `super().__init__()` |
 
-**Boss Fight:** *(coming after World 2)*
+**Checkpoint:** [Project 01: Arena Roster](level_2_oop_and_design/projects/01_arena_roster/README.md)
 
 ### World 2: Design
 
@@ -103,6 +103,8 @@ You inherited messy code. Now you fix it.
 | 06 | [Properties](level_2_oop_and_design/missions/06_properties/README.md) | `@property`, computed attributes |
 | 07 | [Dataclasses](level_2_oop_and_design/missions/07_dataclasses/README.md) | `@dataclass`, generated `__init__` |
 
+**Checkpoint:** [Project 02: Character Sheet Builder](level_2_oop_and_design/projects/02_character_sheet_builder/README.md)
+
 ### World 3: Structure
 
 | # | Mission | Concept |
@@ -111,7 +113,7 @@ You inherited messy code. Now you fix it.
 | 09 | [Pure Functions](level_2_oop_and_design/missions/09_pure_functions/README.md) | side effects, testable logic |
 | 10 | [Add Tests](level_2_oop_and_design/missions/10_add_tests/README.md) | pytest, test discovery, assertions |
 
-**Boss Fight:** [Project 01: Refactored RPG](level_2_oop_and_design/projects/01_refactored_rpg/README.md)
+**Boss Fight:** [Project 03: Refactored RPG](level_2_oop_and_design/projects/03_refactored_rpg/README.md)
 
 ---
 
