@@ -92,7 +92,9 @@ LEVEL2_WORLDS = [
             ("02_monster_class", "Mission 02: Monster Class"),
             ("03_character_base", "Mission 03: Character Base"),
         ],
-        [],
+        [
+            ("01_arena_roster", "Project 01: Arena Roster"),
+        ],
     ),
     (
         "World 2: Design",
@@ -102,7 +104,9 @@ LEVEL2_WORLDS = [
             ("06_properties", "Mission 06: Properties"),
             ("07_dataclasses", "Mission 07: Dataclasses"),
         ],
-        [],
+        [
+            ("02_character_sheet_builder", "Project 02: Character Sheet Builder"),
+        ],
     ),
     (
         "World 3: Structure",
@@ -112,7 +116,7 @@ LEVEL2_WORLDS = [
             ("10_add_tests", "Mission 10: Add Tests"),
         ],
         [
-            ("01_refactored_rpg", "Project 01: Refactored RPG"),
+            ("03_refactored_rpg", "Project 03: Refactored RPG (Boss Fight)"),
         ],
     ),
 ]

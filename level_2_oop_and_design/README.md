@@ -52,9 +52,10 @@ uv run python level_2_oop_and_design/starter_legacy_rpg/main.py
 ## Worlds
 
 **World 1: Objects** — replace global state with objects (M01–M03)
+→ Checkpoint: [Project 01: Arena Roster](projects/01_arena_roster/README.md)
 
 **World 2: Design** — improve object design (M04–M07)
+→ Checkpoint: [Project 02: Character Sheet Builder](projects/02_character_sheet_builder/README.md)
 
 **World 3: Structure** — split, test, and separate concerns (M08–M10)
-
-**Boss Fight:** Project 01 — assemble everything into a clean, testable, modular RPG
+→ Boss Fight: [Project 03: Refactored RPG](projects/03_refactored_rpg/README.md) — assemble everything into a clean, testable, modular RPG
