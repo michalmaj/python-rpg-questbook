@@ -1,4 +1,4 @@
-# Project 01: Refactored RPG
+# Project 03: Refactored RPG
 
 **Requires:** Level 2, Missions 01–10
 
@@ -25,7 +25,7 @@ Only the code changes. The game feels identical to a player.
 ## Structure
 
 ```
-01_refactored_rpg/
+03_refactored_rpg/
 ├── README.md             ← this file
 ├── rpg/
 │   ├── __init__.py
@@ -41,19 +41,19 @@ Only the code changes. The game feels identical to a player.
 ## How to play
 
 ```bash
-uv run python level_2_oop_and_design/projects/01_refactored_rpg/rpg/game.py
+uv run python level_2_oop_and_design/projects/03_refactored_rpg/rpg/game.py
 ```
 
 ## How to test
 
 ```bash
-uv run pytest level_2_oop_and_design/projects/01_refactored_rpg/tests/ -v
+uv run pytest level_2_oop_and_design/projects/03_refactored_rpg/tests/ -v
 ```
 
 ## Check
 
 ```bash
-uv run python level_2_oop_and_design/projects/01_refactored_rpg/check.py
+uv run python level_2_oop_and_design/projects/03_refactored_rpg/check.py
 ```
 
 ## Where to start

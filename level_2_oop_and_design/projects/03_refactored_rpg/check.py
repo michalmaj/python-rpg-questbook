@@ -121,8 +121,8 @@ def main() -> None:
         raise SystemExit(1)
 
     # ── Done ──────────────────────────────────────────────────────────────────
-    update_progress("01_refactored_rpg")
-    print("✅ Project 01 complete: Refactored RPG passes all checks!")
+    update_progress("03_refactored_rpg")
+    print("✅ Project 03 complete: Refactored RPG passes all checks!")
     print()
     print("   The game plays the same. The code is completely different.")
     print("   That is what professional refactoring looks like.")
