@@ -50,7 +50,7 @@ L2_MISSIONS = [
 ]
 
 L2_PROJECTS = [
-    "01_refactored_rpg",
+    "01_arena_roster", "02_character_sheet_builder", "03_refactored_rpg",
 ]
 
 L2_MISSION_FILE_EXCEPTIONS: dict[str, set[str]] = {
