@@ -126,7 +126,7 @@ L6_MISSION_FILE_EXCEPTIONS: dict[str, set[str]] = {
     "04_api_routers": {"README.md", "check.py", "task/__init__.py", "task/config.py"},
     "05_dependencies_and_repositories": {"README.md", "check.py", "task/__init__.py", "task/config.py"},
     "06_api_errors_and_status_codes": {"README.md", "check.py", "task/__init__.py", "task/config.py"},
-    "07_api_tests": {"README.md", "check.py", "task/__init__.py", "task/config.py", "pyproject.toml"},
+    "07_api_tests": {"README.md", "check.py", "task/__init__.py", "task/config.py"},
     "08_openapi_and_api_polish": {"README.md", "check.py", "task/__init__.py", "task/config.py"},
 }
 

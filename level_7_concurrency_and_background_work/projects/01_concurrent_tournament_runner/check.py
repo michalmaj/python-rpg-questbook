@@ -136,7 +136,22 @@ print("✓ GET report for running job → 425")
 app.dependency_overrides[get_job_repo] = lambda: _repo
 app.dependency_overrides[get_worker] = lambda: _worker
 
-# ── Gate 9: pytest test_api.py ────────────────────────────────────────────────
+# ── Gate 9: at least 6 test functions ────────────────────────────────────────
+import ast as _ast
+
+_test_file = project / "tests" / "test_api.py"
+_test_src = _test_file.read_text()
+_test_tree = _ast.parse(_test_src)
+_test_funcs = [
+    n.name for n in _ast.walk(_test_tree)
+    if isinstance(n, _ast.FunctionDef) and n.name.startswith("test_")
+]
+if len(_test_funcs) < 6:
+    print(f"❌ tests/test_api.py has {len(_test_funcs)} test function(s); at least 6 required")
+    raise SystemExit(1)
+print(f"✓ tests/test_api.py has {len(_test_funcs)} test functions (≥6 required)")
+
+# ── Gate 10: pytest test_api.py ───────────────────────────────────────────────
 app.dependency_overrides.clear()
 env = os.environ.copy()
 env["PYTHONPATH"] = str(project)
@@ -148,7 +163,7 @@ if result.returncode != 0:
     print("❌ pytest tests/test_api.py fails:")
     print(result.stdout[-2000:])
     raise SystemExit(1)
-print("✓ All API tests pass")
+print(f"✓ All {len(_test_funcs)} API tests pass")
 
 update_progress("01_concurrent_tournament_runner")
 print()

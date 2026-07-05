@@ -9,7 +9,7 @@ Write tests for the background job system using `SyncWorker`.
 `task/` contains a complete working implementation:
 
 - `InMemoryJobRepository` — stores jobs in memory with thread-safe access
-- `BackgroundWorker` — submits jobs to a background thread (for production use)
+- `BackgroundWorker` — submits jobs to a background thread (local single-process use)
 - `SyncWorker` — runs jobs inline synchronously (for tests)
 - `FastAPI` app with `/tournaments` and `/jobs/{job_id}` endpoints
 
@@ -54,3 +54,7 @@ uv run python check.py
 ```
 
 Run from the mission folder. All 6 tests must pass.
+
+---
+
+**Next:** [Boss Fight — Concurrent Tournament Runner](../../projects/01_concurrent_tournament_runner/README.md)

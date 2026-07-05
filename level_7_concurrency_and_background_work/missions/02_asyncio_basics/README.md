@@ -32,8 +32,9 @@ In this mission, we simulate slow database calls using `asyncio.sleep(0.05)`. Th
 - Returns a dict: `{"name": name, "fetched": True}`
 
 **Why it's async:**
-- Any function that might block (network call, file I/O, database query) should be async
-- The `await` inside lets other tasks run while we wait
+- Functions that perform real async I/O (network, async database drivers) should be `async def`
+- The `await asyncio.sleep()` here simulates that — it yields control so other tasks can run
+- Note: wrapping synchronous blocking I/O (e.g. `Path.read_text()`) in `async def` does *not* make it non-blocking
 
 ### 2. `fetch_all_monsters(names: list[str]) -> list[dict]`
 
@@ -91,6 +92,12 @@ The check verifies:
 ## Key Takeaways
 
 - **Async functions don't run themselves.** You must `await` them or pass them to `asyncio.gather`, `asyncio.wait_for`, etc.
-- **`asyncio.gather` = parallel execution.** It runs multiple coroutines at the same time (in the same thread, via the event loop).
+- **`asyncio.gather` = concurrent execution.** Multiple coroutines make progress in overlapping time windows — in the *same* thread, via the event loop. This is **concurrency**, not **parallelism**: no extra CPU cores are used.
+  - *Concurrency:* tasks take turns; each progresses while others wait.
+  - *Parallelism:* tasks run simultaneously on multiple cores (that's `ProcessPoolExecutor`, covered in M07).
 - **`asyncio.wait_for` = timeout enforcement.** It's how you stop waiting after a deadline.
 - **Timing is the proof.** If gather is working correctly, 3 fetches take ~0.05s, not 0.15s. The check.py verifies this.
+
+---
+
+**Next:** [Mission 03 — Async API Endpoints](../03_async_api_endpoints/README.md)

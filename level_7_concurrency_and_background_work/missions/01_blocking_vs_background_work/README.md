@@ -42,3 +42,7 @@ arrives while the tournament runs must wait in queue** — the event loop is blo
 
 That is the problem Level 7 teaches you to fix: move heavy work off the main thread so
 the API stays responsive.
+
+---
+
+**Next:** [Mission 02 — asyncio Basics](../02_asyncio_basics/README.md)

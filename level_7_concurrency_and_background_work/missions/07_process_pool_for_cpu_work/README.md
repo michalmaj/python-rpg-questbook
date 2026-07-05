@@ -58,4 +58,8 @@ uv run python check.py
 All 3 checks must pass:
 1. `simulate_tournament_sequential(2000)` returns correct counts
 2. `simulate_tournament_parallel(2000, workers=4)` returns correct counts
-3. `ProcessPoolExecutor` is present in `task.py`
+3. `ProcessPoolExecutor` is used inside `simulate_tournament_parallel`
+
+---
+
+**Next:** [Mission 08 — Testing Background Work](../08_testing_background_work/README.md)
