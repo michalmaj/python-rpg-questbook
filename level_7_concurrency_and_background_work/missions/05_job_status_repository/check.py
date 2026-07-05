@@ -1,7 +1,6 @@
 """Check: Mission 05 — Job Status Repository."""
 import json
 import sys
-import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
@@ -84,39 +83,47 @@ if job.status != JobStatus.completed or job.result != {"result": 42}:
     raise SystemExit(1)
 print("✓ SyncWorker runs job inline, sets completed status")
 
-# ── API integration ────────────────────────────────────────────────────────────
+# ── API integration (using SyncWorker for determinism — no time.sleep) ────────
 try:
     from task.main import app  # type: ignore
+    from task.dependencies import get_job_repo, get_worker  # type: ignore
 except ImportError as exc:
-    print(f"❌ Cannot import app: {exc}")
+    print(f"❌ Cannot import app or dependencies: {exc}")
     raise SystemExit(1)
 
 import warnings
 warnings.filterwarnings("ignore")
 from fastapi.testclient import TestClient
 
+check_repo = InMemoryJobRepository()
+check_worker = SyncWorker(check_repo)
+app.dependency_overrides[get_job_repo] = lambda: check_repo
+app.dependency_overrides[get_worker] = lambda: check_worker
+
 client = TestClient(app, raise_server_exceptions=False)
 r = client.post("/tournaments", json={"battles": 20})
 if r.status_code != 202:
     print(f"❌ POST /tournaments should return 202, got {r.status_code}")
+    app.dependency_overrides.clear()
     raise SystemExit(1)
 job_id = r.json().get("job_id")
-deadline = time.time() + 10
-while time.time() < deadline:
-    r = client.get(f"/jobs/{job_id}")
-    if r.json().get("status") == "completed":
-        break
-    time.sleep(0.1)
+
+# SyncWorker runs inline — job is already completed after POST returns
+r = client.get(f"/jobs/{job_id}")
 if r.json().get("status") != "completed":
-    print("❌ Job did not complete within 10 seconds")
+    print(f"❌ Job should be completed immediately with SyncWorker, got {r.json().get('status')}")
+    app.dependency_overrides.clear()
     raise SystemExit(1)
-print(f"✓ API: POST /tournaments → 202, job completes with result")
+print("✓ API: POST /tournaments → 202, job completes instantly (SyncWorker)")
 
 r = client.get("/jobs/nonexistent")
 if r.status_code != 404:
     print(f"❌ Unknown job should be 404, got {r.status_code}")
+    app.dependency_overrides.clear()
     raise SystemExit(1)
 print("✓ GET /jobs/unknown → 404")
+
+app.dependency_overrides.clear()
 
 # ── no global _jobs dict in routers ──────────────────────────────────────────
 router_src = (Path(__file__).parent / "task" / "routers" / "tournaments.py").read_text()
