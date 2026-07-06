@@ -29,10 +29,13 @@ uv run pytest tests/ -q
 | 07 | [API Tests](missions/07_api_tests/README.md) | TestClient, dependency_overrides |
 | 08 | [OpenAPI and API Polish](missions/08_openapi_and_api_polish/README.md) | Tags, descriptions, /docs |
 
-## Boss Fight
+## Projects
 
-[RPG Battle API](projects/01_rpg_battle_api/README.md) — wire all 8 concepts into a
-fully tested 7-endpoint battle API with JSON session persistence.
+**Checkpoint:** [Project 01: Battle Preview API](projects/01_battle_preview_api/README.md) — three endpoints in one file; validate hero data, simulate a battle.
+
+**Checkpoint:** [Project 02: Monster Catalog API](projects/02_monster_catalog_api/README.md) — three endpoints using APIRouter, Depends(), and 404 handling.
+
+**Boss Fight:** [Project 03: RPG Battle API](projects/03_rpg_battle_api/README.md) — wire all 8 concepts into a fully tested 7-endpoint battle API with JSON session persistence.
 
 ## How to start
 

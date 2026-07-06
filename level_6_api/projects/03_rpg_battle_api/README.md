@@ -67,7 +67,7 @@ Never instantiate repositories or services manually inside a route function.
 Run the checker to see your progress:
 
 ```bash
-uv run python level_6_api/projects/01_rpg_battle_api/check.py
+uv run python level_6_api/projects/03_rpg_battle_api/check.py
 ```
 
 | Gate | Check |
@@ -85,7 +85,7 @@ uv run python level_6_api/projects/01_rpg_battle_api/check.py
 ## Running tests manually
 
 ```bash
-cd level_6_api/projects/01_rpg_battle_api
+cd level_6_api/projects/03_rpg_battle_api
 uv run pytest tests/test_api.py -v
 ```
 
