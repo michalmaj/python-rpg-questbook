@@ -120,6 +120,7 @@ def main() -> None:
         {"name": "Ghost", "hp": 0,   "attack_type": "melee", "gold": 0},   # zero hp
         {"name": "Shade", "hp": 20,  "attack_type": "shadow", "gold": 0},  # bad attack_type
         {"name": "Demon", "hp": 50,  "attack_type": "magic",  "gold": -1}, # negative gold
+        {"name": "",      "hp": 40,  "attack_type": "melee",  "gold": 5},  # empty name
     ]
     path = _write_temp_json(bad_records)
     try:
@@ -127,16 +128,17 @@ def main() -> None:
     finally:
         path.unlink(missing_ok=True)
     if len(ok) != 0:
-        print(f"❌ 4 invalid records should produce 0 domain objects, got {len(ok)}")
+        print(f"❌ 5 invalid records should produce 0 domain objects, got {len(ok)}")
         raise SystemExit(1)
-    if len(errs) != 4:
-        print(f"❌ 4 invalid records should produce 4 error messages, got {len(errs)}")
+    if len(errs) != 5:
+        print(f"❌ 5 invalid records should produce 5 error messages, got {len(errs)}")
+        print("   Hint: empty name (\"\") must be rejected — add Field(min_length=1) to MonsterModel.name")
         raise SystemExit(1)
     for msg in errs:
         if not isinstance(msg, str) or len(msg.strip()) == 0:
             print("❌ Error messages must be non-empty strings")
             raise SystemExit(1)
-    print(f"✓ Invalid records → errors list ({len(errs)} messages, 0 domain objects)")
+    print(f"✓ Invalid records → errors list ({len(errs)} messages, 0 domain objects, including empty name)")
 
     # ── 8. Mixed batch — bad record does not stop valid ones ──────────────────
     mixed = [

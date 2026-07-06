@@ -40,11 +40,12 @@ class MonsterModel(BaseModel):
     """Validates raw JSON data before it enters the game.
 
     Constraints:
+        name: must not be empty
         hp:   must be > 0
         gold: must be ≥ 0
         attack_type: only "melee", "ranged", or "magic" are allowed
     """
-    name: str
+    name: str = Field(..., min_length=1)
     hp: int = Field(..., gt=0)
     attack_type: Literal["melee", "ranged", "magic"]
     gold: int = Field(..., ge=0)
