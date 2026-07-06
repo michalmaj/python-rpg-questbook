@@ -144,7 +144,9 @@ L7_MISSIONS = [
 ]
 
 L7_PROJECTS = [
-    "01_concurrent_tournament_runner",
+    "01_async_quest_aggregator",
+    "02_background_report_queue",
+    "03_concurrent_tournament_runner",
 ]
 
 L7_MISSION_FILE_EXCEPTIONS: dict[str, set[str]] = {
