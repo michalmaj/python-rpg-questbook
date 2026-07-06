@@ -1,0 +1,28 @@
+name: Content Issue
+description: Unclear README, misleading docstring, wrong explanation, typo
+labels: ["content"]
+body:
+  - type: input
+    id: location
+    attributes:
+      label: Location
+      description: "File path, e.g. level_2/missions/03_character_base/README.md"
+      placeholder: "level_X/missions/YY_name/README.md"
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-is-confusing
+    attributes:
+      label: What is confusing or wrong?
+      description: Quote the exact text and explain what should be different
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggested-fix
+    attributes:
+      label: Suggested improvement (optional)
+      description: How would you rewrite it?
+    validations:
+      required: false

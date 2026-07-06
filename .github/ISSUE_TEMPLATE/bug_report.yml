@@ -1,0 +1,44 @@
+name: Bug Report
+description: Something is broken — wrong check.py gate, bad link, crash, incorrect task
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report! Please be as specific as possible.
+
+  - type: input
+    id: location
+    attributes:
+      label: Location
+      description: "Which file or mission? e.g. level_3/missions/02_pydantic_models/check.py"
+      placeholder: "level_X/missions/YY_name/check.py"
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you run, what did you expect, what did you get instead?
+      placeholder: |
+        Ran: uv run python level_3/missions/02_pydantic_models/check.py
+        Expected: ✓ all gates pass
+        Got: ❌ Gate 3 fails even with correct implementation
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Paste the relevant part of your task.py (or check.py output)
+      render: python
+
+  - type: input
+    id: python-version
+    attributes:
+      label: Python version
+      placeholder: "uv run python --version"
+    validations:
+      required: false
