@@ -170,7 +170,7 @@ def main() -> None:
 
     print("✅ Boss Fight complete — SqliteSaveRepository and SqliteCombatLogRepository work correctly.")
     print("   The game code doesn't know which backend is running. That's the point.")
-    update_progress("01_sqlite_repository_backend")
+    update_progress("03_sqlite_repository_backend")
 
 
 if __name__ == "__main__":

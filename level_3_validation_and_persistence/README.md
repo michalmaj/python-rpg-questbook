@@ -34,7 +34,11 @@ Pydantic validates **at the boundary**. Inside the domain, the Hero and Monster 
 | 06 | [Combat Log Repository](missions/06_combat_log_repository/README.md) | `Literal`, `CsvCombatLogRepository`, validated log rows |
 | 07 | [Settings and Paths](missions/07_settings_and_paths/README.md) | `pydantic-settings`, `env_prefix`, `get_settings()` |
 
-**Boss Fight:** [SQLite Repository Backend](projects/01_sqlite_repository_backend/README.md) — add SQLite as a second backend; the game doesn't change.
+**Checkpoint:** [Project 01: Validated Bestiary](projects/01_validated_bestiary/README.md) — Pydantic validation at the boundary; never crash on bad data.
+
+**Checkpoint:** [Project 02: Save Slot Manager](projects/02_save_slot_manager/README.md) — repository pattern with JSON and in-memory backends.
+
+**Boss Fight:** [Project 03: SQLite Repository Backend](projects/03_sqlite_repository_backend/README.md) — add SQLite as a second backend; the game doesn't change.
 
 ## Track your progress
 
