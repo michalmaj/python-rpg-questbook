@@ -28,9 +28,13 @@ uv run pytest tests/ -q
 | 07 | [Process Pool for CPU Work](missions/07_process_pool_for_cpu_work/README.md) | ProcessPoolExecutor |
 | 08 | [Testing Background Work](missions/08_testing_background_work/README.md) | SyncWorker, deterministic tests |
 
-## Boss Fight
+## Projects
 
-[Concurrent Tournament Runner](projects/01_concurrent_tournament_runner/README.md)
+**Checkpoint:** [Project 01: Async Quest Aggregator](projects/01_async_quest_aggregator/README.md) — `asyncio.gather` with per-source timeout; partial results on failure.
+
+**Checkpoint:** [Project 02: Background Report Queue](projects/02_background_report_queue/README.md) — `POST /reports` returns 202+job_id; `GET /reports/{id}` returns result when done.
+
+**Boss Fight:** [Project 03: Concurrent Tournament Runner](projects/03_concurrent_tournament_runner/README.md) — background threading + ProcessPoolExecutor for CPU-bound battle simulation.
 
 ## How to start
 

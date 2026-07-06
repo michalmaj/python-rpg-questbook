@@ -2,11 +2,11 @@ from functools import lru_cache
 from pathlib import Path
 from rpg.repositories import MonsterRepository
 from rpg.services import SimulationService
-from jobs.jobs import JsonJobRepository, JobRepository, BackgroundWorker
+from jobs.jobs import JsonJobRepository, JobRepository, ProcessPoolTournamentWorker
 
 _DATA = Path(__file__).parent.parent / "data"
 _job_repo: JobRepository = JsonJobRepository(_DATA / "jobs")
-_worker = BackgroundWorker(_job_repo)
+_worker = ProcessPoolTournamentWorker(_job_repo)
 
 
 @lru_cache
@@ -22,5 +22,5 @@ def get_job_repo() -> JobRepository:
     return _job_repo
 
 
-def get_worker() -> BackgroundWorker:
+def get_worker() -> ProcessPoolTournamentWorker:
     return _worker
