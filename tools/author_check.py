@@ -7,6 +7,7 @@ This is not a student tool — it checks the repo for authoring mistakes.
 """
 
 import re
+import subprocess
 import sys
 import tomllib
 from pathlib import Path
@@ -411,6 +412,18 @@ for level_root, level_dir, label in _level_checks:
         f"README.md documents {label}",
         f"README.md is missing {label} ({level_dir}) — add it to the course structure",
     )
+
+print("Checking entry point smoke test (uv run rpg --help)…")
+_rpg_result = subprocess.run(
+    ["uv", "run", "rpg", "--help"],
+    capture_output=True, text=True, cwd=str(REPO_ROOT),
+)
+check(
+    _rpg_result.returncode == 0,
+    "uv run rpg --help exits 0 (entry point wired correctly)",
+    f"uv run rpg --help FAILED (exit {_rpg_result.returncode}) — "
+    f"check [tool.hatch.build.targets.wheel] packages in pyproject.toml",
+)
 
 # ── Report ────────────────────────────────────────────────────────────────────
 
