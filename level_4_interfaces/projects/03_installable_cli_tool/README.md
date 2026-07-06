@@ -39,7 +39,7 @@ This project wires them all together. The game domain (Hero, Monster, combat log
 ## What you need to build
 
 ```
-projects/01_installable_cli_tool/
+projects/03_installable_cli_tool/
 ├── rpg/
 │   ├── __init__.py
 │   ├── domain.py       # Hero, Monster, HeroClass (pure domain, no changes)
@@ -96,7 +96,7 @@ And in `pyproject.toml` (the repo root):
 
 ```toml
 [project.scripts]
-rpg = "level_4_interfaces.projects.01_installable_cli_tool.rpg.cli:app"
+rpg = "level_4_interfaces.projects.03_installable_cli_tool.rpg.cli:app"
 ```
 
 After `uv sync`, `rpg` is available as a command.
@@ -118,7 +118,7 @@ This is how `pytest`, `ruff`, `typer`, and every other CLI tool you have used is
 
 ```bash
 # test without installing
-uv run python level_4_interfaces/projects/01_installable_cli_tool/task.py --help
+uv run python level_4_interfaces/projects/03_installable_cli_tool/task.py --help
 
 # after registering in pyproject.toml and running uv sync:
 uv run rpg --help
@@ -131,7 +131,7 @@ uv run rpg report
 ## Check
 
 ```bash
-uv run python level_4_interfaces/projects/01_installable_cli_tool/check.py
+uv run python level_4_interfaces/projects/03_installable_cli_tool/check.py
 ```
 
 ## Break it on purpose

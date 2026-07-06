@@ -80,7 +80,7 @@ L4_MISSIONS = [
 ]
 
 L4_PROJECTS = [
-    "01_installable_cli_tool",
+    "01_quest_master_cli", "02_observable_battle_runner", "03_installable_cli_tool",
 ]
 
 L4_MISSION_FILE_EXCEPTIONS: dict[str, set[str]] = {}

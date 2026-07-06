@@ -167,12 +167,16 @@ Now it needs a real interface: CLI commands, logging, readable terminal output, 
 | 01 | [argparse Baseline](level_4_interfaces/missions/01_argparse_baseline/README.md) | `argparse`, subcommands, `add_subparsers`, `choices=` |
 | 02 | [Typer CLI](level_4_interfaces/missions/02_typer_cli/README.md) | `typer.Typer()`, `@app.command()`, type hints as CLI contract |
 
+**Checkpoint:** [Project 01: Quest Master CLI](level_4_interfaces/projects/01_quest_master_cli/README.md)
+
 ### World 2: Logging and Observability
 
 | # | Mission | Concept |
 |---|---------|---------|
 | 03 | [stdlib logging](level_4_interfaces/missions/03_stdlib_logging/README.md) | `logging.getLogger()`, levels, `logger.exception()` |
 | 04 | [Log Files](level_4_interfaces/missions/04_log_files/README.md) | `FileHandler`, logger hierarchy, `RotatingFileHandler` |
+
+**Checkpoint:** [Project 02: Observable Battle Runner](level_4_interfaces/projects/02_observable_battle_runner/README.md)
 
 ### World 3: User-Facing Output
 
@@ -181,7 +185,7 @@ Now it needs a real interface: CLI commands, logging, readable terminal output, 
 | 05 | [Rich Terminal Output](level_4_interfaces/missions/05_rich_terminal_output/README.md) | `Console`, `Table`, `Panel`, `stderr=True` |
 | 06 | [Session Reports](level_4_interfaces/missions/06_session_reports/README.md) | Pydantic report model, `model_dump_json()`, Markdown output |
 
-**Boss Fight:** [Project 01: Installable CLI Tool](level_4_interfaces/projects/01_installable_cli_tool/README.md)
+**Boss Fight:** [Project 03: Installable CLI Tool](level_4_interfaces/projects/03_installable_cli_tool/README.md)
 
 ---
 

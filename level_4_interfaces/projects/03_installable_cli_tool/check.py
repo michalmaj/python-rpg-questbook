@@ -175,5 +175,5 @@ if result.returncode != 0:
     raise SystemExit(1)
 print("✓ report works")
 
-update_progress("01_installable_cli_tool")
+update_progress("03_installable_cli_tool")
 print("\n✅ Boss fight complete! All CLI commands work end-to-end.")
