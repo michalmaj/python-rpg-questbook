@@ -32,10 +32,13 @@ Level 4 fixes them one mission at a time.
 | 05 | `missions/05_rich_terminal_output/` | Hero stats as a Rich `Table`, errors as a Rich `Panel` |
 | 06 | `missions/06_session_reports/` | Pydantic report model → `session_*.json` + `session_*.md` |
 
-## Boss Fight
+## Projects
 
-`projects/01_installable_cli_tool/` — wire all six missions into one package and
-register it as a real CLI entry point so `uv run rpg --help` works.
+**Checkpoint:** `projects/01_quest_master_cli/` — three Typer subcommands (hero, monsters, battle) with friendly error handling.
+
+**Checkpoint:** `projects/02_observable_battle_runner/` — adds structured logging to two files: `app.log` and `combat.log`.
+
+**Boss Fight:** `projects/03_installable_cli_tool/` — wire all six missions into one package and register it as a real CLI entry point so `uv run rpg --help` works.
 
 ## How to start
 
