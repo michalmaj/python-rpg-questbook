@@ -29,9 +29,13 @@ Run it first: `cd starter_unqualified_rpg && uv run python main.py new-game --na
 | 08 | [pre-commit](missions/08_pre_commit/README.md) | Local quality gate |
 | 09 | [GitHub Actions CI](missions/09_github_actions_ci/README.md) | Remote CI pipeline |
 
-## Boss Fight
+## Projects
 
-[Full Release Pipeline](projects/01_full_release_pipeline/README.md) — start with the unqualified RPG and wire all 9 quality tools. Ship v1.0.0.
+**Checkpoint:** [Project 01: Quality Gate Rescue](projects/01_quality_gate_rescue/README.md) — fix a broken codebase until ruff, mypy, and pyright all pass.
+
+**Checkpoint:** [Project 02: Combat Regression Suite](projects/02_combat_regression_suite/README.md) — write a parametrized pytest suite that finds a hidden bug (then documents it with xfail).
+
+**Boss Fight:** [Project 03: Full Release Pipeline](projects/03_full_release_pipeline/README.md) — start with the unqualified RPG and wire all 9 quality tools. Ship v1.0.0.
 
 ## How to start
 
