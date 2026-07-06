@@ -281,4 +281,8 @@ Now it needs a real interface: CLI commands, logging, readable terminal output, 
 | 07 | [Process Pool for CPU Work](level_7_concurrency_and_background_work/missions/07_process_pool_for_cpu_work/README.md) | ProcessPoolExecutor |
 | 08 | [Testing Background Work](level_7_concurrency_and_background_work/missions/08_testing_background_work/README.md) | SyncWorker, deterministic tests |
 
-**Boss Fight:** [Concurrent Tournament Runner](level_7_concurrency_and_background_work/projects/01_concurrent_tournament_runner/README.md)
+**Checkpoint P01:** [Async Quest Aggregator](level_7_concurrency_and_background_work/projects/01_async_quest_aggregator/README.md) — asyncio.gather + per-source timeout
+
+**Checkpoint P02:** [Background Report Queue](level_7_concurrency_and_background_work/projects/02_background_report_queue/README.md) — daemon thread job queue with FastAPI
+
+**Boss Fight P03:** [Concurrent Tournament Runner](level_7_concurrency_and_background_work/projects/03_concurrent_tournament_runner/README.md) — ProcessPoolExecutor upgrade

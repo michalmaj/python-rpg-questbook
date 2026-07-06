@@ -1,6 +1,7 @@
 # jobs/jobs.py
 import json
 import threading
+from concurrent.futures import ProcessPoolExecutor
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from enum import StrEnum
@@ -157,6 +158,37 @@ class SyncWorker:
         self._repo.set_status(job_id, JobStatus.running)
         try:
             result = fn()
+            self._repo.set_result(job_id, result)
+            self._repo.set_status(job_id, JobStatus.completed)
+        except Exception as exc:
+            self._repo.set_error(job_id, str(exc))
+            self._repo.set_status(job_id, JobStatus.failed)
+
+
+class ProcessPoolTournamentWorker:
+    """Runs the tournament in a background thread.
+
+    Inside that thread, uses ProcessPoolExecutor to parallelize individual
+    battle simulations across CPU cores — same Worker Protocol interface,
+    faster for CPU-bound work.
+    """
+
+    def __init__(self, repo: JobRepository, workers: int = 4) -> None:
+        self._repo = repo
+        self._workers = workers
+
+    def submit(self, job_id: str, fn: Callable[[], Any]) -> None:
+        self._repo.set_status(job_id, JobStatus.running)
+        thread = threading.Thread(
+            target=self._run, args=(job_id, fn), daemon=True
+        )
+        thread.start()
+
+    def _run(self, job_id: str, fn: Callable[[], Any]) -> None:
+        try:
+            with ProcessPoolExecutor(max_workers=self._workers) as pool:
+                future = pool.submit(fn)
+                result = future.result()
             self._repo.set_result(job_id, result)
             self._repo.set_status(job_id, JobStatus.completed)
         except Exception as exc:

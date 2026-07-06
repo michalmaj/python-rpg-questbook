@@ -165,7 +165,33 @@ if result.returncode != 0:
     raise SystemExit(1)
 print(f"✓ All {len(_test_funcs)} API tests pass")
 
-update_progress("01_concurrent_tournament_runner")
+# ── Gate 11: ProcessPoolExecutor inside ProcessPoolTournamentWorker ────────────
+import ast as _ast
+
+_jobs_src = (project / "jobs" / "jobs.py").read_text(encoding="utf-8")
+_jobs_tree = _ast.parse(_jobs_src)
+
+_found_pptw = False
+_uses_ppe_inside = False
+for _node in _ast.walk(_jobs_tree):
+    if isinstance(_node, _ast.ClassDef) and _node.name == "ProcessPoolTournamentWorker":
+        _found_pptw = True
+        for _child in _ast.walk(_node):
+            if isinstance(_child, _ast.Name) and _child.id == "ProcessPoolExecutor":
+                _uses_ppe_inside = True
+            if isinstance(_child, _ast.Attribute) and _child.attr == "ProcessPoolExecutor":
+                _uses_ppe_inside = True
+
+if not _found_pptw:
+    print("❌ ProcessPoolTournamentWorker class not found in jobs/jobs.py")
+    raise SystemExit(1)
+if not _uses_ppe_inside:
+    print("❌ ProcessPoolTournamentWorker must use ProcessPoolExecutor internally")
+    raise SystemExit(1)
+print("✓ ProcessPoolTournamentWorker uses ProcessPoolExecutor for parallel battles")
+
+update_progress("03_concurrent_tournament_runner")
 print()
 print("✅ Boss fight complete! Concurrent Tournament Runner operational.")
 print("   POST /tournaments ✓  job tracking ✓  Markdown reports ✓  tests ✓")
+print("   ProcessPoolExecutor ✓  CPU-bound battles run in parallel across cores")

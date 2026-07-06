@@ -266,7 +266,9 @@ LEVEL7_WORLDS = [
             ("01_blocking_vs_background_work", "Mission 01: Blocking vs Background Work"),
             ("02_asyncio_basics", "Mission 02: asyncio Basics"),
         ],
-        [],
+        [
+            ("01_async_quest_aggregator", "P01: Async Quest Aggregator"),
+        ],
     ),
     (
         "World 2: Background Jobs",
@@ -275,7 +277,9 @@ LEVEL7_WORLDS = [
             ("04_background_jobs", "Mission 04: Background Jobs"),
             ("05_job_status_repository", "Mission 05: Job Status Repository"),
         ],
-        [],
+        [
+            ("02_background_report_queue", "P02: Background Report Queue"),
+        ],
     ),
     (
         "World 3: Parallel Execution",
@@ -285,7 +289,7 @@ LEVEL7_WORLDS = [
             ("08_testing_background_work", "Mission 08: Testing Background Work"),
         ],
         [
-            ("01_concurrent_tournament_runner", "Boss Fight: Concurrent Tournament Runner"),
+            ("03_concurrent_tournament_runner", "P03 Boss Fight: Concurrent Tournament Runner"),
         ],
     ),
 ]
