@@ -1,4 +1,4 @@
-# level_6_api/projects/01_rpg_battle_api/check.py
+# level_6_api/projects/03_rpg_battle_api/check.py
 """Check: Boss Fight — RPG Battle API."""
 import json
 import subprocess
@@ -152,7 +152,7 @@ if result.returncode != 0:
     raise SystemExit(1)
 print("✓ All API tests pass")
 
-update_progress("01_rpg_battle_api")
+update_progress("03_rpg_battle_api")
 print()
 print("✅ Boss fight complete! RPG Battle API fully operational.")
 print("   7 endpoints ✓  session persistence ✓  Markdown reports ✓  tests ✓")
