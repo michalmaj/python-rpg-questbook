@@ -162,7 +162,9 @@ LEVEL4_WORLDS = [
             ("01_argparse_baseline", "Mission 01: argparse Baseline"),
             ("02_typer_cli", "Mission 02: Typer CLI"),
         ],
-        [],
+        [
+            ("01_quest_master_cli", "Project 01: Quest Master CLI"),
+        ],
     ),
     (
         "World 2: Logging and Observability",
@@ -170,7 +172,9 @@ LEVEL4_WORLDS = [
             ("03_stdlib_logging", "Mission 03: stdlib logging"),
             ("04_log_files", "Mission 04: Log Files"),
         ],
-        [],
+        [
+            ("02_observable_battle_runner", "Project 02: Observable Battle Runner"),
+        ],
     ),
     (
         "World 3: User-Facing Output",
@@ -179,7 +183,7 @@ LEVEL4_WORLDS = [
             ("06_session_reports", "Mission 06: Session Reports"),
         ],
         [
-            ("01_installable_cli_tool", "Boss Fight: Installable CLI Tool"),
+            ("03_installable_cli_tool", "Project 03: Installable CLI Tool (Boss Fight)"),
         ],
     ),
 ]
