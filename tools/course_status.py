@@ -196,7 +196,9 @@ LEVEL5_WORLDS = [
             ("02_mypy_type_checking", "Mission 02: mypy Type Checking"),
             ("03_pyright_strict", "Mission 03: pyright Strict"),
         ],
-        [],
+        [
+            ("01_quality_gate_rescue", "Project 01: Quality Gate Rescue"),
+        ],
     ),
     (
         "World 2: Testing",
@@ -205,7 +207,9 @@ LEVEL5_WORLDS = [
             ("05_pytest_parametrize", "Mission 05: pytest Parametrize"),
             ("06_coverage", "Mission 06: Coverage"),
         ],
-        [],
+        [
+            ("02_combat_regression_suite", "Project 02: Combat Regression Suite"),
+        ],
     ),
     (
         "World 3: CI/CD and Polish",
@@ -215,7 +219,7 @@ LEVEL5_WORLDS = [
             ("09_github_actions_ci", "Mission 09: GitHub Actions CI"),
         ],
         [
-            ("01_full_release_pipeline", "Boss Fight: Full Release Pipeline"),
+            ("03_full_release_pipeline", "Project 03: Full Release Pipeline (Boss Fight)"),
         ],
     ),
 ]

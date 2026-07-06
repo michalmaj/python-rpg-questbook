@@ -150,7 +150,7 @@ if pct < 80:
     raise SystemExit(1)
 print(f"✓ Coverage for rpg.py: {pct}%")
 
-update_progress("01_full_release_pipeline")
+update_progress("03_full_release_pipeline")
 print()
 print("✅ Boss fight complete!")
 print("   Your project has: ruff ✓  mypy ✓  pyright config ✓")

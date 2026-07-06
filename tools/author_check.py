@@ -94,7 +94,7 @@ L5_MISSIONS = [
 ]
 
 L5_PROJECTS = [
-    "01_full_release_pipeline",
+    "01_quality_gate_rescue", "02_combat_regression_suite", "03_full_release_pipeline",
 ]
 
 L5_MISSION_FILE_EXCEPTIONS: dict[str, set[str]] = {
