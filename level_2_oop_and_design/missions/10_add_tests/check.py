@@ -57,7 +57,7 @@ def main() -> None:
     print("   Tests are your safety net. Every change you make, they catch regressions.")
     print()
     print("   You finished all 10 missions. Time for the boss fight:")
-    print("   level_2_oop_and_design/projects/01_refactored_rpg/README.md")
+    print("   level_2_oop_and_design/projects/03_refactored_rpg/README.md")
 
 
 if __name__ == "__main__":
