@@ -203,6 +203,8 @@ Now it needs a real interface: CLI commands, logging, readable terminal output, 
 | [M02: mypy Type Checking](level_5_maintainability/missions/02_mypy_type_checking/README.md) | Static types | mypy --strict |
 | [M03: pyright Strict](level_5_maintainability/missions/03_pyright_strict/README.md) | Second type checker | pyright --strict |
 
+**Checkpoint:** [Project 01: Quality Gate Rescue](level_5_maintainability/projects/01_quality_gate_rescue/README.md)
+
 ### World 2: Testing
 
 | Mission | Concept | Key tool |
@@ -210,6 +212,8 @@ Now it needs a real interface: CLI commands, logging, readable terminal output, 
 | [M04: pytest Fixtures](level_5_maintainability/missions/04_pytest_fixtures/README.md) | Test setup | @pytest.fixture |
 | [M05: pytest Parametrize](level_5_maintainability/missions/05_pytest_parametrize/README.md) | Edge cases | @pytest.mark.parametrize |
 | [M06: Coverage](level_5_maintainability/missions/06_coverage/README.md) | Test coverage | pytest-cov |
+
+**Checkpoint:** [Project 02: Combat Regression Suite](level_5_maintainability/projects/02_combat_regression_suite/README.md)
 
 ### World 3: CI/CD and Polish
 
@@ -219,9 +223,7 @@ Now it needs a real interface: CLI commands, logging, readable terminal output, 
 | [M08: pre-commit](level_5_maintainability/missions/08_pre_commit/README.md) | Local quality gate | pre-commit |
 | [M09: GitHub Actions CI](level_5_maintainability/missions/09_github_actions_ci/README.md) | Remote CI | GitHub Actions |
 
-### Boss Fight
-
-[Full Release Pipeline](level_5_maintainability/projects/01_full_release_pipeline/README.md) — wire all 9 tools, write CHANGELOG, tag v1.0.0.
+**Boss Fight:** [Project 03: Full Release Pipeline](level_5_maintainability/projects/03_full_release_pipeline/README.md) — wire all 9 tools, write CHANGELOG, tag v1.0.0.
 
 ---
 
