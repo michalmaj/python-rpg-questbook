@@ -108,16 +108,38 @@ def main() -> None:
         f"{len(result_tight.quests)} quest(s) from remaining sources"
     )
 
-    # ── 6. Timing proof: 5.0s timeout completes well under 0.4s ─────────────
-    # Sequential would be 0.1+0.05+0.2=0.35s; concurrent should be ~0.2s
-    t0 = time.monotonic()
-    asyncio.run(aggregate_all_quests(5.0))
-    elapsed = time.monotonic() - t0
-    if elapsed > 0.4:
-        print(f"❌ aggregate_all_quests(5.0) took {elapsed:.3f}s — must be concurrent (<0.4s)")
-        print("   Sequential sum: 0.1+0.05+0.2=0.35s; concurrent should be ~0.2s")
+    # ── 6. Timing proof with controlled sources (each 0.15s) ─────────────────
+    # Monkey-patch SOURCES so sequential sum = 0.45s, concurrent = ~0.15s.
+    # Threshold = 0.3s — impossible to pass by calling them sequentially.
+    import task as _task_mod
+
+    async def _slow_a() -> list:
+        await asyncio.sleep(0.15)
+        return [Quest("Quest A", "a", 10)]
+
+    async def _slow_b() -> list:
+        await asyncio.sleep(0.15)
+        return [Quest("Quest B", "b", 20)]
+
+    async def _slow_c() -> list:
+        await asyncio.sleep(0.15)
+        return [Quest("Quest C", "c", 30)]
+
+    _orig_sources = dict(_task_mod.SOURCES)
+    _task_mod.SOURCES = {"a": _slow_a, "b": _slow_b, "c": _slow_c}
+    try:
+        t0 = time.monotonic()
+        asyncio.run(aggregate_all_quests(5.0))
+        elapsed = time.monotonic() - t0
+    finally:
+        _task_mod.SOURCES = _orig_sources
+
+    if elapsed > 0.3:
+        print(f"❌ With three 0.15s sources, aggregate took {elapsed:.3f}s")
+        print("   Sequential would be 0.45s; concurrent must be < 0.3s.")
+        print("   Ensure asyncio.gather() is the actual concurrency mechanism.")
         raise SystemExit(1)
-    print(f"✓ Timing: completed in {elapsed:.3f}s (concurrent, not sequential)")
+    print(f"✓ Timing (controlled sources): {elapsed:.3f}s — truly concurrent (< 0.3s)")
 
     # ── 7. AST: asyncio.gather used inside aggregate_all_quests ──────────────
     source = (PROJECT_DIR / "task.py").read_text(encoding="utf-8")
