@@ -129,7 +129,9 @@ LEVEL3_WORLDS = [
             ("02_pydantic_monster_config", "Mission 02: Pydantic Monster Config"),
             ("03_load_game_catalogs", "Mission 03: Load Game Catalogs"),
         ],
-        [],
+        [
+            ("01_validated_bestiary", "Project 01: Validated Bestiary"),
+        ],
     ),
     (
         "World 2: Persistence",
@@ -137,7 +139,9 @@ LEVEL3_WORLDS = [
             ("04_save_and_load_game_json", "Mission 04: Save and Load Game JSON"),
             ("05_repository_pattern", "Mission 05: Repository Pattern"),
         ],
-        [],
+        [
+            ("02_save_slot_manager", "Project 02: Save Slot Manager"),
+        ],
     ),
     (
         "World 3: Integration",
@@ -146,7 +150,7 @@ LEVEL3_WORLDS = [
             ("07_settings_and_paths", "Mission 07: Settings and Paths"),
         ],
         [
-            ("01_sqlite_repository_backend", "Boss Fight: SQLite Repository Backend"),
+            ("03_sqlite_repository_backend", "Project 03: SQLite Repository Backend (Boss Fight)"),
         ],
     ),
 ]
