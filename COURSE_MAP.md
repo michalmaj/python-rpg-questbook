@@ -241,6 +241,8 @@ Now it needs a real interface: CLI commands, logging, readable terminal output, 
 | [M02: Request/Response Schemas](level_6_api/missions/02_request_response_schemas/README.md) | Pydantic schemas for HTTP | BaseModel |
 | [M03: Routes Call Services](level_6_api/missions/03_routes_call_services/README.md) | Thin routes, no logic | service layer |
 
+**Checkpoint:** [Project 01: Battle Preview API](level_6_api/projects/01_battle_preview_api/README.md)
+
 ### World 2: Structure and DI
 
 | Mission | Concept | Key tool |
@@ -249,6 +251,8 @@ Now it needs a real interface: CLI commands, logging, readable terminal output, 
 | [M05: Dependencies and Repositories](level_6_api/missions/05_dependencies_and_repositories/README.md) | DI factories | Depends() |
 | [M06: API Errors and Status Codes](level_6_api/missions/06_api_errors_and_status_codes/README.md) | Error handling | HTTPException |
 
+**Checkpoint:** [Project 02: Monster Catalog API](level_6_api/projects/02_monster_catalog_api/README.md)
+
 ### World 3: Quality and Polish
 
 | Mission | Concept | Key tool |
@@ -256,9 +260,7 @@ Now it needs a real interface: CLI commands, logging, readable terminal output, 
 | [M07: API Tests](level_6_api/missions/07_api_tests/README.md) | HTTP-level tests | TestClient |
 | [M08: OpenAPI and API Polish](level_6_api/missions/08_openapi_and_api_polish/README.md) | Docs polish | tags, descriptions |
 
-### Boss Fight
-
-[RPG Battle API](level_6_api/projects/01_rpg_battle_api/README.md) — wire all 8 concepts into a fully tested 7-endpoint battle API with JSON session persistence.
+**Boss Fight:** [Project 03: RPG Battle API](level_6_api/projects/03_rpg_battle_api/README.md) — wire all 8 concepts into a fully tested 7-endpoint battle API with JSON session persistence.
 
 ---
 
