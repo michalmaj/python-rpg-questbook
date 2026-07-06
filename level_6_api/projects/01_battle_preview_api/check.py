@@ -91,14 +91,15 @@ def main() -> None:
         raise SystemExit(1)
     print(f"✓ POST /battle/simulate → 200, winner={body['winner']!r}, rounds={body['rounds']}")
 
-    # ── 7. POST /battle/simulate unknown monster → 404 ───────────────────────
+    # ── 7. POST /battle/simulate unknown monster → 422 ───────────────────────
+    # monster_name is a Literal — Pydantic rejects unknown values automatically
     payload = {"hero": {"name": "Ada", "hp": 120, "atk": 15, "def_": 5},
                "monster_name": "Phoenix"}
     r = client.post("/battle/simulate", json=payload)
-    if r.status_code != 404:
-        print(f"❌ Unknown monster should return 404, got {r.status_code}")
+    if r.status_code != 422:
+        print(f"❌ Unknown monster_name should return 422 (Pydantic Literal), got {r.status_code}")
         raise SystemExit(1)
-    print("✓ POST /battle/simulate unknown monster → 404")
+    print("✓ POST /battle/simulate unknown monster_name → 422 (Pydantic Literal validation)")
 
     # ── 8. AST check: no APIRouter ────────────────────────────────────────────
     source = TASK_FILE.read_text(encoding="utf-8")
@@ -117,7 +118,7 @@ def main() -> None:
     print()
     print("✅ Project 01 complete: Battle Preview API works!")
     print()
-    print("   Three endpoints, Pydantic schemas, HTTPException(404).")
+    print("   Three endpoints, Pydantic schemas, Literal for constrained choices.")
     print("   FastAPI + Pydantic handle validation automatically — you just declare the types.")
 
 
