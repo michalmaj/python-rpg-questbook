@@ -1,0 +1,45 @@
+name: Feature Request
+description: Suggest an improvement to an existing mission, project, or tool
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        For entirely new missions or projects, please use the **New Mission / Project Proposal** template instead.
+
+  - type: input
+    id: location
+    attributes:
+      label: Location
+      description: Which file or component would this improve?
+      placeholder: "e.g. level_3/missions/04_json_files/README.md"
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      description: Describe the friction or gap a student hits today
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: What would you change and how?
+    validations:
+      required: true
+
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Estimated scope
+      options:
+        - Tiny — wording / typo fix
+        - Small — a few lines in README or task.py
+        - Medium — new check.py gate or task variant
+        - Large — structural change to mission/project
+    validations:
+      required: true

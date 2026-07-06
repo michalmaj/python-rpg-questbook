@@ -1,0 +1,58 @@
+name: New Mission / Project Proposal
+description: Suggest a new mission or checkpoint project for the course
+labels: ["enhancement", "content"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template to propose a new mission (focused concept exercise) or project (multi-concept checkpoint).
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type
+      options:
+        - Mission (single concept, ~30 min)
+        - Project checkpoint (multi-concept, ~1–2 h)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: level
+    attributes:
+      label: Level
+      options:
+        - Level 1 — Python Basics
+        - Level 2 — OOP and Design
+        - Level 3 — Validation and Persistence
+        - Level 4 — Interfaces
+        - Level 5 — Maintainability
+        - Level 6 — API
+        - Level 7 — Concurrency
+    validations:
+      required: true
+
+  - type: input
+    id: concept
+    attributes:
+      label: Python concept taught
+      placeholder: "e.g. dataclasses.asdict, functools.lru_cache, contextlib.contextmanager"
+    validations:
+      required: true
+
+  - type: textarea
+    id: game-connection
+    attributes:
+      label: RPG connection
+      description: How does this concept connect to the RPG game? What mechanic does it add?
+      placeholder: "e.g. lru_cache speeds up repeated monster stat lookups in a battle simulator"
+    validations:
+      required: true
+
+  - type: textarea
+    id: why
+    attributes:
+      label: Why should this be in the course?
+      description: What gap does it fill? What would a student be able to do after completing it?
+    validations:
+      required: true

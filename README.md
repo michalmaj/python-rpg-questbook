@@ -1,5 +1,8 @@
 # Python RPG Questbook
 
+[![CI](https://github.com/michalmaj/python-rpg-questbook/actions/workflows/ci.yml/badge.svg)](https://github.com/michalmaj/python-rpg-questbook/actions/workflows/ci.yml)
+[![Python 3.12+](https://img.shields.io/badge/python-3.12%2B-blue.svg)](https://www.python.org/downloads/)
+
 Learn Python by building a real terminal RPG — one mechanic at a time.
 
 ## What is this?
@@ -14,7 +17,7 @@ Each mission teaches one Python concept by adding a new game mechanic:
 - files save the combat log
 - data analysis asks: is the game balanced?
 
-The course continues into professional Python territory — OOP, validation, persistence, and clean architecture — using the same RPG as the vehicle.
+The course continues into professional Python territory — OOP, validation, persistence, APIs, and concurrency — using the same RPG as the vehicle.
 
 ## Setup
 
@@ -52,43 +55,46 @@ uv run python level_1_python_basics/missions/01_hero_stats/check.py
 
 ## Course structure
 
+Seven levels, each with focused missions and two checkpoint projects before the boss fight:
+
 ```
 level_1_python_basics/              ← Python fundamentals through terminal RPG + data analysis
   missions/                         ← 20 focused exercises (one concept each)
-  projects/                         ← boss fights that combine what you learned
+  projects/                         ← 5 boss fights that combine what you learned
 
 level_2_oop_and_design/             ← OOP, refactoring, design patterns
   starter_legacy_rpg/               ← the code you will clean up
   missions/                         ← 10 missions
-  projects/                         ← boss fight: refactored RPG
+  projects/                         ← P01 Arena Roster · P02 Character Sheet Builder · P03 boss fight
 
 level_3_validation_and_persistence/ ← Pydantic, repository pattern, SQLite
   starter_raw_rpg/                  ← the code you will harden
   missions/                         ← 7 missions
-  projects/                         ← boss fight: SQLite backend
+  projects/                         ← P01 Validated Bestiary · P02 Save Slot Manager · P03 boss fight
 
-level_4_interfaces/                 ← CLI, logging, Rich output, reports, entry points
+level_4_interfaces/                 ← CLI (Typer), logging, Rich output, reports, entry points
   starter_verbose_rpg/              ← the interface-smelly app you will improve
   missions/                         ← 6 missions
-  projects/                         ← boss fight: installable CLI tool
+  projects/                         ← P01 Quest Master CLI · P02 Observable Battle Runner · P03 boss fight
 
-level_5_maintainability/            ← Level 5: Production Quality and Maintainability
-  starter_unqualified_rpg/          ←   Fully working RPG with 6 quality smells (your starting point)
-  missions/                         ←   9 missions: ruff, mypy, pyright, fixtures, parametrize, coverage,
-  projects/                         ←              error handling, pre-commit, GitHub Actions CI
+level_5_maintainability/            ← ruff, mypy, pyright, pytest-cov, pre-commit, CI
+  starter_unqualified_rpg/          ← working RPG with 6 quality smells (your starting point)
+  missions/                         ← 9 missions
+  projects/                         ← P01 Quality Gate Rescue · P02 Combat Regression Suite · P03 boss fight
 
-level_6_api/                        ← Level 6: API Interface with FastAPI
-  starter_service_ready_rpg/        ←   Working RPG engine with service layer (your API will call this)
-  missions/                         ←   8 missions: FastAPI, schemas, routers, DI, errors, tests, OpenAPI
-  projects/                         ←   boss fight: RPG Battle API (7 endpoints, JSON persistence)
+level_6_api/                        ← FastAPI, schemas, routers, dependency injection, TestClient
+  starter_service_ready_rpg/        ← working RPG engine with service layer (your API will call this)
+  missions/                         ← 8 missions
+  projects/                         ← P01 Battle Preview API · P02 Monster Catalog API · P03 boss fight
 
-level_7_concurrency_and_background_work/  ← Level 7: Concurrency and Background Work
-  starter_blocking_rpg_api/         ←   Blocking tournament API (your starting point)
-  missions/                         ←   8 missions: asyncio, async endpoints, job_id, ThreadPoolExecutor,
-  projects/                         ←              ProcessPoolExecutor, SyncWorker, deterministic tests
-
-tools/                              ← helper scripts (course_status, author_check)
+level_7_concurrency_and_background_work/  ← asyncio, job_id, ThreadPoolExecutor, ProcessPoolExecutor
+  starter_blocking_rpg_api/         ← blocking tournament API (your starting point)
+  missions/                         ← 8 missions
+  projects/                         ← P01 Async Quest Aggregator · P02 Background Report Queue · P03 boss fight
 ```
+
+Each checkpoint project (`P01`, `P02`) is a standalone exercise that exercises the level's concepts.
+The boss fight (`P03`) is a full-size challenge that combines everything from the level.
 
 ## Note on global commands
 

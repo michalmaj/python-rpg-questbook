@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  author-check:
+    name: Author Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          version: "latest"
+
+      - name: Set up Python
+        run: uv python install 3.12
+
+      - name: Install dependencies
+        run: uv sync --all-groups
+
+      - name: Run author_check.py
+        run: uv run python tools/author_check.py
+
+      - name: Lint repo tooling (tools/)
+        run: uv run ruff check tools/
+
+      - name: Smoke test — entry point
+        run: uv run rpg --help
