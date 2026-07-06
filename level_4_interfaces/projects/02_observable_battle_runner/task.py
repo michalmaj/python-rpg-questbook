@@ -56,6 +56,11 @@ def setup_logging() -> None:
 app = typer.Typer(help="Observable Battle Runner — battles with structured logging.")
 
 
+@app.callback()
+def main() -> None:
+    """Observable Battle Runner — battles with structured logging."""
+
+
 @app.command()
 def battle(
     hero_name: str = typer.Option(..., "--hero", help="Hero name"),

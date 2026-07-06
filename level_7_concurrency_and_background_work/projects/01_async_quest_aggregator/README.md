@@ -74,3 +74,7 @@ async def aggregate_all_quests(timeout: float) -> AggregateResult:
 - `asyncio.wait_for` — per-coroutine timeout
 - `return_exceptions=True` — gather doesn't raise; exceptions arrive as values
 - Wall-clock timing with `time.monotonic`
+
+---
+
+**Next:** `level_7_concurrency_and_background_work/projects/02_background_report_queue/README.md`

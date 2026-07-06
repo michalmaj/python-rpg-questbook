@@ -20,7 +20,9 @@ Then write `QUALITY_REPORT.md` describing what each tool found.
 01_quality_gate_rescue/
 ├── README.md           ← this file
 ├── check.py            ← run to verify all gates pass
-├── pyproject.toml      ← tool configuration (don't change this)
+├── ruff.toml           ← ruff configuration (don't change this)
+├── mypy.ini            ← mypy configuration (don't change this)
+├── pyrightconfig.json  ← pyright configuration (don't change this)
 ├── QUALITY_REPORT.md   ← you create this
 └── rpg/
     ├── __init__.py
@@ -30,9 +32,10 @@ Then write `QUALITY_REPORT.md` describing what each tool found.
 
 ## How to check
 
+Run all commands from the **repo root**:
+
 ```bash
-cd level_5_maintainability/projects/01_quality_gate_rescue
-uv run python check.py
+uv run python level_5_maintainability/projects/01_quality_gate_rescue/check.py
 ```
 
 ## What is broken
@@ -51,7 +54,7 @@ Open `rpg/domain.py` and `rpg/combat.py`. You will find:
 
 Work tool by tool:
 
-1. Fix ruff violations first (`uv run ruff check rpg/ --fix` catches some automatically)
+1. Fix ruff violations first — from the project dir: `uv run ruff check rpg/ --fix` catches some automatically
 2. Add missing return type annotations (mypy will tell you exactly where)
 3. Replace `Any` with concrete types (`Hero | Monster`, `list[Hero | Monster]`, etc.)
 4. Run pyright last — it sometimes catches things mypy misses

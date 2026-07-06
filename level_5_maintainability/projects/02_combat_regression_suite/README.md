@@ -39,9 +39,9 @@ uv run python check.py
 |---|---|
 | `pytest tests/test_combat.py` exits 0 | All tests pass (xfail counts as pass) |
 | Coverage ≥85% on `rpg/combat.py` | You've tested the real behaviour, not just the happy path |
-| ≥3 `@pytest.mark.parametrize` uses | Edge cases without copy-paste |
-| ≥2 `@pytest.fixture` definitions | Reusable test state |
-| ≥1 `@pytest.mark.xfail` test calling `compute_damage()` | Documents the known bug |
+| ≥1 `@pytest.mark.parametrize` use | Cover multiple cases without copy-paste |
+| ≥1 `@pytest.fixture` definition | Reusable test state |
+| ≥1 `@pytest.mark.xfail(strict=True)` calling `compute_damage()` | Documents the known bug; fails if bug is silently fixed |
 
 ## The hidden bug
 
@@ -55,12 +55,13 @@ Normal combat (atk > def_) works correctly. Only extreme edge cases expose the b
 ## xfail pattern
 
 ```python
-@pytest.mark.xfail(reason="known bug: minimum damage should be 1, not 0")
+@pytest.mark.xfail(strict=True, reason="known bug: minimum damage should be 1, not 0")
 def test_minimum_damage_is_one():
     assert compute_damage(1, 0, 10) == 1  # currently returns 0
 ```
 
 With `xfail`, pytest reports this as `XFAIL` — not a failure. The suite exits 0.
+`strict=True` means: if the bug is accidentally fixed, pytest fails loudly (XPASS → error).
 
 ## Fixtures and parametrize hints
 

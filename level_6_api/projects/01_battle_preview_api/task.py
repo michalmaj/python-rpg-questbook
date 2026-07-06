@@ -11,8 +11,9 @@ Run `uv run python check.py` to verify your work.
 from __future__ import annotations
 
 import random
+from typing import Literal
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
 from pydantic import BaseModel, Field
 
 # ── Hardcoded monster catalog ─────────────────────────────────────────────────
@@ -42,7 +43,7 @@ class HeroPreview(BaseModel):
 
 class BattleRequest(BaseModel):
     hero: HeroIn
-    monster_name: str     # matched case-insensitively against MONSTERS catalog
+    monster_name: Literal["goblin", "orc", "dragon"]  # validated by Pydantic — unknown names → 422
 
 
 class BattleResult(BaseModel):
@@ -77,7 +78,8 @@ def preview_hero(hero: HeroIn) -> HeroPreview:
 def simulate_battle(request: BattleRequest) -> BattleResult:
     """Simulate a battle between the hero and a monster from the catalog.
 
-    - Unknown monster_name → HTTPException(status_code=404)
+    - monster_name is validated by Pydantic (Literal) — unknown names return 422 automatically.
+    - Look up the monster in MONSTERS using request.monster_name as the key.
     - Simulate round by round: each round hero attacks then monster attacks.
       Damage = max(attacker.atk - defender.def_, 1)
     - Return winner ("hero" or "monster"), rounds, and hero_hp_remaining.

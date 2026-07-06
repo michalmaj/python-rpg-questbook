@@ -17,7 +17,6 @@ class Character:
         """Reduce HP by amount. HP cannot go below 0."""
         raise NotImplementedError
 
-    @property
     def is_alive(self) -> bool:
         """Return True if HP > 0."""
         raise NotImplementedError

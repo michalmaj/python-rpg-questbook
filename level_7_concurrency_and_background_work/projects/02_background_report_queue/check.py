@@ -155,6 +155,82 @@ def main() -> None:
         raise SystemExit(1)
     print("✓ BackgroundWorker uses threading.Thread")
 
+    # ── 11. Behavioural: BackgroundWorker actually runs in a background thread ─
+    import threading as _threading
+
+    from task.jobs import BackgroundWorker as _BW
+
+    _bw_repo = InMemoryJobRepository()
+    _bw = _BW(_bw_repo)
+    _bw_job = _bw_repo.create()
+
+    _started = _threading.Event()
+    _release = _threading.Event()
+
+    def _blocking_task() -> dict:
+        _started.set()
+        _release.wait(timeout=5)
+        return {
+            "total_sessions": 1, "hero_wins": 1, "monster_wins": 0,
+            "hero_win_rate": 1.0, "avg_damage_dealt": 10.0,
+            "avg_damage_taken": 5.0, "markdown": "# test",
+        }
+
+    import time as _time
+    _t0 = _time.monotonic()
+    _bw.submit(_bw_job.job_id, _blocking_task)
+    _submit_elapsed = _time.monotonic() - _t0
+
+    if _submit_elapsed > 0.1:
+        _release.set()
+        print(f"❌ BackgroundWorker.submit() took {_submit_elapsed:.3f}s — must return immediately")
+        raise SystemExit(1)
+
+    if not _started.wait(timeout=2):
+        _release.set()
+        print("❌ BackgroundWorker: task never started — thread was not launched")
+        raise SystemExit(1)
+
+    _mid_state = _bw_repo.get(_bw_job.job_id)
+    if _mid_state is None or _mid_state.status != "running":
+        _release.set()
+        status = _mid_state.status if _mid_state else "None"
+        print(f"❌ BackgroundWorker: status should be 'running' while task executes, got '{status}'")
+        raise SystemExit(1)
+
+    _release.set()
+    _time.sleep(0.15)
+
+    _final_state = _bw_repo.get(_bw_job.job_id)
+    if _final_state is None or _final_state.status != "completed":
+        status = _final_state.status if _final_state else "None"
+        print(f"❌ BackgroundWorker: status should be 'completed' after task, got '{status}'")
+        raise SystemExit(1)
+    if not _final_state.result:
+        print("❌ BackgroundWorker: result is empty after task completed")
+        raise SystemExit(1)
+
+    print(f"✓ BackgroundWorker: submit returns in {_submit_elapsed:.3f}s, "
+          f"task runs in background, status → running → completed")
+
+    # exception path: failed status
+    _err_repo = InMemoryJobRepository()
+    _err_worker = _BW(_err_repo)
+    _err_job = _err_repo.create()
+
+    def _failing_task() -> dict:
+        raise ValueError("expected failure")
+
+    _err_worker.submit(_err_job.job_id, _failing_task)
+    _time.sleep(0.15)
+
+    _err_state = _err_repo.get(_err_job.job_id)
+    if _err_state is None or _err_state.status != "failed":
+        status = _err_state.status if _err_state else "None"
+        print(f"❌ BackgroundWorker: exception should set status to 'failed', got '{status}'")
+        raise SystemExit(1)
+    print("✓ BackgroundWorker: exceptions correctly set status to 'failed'")
+
     # ── Done ──────────────────────────────────────────────────────────────────
     update_progress("02_background_report_queue")
     print()

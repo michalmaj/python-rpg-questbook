@@ -12,7 +12,7 @@ A small roster of arena combatants. This is your first time designing several cl
 |---|---|
 | `Character` base class with `name`, `hp`, `max_hp`, `atk`, `def_` | M01, M03 |
 | `take_damage(amount)` — reduces HP, never below 0 | M01 |
-| `is_alive` property — True if HP > 0 | M01, M06 concept preview |
+| `is_alive()` method — True if HP > 0 | M01 |
 | `Hero(Character)` with `hero_class` and `potions` | M01, M03 |
 | `Monster(Character)` with `reward_gold` | M02, M03 |
 | `build_roster()` — returns ≥3 characters (mix of Hero and Monster) | M03 |
@@ -30,15 +30,14 @@ A small roster of arena combatants. This is your first time designing several cl
 ## How to check
 
 ```bash
-cd level_2_oop_and_design/projects/01_arena_roster
-uv run python check.py
+uv run python level_2_oop_and_design/projects/01_arena_roster/check.py
 ```
 
 ## Where to start
 
 1. Implement `Character.__init__` — store `name`, `hp`, `max_hp`, `atk`, `def_`
 2. Implement `take_damage` — subtract from `hp`, clamp to 0
-3. Implement `is_alive` — return `self.hp > 0`
+3. Implement `is_alive()` — return `self.hp > 0`
 4. Implement `Hero.__init__` — call `super().__init__`, store extra fields
 5. Implement `Monster.__init__` — same pattern
 6. Implement `build_roster` — return a list with at least 1 Hero and 1 Monster

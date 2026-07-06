@@ -57,9 +57,9 @@ def main() -> None:
     # ── 4. is_alive and take_damage ───────────────────────────────────────────
     try:
         h = Hero("Ada", 120, 120, 15, 8, "warrior", 2)
-        assert h.is_alive, "Hero.is_alive should be True at full HP"
+        assert h.is_alive(), "Hero.is_alive() should return True at full HP"
         h.take_damage(120)
-        assert not h.is_alive, "Hero.is_alive should be False at 0 HP"
+        assert not h.is_alive(), "Hero.is_alive() should return False at 0 HP"
         h.take_damage(999)
         assert h.hp >= 0, "HP must never go below 0 after take_damage"
         print("✓ is_alive and take_damage work correctly")
@@ -73,11 +73,11 @@ def main() -> None:
     # ── 5. Monster attributes ─────────────────────────────────────────────────
     try:
         m = Monster("Goblin", 30, 30, 8, 2, 10)
-        assert m.is_alive
+        assert m.is_alive()
         assert hasattr(m, "reward_gold"), "Monster must have reward_gold attribute"
         assert m.reward_gold == 10
         m.take_damage(30)
-        assert not m.is_alive
+        assert not m.is_alive()
         print("✓ Monster attributes and take_damage correct")
     except AssertionError as exc:
         print(f"❌ {exc}")

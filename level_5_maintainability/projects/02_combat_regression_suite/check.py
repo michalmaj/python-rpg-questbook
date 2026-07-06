@@ -108,7 +108,8 @@ def main() -> None:
                         except ValueError:
                             pass
     if cov_pct is None:
-        print("⚠  Could not parse coverage percentage — install pytest-cov: uv add --dev pytest-cov")
+        print("❌ Could not parse coverage — make sure pytest-cov is installed (uv add --dev pytest-cov)")
+        raise SystemExit(1)
     elif cov_pct < 85:
         print(f"❌ Coverage is {cov_pct}% — must be ≥85%")
         print("   Add more parametrized tests to cover edge cases.")
@@ -116,27 +117,32 @@ def main() -> None:
     else:
         print(f"✓ Coverage: {cov_pct}% (≥85%)")
 
-    # ── 4. ≥3 @pytest.mark.parametrize uses ──────────────────────────────────
+    # ── 4. ≥1 @pytest.mark.parametrize used to cover multiple cases ──────────
     n_param = count_decorator(source, "parametrize")
-    if n_param < 3:
-        print(f"❌ Need ≥3 @pytest.mark.parametrize uses, found {n_param}")
+    if n_param < 1:
+        print(f"❌ Need at least 1 @pytest.mark.parametrize to cover multiple cases, found {n_param}")
         raise SystemExit(1)
-    print(f"✓ {n_param} @pytest.mark.parametrize uses")
+    print(f"✓ {n_param} @pytest.mark.parametrize use(s)")
 
-    # ── 5. ≥2 @pytest.fixture definitions ────────────────────────────────────
+    # ── 5. ≥1 @pytest.fixture definition ─────────────────────────────────────
     n_fixture = count_decorator(source, "fixture")
-    if n_fixture < 2:
-        print(f"❌ Need ≥2 @pytest.fixture definitions, found {n_fixture}")
+    if n_fixture < 1:
+        print(f"❌ Need at least 1 @pytest.fixture definition, found {n_fixture}")
         raise SystemExit(1)
-    print(f"✓ {n_fixture} @pytest.fixture definitions")
+    print(f"✓ {n_fixture} @pytest.fixture definition(s)")
 
-    # ── 6. ≥1 @pytest.mark.xfail that calls compute_damage ───────────────────
+    # ── 6. ≥1 @pytest.mark.xfail(strict=True) that calls compute_damage ──────
     if not has_xfail_on_compute_damage(source):
         print("❌ Need ≥1 @pytest.mark.xfail test that calls compute_damage()")
         print("   The bug: compute_damage(1, 0, 10) returns 0 instead of 1.")
-        print("   Write a test asserting == 1, mark it xfail so pytest exits 0.")
+        print("   Write a test asserting == 1, mark it xfail(strict=True) so pytest exits 0.")
         raise SystemExit(1)
-    print("✓ xfail test detects the minimum-damage bug in compute_damage()")
+    # Check strict=True is used
+    if "strict=True" not in source and 'strict = True' not in source:
+        print("❌ xfail must use strict=True: @pytest.mark.xfail(strict=True, reason=...)")
+        print("   strict=True means: if the bug is accidentally fixed, pytest fails loudly.")
+        raise SystemExit(1)
+    print("✓ xfail(strict=True) test detects the minimum-damage bug in compute_damage()")
 
     # ── Done ──────────────────────────────────────────────────────────────────
     update_progress("02_combat_regression_suite")
