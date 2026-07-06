@@ -108,3 +108,10 @@ def _run(self, job_id: str, fn: Callable[[], Any]) -> None:
 - Job queue pattern: create → submit → poll
 - `dependency_overrides` — swapping `BackgroundWorker` for `SyncWorker` in tests
 - Fire-and-forget + status tracking via shared repository
+
+> **Note:** `BackgroundWorker` is an educational, single-process solution. In production,
+> persistent job queues use dedicated tools (Celery, RQ, Dramatiq) with durable storage.
+
+---
+
+**Next:** `level_7_concurrency_and_background_work/projects/03_concurrent_tournament_runner/README.md`

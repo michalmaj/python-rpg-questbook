@@ -369,6 +369,9 @@ check_readme_links(LEVEL5_ROOT, L5_MISSIONS, L5_PROJECTS, "level_5")
 print("Checking README next-mission links (Level 6)…")
 check_readme_links(LEVEL6_ROOT, L6_MISSIONS, L6_PROJECTS, "level_6")
 
+print("Checking README next-mission links (Level 7)…")
+check_readme_links(LEVEL7_ROOT, L7_MISSIONS, L7_PROJECTS, "level_7")
+
 print("Checking pyproject.toml dependencies…")
 check_dependencies()
 
