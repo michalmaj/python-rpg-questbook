@@ -114,7 +114,7 @@ L6_MISSIONS = [
 ]
 
 L6_PROJECTS = [
-    "01_rpg_battle_api",
+    "01_battle_preview_api", "02_monster_catalog_api", "03_rpg_battle_api",
 ]
 
 L6_MISSION_FILE_EXCEPTIONS: dict[str, set[str]] = {

@@ -232,7 +232,9 @@ LEVEL6_WORLDS = [
             ("02_request_response_schemas", "Mission 02: Request/Response Schemas"),
             ("03_routes_call_services", "Mission 03: Routes Call Services"),
         ],
-        [],
+        [
+            ("01_battle_preview_api", "Project 01: Battle Preview API"),
+        ],
     ),
     (
         "World 2: Structure and DI",
@@ -241,7 +243,9 @@ LEVEL6_WORLDS = [
             ("05_dependencies_and_repositories", "Mission 05: Dependencies and Repositories"),
             ("06_api_errors_and_status_codes", "Mission 06: API Errors and Status Codes"),
         ],
-        [],
+        [
+            ("02_monster_catalog_api", "Project 02: Monster Catalog API"),
+        ],
     ),
     (
         "World 3: Quality and Polish",
@@ -250,7 +254,7 @@ LEVEL6_WORLDS = [
             ("08_openapi_and_api_polish", "Mission 08: OpenAPI and API Polish"),
         ],
         [
-            ("01_rpg_battle_api", "Boss Fight: RPG Battle API"),
+            ("03_rpg_battle_api", "Project 03: RPG Battle API (Boss Fight)"),
         ],
     ),
 ]
