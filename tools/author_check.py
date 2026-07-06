@@ -67,7 +67,7 @@ L3_MISSIONS = [
 ]
 
 L3_PROJECTS = [
-    "01_sqlite_repository_backend",
+    "01_validated_bestiary", "02_save_slot_manager", "03_sqlite_repository_backend",
 ]
 
 L3_MISSION_FILE_EXCEPTIONS: dict[str, set[str]] = {}

@@ -133,4 +133,4 @@ FastAPI apps use `BaseSettings` for database URLs, secret keys, and environment 
 
 ---
 
-**Level complete!** Next: `level_3_validation_and_persistence/projects/01_sqlite_repository_backend/README.md`
+**Level complete!** Next: `level_3_validation_and_persistence/projects/03_sqlite_repository_backend/README.md`

@@ -44,7 +44,7 @@ After Mission 06 you have `CombatLogRepository`. Today you add:
 ## What you need to build
 
 ```
-projects/01_sqlite_repository_backend/
+projects/03_sqlite_repository_backend/
 ├── rpg/
 │   ├── __init__.py
 │   ├── domain.py        # Hero, HeroClass — pure domain (no Pydantic)
@@ -157,13 +157,13 @@ combat_log table:
 ## Run
 
 ```bash
-uv run python level_3_validation_and_persistence/projects/01_sqlite_repository_backend/task.py
+uv run python level_3_validation_and_persistence/projects/03_sqlite_repository_backend/task.py
 ```
 
 ## Check
 
 ```bash
-uv run python level_3_validation_and_persistence/projects/01_sqlite_repository_backend/check.py
+uv run python level_3_validation_and_persistence/projects/03_sqlite_repository_backend/check.py
 ```
 
 ## Break it on purpose
