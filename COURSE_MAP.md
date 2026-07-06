@@ -131,12 +131,16 @@ External data is untrusted. Validate at boundaries, isolate persistence from dom
 | 02 | [Pydantic Monster Config](level_3_validation_and_persistence/missions/02_pydantic_monster_config/README.md) | `BaseModel`, `Field`, `ValidationError` |
 | 03 | [Load Game Catalogs](level_3_validation_and_persistence/missions/03_load_game_catalogs/README.md) | `to_domain()` — Pydantic model → domain dataclass |
 
+**Checkpoint:** [Project 01: Validated Bestiary](level_3_validation_and_persistence/projects/01_validated_bestiary/README.md)
+
 ### World 2: Persistence
 
 | # | Mission | Concept |
 |---|---------|---------|
 | 04 | [Save and Load Game JSON](level_3_validation_and_persistence/missions/04_save_and_load_game_json/README.md) | `SaveGameModel`, `schema_version`, round-trip JSON |
 | 05 | [Repository Pattern](level_3_validation_and_persistence/missions/05_repository_pattern/README.md) | `Protocol`, `JsonSaveRepository`, `InMemorySaveRepository` |
+
+**Checkpoint:** [Project 02: Save Slot Manager](level_3_validation_and_persistence/projects/02_save_slot_manager/README.md)
 
 ### World 3: Integration
 
@@ -145,7 +149,7 @@ External data is untrusted. Validate at boundaries, isolate persistence from dom
 | 06 | [Combat Log Repository](level_3_validation_and_persistence/missions/06_combat_log_repository/README.md) | `Literal`, `CsvCombatLogRepository`, validated log rows |
 | 07 | [Settings and Paths](level_3_validation_and_persistence/missions/07_settings_and_paths/README.md) | `pydantic-settings`, `env_prefix`, `get_settings()` |
 
-**Boss Fight:** [Project 01: SQLite Repository Backend](level_3_validation_and_persistence/projects/01_sqlite_repository_backend/README.md)
+**Boss Fight:** [Project 03: SQLite Repository Backend](level_3_validation_and_persistence/projects/03_sqlite_repository_backend/README.md)
 
 ---
 
