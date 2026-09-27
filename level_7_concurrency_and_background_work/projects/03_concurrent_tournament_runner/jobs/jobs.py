@@ -1,6 +1,6 @@
 # jobs/jobs.py
 import json
-import random
+import os
 import threading
 from concurrent.futures import ProcessPoolExecutor
 from dataclasses import dataclass, field
@@ -9,46 +9,15 @@ from enum import StrEnum
 from pathlib import Path
 from typing import Protocol
 
-
-# ── Battle simulation data ────────────────────────────────────────────────────
-# Embedded here so _simulate_one is fully self-contained and picklable.
-_HERO_STATS: dict[str, dict[str, int]] = {
-    "warrior": {"hp": 120, "atk": 12, "def_": 6},
-    "mage":    {"hp": 80,  "atk": 18, "def_": 2},
-    "rogue":   {"hp": 100, "atk": 15, "def_": 4},
-}
-_MONSTERS_DATA: list[dict[str, int]] = [
-    {"hp": 30,  "atk": 8,  "def_": 2},  # Goblin
-    {"hp": 60,  "atk": 12, "def_": 4},  # Orc
-    {"hp": 150, "atk": 20, "def_": 8},  # Dragon
-]
-
-
-def _simulate_one(seed: int) -> dict:
-    """Simulate one battle deterministically from seed.
-
-    Module-level so ProcessPoolExecutor can pickle it. Never refactor into a
-    lambda or nested function — pickling requires a top-level name.
-    Returns {"winner": "hero" | "monster", "rounds": int}.
-    """
-    rng = random.Random(seed)
-    hero_class = rng.choice(list(_HERO_STATS.keys()))
-    stats = _HERO_STATS[hero_class]
-    hero_hp, hero_atk, hero_def = stats["hp"], stats["atk"], stats["def_"]
-    m = dict(rng.choice(_MONSTERS_DATA))
-    rounds = 0
-    while hero_hp > 0 and m["hp"] > 0:
-        rounds += 1
-        m["hp"] = max(0, m["hp"] - max(1, hero_atk + rng.randint(1, 6) - m["def_"]))
-        if m["hp"] <= 0:
-            return {"winner": "hero", "rounds": rounds}
-        hero_hp = max(0, hero_hp - max(1, m["atk"] + rng.randint(1, 6) - hero_def))
-    return {"winner": "monster", "rounds": rounds}
+# _simulate_one lives in the domain layer (rpg.services) so battle logic has
+# one canonical home. It must stay module-level there to remain picklable.
+from rpg.services import _simulate_one
 
 
 def _run_battles(battles: int) -> dict:
-    """Run `battles` simulations sequentially; used by SyncWorker/BackgroundWorker."""
-    results = [_simulate_one(i) for i in range(battles)]
+    """Run `battles` simulations with random seeds; used by SyncWorker/BackgroundWorker."""
+    seeds = [int.from_bytes(os.urandom(4), "big") for _ in range(battles)]
+    results = [_simulate_one(s) for s in seeds]
     hero_wins = sum(1 for r in results if r["winner"] == "hero")
     return {
         "total_battles": battles,
@@ -247,10 +216,11 @@ class ProcessPoolTournamentWorker:
 
     def _run(self, job_id: str, battles: int) -> None:
         try:
+            seeds = [int.from_bytes(os.urandom(4), "big") for _ in range(battles)]
             with ProcessPoolExecutor(max_workers=self._workers) as pool:
-                # pool.map sends _simulate_one + an integer to each worker process.
+                # pool.map sends _simulate_one + one integer seed to each worker process.
                 # Both are picklable — this is the critical difference from pool.submit(lambda).
-                results = list(pool.map(_simulate_one, range(battles)))
+                results = list(pool.map(_simulate_one, seeds))
             hero_wins = sum(1 for r in results if r["winner"] == "hero")
             result = {
                 "total_battles": battles,
