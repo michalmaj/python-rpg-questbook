@@ -3,7 +3,7 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).parents[2]
 PROGRESS_FILE = REPO_ROOT / ".progress"
-MISSION_ID = "22_filter_and_group"
+MISSION_ID = "22_filter_group_rank"
 
 
 def _update_progress(status: str) -> None:
@@ -18,7 +18,7 @@ def main() -> None:
     import pandas as pd
     import task
 
-    # Check TODO 1: damage_per_round column
+    # TODO 1: damage_per_round column
     assert "damage_per_round" in task.df.columns, (
         "Column 'damage_per_round' not found — did you add df['damage_per_round'] = ...?"
     )
@@ -29,7 +29,7 @@ def main() -> None:
         f"damage_per_round for Ada should be {147/9:.2f}, got {task.df['damage_per_round'].iloc[0]:.2f}"
     )
 
-    # Check TODO 2: groupby
+    # TODO 2: groupby
     assert task.avg_damage_by_class is not None, "avg_damage_by_class is still None"
     assert isinstance(task.avg_damage_by_class, pd.Series), (
         f"avg_damage_by_class should be a Series, got {type(task.avg_damage_by_class).__name__}"
@@ -44,20 +44,46 @@ def main() -> None:
         f"Rogue avg damage should be 139.0, got {task.avg_damage_by_class['Rogue']}"
     )
 
-    # Check TODO 3: victory count
+    # TODO 3: victory count
     assert task.victory_count is not None, "victory_count is still None"
     assert int(task.victory_count) == 6, (
         f"victory_count should be 6, got {task.victory_count}"
     )
 
-    # Check TODO 4: top damage hero
+    # TODO 4: top damage hero (catches ascending/descending mix-ups)
     assert task.top_damage_hero is not None, "top_damage_hero is still None"
     assert task.top_damage_hero == "Brom", (
-        f"top_damage_hero should be 'Brom' (179 damage), got {task.top_damage_hero!r}"
+        f"top_damage_hero should be 'Brom' (179 damage), got {task.top_damage_hero!r} — "
+        "check the sort direction"
+    )
+
+    # TODO 5: NumPy-mask-style filter on a DataFrame
+    assert isinstance(task.high_damage_heroes, pd.DataFrame), (
+        f"high_damage_heroes should be a DataFrame, got {type(task.high_damage_heroes).__name__}"
+    )
+    assert len(task.high_damage_heroes) == 4, (
+        f"high_damage_heroes should have 4 rows (damage_dealt > 150), got {len(task.high_damage_heroes)}"
+    )
+    assert (task.high_damage_heroes["damage_dealt"] > 150).all(), (
+        "high_damage_heroes contains a row with damage_dealt <= 150 — check the threshold"
+    )
+    assert set(task.high_damage_heroes["hero_name"]) == {"Brom", "Dex", "Theron", "Mira"}, (
+        f"high_damage_heroes should contain Brom, Dex, Theron, Mira — "
+        f"got {sorted(task.high_damage_heroes['hero_name'])}"
+    )
+
+    # TODO 6: multi-column selection -> DataFrame, not Series
+    assert isinstance(task.name_and_damage, pd.DataFrame), (
+        f"name_and_damage should be a DataFrame (two columns selected together with [[ ]]), "
+        f"got {type(task.name_and_damage).__name__}"
+    )
+    assert list(task.name_and_damage.columns) == ["hero_name", "damage_dealt"], (
+        f"name_and_damage should have columns ['hero_name', 'damage_dealt'], "
+        f"got {list(task.name_and_damage.columns)}"
     )
 
     _update_progress("complete")
-    print("✅ Mission 22 complete: Filter and Group")
+    print("✅ Mission 22 complete: Filter, Group, Rank")
     print("   Next mission: level_1_python_basics/missions/23_plot_the_results/README.md")
 
 

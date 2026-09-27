@@ -1,3 +1,5 @@
+# Mission 22: Filter, Group, Rank
+
 import pandas as pd
 from pathlib import Path
 
@@ -20,6 +22,14 @@ victory_count = None
 # Hint: df.sort_values("damage_dealt", ascending=False).iloc[0]["hero_name"]
 top_damage_hero = None
 
+# TODO 5: Same mask idea as Mission 18's rolls[rolls > 4] — keep only the
+# rows where damage_dealt is above 150.
+high_damage_heroes = None
+
+# TODO 6: Select hero_name and damage_dealt together, as a two-column
+# DataFrame — not just one column.
+name_and_damage = None
+
 if __name__ == "__main__":
     print("=== All Heroes ===")
     print(df[["hero_name", "hero_class", "damage_dealt", "damage_per_round", "victory"]])
@@ -29,3 +39,6 @@ if __name__ == "__main__":
     print()
     print(f"Victories:        {victory_count} / {len(df)}")
     print(f"Top damage hero:  {top_damage_hero}")
+    print()
+    print("=== High Damage Heroes (> 150) ===")
+    print(high_damage_heroes)

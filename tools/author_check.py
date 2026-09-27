@@ -30,7 +30,7 @@ L1_MISSIONS = [
     "10_dice_rolls", "11_safe_input", "12_combat_log", "13_save_game", "14_split_the_game",
     "15_hero_dataclass", "16_test_the_damage", "17_dice_become_arrays",
     "18_critical_hits", "19_party_damage_grid", "20_damage_distributions",
-    "21_read_combat_logs", "22_filter_and_group", "23_plot_the_results",
+    "21_from_combat_log_to_dataframe", "22_filter_group_rank", "23_plot_the_results",
 ]
 
 L1_PROJECTS = [
