@@ -41,6 +41,41 @@ SYNTHETIC_COMBAT_CSV = """round,hero_hp,boss_hp
 """
 
 
+def _values(arg):
+    """Normalize a Series/ndarray/list argument to a plain list for comparison."""
+    if hasattr(arg, "tolist"):
+        return arg.tolist()
+    return list(arg)
+
+
+def _line_series(args):
+    """Parse one plt.plot(...) call's positional args into (x, y) pairs.
+
+    Handles plt.plot(y), plt.plot(x, y), and plt.plot(x1, y1, x2, y2, ...) —
+    matplotlib's own "groups of 2 (or 3 with a format string)" convention.
+    A trailing style string like "ro-" is dropped; real coordinate data is
+    never a bare str.
+    """
+    data_args = [a for a in args if not isinstance(a, str)]
+    series = []
+    i = 0
+    while i < len(data_args):
+        if i + 1 < len(data_args):
+            series.append((_values(data_args[i]), _values(data_args[i + 1])))
+            i += 2
+        else:
+            series.append((None, _values(data_args[i])))
+            i += 1
+    return series
+
+
+def _bar_xy(args, kwargs):
+    """Extract (x, height) from a plt.bar(...) call — positional or keyword."""
+    x = args[0] if len(args) >= 1 else kwargs.get("x")
+    height = args[1] if len(args) >= 2 else kwargs.get("height")
+    return _values(x), _values(height)
+
+
 def main() -> None:
     import numpy as np
     import pandas as pd
@@ -123,11 +158,11 @@ def main() -> None:
     real_plot, real_bar, real_savefig = plt.plot, plt.bar, plt.savefig
 
     def spy_plot(*args, **kwargs):
-        plot_calls.append(args)
+        plot_calls.append((args, kwargs))
         return real_plot(*args, **kwargs)
 
     def spy_bar(*args, **kwargs):
-        bar_calls.append(args)
+        bar_calls.append((args, kwargs))
         return real_bar(*args, **kwargs)
 
     def spy_savefig(*args, **kwargs):
@@ -143,23 +178,22 @@ def main() -> None:
     finally:
         plt.plot, plt.bar, plt.savefig = real_plot, real_bar, real_savefig
 
-    def values(arg):
-        return arg.tolist() if hasattr(arg, "tolist") else list(arg)
+    expected_hero_hp = _values(real_combat["hero_hp"])
+    expected_boss_hp = _values(real_combat["boss_hp"])
 
-    expected_hero_hp = values(real_combat["hero_hp"])
-    expected_boss_hp = values(real_combat["boss_hp"])
-    matched_hero = matched_boss = False
-    for args in plot_calls:
-        y = values(args[1]) if len(args) >= 2 else values(args[0])
-        if y == expected_hero_hp:
-            matched_hero = True
-        if y == expected_boss_hp:
-            matched_boss = True
-    assert matched_hero, "plot_hp_over_time: no plt.plot() call used the real hero_hp column"
-    assert matched_boss, "plot_hp_over_time: no plt.plot() call used the real boss_hp column"
+    # One call can draw more than one line (plt.plot(x, y1, x, y2)), so every
+    # (x, y) pair across every call is a candidate — not just one per call.
+    all_series = []
+    for args, _kwargs in plot_calls:
+        all_series.extend(_line_series(args))
+
+    matched_hero = any(y == expected_hero_hp for _x, y in all_series)
+    matched_boss = any(y == expected_boss_hp for _x, y in all_series)
+    assert matched_hero, "plot_hp_over_time: no line used the real hero_hp column"
+    assert matched_boss, "plot_hp_over_time: no line used the real boss_hp column"
 
     assert len(bar_calls) >= 1, "plot_avg_damage_by_class: expected at least one plt.bar() call"
-    bar_x, bar_heights = values(bar_calls[0][0]), values(bar_calls[0][1])
+    bar_x, bar_heights = _bar_xy(*bar_calls[0])
     assert bar_x == list(real_avg.index), (
         f"plot_avg_damage_by_class: bar x-values should be avg_damage.index, got {bar_x}"
     )

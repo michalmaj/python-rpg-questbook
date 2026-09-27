@@ -70,6 +70,27 @@ inventory_value.isna().sum()   # 2 — how many are missing
 inventory_value.dropna()        # keep only the non-missing ones
 ```
 
+Not every gap should be dropped, though — it depends what the missing
+value *means*. If the missing column had been `bonus_damage` instead of
+`hero_hp`, a blank cell might reasonably mean "no bonus applied," and
+filling it in would keep the row instead of throwing it away:
+
+```python
+bonus_damage = pd.Series([5, None, 10, None])
+bonus_damage.fillna(0)
+# 0     5.0
+# 1     0.0
+# 2    10.0
+# 3     0.0
+# dtype: float64
+```
+
+Same mechanic, opposite decision. `dropna()` was right for `hero_hp`
+because a round you can't measure isn't useful data. `fillna(0)` would be
+right for `bonus_damage` because "nothing recorded" and "zero bonus" mean
+the same thing there. The column's meaning decides the tool, not the
+other way around.
+
 ## Run
 
 ```bash
