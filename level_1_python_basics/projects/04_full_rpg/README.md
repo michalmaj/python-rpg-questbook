@@ -30,19 +30,24 @@ A terminal RPG where:
 | `rpg.py` | Edit — 5 TODOs to complete |
 | `check.py` | Run to verify |
 
-## Your tasks
+## Available pieces
 
-Open `rpg.py`. Complete the five TODOs in order:
+`combat.py` is given — import what you need from it:
 
-**TODO 1** — Create a Hero by uncommenting one of the three class lines.
+- `roll_damage(min_val, max_val)` — random damage in range
+- `apply_damage(hp, damage)` — subtract damage, floored at 0
+- `apply_healing(hp, heal_amount, max_hp)` — add HP, capped at max
+- `is_alive(hp)` — `True` if hp > 0
 
-**TODO 2** — Write the combat loop using `is_alive()`, `roll_damage()`, and `apply_damage()` from `combat.py`. Append `[round_number, hero.hp, boss_hp]` to `combat_log` each round.
+`rpg.py` has the `Hero` dataclass already defined, and reads the hero's
+name from `input()`. Five things are still missing — see the TODOs in
+the file for the exact requirements. In short: create the `Hero`, run
+the fight to completion, report the result, and persist it to both
+`save_game.json` and `combat_log.csv`.
 
-**TODO 3** — After the loop, print who won.
-
-**TODO 4** — Save the hero's final state to `save_game.json`.
-
-**TODO 5** — Write `combat_log` to `combat_log.csv` with header `round,hero_hp,boss_hp`.
+If you need a reminder of the JSON/CSV syntax itself, look back at
+Missions 11 and 12 — the mechanics here are the same, just applied to
+this game's own data instead of the mission's example data.
 
 ## Run
 
@@ -75,7 +80,11 @@ cat combat_log.csv
 uv run python projects/04_full_rpg/check.py
 ```
 
-The check verifies: hero name in output, combat rounds printed, result printed, `save_game.json` has the right keys, `combat_log.csv` has the right header and at least one data row.
+The check doesn't just look for the right keys or headers — it recomputes
+the expected damage ranges from your chosen class and the boss's stats,
+and verifies every round in `combat_log.csv` actually falls within them.
+It also checks that `save_game.json`'s final HP matches the CSV's last
+row — both files have to describe the same finished game.
 
 ## Side quest
 
@@ -88,7 +97,7 @@ with open("combat_log.csv") as f:
         print(row)
 ```
 
-In Part 2 (Mission 19), you will load this exact file with Pandas and plot the hero's HP over time.
+In Part 2 (Mission 21), you will load this exact file with Pandas and plot the hero's HP over time.
 
 ## Challenge
 

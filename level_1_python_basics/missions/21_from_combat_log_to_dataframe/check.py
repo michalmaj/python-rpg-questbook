@@ -1,3 +1,4 @@
+import ast
 import json
 from pathlib import Path
 
@@ -17,6 +18,20 @@ def _update_progress(status: str) -> None:
 def main() -> None:
     import pandas as pd
     import task
+
+    # --- Inspect habit: encourage looking before calculating, without
+    # parsing fragile print() output. Parsing the AST (not just scanning
+    # text) means the instructional comment's own wording ("df.head()...")
+    # can't accidentally satisfy this — only real code counts.
+    task_src = (Path(__file__).parent / "task.py").read_text()
+    attrs_used = {n.attr for n in ast.walk(ast.parse(task_src)) if isinstance(n, ast.Attribute)}
+    inspect_attrs = {"head", "shape", "columns", "dtypes", "info"}
+    found = inspect_attrs & attrs_used
+    assert len(found) >= 3, (
+        "Before calculating anything, look at what you loaded — call at least "
+        "a few of df.head(), df.shape, df.columns, df.dtypes, df.info() as real "
+        f"code, not just in a comment. Found {len(found)}/5: {sorted(found)}"
+    )
 
     # --- Load ---
     assert isinstance(task.df, pd.DataFrame), (

@@ -18,18 +18,13 @@ A terminal program where:
 4. The game ends when one side falls
 5. A final message announces the winner
 
-## Your task
+## Requirements
 
-Open `rpg.py`. Fill in three TODO sections:
+Open `rpg.py`. Three functions need implementing:
 
-| Step | What to do |
-|------|-----------|
-| 1 | Define `roll_damage(min_val, max_val)` — returns a random int in range (Mission 10) |
-| 2 | Define `is_alive(hp)` — returns True if hp > 0 (Mission 08 pattern) |
-| 3 | Set `hero` dict based on `hero_class` (Mission 07 + Mission 03 pattern) |
-| 4 | Write the `while` loop — both sides attack each round (Mission 04 pattern) |
+**`roll_damage(min_val, max_val)`** — a random integer in that range, inclusive on both ends.
 
-**Hero stats:**
+**`create_hero(hero_class)`** — returns the matching stats dict, or `None` for an unrecognized class:
 
 | Class     | HP  | Damage range |
 |-----------|-----|--------------|
@@ -37,7 +32,16 @@ Open `rpg.py`. Fill in three TODO sections:
 | Mage      | 80  | 18–28        |
 | Rogue     | 100 | 14–24        |
 
+**`run_battle(hero, monster)`** — runs full rounds until one side's HP
+reaches 0. Each round, both sides attack once, dealing a random amount of
+damage within their own range. Print the round state as you go. Return
+`(hero_hp, monster_hp, round_number)` when it's over.
+
 The Goblin King has 80 HP and deals 8–15 damage per round.
+
+Everything else — reading the class choice, calling these three
+functions, printing the result — is already wired up at the bottom of
+the file.
 
 ## Run
 
@@ -46,6 +50,10 @@ uv run python projects/03_terminal_rpg/rpg.py
 ```
 
 ## Check
+
+The check calls your functions directly with many different inputs — including
+fixed random seeds, so a battle's outcome is reproducible instead of
+depending on luck.
 
 ```bash
 uv run python projects/03_terminal_rpg/check.py

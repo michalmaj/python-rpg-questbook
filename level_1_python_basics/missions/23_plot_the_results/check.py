@@ -9,7 +9,7 @@ independently. Only then does it confirm the files were actually saved.
 import json
 from pathlib import Path
 
-REPO_ROOT = Path(__file__).parents[2]
+REPO_ROOT = Path(__file__).parents[2]  # level_1_python_basics/, not the git repo root
 PROGRESS_FILE = REPO_ROOT / ".progress"
 MISSION_ID = "23_plot_the_results"
 

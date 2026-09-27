@@ -1,3 +1,4 @@
+import re
 import sys
 import json
 import subprocess
@@ -7,6 +8,15 @@ REPO_ROOT = Path(__file__).parents[2]
 PROGRESS_FILE = REPO_ROOT / ".progress"
 PROJECT_ID = "01_battle_calculator"
 TASK_PATH = "projects/01_battle_calculator/battle_calculator.py"
+
+# Ground truth — mirrors the class table in the README, not the student's code.
+CLASS_STATS = {
+    "warrior": {"name": "Warrior", "hp": 120},
+    "mage": {"name": "Mage", "hp": 80},
+    "rogue": {"name": "Rogue", "hp": 100},
+}
+MONSTER_DAMAGE = 20
+POTION_HEAL = 25
 
 
 def _update_progress(status: str) -> None:
@@ -28,26 +38,59 @@ def run_script(inputs: list[str]) -> str:
     return result.stdout
 
 
+def _extract(pattern: str, out: str) -> int | None:
+    m = re.search(pattern, out)
+    return int(m.group(1)) if m else None
+
+
+def check_class(hero_class: str, use_potion: bool) -> None:
+    stats = CLASS_STATS[hero_class]
+    out = run_script([hero_class, "yes" if use_potion else "no"])
+
+    assert stats["name"] in out, f"{hero_class}: expected '{stats['name']}' in output\n{out}"
+
+    expected_after_attack = max(0, stats["hp"] - MONSTER_DAMAGE)
+    actual_after_attack = _extract(r"Your HP:\s*(-?\d+)", out)
+    assert actual_after_attack == expected_after_attack, (
+        f"{hero_class}: HP after the monster's attack should be {expected_after_attack} "
+        f"(max(0, {stats['hp']} - {MONSTER_DAMAGE})), got {actual_after_attack}\n{out}"
+    )
+
+    final_hp = actual_after_attack
+    if use_potion:
+        expected_after_heal = min(stats["hp"], actual_after_attack + POTION_HEAL)
+        actual_after_heal = _extract(r"You healed! HP:\s*(-?\d+)", out)
+        assert actual_after_heal == expected_after_heal, (
+            f"{hero_class}: HP after the potion should be {expected_after_heal} "
+            f"(min({stats['hp']}, {actual_after_attack} + {POTION_HEAL})), "
+            f"got {actual_after_heal}\n{out}"
+        )
+        final_hp = actual_after_heal
+
+    if final_hp > 0:
+        assert "stands" in out.lower() or "remaining" in out.lower(), (
+            f"{hero_class}: hero survives with {final_hp} HP — expected a survival message\n{out}"
+        )
+    else:
+        assert "fallen" in out.lower(), (
+            f"{hero_class}: hero should have fallen at 0 HP — expected a defeat message\n{out}"
+        )
+
+
 def main() -> None:
-    # Warrior, no potion: 120 hp - 20 damage = 100 hp → survives
-    out = run_script(["warrior", "no"])
-    assert "Warrior" in out, f"warrior: expected 'Warrior' in output\n{out}"
-    assert "100" in out, f"warrior: expected hp=100 after 20 damage (120 - 20 = 100)\n{out}"
-    assert "stands" in out.lower() or "remaining" in out.lower(), (
-        f"warrior survives — expected a survival message in output\n{out}"
-    )
+    # Cover all three classes and both potion branches, not just one of each.
+    check_class("warrior", use_potion=False)
+    check_class("mage", use_potion=True)
+    check_class("rogue", use_potion=True)
+    check_class("rogue", use_potion=False)
 
-    # Rogue, yes potion: 100 hp - 20 = 80, heal 25 → 100 (capped at max_hp=100)
-    out = run_script(["rogue", "yes"])
-    assert "Rogue" in out, f"rogue: expected 'Rogue' in output\n{out}"
-    assert "You healed! HP: 100" in out, (
-        f"rogue: after healing, expected 'You healed! HP: 100' (80 + 25 = 105, capped to 100)\n{out}"
-    )
-
-    # Unknown class → error message
+    # Unknown class → handled gracefully, and must not proceed to a battle
     out = run_script(["bard"])
     assert "bard" in out.lower() or "unknown" in out.lower(), (
         f"unknown class: expected an error message in output\n{out}"
+    )
+    assert "Battle Summary" not in out, (
+        f"an unknown class should stop before the battle summary\n{out}"
     )
 
     _update_progress("complete")

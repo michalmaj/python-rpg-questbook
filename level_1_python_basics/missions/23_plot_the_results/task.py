@@ -6,7 +6,7 @@ from pathlib import Path
 
 M21_LOG = Path(__file__).parents[1] / "21_from_combat_log_to_dataframe" / "sample_log.csv"
 M22_LOG = Path(__file__).parents[1] / "22_filter_group_rank" / "battles_log.csv"
-PLOTS_DIR = Path(__file__).parents[2] / "plots"
+PLOTS_DIR = Path(__file__).parents[2] / "plots"  # level_1_python_basics/plots/
 PLOTS_DIR.mkdir(exist_ok=True)
 
 combat_df = pd.read_csv(M21_LOG)
