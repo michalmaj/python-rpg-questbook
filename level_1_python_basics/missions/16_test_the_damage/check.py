@@ -10,11 +10,26 @@ MISSION_DIR = Path(__file__).parent
 COMBAT_FILE = MISSION_DIR / "combat.py"
 TEST_FILE = "missions/16_test_the_damage/test_combat.py"
 
-# A deliberately broken combat.py, used only to prove the student's tests
-# check real values instead of a tautology like `assert result == result`
-# (which would pass against this too). Restored immediately after use.
-MUTANT_COMBAT = '''def apply_damage(hp, damage):
+# Three independent mutants, each breaking exactly one behavior while the
+# other two functions stay correct. A test suite only has to notice one
+# bug per mutant, but it has to notice ALL THREE mutants — one true test
+# plus five tautologies can kill at most one of these, which is the exact
+# gap this gate closes versus a single combined mutant.
+
+MUTANT_A_NO_DAMAGE_FLOOR = '''def apply_damage(hp, damage):
     return hp - damage  # bug: no floor at 0
+
+
+def apply_healing(hp, heal_amount, max_hp):
+    return min(max_hp, hp + heal_amount)
+
+
+def is_alive(hp):
+    return hp > 0
+'''
+
+MUTANT_B_NO_HEAL_CAP = '''def apply_damage(hp, damage):
+    return max(0, hp - damage)
 
 
 def apply_healing(hp, heal_amount, max_hp):
@@ -22,8 +37,26 @@ def apply_healing(hp, heal_amount, max_hp):
 
 
 def is_alive(hp):
+    return hp > 0
+'''
+
+MUTANT_C_ALIVE_BOUNDARY = '''def apply_damage(hp, damage):
+    return max(0, hp - damage)
+
+
+def apply_healing(hp, heal_amount, max_hp):
+    return min(max_hp, hp + heal_amount)
+
+
+def is_alive(hp):
     return hp >= 0  # bug: 0 HP counts as alive
 '''
+
+MUTANTS = [
+    ("A", "no floor on apply_damage (HP can go negative)", MUTANT_A_NO_DAMAGE_FLOOR),
+    ("B", "no cap on apply_healing (HP can exceed max_hp)", MUTANT_B_NO_HEAL_CAP),
+    ("C", "is_alive(0) wrongly returns True", MUTANT_C_ALIVE_BOUNDARY),
+]
 
 
 def _update_progress(status: str) -> None:
@@ -43,7 +76,20 @@ def _run_pytest() -> subprocess.CompletedProcess:
     )
 
 
+def _run_against_mutant(original: str, mutant_source: str) -> subprocess.CompletedProcess:
+    """Swap combat.py for `mutant_source`, run the student's tests, then put
+    the original content back — unconditionally, even if pytest itself
+    errors out. Never leaves combat.py mutated."""
+    try:
+        COMBAT_FILE.write_text(mutant_source)
+        return _run_pytest()
+    finally:
+        COMBAT_FILE.write_text(original)
+
+
 def main() -> None:
+    original_combat = COMBAT_FILE.read_text()
+
     # ── Gate 1: tests pass against the real, correct combat.py ──
     result = _run_pytest()
     print(result.stdout)
@@ -55,25 +101,27 @@ def main() -> None:
         "Expected 6 tests to pass — check the output above."
     )
 
-    # ── Gate 2: the tests must actually catch a broken implementation ──
-    # Temporarily swap in a combat.py with three realistic bugs (no HP floor,
-    # no healing cap, 0 HP counted as alive), then rerun the SAME tests.
-    # A test like `assert result == result` passes no matter what combat.py
-    # does, so if every test still passes here, they weren't checking
-    # anything real. combat.py is restored immediately either way.
-    original_combat = COMBAT_FILE.read_text()
+    # ── Gate 2: the tests must catch each of three independent bugs ──
+    # One real test buried among five tautologies can kill at most one
+    # mutant — this loop requires all three to die, each on its own.
     try:
-        COMBAT_FILE.write_text(MUTANT_COMBAT)
-        mutant_result = _run_pytest()
+        for label, description, mutant_source in MUTANTS:
+            mutant_result = _run_against_mutant(original_combat, mutant_source)
+            assert mutant_result.returncode != 0, (
+                f"Your tests still all pass against mutant {label} — {description}. "
+                "No test in your suite catches this specific bug. A tautology like "
+                "`assert result == result` (or a test that only covers a different "
+                "behavior) won't catch it — assert the actual expected value for "
+                "this case."
+            )
     finally:
+        # Belt-and-braces: guarantee combat.py is exactly as it started,
+        # even if something above raised before its own restore ran.
         COMBAT_FILE.write_text(original_combat)
 
-    assert mutant_result.returncode != 0, (
-        "Your tests still all pass even against a deliberately broken "
-        "combat.py (no HP floor, no healing cap, 0 HP treated as alive). "
-        "That means they aren't checking real values — replace any "
-        "tautology like `assert result == result` with the actual number "
-        "you expect."
+    assert COMBAT_FILE.read_text() == original_combat, (
+        "combat.py was not restored correctly — this is a checker bug, not "
+        "something in your solution. Please report it."
     )
 
     _update_progress("complete")
