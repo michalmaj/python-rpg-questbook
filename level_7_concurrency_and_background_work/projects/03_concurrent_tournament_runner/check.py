@@ -163,14 +163,15 @@ if __name__ == "__main__":
 
     # ── Gate 11: ProcessPoolTournamentWorker — pickle safety + real parallelism
     #
-    # Catches three failure modes:
-    #   (a) submitting a lambda/closure to pool → PicklingError at runtime
-    #   (b) pool.submit(fn) with one task → no distribution across processes
-    #   (c) ProcessPoolExecutor present in source but job never completes
+    # Catches four failure modes:
+    #   (a) pool worker function is not picklable (lambda/closure) → PicklingError
+    #   (b) submit() still accepts fn: Callable instead of battles: int
+    #   (c) ProcessPoolExecutor present in code but job never completes correctly
+    #   (d) lambda present inside ProcessPoolTournamentWorker (any lambda is not picklable)
     #
     from jobs.jobs import ProcessPoolTournamentWorker, _simulate_one
 
-    # (a) _simulate_one must be picklable
+    # (a) _simulate_one must be picklable — it is sent to worker processes
     try:
         pickle.dumps(_simulate_one)
     except Exception as e:
@@ -191,7 +192,7 @@ if __name__ == "__main__":
         raise SystemExit(1)
     print("✓ ProcessPoolTournamentWorker.submit(job_id, battles) — no lambda/callable")
 
-    # (c) ProcessPoolTournamentWorker actually completes correctly
+    # (c) ProcessPoolTournamentWorker actually runs and completes correctly
     _pp_repo = InMemoryJobRepository()
     _pp_worker = ProcessPoolTournamentWorker(_pp_repo, workers=2)
     _pp_repo.create("pp-test")
@@ -218,20 +219,19 @@ if __name__ == "__main__":
         raise SystemExit(1)
     print(f"✓ ProcessPoolTournamentWorker completed 40 battles across processes: {j.result}")
 
-    # (d) pool.map (distribution) is used — not pool.submit(fn) (single task)
+    # (d) No lambda inside ProcessPoolTournamentWorker — lambdas are not picklable
+    # Note: both pool.map(fn, seeds) and pool.submit(fn, seed) per battle are valid
+    # patterns. We do not require one specific API; we only reject lambdas.
     _jobs_src = (project / "jobs" / "jobs.py").read_text(encoding="utf-8")
     _jobs_tree = _ast.parse(_jobs_src)
-    _pool_map_found = False
     for _node in _ast.walk(_jobs_tree):
         if isinstance(_node, _ast.ClassDef) and _node.name == "ProcessPoolTournamentWorker":
             for _child in _ast.walk(_node):
-                if isinstance(_child, _ast.Attribute) and _child.attr == "map":
-                    _pool_map_found = True
-    if not _pool_map_found:
-        print("❌ ProcessPoolTournamentWorker must use pool.map() to distribute battles")
-        print("   Using pool.submit(fn) sends one task to one process — no real parallelism")
-        raise SystemExit(1)
-    print("✓ ProcessPoolTournamentWorker uses pool.map() — real distribution across cores")
+                if isinstance(_child, _ast.Lambda):
+                    print("❌ ProcessPoolTournamentWorker contains a lambda — not picklable")
+                    print("   Use a module-level function reference (e.g. _simulate_one)")
+                    raise SystemExit(1)
+    print("✓ ProcessPoolTournamentWorker contains no lambda — pickle-safe")
 
     update_progress("03_concurrent_tournament_runner")
     print()

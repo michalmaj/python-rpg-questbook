@@ -76,6 +76,39 @@ def _fight(hero: Hero, monster: Monster) -> BattleResult:
                         winner="monster", rounds=rounds, gold_earned=0)
 
 
+# Monster combat stats mirroring data/monsters.json.
+# Kept here (not loaded from disk) so _simulate_one is fully self-contained
+# and picklable by ProcessPoolExecutor worker processes.
+_WORKER_MONSTERS = [
+    {"hp": 30,  "atk": 8,  "def_": 2},  # Goblin
+    {"hp": 60,  "atk": 12, "def_": 4},  # Orc
+    {"hp": 150, "atk": 20, "def_": 8},  # Dragon
+]
+
+
+def _simulate_one(seed: int) -> dict:
+    """Simulate one battle deterministically from seed.
+
+    Module-level so ProcessPoolExecutor can pickle it. Uses HERO_CLASS_STATS
+    and _WORKER_MONSTERS from this module — single source of truth for stats.
+    The entire battle uses one seeded RNG so the result is reproducible.
+    Returns {"winner": "hero" | "monster", "rounds": int}.
+    """
+    rng = random.Random(seed)
+    hero_class = rng.choice(list(HeroClass))
+    stats = HERO_CLASS_STATS[hero_class]
+    hero_hp, hero_atk, hero_def = stats["hp"], stats["atk"], stats["def_"]
+    m = dict(rng.choice(_WORKER_MONSTERS))
+    rounds = 0
+    while hero_hp > 0 and m["hp"] > 0:
+        rounds += 1
+        m["hp"] = max(0, m["hp"] - max(1, hero_atk + rng.randint(1, 6) - m["def_"]))
+        if m["hp"] <= 0:
+            return {"winner": "hero", "rounds": rounds}
+        hero_hp = max(0, hero_hp - max(1, m["atk"] + rng.randint(1, 6) - hero_def))
+    return {"winner": "monster", "rounds": rounds}
+
+
 class SimulationService:
     def __init__(self, monster_repo: MonsterRepository) -> None:
         self._repo = monster_repo
