@@ -10,6 +10,9 @@ Give the hero a bag that can hold multiple items.
 - `append()` — add an item to the end of a list
 - `len()` — count how many items are in a list
 - `for item in list` — loop directly over a list's contents
+- Indexing (`list[0]`, `list[-1]`) — read one item by position
+- Slicing (`list[:2]`) — read a range of items as a new list
+- Membership (`in`) — check whether something is present
 
 ## Game problem
 
@@ -19,7 +22,9 @@ We need a way to store them all and loop over them — that's what a list is for
 ## Your task
 
 Open `task.py`. The hero already has two starting items.
-Add three more and display the full inventory.
+Add three more, display the full inventory, then read four specific
+things out of the finished list: the first item, the last item, the
+first two items, and whether a given item is present.
 
 **How lists work:**
 
@@ -41,6 +46,17 @@ for item in inventory:
     print(f"  - {item}")
 ```
 
+**Reading specific items — indexing, slicing, membership:**
+
+```python
+party_names = ["Ada", "Brom", "Kira", "Theron"]
+
+party_names[0]      # "Ada"    — first item
+party_names[-1]     # "Theron" — last item, counting from the end
+party_names[:2]     # ["Ada", "Brom"] — a new list with the first two items
+"Kira" in party_names   # True — is this value present?
+```
+
 ## Run
 
 ```bash
@@ -60,6 +76,11 @@ Expected output:
   - gold coin
 
 Items carried: 5
+
+First item:  sword
+Last item:   gold coin
+First two:   ['sword', 'health potion']
+Has shield:  True
 ```
 
 ## Check
@@ -69,13 +90,6 @@ uv run python missions/06_hero_inventory/check.py
 ```
 
 ## Side quest
-
-After building the inventory, explore indexing:
-
-```python
-print(inventory[0])    # first item
-print(inventory[-1])   # last item — negative index counts from the end
-```
 
 Try removing an item:
 ```python

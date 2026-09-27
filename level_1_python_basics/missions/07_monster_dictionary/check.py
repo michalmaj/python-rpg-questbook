@@ -31,6 +31,12 @@ def main() -> None:
         f'got {task.monster["hp"]!r}'
     )
 
+    expected_lines = ["name: Dragon", "hp: 120", "damage: 25", "reward: 100"]
+    assert task.stat_lines == expected_lines, (
+        f"stat_lines: expected {expected_lines!r}, got {task.stat_lines!r} — "
+        "did you loop over monster.items() and append one 'key: value' string per pair?"
+    )
+
     _update_progress("complete")
     print("✅ Mission 07 complete: Monster Dictionary")
     print("   Next mission: level_1_python_basics/missions/08_attack_function/README.md")

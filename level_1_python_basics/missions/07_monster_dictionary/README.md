@@ -10,6 +10,7 @@ Group a monster's stats into one dictionary instead of separate variables.
 - Creating a dict with `{}`
 - Reading a value: `monster["hp"]`
 - Updating a value: `monster["hp"] = new_value`
+- `.items()` — loop over every key/value pair at once
 
 ## Game problem
 
@@ -34,6 +35,7 @@ monster = {
 ## Your task
 
 Open `task.py`. Fill in the four `None` values, then update `monster["hp"]` after a hit.
+Finally, loop over every stat at once instead of listing each key by hand.
 
 **Reading and updating a dict:**
 
@@ -52,6 +54,17 @@ monster["hp"] = monster["hp"] - 30   # update a value
 After filling in the dict: update `monster["hp"]` so it reflects 30 damage taken.
 HP cannot go below 0.
 
+**Looping over key/value pairs:**
+
+```python
+hero_stats = {"hp": 100, "gold": 50}
+
+for key, value in hero_stats.items():
+    print(f"{key}: {value}")
+# hp: 100
+# gold: 50
+```
+
 ## Run
 
 ```bash
@@ -66,6 +79,12 @@ Damage: 25
 Reward: 100 gold
 
 After the hero strikes: Dragon has 120 HP remaining.
+
+=== Monster Stats ===
+  name: Dragon
+  hp: 120
+  damage: 25
+  reward: 100
 ```
 
 ## Check

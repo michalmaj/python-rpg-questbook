@@ -25,3 +25,15 @@ monster["hp"] = None
 
 print()
 print(f"After the hero strikes: {monster['name']} has {monster['hp']} HP remaining.")
+
+# --- Reading all stats at once ---
+
+# TODO: Loop over monster.items() to get each (key, value) pair, and build
+# a list of strings like "hp: 120" — one per stat. Append each string to
+# stat_lines as you go.
+stat_lines = []
+
+print()
+print("=== Monster Stats ===")
+for line in stat_lines:
+    print(f"  {line}")

@@ -26,11 +26,11 @@ LEVEL7_ROOT = REPO_ROOT / "level_7_concurrency_and_background_work"
 L1_MISSIONS = [
     "01_hero_stats", "02_damage_and_healing", "03_choose_your_hero",
     "04_combat_loop", "05_arena_challenge", "06_hero_inventory",
-    "07_monster_dictionary", "08_attack_function", "09_dice_rolls",
-    "10_safe_input", "11_combat_log", "12_save_game", "13_split_the_game",
-    "14_hero_dataclass", "15_test_the_damage", "16_dice_are_data",
-    "17_damage_distributions", "18_read_combat_logs", "19_filter_and_group",
-    "20_plot_the_results",
+    "07_monster_dictionary", "08_attack_function", "09_shared_inventory",
+    "10_dice_rolls", "11_safe_input", "12_combat_log", "13_save_game", "14_split_the_game",
+    "15_hero_dataclass", "16_test_the_damage", "17_dice_are_data",
+    "18_damage_distributions", "19_read_combat_logs", "20_filter_and_group",
+    "21_plot_the_results",
 ]
 
 L1_PROJECTS = [
@@ -39,7 +39,7 @@ L1_PROJECTS = [
 ]
 
 L1_MISSION_FILE_EXCEPTIONS: dict[str, set[str]] = {
-    "15_test_the_damage": {"README.md", "test_combat.py", "check.py"},
+    "16_test_the_damage": {"README.md", "test_combat.py", "check.py"},
 }
 
 # ── Level 2 content ───────────────────────────────────────────────────────────

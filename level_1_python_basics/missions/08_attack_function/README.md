@@ -10,6 +10,7 @@ Write reusable functions so the damage formula lives in one place.
 - Parameters — the variables a function receives as input
 - `return` — send a value back to the caller
 - Why functions beat copy-pasting
+- Calling a function with keyword arguments instead of positional ones
 
 ## Game problem
 
@@ -25,6 +26,7 @@ hp = apply_damage(hp, 200)  # same logic, different numbers
 ## Your task
 
 Open `task.py` and define two functions above the "Use your functions" section.
+Then rewrite the final call using keyword arguments (see below).
 
 **Function syntax:**
 
@@ -56,6 +58,27 @@ def apply_healing(hero_hp, heal_amount, max_hp):
 - `apply_healing(70, 20, 100)` → `90`
 - `apply_healing(90, 20, 100)` → `100` (not `110`)
 
+## Positional vs. keyword arguments
+
+Every call you just wrote fills parameters **by position** — the first value
+goes to the first parameter, the second to the second. You can also name the
+parameter at the call site; then order stops mattering:
+
+```python
+def describe_monster(name, hp):
+    print(f"{name}: {hp} HP")
+
+describe_monster("Goblin", 30)          # positional
+describe_monster(name="Goblin", hp=30)  # keyword — same result
+describe_monster(hp=30, name="Goblin")  # keyword — order doesn't matter here
+```
+
+All three calls above print the same line. You'll see this constantly once
+you start using other people's functions — e.g. `np.random.randint(1, 7, size=1000)`
+later in the course passes `size` as a keyword argument, exactly like `hp=` above.
+
+The last call in `task.py` asks you to use this style.
+
 ## Run
 
 ```bash
@@ -67,6 +90,7 @@ Expected output:
 After 30 damage:    70
 After healing 20:   90
 After overkill:     0
+After healing 25:   25
 ```
 
 ## Check
@@ -88,4 +112,4 @@ Add type hints to both functions. The code runs identically — hints are just d
 
 ---
 
-Next mission: `level_1_python_basics/missions/09_dice_rolls/README.md`
+Next mission: `level_1_python_basics/missions/09_shared_inventory/README.md`
