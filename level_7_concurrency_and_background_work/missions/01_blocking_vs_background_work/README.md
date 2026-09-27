@@ -37,11 +37,15 @@ Run this from inside the mission folder. The checker will:
 ## Key insight
 
 Notice how the time grows roughly linearly with `n`. Double the battles → double the wait.
-In a FastAPI route that calls `simulate_tournament(100_000)`, **every HTTP request that
-arrives while the tournament runs must wait in queue** — the event loop is blocked.
 
-That is the problem Level 7 teaches you to fix: move heavy work off the main thread so
-the API stays responsive.
+A regular `def` endpoint in FastAPI runs in a **thread pool** — the event loop itself
+stays free. But the thread doing the tournament simulation is occupied until every battle
+finishes. Under load, the thread pool (limited in size) fills up and new requests have to
+wait in queue.
+
+The real fix is to return a `job_id` immediately and let the heavy work run in the
+background, releasing the HTTP thread right away. That is what the rest of Level 7
+teaches.
 
 ---
 
