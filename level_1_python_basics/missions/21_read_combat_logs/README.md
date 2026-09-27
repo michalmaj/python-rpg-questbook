@@ -1,4 +1,4 @@
-# Mission 19: Read Combat Logs
+# Mission 21: Read Combat Logs
 
 ## Goal
 
@@ -74,13 +74,13 @@ Boss defeated on: round 9
 ## Run
 
 ```bash
-uv run python missions/19_read_combat_logs/task.py
+uv run python missions/21_read_combat_logs/task.py
 ```
 
 ## Check
 
 ```bash
-uv run python missions/19_read_combat_logs/check.py
+uv run python missions/21_read_combat_logs/check.py
 ```
 
 ## Side quest
@@ -88,7 +88,7 @@ uv run python missions/19_read_combat_logs/check.py
 Use your own combat log from Project 04. Copy it into this folder:
 
 ```bash
-cp combat_log.csv missions/19_read_combat_logs/sample_log.csv
+cp combat_log.csv missions/21_read_combat_logs/sample_log.csv
 ```
 
 Run `task.py` again. The statistics will reflect your actual battle — every player's run looks different.
@@ -109,4 +109,4 @@ Run `task.py`. You get `FileNotFoundError`. This is how Pandas reports a missing
 
 ---
 
-Next mission: `level_1_python_basics/missions/20_filter_and_group/README.md`
+Next mission: `level_1_python_basics/missions/22_filter_and_group/README.md`

@@ -6,13 +6,13 @@ import pandas as pd
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).parents[2]
-M18_LOG = REPO_ROOT / "missions" / "19_read_combat_logs" / "sample_log.csv"
-M19_LOG = REPO_ROOT / "missions" / "20_filter_and_group" / "battles_log.csv"
+M21_LOG = REPO_ROOT / "missions" / "21_read_combat_logs" / "sample_log.csv"
+M22_LOG = REPO_ROOT / "missions" / "22_filter_and_group" / "battles_log.csv"
 PLOTS_DIR = REPO_ROOT / "plots"
 PLOTS_DIR.mkdir(exist_ok=True)
 
 # ── Section 1: Combat Log (Pandas) ──────────────────────────────────────────
-# TODO: Load M18_LOG into a DataFrame called combat_df.
+# TODO: Load M21_LOG into a DataFrame called combat_df.
 combat_df = None
 
 # TODO: Compute these three values from combat_df:
@@ -38,7 +38,7 @@ rogue_mean = None
 rogue_std  = None
 
 # ── Section 3: Hero Class Comparison (Pandas groupby) ───────────────────────
-# TODO: Load M19_LOG into battles_df.
+# TODO: Load M22_LOG into battles_df.
 battles_df = None
 
 # TODO: Group by "hero_class", compute mean of "damage_dealt".

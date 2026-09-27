@@ -1,4 +1,4 @@
-# Mission 18: Damage Distributions
+# Mission 20: Damage Distributions
 
 ## Goal
 
@@ -16,7 +16,7 @@ The Warrior and the Rogue both deal average 3.5 damage:
 - Warrior rolls a d6: values 1, 2, 3, 4, 5, 6
 - Rogue rolls a d4+1: values 2, 3, 4, 5
 
-Same average. But in a long fight, they behave very differently. How do you measure that difference?
+Same average. But in a long fight, they behave very differently. How do you measure that difference? You already know how to build these roll arrays from Mission 17 — this mission is about what else you can ask them.
 
 ## Python concept
 
@@ -70,13 +70,13 @@ Same average, different spread — which do you prefer?
 ## Run
 
 ```bash
-uv run python missions/18_damage_distributions/task.py
+uv run python missions/20_damage_distributions/task.py
 ```
 
 ## Check
 
 ```bash
-uv run python missions/18_damage_distributions/check.py
+uv run python missions/20_damage_distributions/check.py
 ```
 
 ## Side quest
@@ -94,8 +94,17 @@ Change `size=10000` to `size=1`. Rerun the check — the std assertion will fail
 
 ## Real-world translation
 
-This exact workflow — mean, std, percentiles — is used everywhere data matters: A/B tests measure if one version is significantly better than another; finance compares asset volatility; operations monitors server response times at the 99th percentile.
+This exact workflow — mean, std, percentiles — is used everywhere data
+matters: finance compares asset volatility, operations monitors server
+response times at the 99th percentile, and A/B tests start by describing
+each group this way.
+
+That said, a difference in mean, std, or percentile only *describes* the
+data and can *suggest* a difference worth investigating further — it does
+not, by itself, prove that difference is real rather than random chance.
+Answering that question formally needs a statistical test, which you'll
+meet properly in a statistics/DS course later.
 
 ---
 
-Next mission: `level_1_python_basics/missions/19_read_combat_logs/README.md`
+Next mission: `level_1_python_basics/missions/21_read_combat_logs/README.md`

@@ -3,7 +3,7 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).parents[2]
 PROGRESS_FILE = REPO_ROOT / ".progress"
-MISSION_ID = "20_filter_and_group"
+MISSION_ID = "22_filter_and_group"
 
 
 def _update_progress(status: str) -> None:
@@ -57,8 +57,8 @@ def main() -> None:
     )
 
     _update_progress("complete")
-    print("✅ Mission 20 complete: Filter and Group")
-    print("   Next mission: level_1_python_basics/missions/21_plot_the_results/README.md")
+    print("✅ Mission 22 complete: Filter and Group")
+    print("   Next mission: level_1_python_basics/missions/23_plot_the_results/README.md")
 
 
 if __name__ == "__main__":

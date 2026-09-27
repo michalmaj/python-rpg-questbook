@@ -28,9 +28,9 @@ L1_MISSIONS = [
     "04_combat_loop", "05_arena_challenge", "06_hero_inventory",
     "07_monster_dictionary", "08_attack_function", "09_shared_inventory",
     "10_dice_rolls", "11_safe_input", "12_combat_log", "13_save_game", "14_split_the_game",
-    "15_hero_dataclass", "16_test_the_damage", "17_dice_are_data",
-    "18_damage_distributions", "19_read_combat_logs", "20_filter_and_group",
-    "21_plot_the_results",
+    "15_hero_dataclass", "16_test_the_damage", "17_dice_become_arrays",
+    "18_critical_hits", "19_party_damage_grid", "20_damage_distributions",
+    "21_read_combat_logs", "22_filter_and_group", "23_plot_the_results",
 ]
 
 L1_PROJECTS = [

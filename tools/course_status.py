@@ -73,11 +73,13 @@ LEVEL1_WORLDS = [
     (
         "Part 2: Game Data Analysis",
         [
-            ("17_dice_are_data", "Mission 17: Dice Are Data"),
-            ("18_damage_distributions", "Mission 18: Damage Distributions"),
-            ("19_read_combat_logs", "Mission 19: Read Combat Logs"),
-            ("20_filter_and_group", "Mission 20: Filter and Group"),
-            ("21_plot_the_results", "Mission 21: Plot the Results"),
+            ("17_dice_become_arrays", "Mission 17: Dice Become Arrays"),
+            ("18_critical_hits", "Mission 18: Critical Hits"),
+            ("19_party_damage_grid", "Mission 19: Party Damage Grid"),
+            ("20_damage_distributions", "Mission 20: Damage Distributions"),
+            ("21_read_combat_logs", "Mission 21: Read Combat Logs"),
+            ("22_filter_and_group", "Mission 22: Filter and Group"),
+            ("23_plot_the_results", "Mission 23: Plot the Results"),
         ],
         [
             ("05_analytics_report", "Project 05: Game Analytics Report"),

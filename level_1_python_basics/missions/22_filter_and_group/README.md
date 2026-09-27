@@ -1,4 +1,4 @@
-# Mission 20: Filter and Group
+# Mission 22: Filter and Group
 
 ## Goal
 
@@ -80,13 +80,13 @@ Top damage hero:  Brom
 ## Run
 
 ```bash
-uv run python missions/20_filter_and_group/task.py
+uv run python missions/22_filter_and_group/task.py
 ```
 
 ## Check
 
 ```bash
-uv run python missions/20_filter_and_group/check.py
+uv run python missions/22_filter_and_group/check.py
 ```
 
 ## Side quest
@@ -110,4 +110,4 @@ Change `ascending=False` to `ascending=True` in TODO 4. The check fails because 
 
 ---
 
-Next mission: `level_1_python_basics/missions/21_plot_the_results/README.md`
+Next mission: `level_1_python_basics/missions/23_plot_the_results/README.md`
