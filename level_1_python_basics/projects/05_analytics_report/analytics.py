@@ -6,8 +6,8 @@ import pandas as pd
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).parents[2]
-M21_LOG = REPO_ROOT / "missions" / "21_read_combat_logs" / "sample_log.csv"
-M22_LOG = REPO_ROOT / "missions" / "22_filter_and_group" / "battles_log.csv"
+M21_LOG = REPO_ROOT / "missions" / "21_from_combat_log_to_dataframe" / "sample_log.csv"
+M22_LOG = REPO_ROOT / "missions" / "22_filter_group_rank" / "battles_log.csv"
 PLOTS_DIR = REPO_ROOT / "plots"
 PLOTS_DIR.mkdir(exist_ok=True)
 

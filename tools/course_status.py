@@ -77,8 +77,8 @@ LEVEL1_WORLDS = [
             ("18_critical_hits", "Mission 18: Critical Hits"),
             ("19_party_damage_grid", "Mission 19: Party Damage Grid"),
             ("20_damage_distributions", "Mission 20: Damage Distributions"),
-            ("21_read_combat_logs", "Mission 21: Read Combat Logs"),
-            ("22_filter_and_group", "Mission 22: Filter and Group"),
+            ("21_from_combat_log_to_dataframe", "Mission 21: From Combat Log to DataFrame"),
+            ("22_filter_group_rank", "Mission 22: Filter, Group, Rank"),
             ("23_plot_the_results", "Mission 23: Plot the Results"),
         ],
         [

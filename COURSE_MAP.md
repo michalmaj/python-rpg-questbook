@@ -69,8 +69,8 @@ After you build the RPG, you will analyze the game data.
 | 18 | [Critical Hits](level_1_python_basics/missions/18_critical_hits/README.md) | boolean masks |
 | 19 | [Party Damage Grid](level_1_python_basics/missions/19_party_damage_grid/README.md) | 2D arrays, axis |
 | 20 | [Damage Distributions](level_1_python_basics/missions/20_damage_distributions/README.md) | std, percentile |
-| 21 | [Read Combat Logs](level_1_python_basics/missions/21_read_combat_logs/README.md) | pd.read_csv, DataFrame |
-| 22 | [Filter and Group](level_1_python_basics/missions/22_filter_and_group/README.md) | groupby, filter, sort_values |
+| 21 | [From Combat Log to DataFrame](level_1_python_basics/missions/21_from_combat_log_to_dataframe/README.md) | pd.read_csv, inspect, missing data |
+| 22 | [Filter, Group, Rank](level_1_python_basics/missions/22_filter_group_rank/README.md) | groupby, filter, sort_values |
 | 23 | [Plot the Results](level_1_python_basics/missions/23_plot_the_results/README.md) | plt.plot, plt.bar, savefig |
 
 **Final Boss:** [Project 05: Game Analytics Report](level_1_python_basics/projects/05_analytics_report/README.md)
