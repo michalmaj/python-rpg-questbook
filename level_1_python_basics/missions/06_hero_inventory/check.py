@@ -27,6 +27,19 @@ def main() -> None:
     assert "magic scroll" in task.inventory, '"magic scroll" not found — use inventory.append("magic scroll")'
     assert "gold coin" in task.inventory, '"gold coin" not found — use inventory.append("gold coin")'
 
+    assert task.first_item == "sword", (
+        f'first_item: expected "sword" (index 0), got {task.first_item!r}'
+    )
+    assert task.last_item == "gold coin", (
+        f'last_item: expected "gold coin" (index -1), got {task.last_item!r}'
+    )
+    assert task.first_two == ["sword", "health potion"], (
+        f'first_two: expected ["sword", "health potion"] (inventory[:2]), got {task.first_two!r}'
+    )
+    assert task.has_shield is True, (
+        f'has_shield: expected True ("shield" in inventory), got {task.has_shield!r}'
+    )
+
     _update_progress("complete")
     print("✅ Mission 06 complete: Hero Inventory")
     print("   Next mission: level_1_python_basics/missions/07_monster_dictionary/README.md")

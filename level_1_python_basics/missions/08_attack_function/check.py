@@ -1,9 +1,11 @@
+import ast
 import json
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).parents[2]
 PROGRESS_FILE = REPO_ROOT / ".progress"
 MISSION_ID = "08_attack_function"
+TASK_FILE = Path(__file__).parent / "task.py"
 
 
 def _update_progress(status: str) -> None:
@@ -25,9 +27,27 @@ def main() -> None:
     assert apply_healing(90, 20, 100) == 100, "apply_healing(90, 20, 100): expected 100 (capped at max_hp)"
     assert apply_healing(100, 20, 100) == 100, "apply_healing(100, 20, 100): already at max"
 
+    import task
+    assert task.hp == 25, (
+        f"hp: expected 25 after healing 25 from 0 (overkill), got {task.hp!r}"
+    )
+
+    tree = ast.parse(TASK_FILE.read_text())
+    uses_keyword_call = any(
+        isinstance(node, ast.Call)
+        and isinstance(node.func, ast.Name)
+        and node.func.id in {"apply_damage", "apply_healing"}
+        and len(node.keywords) > 0
+        for node in ast.walk(tree)
+    )
+    assert uses_keyword_call, (
+        "No call to apply_damage/apply_healing uses keyword arguments — "
+        "rewrite the last call as e.g. apply_healing(hero_hp=hp, heal_amount=25, max_hp=max_hp)"
+    )
+
     _update_progress("complete")
     print("✅ Mission 08 complete: Attack Function")
-    print("   Next mission: level_1_python_basics/missions/09_dice_rolls/README.md")
+    print("   Next mission: level_1_python_basics/missions/09_shared_inventory/README.md")
 
 
 if __name__ == "__main__":

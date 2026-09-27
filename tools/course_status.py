@@ -49,8 +49,9 @@ LEVEL1_WORLDS = [
         [
             ("07_monster_dictionary", "Mission 07: Monster Dictionary"),
             ("08_attack_function", "Mission 08: Attack Function"),
-            ("09_dice_rolls", "Mission 09: Dice Rolls"),
-            ("10_safe_input", "Mission 10: Safe Input"),
+            ("09_shared_inventory", "Mission 09: Shared Inventory"),
+            ("10_dice_rolls", "Mission 10: Dice Rolls"),
+            ("11_safe_input", "Mission 11: Safe Input"),
         ],
         [
             ("03_terminal_rpg", "Project 03: Terminal RPG"),
@@ -59,11 +60,11 @@ LEVEL1_WORLDS = [
     (
         "World 4: Saving and Structure",
         [
-            ("11_combat_log", "Mission 11: Combat Log"),
-            ("12_save_game", "Mission 12: Save Game"),
-            ("13_split_the_game", "Mission 13: Split the Game"),
-            ("14_hero_dataclass", "Mission 14: Hero Dataclass"),
-            ("15_test_the_damage", "Mission 15: Test the Damage"),
+            ("12_combat_log", "Mission 12: Combat Log"),
+            ("13_save_game", "Mission 13: Save Game"),
+            ("14_split_the_game", "Mission 14: Split the Game"),
+            ("15_hero_dataclass", "Mission 15: Hero Dataclass"),
+            ("16_test_the_damage", "Mission 16: Test the Damage"),
         ],
         [
             ("04_full_rpg", "Project 04: Full Terminal RPG"),
@@ -72,11 +73,11 @@ LEVEL1_WORLDS = [
     (
         "Part 2: Game Data Analysis",
         [
-            ("16_dice_are_data", "Mission 16: Dice Are Data"),
-            ("17_damage_distributions", "Mission 17: Damage Distributions"),
-            ("18_read_combat_logs", "Mission 18: Read Combat Logs"),
-            ("19_filter_and_group", "Mission 19: Filter and Group"),
-            ("20_plot_the_results", "Mission 20: Plot the Results"),
+            ("17_dice_are_data", "Mission 17: Dice Are Data"),
+            ("18_damage_distributions", "Mission 18: Damage Distributions"),
+            ("19_read_combat_logs", "Mission 19: Read Combat Logs"),
+            ("20_filter_and_group", "Mission 20: Filter and Group"),
+            ("21_plot_the_results", "Mission 21: Plot the Results"),
         ],
         [
             ("05_analytics_report", "Project 05: Game Analytics Report"),

@@ -28,3 +28,9 @@ print(f"After healing 20:   {hp}")   # 90
 
 hp = apply_damage(hp, 200)
 print(f"After overkill:     {hp}")   # 0
+
+# TODO: Call apply_healing one more time to heal 25 HP — but this time,
+# write the call using keyword arguments instead of positional ones.
+# See the README for the syntax.
+hp = apply_healing(hp, 25, max_hp)
+print(f"After healing 25:   {hp}")   # 25

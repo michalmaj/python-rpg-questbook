@@ -2,7 +2,7 @@
 
 **Boss Fight — World 3**
 
-> Requires: Missions 01–10
+> Requires: Missions 01–11
 
 ## Goal
 
@@ -14,7 +14,7 @@ A terminal program where:
 
 1. The player chooses a hero class
 2. The hero fights the Goblin King in a while loop
-3. Each round uses random dice for damage (Mission 09 pattern)
+3. Each round uses random dice for damage (Mission 10 pattern)
 4. The game ends when one side falls
 5. A final message announces the winner
 
@@ -24,7 +24,7 @@ Open `rpg.py`. Fill in three TODO sections:
 
 | Step | What to do |
 |------|-----------|
-| 1 | Define `roll_damage(min_val, max_val)` — returns a random int in range (Mission 09) |
+| 1 | Define `roll_damage(min_val, max_val)` — returns a random int in range (Mission 10) |
 | 2 | Define `is_alive(hp)` — returns True if hp > 0 (Mission 08 pattern) |
 | 3 | Set `hero` dict based on `hero_class` (Mission 07 + Mission 03 pattern) |
 | 4 | Write the `while` loop — both sides attack each round (Mission 04 pattern) |

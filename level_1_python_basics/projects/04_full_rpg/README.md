@@ -8,11 +8,11 @@ This project combines everything from World 4:
 
 | Skill | Mission |
 |-------|---------|
-| Hero dataclass | Mission 14 |
-| Combat module  | Mission 13 |
-| Random damage  | Mission 09 |
-| JSON save file | Mission 12 |
-| CSV combat log | Mission 11 |
+| Hero dataclass | Mission 15 |
+| Combat module  | Mission 14 |
+| Random damage  | Mission 10 |
+| JSON save file | Mission 13 |
+| CSV combat log | Mission 12 |
 
 ## What you build
 
@@ -88,7 +88,7 @@ with open("combat_log.csv") as f:
         print(row)
 ```
 
-In Part 2 (Mission 18), you will load this exact file with Pandas and plot the hero's HP over time.
+In Part 2 (Mission 19), you will load this exact file with Pandas and plot the hero's HP over time.
 
 ## Challenge
 
@@ -96,4 +96,4 @@ Add a healing potion. Every 3 rounds, the hero drinks a potion and heals 20 HP (
 
 ---
 
-*You have completed World 4. Next: `level_1_python_basics/missions/16_dice_are_data/README.md`*
+*You have completed World 4. Next: `level_1_python_basics/missions/17_dice_are_data/README.md`*

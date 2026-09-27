@@ -8,10 +8,10 @@ Everything from Part 2 comes together in one script:
 
 | Skill | Mission |
 |-------|---------|
-| pd.read_csv, DataFrame | Mission 18 |
-| groupby, filter, sort  | Mission 19 |
-| np.random, mean, std   | Mission 16–17 |
-| plt.plot, plt.bar      | Mission 20 |
+| pd.read_csv, DataFrame | Mission 19 |
+| groupby, filter, sort  | Mission 20 |
+| np.random, mean, std   | Mission 17–18 |
+| plt.plot, plt.bar      | Mission 21 |
 
 ## What you build
 
