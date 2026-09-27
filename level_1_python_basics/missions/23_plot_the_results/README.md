@@ -1,4 +1,4 @@
-# Mission 21: Plot the Results
+# Mission 23: Plot the Results
 
 ## Goal
 
@@ -60,7 +60,7 @@ plots/
 ## Run
 
 ```bash
-uv run python missions/21_plot_the_results/task.py
+uv run python missions/23_plot_the_results/task.py
 ```
 
 Then open the files to see the charts:
@@ -73,7 +73,7 @@ xdg-open plots/hp_chart.png  # Linux
 ## Check
 
 ```bash
-uv run python missions/21_plot_the_results/check.py
+uv run python missions/23_plot_the_results/check.py
 ```
 
 The check runs `task.py` and verifies both PNG files exist and are non-empty.
@@ -83,8 +83,8 @@ The check runs `task.py` and verifies both PNG files exist and are non-empty.
 Use your own Project 04 combat log for Chart 1:
 
 ```python
-# In task.py, change M18_LOG to point to the root-level combat_log.csv
-M18_LOG = Path(__file__).parents[2] / "combat_log.csv"
+# In task.py, change M21_LOG to point to the root-level combat_log.csv
+M21_LOG = Path(__file__).parents[2] / "combat_log.csv"
 ```
 
 Run the game first if the file doesn't exist yet, then replot.

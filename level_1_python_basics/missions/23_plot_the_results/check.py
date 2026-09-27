@@ -5,7 +5,7 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).parents[2]
 PROGRESS_FILE = REPO_ROOT / ".progress"
-MISSION_ID = "21_plot_the_results"
+MISSION_ID = "23_plot_the_results"
 
 HP_CHART = REPO_ROOT / "plots" / "hp_chart.png"
 DAMAGE_CHART = REPO_ROOT / "plots" / "damage_chart.png"
@@ -21,7 +21,7 @@ def _update_progress(status: str) -> None:
 
 def main() -> None:
     result = subprocess.run(
-        [sys.executable, "missions/21_plot_the_results/task.py"],
+        [sys.executable, "missions/23_plot_the_results/task.py"],
         capture_output=True,
         text=True,
         cwd=REPO_ROOT,
@@ -46,7 +46,7 @@ def main() -> None:
     )
 
     _update_progress("complete")
-    print("✅ Mission 21 complete: Plot the Results")
+    print("✅ Mission 23 complete: Plot the Results")
     print(f"   Charts saved to: {REPO_ROOT / 'plots'}")
     print("   Final boss next: projects/05_analytics_report/README.md")
 

@@ -4,13 +4,13 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from pathlib import Path
 
-M18_LOG = Path(__file__).parents[1] / "19_read_combat_logs" / "sample_log.csv"
-M19_LOG = Path(__file__).parents[1] / "20_filter_and_group" / "battles_log.csv"
+M21_LOG = Path(__file__).parents[1] / "21_read_combat_logs" / "sample_log.csv"
+M22_LOG = Path(__file__).parents[1] / "22_filter_and_group" / "battles_log.csv"
 PLOTS_DIR = Path(__file__).parents[2] / "plots"
 PLOTS_DIR.mkdir(exist_ok=True)
 
-combat_df = pd.read_csv(M18_LOG)
-battles_df = pd.read_csv(M19_LOG)
+combat_df = pd.read_csv(M21_LOG)
+battles_df = pd.read_csv(M22_LOG)
 avg_damage = battles_df.groupby("hero_class")["damage_dealt"].mean()
 
 # --- Chart 1: HP over time ---

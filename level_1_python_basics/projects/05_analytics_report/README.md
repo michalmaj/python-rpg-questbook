@@ -8,10 +8,10 @@ Everything from Part 2 comes together in one script:
 
 | Skill | Mission |
 |-------|---------|
-| pd.read_csv, DataFrame | Mission 19 |
-| groupby, filter, sort  | Mission 20 |
-| np.random, mean, std   | Mission 17–18 |
-| plt.plot, plt.bar      | Mission 21 |
+| pd.read_csv, DataFrame | Mission 21 |
+| groupby, filter, sort  | Mission 22 |
+| np.random, mean, std   | Mission 17, 20 |
+| plt.plot, plt.bar      | Mission 23 |
 
 ## What you build
 
@@ -30,17 +30,17 @@ A single script (`analytics.py`) that:
 | `analytics.py` | Edit — 4 sections of TODOs |
 | `check.py` | Run to verify |
 
-Data files live in their respective mission folders (`level_1_python_basics/missions/18_…` and `level_1_python_basics/missions/19_…`) — no copying needed.
+Data files live in their respective mission folders (`level_1_python_basics/missions/21_…` and `level_1_python_basics/missions/22_…`) — no copying needed.
 
 ## Your tasks
 
 Open `analytics.py`. Work through the four sections in order — each builds on the previous.
 
-**Section 1** — Load `M18_LOG` into `combat_df`. Compute `avg_hero_hp`, `min_hero_hp`, `final_round`.
+**Section 1** — Load `M21_LOG` into `combat_df`. Compute `avg_hero_hp`, `min_hero_hp`, `final_round`.
 
 **Section 2** — Compute NumPy statistics for `warrior_rolls` and `rogue_rolls` (mean, std, percentiles).
 
-**Section 3** — Load `M19_LOG` into `battles_df`. Group by class for `avg_damage_by_class`. Count `victory_count`.
+**Section 3** — Load `M22_LOG` into `battles_df`. Group by class for `avg_damage_by_class`. Count `victory_count`.
 
 **Section 4** — Create two charts (HP line chart → `report_hp.png`, damage bar chart → `report_damage.png`).
 
@@ -96,7 +96,7 @@ uv run python projects/05_analytics_report/check.py
 
 ## Challenge
 
-Use your own Project 04 data. Replace `M18_LOG` with the root-level `combat_log.csv` and `M19_LOG` with a battles log of your own runs. Run the game several times with different hero classes, collect the rows manually, and see how your real stats compare to the sample data.
+Use your own Project 04 data. Replace `M21_LOG` with the root-level `combat_log.csv` and `M22_LOG` with a battles log of your own runs. Run the game several times with different hero classes, collect the rows manually, and see how your real stats compare to the sample data.
 
 ---
 
