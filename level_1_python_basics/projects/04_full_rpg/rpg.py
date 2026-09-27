@@ -1,8 +1,8 @@
 from dataclasses import dataclass
-import csv  # noqa: F401
-import json  # noqa: F401
+import csv
+import json
 
-from combat import apply_damage, is_alive, roll_damage  # noqa: F401
+from combat import apply_damage, is_alive, roll_damage
 
 
 @dataclass
@@ -17,17 +17,12 @@ class Hero:
 
 hero_name = input("Enter your hero's name: ")
 
-# TODO 1: Create your Hero — uncomment ONE of the three lines below,
-#         then uncomment the two print lines marked TODO 1b.
+# TODO 1: Create your Hero — pick ONE class and use its matching stats.
 #
-# Warrior: high HP, moderate damage
-# hero = Hero(name=hero_name, hero_class="Warrior", hp=120, max_hp=120, damage_min=10, damage_max=20)
-#
-# Mage: low HP, high damage
-# hero = Hero(name=hero_name, hero_class="Mage", hp=80, max_hp=80, damage_min=18, damage_max=28)
-#
-# Rogue: medium HP, medium-high damage
-# hero = Hero(name=hero_name, hero_class="Rogue", hp=100, max_hp=100, damage_min=14, damage_max=24)
+# Warrior: hp=120, max_hp=120, damage_min=10, damage_max=20
+# Mage:    hp=80,  max_hp=80,  damage_min=18, damage_max=28
+# Rogue:   hp=100, max_hp=100, damage_min=14, damage_max=24
+hero = None
 
 # Boss stats (given — don't change)
 boss_name = "Shadow Dragon"
@@ -38,42 +33,23 @@ boss_damage_max = 20
 combat_log = []
 round_number = 0
 
-# TODO 1b: Uncomment these two lines after completing TODO 1.
-# print(f"\n{hero.name} the {hero.hero_class} faces the {boss_name}!")
-# print("-" * 40)
+print(f"\n{hero.name} the {hero.hero_class} faces the {boss_name}!")
+print("-" * 40)
 
 # TODO 2: Write the combat loop.
-# Both hero and boss attack each round. The boss only attacks if it is still alive.
-# Append [round_number, hero.hp, boss_hp] to combat_log each round.
-# Print a summary line each round.
 #
-# while is_alive(hero.hp) and is_alive(boss_hp):
-#     round_number += 1
-#     hero_dmg = roll_damage(hero.damage_min, hero.damage_max)
-#     boss_hp = apply_damage(boss_hp, hero_dmg)
-#     boss_dmg = 0
-#     if is_alive(boss_hp):
-#         boss_dmg = roll_damage(boss_damage_min, boss_damage_max)
-#         hero.hp = apply_damage(hero.hp, boss_dmg)
-#     combat_log.append([round_number, hero.hp, boss_hp])
-#     print(f"Round {round_number}: {hero.name} deals {hero_dmg} | {boss_name} deals {boss_dmg} | Hero HP: {hero.hp} | Boss HP: {boss_hp}")
+# While both the hero and the boss are alive:
+#   - increase round_number
+#   - the hero deals roll_damage(hero.damage_min, hero.damage_max) to boss_hp
+#   - if the boss is still alive, it deals roll_damage(boss_damage_min, boss_damage_max)
+#     back to hero.hp — a dead boss does not attack
+#   - append [round_number, hero.hp, boss_hp] to combat_log
+#   - print a line showing the round's damage and both HP totals
 
-# TODO 3: Print the result.
-# if is_alive(hero.hp):
-#     print(f"\n{hero.name} wins! The {boss_name} is defeated.")
-# else:
-#     print(f"\n{hero.name} has fallen. The {boss_name} prevails.")
+# TODO 3: Print the result — who won.
 
 # TODO 4: Save the hero's final state to save_game.json.
-# with open("save_game.json", "w") as f:
-#     json.dump(
-#         {"name": hero.name, "class": hero.hero_class, "hp": hero.hp, "max_hp": hero.max_hp},
-#         f,
-#         indent=2,
-#     )
+# Must include at least: name, class, hp, max_hp.
 
-# TODO 5: Write the combat log to combat_log.csv.
-# with open("combat_log.csv", "w", newline="") as f:
-#     writer = csv.writer(f)
-#     writer.writerow(["round", "hero_hp", "boss_hp"])
-#     writer.writerows(combat_log)
+# TODO 5: Write combat_log to combat_log.csv.
+# Header row: round,hero_hp,boss_hp — one data row per round.

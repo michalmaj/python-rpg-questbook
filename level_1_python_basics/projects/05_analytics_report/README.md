@@ -2,91 +2,40 @@
 
 ## Final Boss — Part 2: Game Data Analysis
 
-This is the last project. You built the game. Now you analyze it.
+You built the game. Now answer real questions about it, using the combat
+log and battle records from Missions 21 and 22.
 
-Everything from Part 2 comes together in one script:
+## Questions
 
-| Skill | Mission |
-|-------|---------|
-| pd.read_csv, DataFrame | Mission 21 |
-| groupby, filter, sort  | Mission 22 |
-| np.random, mean, std   | Mission 17, 20 |
-| plt.plot, plt.bar      | Mission 23 |
+1. Which class deals the highest average damage?
+2. How many battles dealt more than 150 damage?
+3. What does the damage distribution look like — mean, spread, percentiles?
+4. Which class has the highest win rate?
+5. Who dealt the most damage of anyone in a single battle?
+6. On which round is hero HP at its lowest?
+7. What do a line chart of HP-over-time and a bar chart of damage-by-class
+   look like for this data?
 
-## What you build
+Each question below maps to one function in `analytics.py`. The check
+calls these functions directly with its own data — the pandas/numpy calls
+you use inside are your choice, but the function name, its inputs, and
+what it returns are the contract the check relies on.
 
-A single script (`analytics.py`) that:
+## Data
 
-1. Loads the combat log → computes average and minimum hero HP, finds the final round
-2. Simulates 10 000 damage rolls per weapon → compares Warrior vs Rogue with std and percentiles
-3. Loads the battles log → groups heroes by class, counts victories
-4. Saves two charts to the `plots/` folder
-5. Prints a structured report
+Two files, already read for you via `load_combat_log` / `load_battles`:
 
-## Files
+- **Combat log** (`round, hero_hp, boss_hp`) — one row per round of a single fight
+- **Battles** (`hero_name, hero_class, damage_dealt, victory, ...`) — one row per hero across ten fights
 
-| File | Your role |
-|------|-----------|
-| `analytics.py` | Edit — 4 sections of TODOs |
-| `check.py` | Run to verify |
+## Tools you already have
 
-Data files live in their respective mission folders (`level_1_python_basics/missions/21_…` and `level_1_python_basics/missions/22_…`) — no copying needed.
+Everything here is a direct application of Missions 17–23 — nothing new:
 
-## Your tasks
-
-Open `analytics.py`. Work through the four sections in order — each builds on the previous.
-
-**Section 1** — Load `M21_LOG` into `combat_df`. Compute `avg_hero_hp`, `min_hero_hp`, `final_round`.
-
-**Section 2** — Compute NumPy statistics for `warrior_rolls` and `rogue_rolls` (mean, std, percentiles).
-
-**Section 3** — Load `M22_LOG` into `battles_df`. Group by class for `avg_damage_by_class`. Count `victory_count`.
-
-**Section 4** — Create two charts (HP line chart → `report_hp.png`, damage bar chart → `report_damage.png`).
-
-All TODOs must be complete before the print section at the bottom will run.
-
-## Run
-
-```bash
-uv run python projects/05_analytics_report/analytics.py
-```
-
-Expected output:
-```
-==================================================
-  GAME ANALYTICS REPORT
-==================================================
-
-Combat rounds:   9
-Avg hero HP:     54.4
-Lowest hero HP:  12
-Boss defeated:   round 9
-
-Warrior d6  — mean: 3.50  std: 1.71  p25–p75: 2.0–5.0
-Rogue d4+1  — mean: 3.50  std: 1.12
-
-Avg damage by class:
-hero_class
-Mage       132.0
-Rogue      139.0
-Warrior    155.0
-
-Victories: 6 / 10
-
-Charts saved to: /path/to/plots
-
-==================================================
-  REPORT COMPLETE
-==================================================
-```
-
-Then open the charts:
-
-```bash
-open plots/report_hp.png
-open plots/report_damage.png
-```
+- Mission 18 gave you boolean masks (`arr[arr > x]`) — Question 2 is the same idea on a column.
+- Mission 20 gave you `.mean()`, `.std()`, `np.percentile()` — Question 3 is those three, packaged into one dict.
+- Mission 22 gave you `groupby`, filtering, and sorting — Questions 1, 4, and 5 are each one of those.
+- Mission 23 gave you the `plt.plot` / `plt.bar` / `savefig` pattern — Question 7 is that, applied here.
 
 ## Check
 
@@ -94,10 +43,32 @@ open plots/report_damage.png
 uv run python projects/05_analytics_report/check.py
 ```
 
+The check doesn't just run your script once and look at the printed
+report — it imports your functions and calls each one with a small,
+hand-checkable dataset built inside the check itself, separately from
+the real game data. A function that only happens to work on the one
+dataset you tested by eye won't pass.
+
+## Run
+
+```bash
+uv run python projects/05_analytics_report/analytics.py
+```
+
+Then look at the charts:
+
+```bash
+open plots/report_hp.png
+open plots/report_damage.png
+```
+
 ## Challenge
 
-Use your own Project 04 data. Replace `M21_LOG` with the root-level `combat_log.csv` and `M22_LOG` with a battles log of your own runs. Run the game several times with different hero classes, collect the rows manually, and see how your real stats compare to the sample data.
+Use your own Project 04 data instead — pass `M21_LOG`/`M22_LOG` a path to
+your own `combat_log.csv`, or a battles CSV built from several of your
+own runs, and see how your answers compare to the sample data.
 
 ---
 
-*You built a terminal RPG from scratch. You analyzed it with NumPy, Pandas, and Matplotlib. That is a complete data-driven Python project — the same stack used in production data science every day.*
+You built a terminal RPG from scratch, then analyzed it with NumPy,
+Pandas, and Matplotlib. That's Level 1 complete.

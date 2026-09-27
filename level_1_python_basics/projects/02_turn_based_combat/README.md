@@ -12,32 +12,38 @@ You practiced the `while` loop, the `for` loop, and lists across three missions.
 
 ## What you build
 
-A combat simulation that runs three back-to-back arena fights:
+A combat simulation that runs three back-to-back arena fights, structured
+around two functions:
 
-1. A `for` loop runs through a list of enemies, one at a time
-2. A `while` loop inside handles each fight, round by round
-3. A `potions` list tracks the hero's inventory — `pop()` removes a potion when used
-4. A `battle_log` list collects results — `append()` adds one string per fight
-5. A final `for` loop prints the battle summary
+- `fight_enemy(...)` — one fight, round by round, until someone's HP hits 0
+- `run_arena(...)` — sends the hero through every enemy in sequence, using `fight_enemy`
+
+This split isn't just style: `check.py` calls `fight_enemy` directly with
+its own test numbers, so your combat rule gets tested on more than just
+the one hardcoded run.
 
 ## Files
 
 | File | Your role |
 |------|-----------|
-| `task.py` | Edit — all TODOs are in here |
+| `task.py` | Edit — the TODOs are inside `fight_enemy` |
 | `check.py` | Run to verify |
 
-## Your tasks
+## Your task
 
-Open `task.py`. The structure is already there. Your job is to complete the combat logic inside the `while` loop:
+Open `task.py`. `run_arena` and the module-level setup are already wired
+up and call `fight_enemy` for you — your job is everything *inside*
+`fight_enemy`'s `while` loop:
 
-**Step 1** — Hero attacks: subtract `hero_attack` from `enemy_hp`. If `enemy_hp` drops to 0 or below, set it to 0, print the defeat message, append to `battle_log`, and `break`.
+1. **Hero attacks** — subtract `hero_attack` from `enemy_hp` (floor at 0).
+   If the enemy is now dead, `break` immediately — no retaliation this round.
+2. **Enemy attacks back** — subtract `enemy_attack` from `hero_hp` (floor at 0).
+3. **Heal or report** — if `hero_hp` is below `heal_threshold` and there
+   are potions left, pop one and add its value to `hero_hp`. Otherwise,
+   print the round status.
 
-**Step 2** — Enemy attacks back: subtract `enemy_attack` from `hero_hp`. If `hero_hp` drops to 0 or below, set it to 0.
-
-**Step 3** — Healing: if `hero_hp < 40` and `len(potions) > 0`, call `potions.pop()` to remove the last potion, add the heal to `hero_hp`, and print the potion message.
-
-**Step 4** — After the `for` loop ends, print whether the hero won or fell, then loop over `battle_log` and print each entry.
+`fight_enemy` returns `(hero_hp, rounds, hero_won)` — that's the contract
+`run_arena` (and the check) relies on.
 
 ## Run
 
