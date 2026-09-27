@@ -29,5 +29,13 @@ def client():
 # 4. GET /tournaments/nonexistent → 404
 # 5. POST /tournaments with battles=0 → 422
 # 6. GET /tournaments/{job_id}/report when not completed → 425
+#
+# Tip for test 6: create a job manually and set it to running:
+#   from jobs.jobs import InMemoryJobRepository, JobStatus
+#   repo = InMemoryJobRepository()
+#   app.dependency_overrides[get_job_repo] = lambda: repo
+#   repo.create("my-job")
+#   repo.set_status("my-job", JobStatus.running)
+#   r = client.get("/tournaments/my-job/report")
 def test_placeholder() -> None:
     raise NotImplementedError("Implement the tests above")
