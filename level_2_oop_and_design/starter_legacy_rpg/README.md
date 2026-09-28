@@ -6,7 +6,7 @@ Someone before you wrote a working RPG. It runs. Players enjoy it. There are no 
 
 Nobody wants to touch the code.
 
-That someone is you — six months ago, right after finishing Level 1.
+This isn't literally code you wrote — it's a larger, curated example built entirely from Level 1 constructs (variables, functions, dicts, lists, `random`, CSV, JSON). It represents the kind of program a Level 1 graduate could plausibly produce by extending their game feature by feature, without ever stopping to restructure it. Read it the way you'd read code left behind by someone with exactly your Level 1 skill set — because that's exactly what it is.
 
 ---
 
@@ -17,6 +17,18 @@ uv run python level_2_oop_and_design/starter_legacy_rpg/main.py
 ```
 
 Play through a fight or two. Save the game. Load it. Make sure you understand what every part does.
+
+---
+
+## One thing Level 1 didn't cover: `global`
+
+Level 1 never used the `global` keyword, but this file leans on it heavily (`choose_hero`, `monster_attacks`, `use_potion`, `run_combat`, `load_game`). Quick primer before you read further:
+
+- Without `global`, assigning to a name inside a function creates a *local* name — it never touches a module-level variable that happens to share the name.
+- `global hero_hp` tells Python "this function assigns to the module-level `hero_hp`, not a new local one."
+- That's how a line like `hero_hp -= dmg`, buried inside `monster_attacks()`, can change the hero's HP for the whole game.
+
+You don't need to master `global` — you need to recognize it long enough to see the problem it enables: state that any function can reach in and mutate, with no clear owner. That's exactly the kind of shared, mutable global state Level 2 teaches you to replace with objects.
 
 ---
 

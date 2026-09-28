@@ -6,13 +6,13 @@
 
 ## The premise
 
-You finished Level 1. You built a working RPG. It runs, it saves, players enjoy it.
+You finished Level 1. You built a working RPG using variables, functions, dicts, loops, files, and dataclasses.
 
 Now open `starter_legacy_rpg/main.py`.
 
-That is the code you wrote. And you already know something is wrong with it.
+It isn't literally the file you wrote — it's a larger, deliberately messy RPG built entirely from Level 1 constructs: the kind of program a Level 1 graduate could plausibly end up with after adding feature after feature (potions, save/load, a monster table) without ever stopping to restructure. It runs, it saves, players enjoy it. And you already know something is wrong with it.
 
-Level 2 teaches you to name what is wrong — and fix it systematically, using the tools professional Python developers reach for every day: classes, dataclasses, enums, type hints, modules, properties, and tests.
+Level 2 teaches you to name what is wrong — and fix it systematically, using tools that exist for exactly this kind of problem: classes, dataclasses, enums, type hints, modules, properties, and tests.
 
 You are not learning abstract object-oriented theory. You are refactoring a real game you already understand.
 

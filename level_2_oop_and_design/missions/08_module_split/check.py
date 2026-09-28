@@ -37,14 +37,39 @@ def main() -> None:
         raise SystemExit(1)
 
     try:
-        # compute_damage
-        dmg = compute_damage(15, 5)
-        assert isinstance(dmg, int), f"compute_damage should return int, got {type(dmg)}"
-        assert dmg >= 1, "compute_damage should return at least 1"
+        # compute_damage — sample many times per (atk, def_) pair and check
+        # the whole *range* of outcomes, not just one call. This is what
+        # catches a stub like `return 1`: it can't reproduce a range at all.
+        def damage_range(atk, def_, samples=200):
+            results = {compute_damage(atk, def_) for _ in range(samples)}
+            assert all(isinstance(r, int) for r in results), \
+                f"compute_damage should always return int, got {results}"
+            return results
 
-        # Minimum 1
+        base = damage_range(15, 5)  # atk + roll(6) - def_ = 15 + [1..6] - 5 = 11..16
+        assert base and base <= set(range(11, 17)), \
+            f"compute_damage(15, 5) should only produce values 11-16, got {sorted(base)}"
+        assert len(base) > 1, \
+            "compute_damage(15, 5) returned the same value on every call — it should vary with the d6 roll"
+
+        higher_atk = damage_range(25, 5)  # 21..26
+        assert higher_atk and higher_atk <= set(range(21, 27)), (
+            "compute_damage(25, 5) should only produce values 21-26 — "
+            f"attack should raise damage over compute_damage(15, 5), got {sorted(higher_atk)}"
+        )
+
+        higher_def = damage_range(15, 12)  # 4..9
+        assert higher_def and higher_def <= set(range(4, 10)), (
+            "compute_damage(15, 12) should only produce values 4-9 — "
+            f"defence should lower damage compared to compute_damage(15, 5), got {sorted(higher_def)}"
+        )
+
+        # Minimum 1 — always, not just once
         dmg_floored = compute_damage(1, 100)
         assert dmg_floored == 1, f"compute_damage with atk=1, def=100 should return 1, got {dmg_floored}"
+        floored_range = damage_range(1, 100, samples=20)
+        assert floored_range == {1}, \
+            f"compute_damage(1, 100) should always floor to 1, got {sorted(floored_range)}"
 
         # hero_turn and monster_turn
         hero = Hero("Ada", HeroClass.WARRIOR, hp=120, max_hp=120, atk=15, def_=8, potions=2, gold=20)

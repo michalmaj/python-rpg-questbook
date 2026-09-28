@@ -73,7 +73,7 @@ Write tests for the `Hero` and `Monster` classes from Mission 03:
 
 ## Real-world translation
 
-Every serious Python project has a test suite. Django, FastAPI, NumPy, Pandas — all have thousands of tests that run on every commit. "If it's not tested, it's broken" is not an exaggeration.
+Every serious Python project has a test suite. Django, FastAPI, NumPy, Pandas — all have thousands of tests that run on every commit. Tests don't prove a program is entirely correct, but they make it far safer to change — a broken test catches a regression immediately, before a player does.
 
 ## Checklist
 
