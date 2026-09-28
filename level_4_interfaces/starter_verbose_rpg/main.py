@@ -1,8 +1,11 @@
 # starter_verbose_rpg/main.py
 #
 # A hardened OOP RPG — result of Level 3.
-# Data is Pydantic-validated. Save has a schema_version. Combat is logged
-# through a repository. Settings live in GameSettings.
+# Data is Pydantic-validated and save files carry a schema_version. Paths and
+# combat logging are still plain module-level constants and direct file
+# writes, though — this starter does not use GameSettings or the repository
+# pattern from Level 3. Level 4 is about the interface layer, not persistence,
+# so those two stay out of scope here.
 #
 # But look at the interface layer:
 #
