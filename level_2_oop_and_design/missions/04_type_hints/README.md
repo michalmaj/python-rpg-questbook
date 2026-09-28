@@ -100,7 +100,7 @@ Install mypy and run it on `task.py`. Fix any errors it finds. Note that mypy is
 
 ## Real-world translation
 
-FastAPI uses type hints to automatically validate request bodies, generate API documentation, and provide editor autocomplete. Django REST Framework uses them for serializer fields. Type hints went from optional nicety to professional necessity.
+FastAPI uses type hints to automatically validate request bodies, generate API documentation, and provide editor autocomplete. Django REST Framework uses them for serializer fields. Type hints are extremely common in modern Python codebases and pay off the most in larger projects with editors and type checkers like mypy — but Python itself never requires them; the language runs exactly the same with or without them.
 
 ## Checklist
 

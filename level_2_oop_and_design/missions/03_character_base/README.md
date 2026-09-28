@@ -20,6 +20,8 @@ Right now both classes store this separately, with no connection between them. A
 > **Note on the damage formula:** `hero_attacks()` and `monster_attacks()` also look similar, but the right tool there is a **pure function** (`compute_damage`), not inheritance. Inheritance is for shared *identity* — things that are genuinely the same kind of thing. A formula is a rule, not an identity. You will extract `compute_damage` in Mission 09.
 >
 > Rule of thumb: if two classes *are* the same kind of thing (both are characters), use inheritance. If two functions *do* the same calculation, extract a function.
+>
+> **A trade-off, not a rule:** inheritance is the right tool here because `Hero` and `Monster` are genuinely the same kind of thing — both are characters with HP and defence. That doesn't mean every shared attribute between two classes should become a base class. Later in this course, RPG models sometimes use plain dataclasses and composition instead, because once behaviour lives in pure functions rather than methods, a shared base class often adds structure without adding value. Use inheritance when it removes real duplication of *identity and behaviour* — not by default.
 
 ## Python concept
 
