@@ -93,6 +93,19 @@ def main() -> None:
         )
         # bare sheet: 0+0-0=0, minimum 0
         assert bare.power_score >= 0, "power_score must be ≥ 0"
+
+        # A case where the RAW formula actually goes negative (1 + 1 - 6 = -4),
+        # so a missing max(0, ...) clamp can't hide behind an all-zero sheet
+        overloaded = CharacterSheet(
+            name="Overloaded", hero_class=HeroClass.WARRIOR, hp=100,
+            weapon=Weapon("Rusty Dagger", damage=1, weight=15.0),
+            armor=Armor("Heavy Chains", defense=1, weight=15.0),
+        )
+        assert overloaded.power_score == 0, (
+            "power_score should clamp to 0 when the raw formula goes negative "
+            f"(1 + 1 - {int(overloaded.total_weight // 5)} would be "
+            f"{1 + 1 - int(overloaded.total_weight // 5)}), got {overloaded.power_score}"
+        )
         print(f"✓ power_score correct (Ada: {sheet.power_score})")
     except AssertionError as exc:
         print(f"❌ {exc}")

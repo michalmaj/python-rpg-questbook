@@ -42,6 +42,37 @@ def main() -> None:
         c.take_damage(100)
         assert c.hp == 0, "HP should never go below 0"
 
+        # Hero and Monster must DELEGATE their shared init to Character,
+        # not duplicate the attribute assignments by hand. Spy on
+        # Character.__init__: super().__init__(...) and the explicit
+        # Character.__init__(self, ...) form both resolve to whatever
+        # Character.__init__ currently is, so both are accepted — a
+        # subclass that never calls it at all is what this catches.
+        calls: list[str] = []
+        original_character_init = Character.__init__
+
+        def _spy_init(self, *args, **kwargs):
+            calls.append(type(self).__name__)
+            return original_character_init(self, *args, **kwargs)
+
+        Character.__init__ = _spy_init
+        try:
+            Hero("Ada", hp=120, atk=15, def_=8, potions=2, gold=20)
+            Monster("Goblin", hp=30, atk=8, def_=2, gold=10)
+        finally:
+            Character.__init__ = original_character_init
+
+        assert "Hero" in calls, (
+            "Hero(...) never called Character.__init__ — use "
+            "super().__init__(name, hp, atk, def_) instead of repeating "
+            "the attribute assignments by hand."
+        )
+        assert "Monster" in calls, (
+            "Monster(...) never called Character.__init__ — use "
+            "super().__init__(name, hp, atk, def_) instead of repeating "
+            "the attribute assignments by hand."
+        )
+
         # Hero inherits from Character
         assert issubclass(Hero, Character), "Hero should inherit from Character"
         h = Hero("Ada", hp=120, atk=15, def_=8, potions=2, gold=20)

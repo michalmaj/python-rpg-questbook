@@ -2,9 +2,12 @@
 
 import json
 from pathlib import Path
+from typing import get_type_hints
 
 REPO_ROOT = Path(__file__).parents[3]
 PROGRESS_FILE = REPO_ROOT / "level_2_oop_and_design" / ".progress"
+
+NONE_TYPE = type(None)
 
 
 def update_progress(mission_id: str) -> None:
@@ -19,9 +22,24 @@ def update_progress(mission_id: str) -> None:
     PROGRESS_FILE.write_text(json.dumps(progress, indent=2))
 
 
-def has_annotations(fn: object) -> bool:
-    hints = getattr(fn, "__annotations__", {})
-    return bool(hints)
+def _hints(fn: object, label: str) -> dict:
+    """Resolve real type objects (not strings) via typing.get_type_hints,
+    so `hp: "int"` and `hp: int` are treated the same, and a placeholder
+    like `hp: object` is caught instead of just checking a hint exists."""
+    try:
+        return get_type_hints(fn)
+    except Exception as e:
+        raise AssertionError(f"Could not resolve type hints for {label}: {e}")
+
+
+def _check(hints: dict, name: str, expected: type, label: str) -> None:
+    assert name in hints, f"{label} is missing a type hint for '{name}'"
+    actual = hints[name]
+    assert actual is expected, (
+        f"{label}: '{name}' should be annotated as {expected.__name__}, "
+        f"got {getattr(actual, '__name__', actual)!r} — a hint has to name "
+        f"the real type, not a placeholder like 'object'"
+    )
 
 
 def main() -> None:
@@ -35,26 +53,46 @@ def main() -> None:
         raise SystemExit(1)
 
     try:
-        # Check that __init__ methods have annotations
-        for cls, name in [(Character, "Character"), (Hero, "Hero"), (Monster, "Monster")]:
-            init = cls.__init__
-            hints = init.__annotations__
-            assert hints, f"{name}.__init__ has no type annotations — add them to all parameters"
-            assert "return" in hints, \
-                f"{name}.__init__ is missing '-> None' return annotation"
+        # Character.__init__
+        hints = _hints(Character.__init__, "Character.__init__")
+        _check(hints, "name", str, "Character.__init__")
+        _check(hints, "hp", int, "Character.__init__")
+        _check(hints, "atk", int, "Character.__init__")
+        _check(hints, "def_", int, "Character.__init__")
+        _check(hints, "return", NONE_TYPE, "Character.__init__")
 
-        # Check is_alive and take_damage
-        for cls, name in [(Character, "Character")]:
-            is_alive = cls.is_alive
-            hints = is_alive.__annotations__
-            assert "return" in hints, \
-                f"{name}.is_alive() is missing a return type annotation"
+        # Character.is_alive
+        hints = _hints(Character.is_alive, "Character.is_alive")
+        _check(hints, "return", bool, "Character.is_alive")
 
-            take_dmg = cls.take_damage
-            hints = take_dmg.__annotations__
-            assert hints, f"{name}.take_damage() has no annotations"
-            assert "return" in hints, \
-                f"{name}.take_damage() is missing '-> None' return annotation"
+        # Character.take_damage
+        hints = _hints(Character.take_damage, "Character.take_damage")
+        _check(hints, "amount", int, "Character.take_damage")
+        _check(hints, "return", NONE_TYPE, "Character.take_damage")
+
+        # Hero.__init__
+        hints = _hints(Hero.__init__, "Hero.__init__")
+        _check(hints, "name", str, "Hero.__init__")
+        _check(hints, "hp", int, "Hero.__init__")
+        _check(hints, "atk", int, "Hero.__init__")
+        _check(hints, "def_", int, "Hero.__init__")
+        _check(hints, "potions", int, "Hero.__init__")
+        _check(hints, "gold", int, "Hero.__init__")
+        _check(hints, "return", NONE_TYPE, "Hero.__init__")
+
+        # Hero.use_potion
+        hints = _hints(Hero.use_potion, "Hero.use_potion")
+        _check(hints, "heal_amount", int, "Hero.use_potion")
+        _check(hints, "return", bool, "Hero.use_potion")
+
+        # Monster.__init__
+        hints = _hints(Monster.__init__, "Monster.__init__")
+        _check(hints, "name", str, "Monster.__init__")
+        _check(hints, "hp", int, "Monster.__init__")
+        _check(hints, "atk", int, "Monster.__init__")
+        _check(hints, "def_", int, "Monster.__init__")
+        _check(hints, "gold", int, "Monster.__init__")
+        _check(hints, "return", NONE_TYPE, "Monster.__init__")
 
         # Runtime behaviour still works
         h = Hero("Ada", hp=120, atk=15, def_=8, potions=2, gold=20)

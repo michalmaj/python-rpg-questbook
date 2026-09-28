@@ -41,31 +41,48 @@ def main() -> None:
         c.take_damage(100)
         assert c.is_alive is False, "is_alive should be False when hp=0"
 
-        # hp_percent
-        c2 = Character("Test2", hp=60, max_hp=120, atk=10, def_=5)
-        assert abs(c2.hp_percent - 50.0) < 0.01, \
-            f"hp_percent should be 50.0 for 60/120, got {c2.hp_percent}"
+        # hp_percent — several hp/max_hp pairs the README/task never show,
+        # so a lookup keyed on the one example pair can't pass by accident
+        percent_cases = [
+            (60, 120, 50.0),
+            (75, 150, 50.0),
+            (17, 68, 25.0),
+            (180, 200, 90.0),
+            (9, 45, 20.0),
+            (120, 120, 100.0),
+            (0, 120, 0.0),
+        ]
+        for hp, max_hp, expected in percent_cases:
+            c = Character("Test", hp=hp, max_hp=max_hp, atk=10, def_=5)
+            assert abs(c.hp_percent - expected) < 0.01, \
+                f"hp_percent should be {expected} for {hp}/{max_hp}, got {c.hp_percent}"
 
-        c3 = Character("Test3", hp=120, max_hp=120, atk=10, def_=5)
-        assert abs(c3.hp_percent - 100.0) < 0.01, \
-            f"hp_percent should be 100.0 for 120/120, got {c3.hp_percent}"
-
-        c4 = Character("Test4", hp=0, max_hp=120, atk=10, def_=5)
-        assert abs(c4.hp_percent - 0.0) < 0.01, \
-            f"hp_percent should be 0.0 for 0/120, got {c4.hp_percent}"
-
-        # status
-        healthy  = Character("H", hp=100, max_hp=120, atk=10, def_=5)
-        wounded  = Character("W", hp=30,  max_hp=120, atk=10, def_=5)
-        critical = Character("C", hp=10,  max_hp=120, atk=10, def_=5)
-
-        assert healthy.status  == "healthy",  f"Expected 'healthy', got '{healthy.status}'"
-        assert wounded.status  == "wounded",  f"Expected 'wounded', got '{wounded.status}'"
-        assert critical.status == "critical", f"Expected 'critical', got '{critical.status}'"
+        # status — both sides of each threshold, exactly on each threshold,
+        # and the *same* hp values as above paired with a different max_hp,
+        # so a lookup like `if self.hp == 100: return "healthy"` (ignoring
+        # max_hp) gets caught instead of coincidentally passing.
+        status_cases = [
+            (100, 120, "healthy"),   # ~83%
+            (30,  120, "wounded"),   # 25%
+            (10,  120, "critical"),  # ~8%
+            (100, 200, "healthy"),   # exactly 50% — boundary, inclusive
+            (99,  200, "wounded"),   # just under 50%
+            (40,  200, "wounded"),   # exactly 20% — boundary, inclusive
+            (39,  200, "critical"),  # just under 20%
+            (45,  50,  "healthy"),   # 90%, values never used above
+            (100, 1000, "critical"), # same hp=100 as the first case, different max_hp
+            (30,  30,  "healthy"),   # same hp=30 as the first case, different max_hp
+            (10,  10,  "healthy"),   # same hp=10 as the first case, different max_hp
+        ]
+        for hp, max_hp, expected in status_cases:
+            c = Character("Test", hp=hp, max_hp=max_hp, atk=10, def_=5)
+            assert c.status == expected, \
+                f"status for hp={hp}/{max_hp} should be '{expected}', got '{c.status}'"
 
         # Properties are read-only
+        probe = Character("Probe", hp=100, max_hp=120, atk=10, def_=5)
         try:
-            healthy.is_alive = False
+            probe.is_alive = False
             print("❌ is_alive should be read-only (no setter)")
             raise SystemExit(1)
         except AttributeError:
