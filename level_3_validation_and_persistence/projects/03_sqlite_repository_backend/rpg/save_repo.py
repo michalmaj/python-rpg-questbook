@@ -85,7 +85,7 @@ class SqliteSaveRepository:
 
     def save(self, hero: Hero) -> None:
         # TODO:
-        # 1. model = SaveGameModel.from_hero(hero)
+        # 1. model = _hero_to_model(hero)
         # 2. INSERT OR REPLACE INTO saves VALUES (1, schema_version, model.model_dump_json())
         raise NotImplementedError
 
@@ -94,5 +94,5 @@ class SqliteSaveRepository:
         # 1. SELECT schema_ver, hero_json FROM saves WHERE id = 1
         # 2. If no row → return None
         # 3. If schema_ver != CURRENT_SCHEMA_VERSION → raise ValueError
-        # 4. return SaveGameModel.model_validate_json(hero_json).to_hero()
+        # 4. return _model_to_hero(SaveGameModel.model_validate_json(hero_json))
         raise NotImplementedError

@@ -118,14 +118,14 @@ saves table:
 ```
 
 `save(hero)`:
-1. Create a `SaveGameModel` from the hero
+1. Create a `SaveGameModel` from the hero using `_hero_to_model(hero)`
 2. `INSERT OR REPLACE INTO saves VALUES (1, schema_version, json_text)`
 
 `load() -> Hero | None`:
 1. `SELECT schema_ver, hero_json FROM saves WHERE id = 1`
 2. If no row → return `None`
 3. Validate schema version → raise `ValueError` if mismatch
-4. `SaveGameModel.model_validate_json(hero_json).to_hero()`
+4. `_model_to_hero(SaveGameModel.model_validate_json(hero_json))`
 
 ## SqliteCombatLogRepository design
 
