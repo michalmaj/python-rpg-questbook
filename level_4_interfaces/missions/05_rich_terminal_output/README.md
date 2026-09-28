@@ -57,11 +57,13 @@ result = Text("Victory!", style="bold green")
 console.print(Panel(result, title="Combat Result", border_style="green"))
 ```
 
-`Console` is Rich's equivalent of `print()` — it handles formatting, colour codes, and terminal width automatically. Always use one shared `Console` instance per module.
+`Console` is Rich's equivalent of `print()` — it handles formatting, colour codes, and terminal width automatically. Use one shared `Console` instance per output stream you write to.
+
+`stderr=True` configures *where a `Console` instance writes* — it is passed to `Console(...)`, not to `.print()`. A `Console` built with `Console(stderr=True)` sends everything printed through it to stderr; a plain `Console()` sends everything to stdout. `.print()` itself has no `stderr` argument.
 
 ## Your task
 
-Open `task.py`. A `console = Console()` is already defined.
+Open `task.py`. Two consoles are already defined: `console = Console()` for normal output, and `error_console = Console(stderr=True)` for errors.
 
 Implement:
 
@@ -71,7 +73,7 @@ Implement:
 
 3. **`show_combat_result(winner: str, gold_gained: int = 0) -> None`** — print a `Panel` for victory (green border) or defeat (red border). `winner` is either `"hero"` or `"monster"`.
 
-4. **`show_error(message: str) -> None`** — print the error message to `console.print(..., style="bold red")`. Use `stderr=True` so it goes to stderr, not stdout.
+4. **`show_error(message: str) -> None`** — call `error_console.print(message, style="bold red")`. Because `error_console` was built with `Console(stderr=True)`, this goes to stderr, not stdout.
 
 ## Run
 
@@ -87,17 +89,17 @@ uv run python level_4_interfaces/missions/05_rich_terminal_output/check.py
 
 ## Break it on purpose
 
-Remove `stderr=True` from `show_error()`. Pipe stdout to `/dev/null`:
+In `show_error()`, print through `console` instead of `error_console`. Pipe stdout to `/dev/null`:
 
 ```bash
 uv run python level_4_interfaces/missions/05_rich_terminal_output/task.py 2>/dev/null
 ```
 
-The error message disappears — it went to stdout, which you discarded. With `stderr=True`, the error appears even when stdout is redirected.
+The error message disappears — it went to stdout (via `console`), which you discarded. Routed through `error_console` (built with `Console(stderr=True)`), it appears even when stdout is redirected.
 
 ## Fix it
 
-Add `stderr=True` back. Error messages go to stderr again.
+Print through `error_console` again. Error messages go to stderr again.
 
 ## Side quest
 
@@ -116,12 +118,12 @@ for _ in track(range(battles), description="Simulating..."):
 
 ## Checklist
 
-- [ ] `console = Console()` is at module level (one shared instance)
+- [ ] `console = Console()` and `error_console = Console(stderr=True)` are at module level (one shared instance per stream)
 - [ ] `show_hero_stats()` uses `Table` with at least name, HP, gold, potions, W/L
 - [ ] `show_combat_start()` uses `Panel` to announce the battle
 - [ ] `show_combat_result()` uses green/red border to distinguish win from loss
-- [ ] `show_error()` uses `stderr=True` — errors go to stderr, not stdout
-- [ ] No `print()` calls for the four functions above — all go through `console`
+- [ ] `show_error()` prints through `error_console` — errors go to stderr, not stdout
+- [ ] No `print()` calls for the four functions above — all go through `console` or `error_console`
 
 ---
 

@@ -9,6 +9,7 @@ from rich.text import Text  # noqa: F401
 from rpg.domain import Hero, Monster
 
 console = Console()
+error_console = Console(stderr=True)
 
 
 def show_hero_stats(hero: Hero) -> None:
@@ -27,5 +28,7 @@ def show_combat_result(winner: str, gold_gained: int = 0) -> None:
 
 
 def show_error(message: str) -> None:
-    # TODO: console.print(message, style="bold red", stderr=True)
+    # TODO: error_console.print(message, style="bold red")
+    # error_console is Console(stderr=True); stderr routing is configured on
+    # the Console instance, not passed to .print().
     raise NotImplementedError

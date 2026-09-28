@@ -12,7 +12,9 @@ Your task:
 1. Implement show_hero_stats() using rich.table.Table
 2. Implement show_combat_start() using rich.panel.Panel
 3. Implement show_combat_result() using Panel with green/red border
-4. Implement show_error() using console.print(stderr=True)
+4. Implement show_error() using error_console.print() — a second Console
+   built with Console(stderr=True). stderr=True configures a Console
+   instance to write to stderr; it is not an argument of .print() itself.
 """
 
 import random
@@ -24,9 +26,10 @@ from rich.panel import Panel  # noqa: F401
 from rich.table import Table  # noqa: F401
 from rich.text import Text  # noqa: F401
 
-# ----- one shared console per module -----------------------------------------
+# ----- two shared consoles: normal output vs. stderr --------------------------
 
 console = Console()
+error_console = Console(stderr=True)
 
 # ----- domain ----------------------------------------------------------------
 
@@ -127,8 +130,9 @@ def show_combat_result(winner: str, gold_gained: int = 0) -> None:
 
 
 def show_error(message: str) -> None:
-    # TODO: console.print(message, style="bold red", stderr=True)
-    # stderr=True routes the output to stderr (not stdout)
+    # TODO: error_console.print(message, style="bold red")
+    # error_console was built with Console(stderr=True), so anything printed
+    # through it goes to stderr, not stdout. stderr=True is not a .print() argument.
     raise NotImplementedError
 
 
