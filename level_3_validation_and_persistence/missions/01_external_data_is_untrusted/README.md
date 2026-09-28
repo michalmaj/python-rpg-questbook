@@ -92,7 +92,7 @@ Extend your validator to check that `name` is a non-empty string (not `""` or `"
 
 ## Real-world translation
 
-Every API endpoint, config file, user upload, and database record that arrives from outside your system is untrusted. Professional backends always validate input at the boundary before touching the domain. In Python, the modern tool for this is Pydantic — which you will meet in Mission 02.
+Every API endpoint, config file, user upload, and database record that arrives from outside your system is untrusted. A system boundary is a natural place to validate that input, because that's exactly where data enters from a source you don't control — many backends treat this as a very strong practice. In Python, the modern tool for this is Pydantic — which you will meet in Mission 02.
 
 ## Checklist
 
