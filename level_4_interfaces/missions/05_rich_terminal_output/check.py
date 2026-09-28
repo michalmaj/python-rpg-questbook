@@ -3,6 +3,7 @@
 import importlib.util
 import io
 import json
+import sys
 from pathlib import Path
 
 from rich.console import Console
@@ -66,16 +67,23 @@ def capture(fn, *args, **kwargs) -> str:
     return buf.getvalue()
 
 
-def capture_stderr(fn, *args, **kwargs) -> str:
-    buf = io.StringIO()
-    c = Console(file=buf, highlight=False, markup=False, stderr=True)
-    original = mod.console
-    mod.console = c
+def capture_stdout_and_stderr(fn, *args, **kwargs) -> tuple[str, str]:
+    """Swap the real sys.stdout/sys.stderr for buffers and call fn.
+
+    Works regardless of how the implementation routes to stderr — a
+    module-level Console(stderr=True) resolves its output stream by
+    reading sys.stderr at print time (unless given an explicit file=),
+    so this catches any correctly-configured Console, under any variable
+    name, without requiring one specific implementation shape.
+    """
+    out_buf, err_buf = io.StringIO(), io.StringIO()
+    original_out, original_err = sys.stdout, sys.stderr
+    sys.stdout, sys.stderr = out_buf, err_buf
     try:
         fn(*args, **kwargs)
     finally:
-        mod.console = original
-    return buf.getvalue()
+        sys.stdout, sys.stderr = original_out, original_err
+    return out_buf.getvalue(), err_buf.getvalue()
 
 
 # ── sample data ───────────────────────────────────────────────────────────────
@@ -140,18 +148,23 @@ if not out_loss:
     raise SystemExit(1)
 print("✓ show_combat_result() produces output for both win and loss")
 
-# ── show_error goes to stderr ─────────────────────────────────────────────────
+# ── show_error goes to stderr, not stdout ─────────────────────────────────────
 
 try:
-    show_error("test error")
+    out, err = capture_stdout_and_stderr(show_error, "test error message")
 except NotImplementedError:
     print("❌ show_error() not yet implemented")
     raise SystemExit(1)
 
-if "stderr=True" not in task_src:
-    print("❌ show_error() does not pass stderr=True to console.print()")
+if "test error message" not in err:
+    print(f"❌ show_error(): expected the message on stderr, got stderr:\n{err!r}")
     raise SystemExit(1)
-print("✓ show_error() uses stderr=True")
+print("✓ show_error() writes the message to stderr")
+
+if "test error message" in out:
+    print(f"❌ show_error(): message also leaked to stdout:\n{out!r}")
+    raise SystemExit(1)
+print("✓ show_error() does not write to stdout")
 
 # ── no raw print() in the four functions ─────────────────────────────────────
 
