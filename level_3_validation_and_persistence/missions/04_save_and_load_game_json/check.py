@@ -98,8 +98,20 @@ def main() -> None:
         if not isinstance(loaded, Hero):
             print(f"❌ load_game() must return a Hero, got {type(loaded).__name__}")
             raise SystemExit(1)
-        if loaded.name != "Ada" or loaded.hp != 100 or loaded.gold != 55:
-            print(f"❌ Loaded hero has wrong values: name={loaded.name}, hp={loaded.hp}, gold={loaded.gold}")
+        # Full round-trip — every field the original hero was given, not just
+        # the ones that happen to be defaults, so silently dropping a field
+        # in to_hero()/from_hero() can't hide behind a Hero default value.
+        expected = {
+            "name": "Ada", "hp": 100, "max_hp": 120, "atk": 12, "def_": 4,
+            "gold": 55, "potions": 2, "wins": 3, "losses": 1,
+        }
+        mismatches = {
+            field: (want, getattr(loaded, field))
+            for field, want in expected.items()
+            if getattr(loaded, field) != want
+        }
+        if mismatches:
+            print(f"❌ Loaded hero has wrong values (field: expected, got): {mismatches}")
             raise SystemExit(1)
         if loaded.hero_class != HeroClass.WARRIOR:
             print(f"❌ Loaded hero class should be WARRIOR, got {loaded.hero_class}")

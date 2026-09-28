@@ -53,13 +53,17 @@ def main() -> None:
         raise SystemExit(1)
 
     SqliteSaveRepository = getattr(save_mod, "SqliteSaveRepository", None)
+    JsonSaveRepository = getattr(save_mod, "JsonSaveRepository", None)
     SqliteCombatLogRepository = getattr(log_mod, "SqliteCombatLogRepository", None)
+    CsvCombatLogRepository = getattr(log_mod, "CsvCombatLogRepository", None)
     Hero = getattr(domain_mod, "Hero", None)
     HeroClass = getattr(domain_mod, "HeroClass", None)
     CombatLogRow = getattr(schemas_mod, "CombatLogRow", None)
 
     for name, obj in [("SqliteSaveRepository", SqliteSaveRepository),
+                      ("JsonSaveRepository", JsonSaveRepository),
                       ("SqliteCombatLogRepository", SqliteCombatLogRepository),
+                      ("CsvCombatLogRepository", CsvCombatLogRepository),
                       ("Hero", Hero), ("HeroClass", HeroClass), ("CombatLogRow", CombatLogRow)]:
         if obj is None:
             print(f"❌ {name} not found.")
@@ -124,6 +128,68 @@ def main() -> None:
             print("❌ Schema version check not implemented in SqliteSaveRepository.load().")
             raise SystemExit(1)
 
+        # --- JsonSaveRepository (ported from Mission 05) ---
+        # This backend must satisfy the same SaveRepository contract as the
+        # Sqlite one — a boss fight that only proves the *new* backend works
+        # isn't proving "the game doesn't know which backend is running".
+        json_path = Path(tmp) / "save_game.json"
+        try:
+            json_repo = JsonSaveRepository(json_path)
+        except NotImplementedError:
+            print("❌ JsonSaveRepository.__init__() is not implemented yet.")
+            raise SystemExit(1)
+
+        try:
+            result = json_repo.load()
+        except NotImplementedError:
+            print("❌ JsonSaveRepository.load() is not implemented yet.")
+            raise SystemExit(1)
+        if result is not None:
+            print("❌ JsonSaveRepository.load() should return None before any save.")
+            raise SystemExit(1)
+
+        try:
+            json_repo.save(hero)
+        except NotImplementedError:
+            print("❌ JsonSaveRepository.save() is not implemented yet.")
+            raise SystemExit(1)
+
+        try:
+            json_loaded = json_repo.load()
+        except NotImplementedError:
+            print("❌ JsonSaveRepository.load() is not implemented yet.")
+            raise SystemExit(1)
+
+        if json_loaded is None:
+            print("❌ JsonSaveRepository.load() returned None after saving.")
+            raise SystemExit(1)
+        # Note: don't compare json_loaded.hero_class to HeroClass.MAGE here —
+        # save_repo.py imports HeroClass via the normal package import system
+        # while this checker loads rpg/domain.py through a separate
+        # importlib spec, so the two HeroClass classes are not `is`-identical
+        # even when they represent the same value. .value compares safely.
+        if (
+            json_loaded.name != "Turing"
+            or json_loaded.gold != 100
+            or json_loaded.wins != 5
+            or json_loaded.hero_class.value != "mage"
+        ):
+            print(f"❌ JsonSaveRepository round-trip has wrong data: {json_loaded}")
+            raise SystemExit(1)
+
+        json_raw = json.loads(json_path.read_text())
+        json_raw["schema_version"] = 99
+        json_path.write_text(json.dumps(json_raw))
+        try:
+            json_repo.load()
+            print("❌ JsonSaveRepository.load() should raise ValueError on schema version mismatch.")
+            raise SystemExit(1)
+        except ValueError:
+            pass
+        except NotImplementedError:
+            print("❌ Schema version check not implemented in JsonSaveRepository.load().")
+            raise SystemExit(1)
+
         # --- SqliteCombatLogRepository ---
         log_db = Path(tmp) / "log.db"
         try:
@@ -161,14 +227,57 @@ def main() -> None:
         if len(rows) != 2:
             print(f"❌ Expected 2 rows, got {len(rows)}")
             raise SystemExit(1)
-        if not isinstance(rows[0], CombatLogRow):
+        # Note: not isinstance(rows[0], CombatLogRow) — rpg/log_repo.py imports
+        # CombatLogRow via the normal package import system while this checker
+        # loads rpg/schemas.py through a separate importlib spec, so the two
+        # CombatLogRow classes are not `is`-identical even for a fully correct
+        # solution. Comparing the class name is identity-agnostic.
+        if type(rows[0]).__name__ != "CombatLogRow":
             print(f"❌ read_all() must return list[CombatLogRow], got {type(rows[0])}")
             raise SystemExit(1)
         if rows[1].result != "win":
             print(f"❌ Second row result should be 'win', got {rows[1].result!r}")
             raise SystemExit(1)
 
-    print("✅ Boss Fight complete — SqliteSaveRepository and SqliteCombatLogRepository work correctly.")
+        # --- CsvCombatLogRepository (ported from Mission 06) ---
+        csv_path = Path(tmp) / "combat_log.csv"
+        try:
+            csv_repo = CsvCombatLogRepository(csv_path)
+        except NotImplementedError:
+            print("❌ CsvCombatLogRepository.__init__() is not implemented yet.")
+            raise SystemExit(1)
+
+        try:
+            csv_empty = csv_repo.read_all()
+        except NotImplementedError:
+            print("❌ CsvCombatLogRepository.read_all() is not implemented yet.")
+            raise SystemExit(1)
+        if csv_empty != []:
+            print(f"❌ CsvCombatLogRepository.read_all() before any append should return [], got {csv_empty}")
+            raise SystemExit(1)
+
+        try:
+            csv_repo.append(row)
+        except NotImplementedError:
+            print("❌ CsvCombatLogRepository.append() is not implemented yet.")
+            raise SystemExit(1)
+        csv_repo.append(row2)
+
+        csv_rows = csv_repo.read_all()
+        if len(csv_rows) != 2:
+            print(f"❌ Expected 2 CSV rows after two appends, got {len(csv_rows)}")
+            raise SystemExit(1)
+        if type(csv_rows[0]).__name__ != "CombatLogRow":
+            print(f"❌ CsvCombatLogRepository.read_all() must return list[CombatLogRow], got {type(csv_rows[0])}")
+            raise SystemExit(1)
+        if csv_rows[0].damage_dealt != 20:
+            print(f"❌ First CSV row damage_dealt should be 20, got {csv_rows[0].damage_dealt}")
+            raise SystemExit(1)
+        if csv_rows[1].result != "win":
+            print(f"❌ Second CSV row result should be 'win', got {csv_rows[1].result!r}")
+            raise SystemExit(1)
+
+    print("✅ Boss Fight complete — JSON and SQLite backends both satisfy the same contract.")
     print("   The game code doesn't know which backend is running. That's the point.")
     update_progress("03_sqlite_repository_backend")
 
