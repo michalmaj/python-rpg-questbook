@@ -1,4 +1,6 @@
 import json
+import os
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -67,12 +69,26 @@ def _update_progress(status: str) -> None:
     PROGRESS_FILE.write_text(json.dumps(data, indent=2))
 
 
+def _clear_pycache() -> None:
+    # combat.py gets rewritten several times in quick succession below. If
+    # two writes land within the same mtime tick, Python's import system can
+    # reuse a stale cached .pyc instead of recompiling — silently testing
+    # the wrong version of combat.py. PYTHONDONTWRITEBYTECODE stops new
+    # stale caches from being written; clearing first removes any leftover
+    # from an earlier run (e.g. the student running pytest by hand).
+    cache_dir = MISSION_DIR / "__pycache__"
+    if cache_dir.exists():
+        shutil.rmtree(cache_dir)
+
+
 def _run_pytest() -> subprocess.CompletedProcess:
+    env = dict(os.environ, PYTHONDONTWRITEBYTECODE="1")
     return subprocess.run(
         [sys.executable, "-m", "pytest", TEST_FILE, "-v"],
         capture_output=True,
         text=True,
         cwd=REPO_ROOT,
+        env=env,
     )
 
 
@@ -81,6 +97,7 @@ def _run_against_mutant(original: str, mutant_source: str) -> subprocess.Complet
     the original content back — unconditionally, even if pytest itself
     errors out. Never leaves combat.py mutated."""
     try:
+        _clear_pycache()
         COMBAT_FILE.write_text(mutant_source)
         return _run_pytest()
     finally:
@@ -91,6 +108,7 @@ def main() -> None:
     original_combat = COMBAT_FILE.read_text()
 
     # ── Gate 1: tests pass against the real, correct combat.py ──
+    _clear_pycache()
     result = _run_pytest()
     print(result.stdout)
 
