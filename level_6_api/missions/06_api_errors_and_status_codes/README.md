@@ -99,7 +99,7 @@ Try it:
 
 ## Add It to the Game
 
-The scaffold has four tasks for you:
+The scaffold has five tasks for you:
 
 **Task 1 — Create `task/schemas.py`** with `ErrorOut`:
 
@@ -162,6 +162,32 @@ The session endpoints already handle errors correctly. Read through
 `create_session` and `get_session` to see the same `HTTPException` pattern applied
 to POST and GET.
 
+**Task 5 — Fix `task/routers/monsters.py`**
+
+`GET /monsters/{name}` is already registered — that's why `GET /monsters/Goblin`
+already works. But look at its body: on an unknown name, `repo.get(name)` returns
+`None`, and the next line calls `.name` on it, crashing with an `AttributeError`
+(500) instead of a clean 404. This is the same fix as Task 2, applied to a lookup
+instead of a simulation:
+
+```python
+@router.get("/monsters/{name}", response_model=MonsterOut)
+def get_monster(
+    name: str,
+    repo: MonsterRepository = Depends(get_monster_repo),
+) -> MonsterOut:
+    monster = repo.get(name)
+    if monster is None:
+        raise HTTPException(status_code=404, detail=f"Monster '{name}' not found")
+    return MonsterOut(name=monster.name, hp=monster.hp, atk=monster.atk, defense=monster.def_, gold=monster.gold)
+```
+
+Notice `defense=monster.def_`: the domain model calls the field `def_` because `def`
+is a reserved Python keyword, but nothing forces the public API to expose that
+name. The schema boundary is exactly where such renaming belongs — it's the one
+place code on both sides has to touch explicitly, so it's the right place to give
+API clients the more readable `defense`.
+
 ## Try It Yourself
 
 1. Start the server: `uv run uvicorn task.main:app --reload`
@@ -170,7 +196,9 @@ to POST and GET.
 4. Try `POST /battle/simulate` with `monster_name: "Goblin"` — confirm 200.
 5. Try `GET /heroes/classes` — confirm you see `["warrior", "mage", "rogue"]`.
 6. Try `GET /sessions/fake-id-123` — confirm 404.
-7. Open <http://127.0.0.1:8000/docs> and check the 404 response schema appears
+7. Try `GET /monsters/Goblin` — confirm 200. Try `GET /monsters/FakeMonster` —
+   confirm 404, not a 500 crash.
+8. Open <http://127.0.0.1:8000/docs> and check the 404 response schema appears
    for `/battle/simulate` after you add `responses={404: {"model": ErrorOut}}`.
 
 ## Break It
@@ -189,23 +217,11 @@ to POST and GET.
 
 ## Side Quest
 
-Add a `GET /monsters/{name}` endpoint that returns a single monster or 404:
-
-```python
-@router.get(
-    "/monsters/{name}",
-    response_model=MonsterOut,
-    responses={404: {"model": ErrorOut}},
-)
-def get_monster(
-    name: str,
-    service: BattleService = Depends(get_battle_service),
-) -> MonsterOut:
-    monster = service._repo.get(name)
-    if monster is None:
-        raise HTTPException(status_code=404, detail=f"Monster '{name}' not found")
-    return MonsterOut(**vars(monster))
-```
+Your Task 5 fix for `get_monster` reaches into `repo` directly. Add a
+`get_monster(name)` method on `BattleService` itself (it already has `_repo`)
+and call `service.get_monster(name)` from the router instead. Routers should
+generally go through the service, not the repository, once a service exists —
+`get_monster` currently bypasses it.
 
 Notice `service._repo.get(name)` accesses the private attribute — that's a hint
 that a cleaner design would expose `get_monster(name)` on `BattleService` itself.
@@ -232,4 +248,6 @@ about HTTP — it just raises a `ValueError`. The router is the translation laye
 - [ ] `POST /battle/simulate` with a known monster returns 200
 - [ ] `GET /sessions/nonexistent` returns 404
 - [ ] `GET /heroes/classes` returns 200 with a non-empty list of class names
+- [ ] `GET /monsters/Goblin` (or any real monster) returns 200
+- [ ] `GET /monsters/{unknown name}` returns 404 (not 500)
 - [ ] `uv run python check.py` prints ✅ Mission 06 complete!

@@ -44,7 +44,7 @@ uv run python check.py
 ```python
 # Input
 HeroIn:      name, hp (>0), atk (>0), def_ (≥0)
-BattleRequest: hero: HeroIn, monster_name: str
+BattleRequest: hero: HeroIn, monster_name: Literal["goblin", "orc", "dragon"]
 
 # Output
 HeroPreview: name, hp, atk, def_, power_rating  # atk / (def_ + 1)
@@ -55,9 +55,22 @@ BattleResult: winner ("hero" | "monster"), rounds, hero_hp_remaining
 
 - `power_rating = round(hero.atk / (hero.def_ + 1), 2)`
 - Each combat round: `damage = max(attacker.atk - defender.def_, 1)`
-- Unknown `monster_name` → `HTTPException(status_code=404)`
-- Invalid body (e.g. `hp=-1`) → 422 automatically (FastAPI/Pydantic)
+- Invalid body (e.g. `hp=-1`, or a `monster_name` outside `Literal["goblin", "orc", "dragon"]`) → **422**, raised automatically by Pydantic before your endpoint body ever runs.
 - **No `APIRouter`** — that's Project 02. Keep this flat.
+
+### Why 422 here, not 404
+
+`monster_name` is typed as a `Literal` — the allowed set is part of the *request
+schema*, not looked up in a datastore. An unrecognised value fails request
+validation, so FastAPI never reaches `simulate_battle`; it's the same 422 you'd
+get from `hp=-1`. That's different from a *lookup failure*: a resource that
+passes validation but isn't found once you actually go looking for it (a
+missing hero by ID, a session that expired) is what `HTTPException(404)` is
+for. Project 02's `GET /monsters/{name}` is exactly that case — `name` is a
+free-form path string, so any value passes validation, and the router itself
+decides whether the monster exists. Don't read "422 for a bad name" as a
+universal rule — it follows from *where* the allowed set is enforced, not from
+what kind of value was wrong.
 
 ## Monster catalog
 
