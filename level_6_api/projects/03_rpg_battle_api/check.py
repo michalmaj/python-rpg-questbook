@@ -152,6 +152,20 @@ if result.returncode != 0:
     raise SystemExit(1)
 print("✓ All API tests pass")
 
+# ── Gate 10: ruff check on the code you wrote (Level 5 habits still apply) ───
+
+repo_root = Path(__file__).parents[3]
+result = subprocess.run(
+    [sys.executable, "-m", "ruff", "check", str(project / "rpg" / "api"), "--config", str(repo_root / "pyproject.toml")],
+    capture_output=True,
+    text=True,
+)
+if result.returncode != 0:
+    print("❌ ruff check rpg/api/ fails — fix the lint errors above:")
+    print(result.stdout)
+    raise SystemExit(1)
+print("✓ ruff check rpg/api/ passes")
+
 update_progress("03_rpg_battle_api")
 print()
 print("✅ Boss fight complete! RPG Battle API fully operational.")

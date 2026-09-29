@@ -8,11 +8,14 @@ A 7-endpoint HTTP API backed by a JSON session store. The domain layer (domain, 
 
 ## What to implement
 
-### 1. `rpg/api/schemas.py` — Pydantic API schemas
+### 1. `rpg/api/schemas.py` — Pydantic API schemas (pre-wired — read, don't rewrite)
+
+These four schemas are already written for you. Read them before touching the
+routers — every endpoint you implement returns one of these:
 
 | Schema | Fields |
 |--------|--------|
-| `MonsterOut` | `name`, `hp`, `atk`, `def_`, `gold` |
+| `MonsterOut` | `name`, `hp`, `atk`, `defense`, `gold` |
 | `BattleRequest` | `hero_name`, `hero_class` (HeroClass enum), `monster_name` |
 | `BattleResultOut` | `hero_name`, `monster_name`, `winner`, `rounds`, `gold_earned` |
 | `SessionCreated` | `session_id` |
@@ -81,6 +84,7 @@ uv run python level_6_api/projects/03_rpg_battle_api/check.py
 | 7 | `GET /sessions/nonexistent-id` → 404 |
 | 8 | `GET /reports/{valid_id}` → 200, body contains `##` |
 | 9 | `pytest tests/test_api.py` → all pass |
+| 10 | `ruff check rpg/api/` → no lint errors |
 
 ## Running tests manually
 
@@ -92,10 +96,15 @@ uv run pytest tests/test_api.py -v
 ## Where to start
 
 1. Read `rpg/domain.py`, `rpg/repositories.py`, and `rpg/services.py` to understand the pre-built layer.
-2. Fill in `rpg/api/schemas.py` with the five Pydantic models.
+2. Read `rpg/api/schemas.py` — the four Pydantic models are already written; you'll use them in the routers below.
 3. Fill in `rpg/api/dependencies.py` with the three factory functions.
 4. Implement `rpg/api/routers/health.py` and run `check.py` — Gate 1 should pass.
 5. Work through the remaining routers one at a time, running `check.py` after each.
 6. Implement the tests in `tests/test_api.py` last (or alongside each router).
 
 Good luck!
+
+---
+
+The quality habits from Level 5 still apply: before shipping the API, run
+`uv run ruff check rpg/api/` on the code you changed.
