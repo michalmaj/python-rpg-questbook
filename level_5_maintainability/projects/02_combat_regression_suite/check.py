@@ -2,12 +2,14 @@
 
 import ast
 import json
+import shutil
 import subprocess
 import sys
 from pathlib import Path
 
 PROJECT_DIR = Path(__file__).parent
 TEST_FILE = PROJECT_DIR / "tests" / "test_combat.py"
+COMBAT_FILE = PROJECT_DIR / "rpg" / "combat.py"
 PROGRESS_FILE = Path(__file__).parents[3] / "level_5_maintainability" / ".progress"
 
 
@@ -132,17 +134,66 @@ def main() -> None:
     print(f"✓ {n_fixture} @pytest.fixture definition(s)")
 
     # ── 6. ≥1 @pytest.mark.xfail(strict=True) that calls compute_damage ──────
+    # (cheap structural pre-check — the real proof is behavioral, below)
     if not has_xfail_on_compute_damage(source):
         print("❌ Need ≥1 @pytest.mark.xfail test that calls compute_damage()")
         print("   The bug: compute_damage(1, 0, 10) returns 0 instead of 1.")
         print("   Write a test asserting == 1, mark it xfail(strict=True) so pytest exits 0.")
         raise SystemExit(1)
-    # Check strict=True is used
     if "strict=True" not in source and 'strict = True' not in source:
         print("❌ xfail must use strict=True: @pytest.mark.xfail(strict=True, reason=...)")
         print("   strict=True means: if the bug is accidentally fixed, pytest fails loudly.")
         raise SystemExit(1)
-    print("✓ xfail(strict=True) test detects the minimum-damage bug in compute_damage()")
+    print("✓ xfail(strict=True) test found, calling compute_damage()")
+
+    # ── 7. The xfail test must document the REAL bug, not just any failure ───
+    #
+    # An xfail(strict=True) test that asserts something unrelated (e.g.
+    # compute_damage(1, 0, 10) == 999999) still "passes" the checks above —
+    # it fails today for the wrong reason, and would keep silently "passing"
+    # (as XFAIL) forever, even after someone fixes the real bug, since a
+    # wrong expected value never becomes true. The only way to tell a test
+    # that tracks the *real* documented bug from one that doesn't is to fix
+    # the real bug and see whether the test flips to XPASS.
+    if not COMBAT_FILE.exists():
+        print("❌ rpg/combat.py not found")
+        raise SystemExit(1)
+    original_combat_src = COMBAT_FILE.read_text()
+    buggy_line = "return max(atk + bonus - def_, 0)"
+    fixed_line = "return max(atk + bonus - def_, 1)"
+    if buggy_line not in original_combat_src:
+        print("❌ internal check error: expected buggy line not found in rpg/combat.py "
+              "— has the file been modified? It should not be.")
+        raise SystemExit(1)
+
+    try:
+        COMBAT_FILE.write_text(original_combat_src.replace(buggy_line, fixed_line, 1))
+        shutil.rmtree(PROJECT_DIR / "tests" / "__pycache__", ignore_errors=True)
+        shutil.rmtree(PROJECT_DIR / "rpg" / "__pycache__", ignore_errors=True)
+        fixed_result = run([sys.executable, "-m", "pytest", "tests/test_combat.py",
+                            "-v", "--tb=line"])
+        shutil.rmtree(PROJECT_DIR / "tests" / "__pycache__", ignore_errors=True)
+        shutil.rmtree(PROJECT_DIR / "rpg" / "__pycache__", ignore_errors=True)
+    finally:
+        COMBAT_FILE.write_text(original_combat_src)
+
+    if COMBAT_FILE.read_text() != original_combat_src:
+        print("❌ internal check error: rpg/combat.py was not restored correctly — please re-run")
+        raise SystemExit(1)
+
+    if fixed_result.returncode == 0:
+        print("❌ Your xfail test still doesn't fail (as XPASS) once the real bug is "
+              "fixed — it isn't asserting the actual documented behavior "
+              "(compute_damage(1, 0, 10) == 1). Update the assertion to match the "
+              "real bug, not an arbitrary failing value.")
+        raise SystemExit(1)
+    if "XPASS" not in fixed_result.stdout:
+        print("❌ pytest failed once the bug was fixed, but not via the expected "
+              "XPASS(strict) on your xfail test — something else broke:")
+        print(fixed_result.stdout[-1500:])
+        raise SystemExit(1)
+    print("✓ xfail test correctly flips to XPASS (and fails the suite, via "
+          "strict=True) once the real bug is fixed — it documents the actual bug")
 
     # ── Done ──────────────────────────────────────────────────────────────────
     update_progress("02_combat_regression_suite")
