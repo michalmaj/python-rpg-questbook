@@ -47,10 +47,11 @@ def main() -> None:
     print("✓ mypy --strict rpg/ — 0 errors")
 
     # ── 3. pyright passes ────────────────────────────────────────────────────
-    result = run_tool(["pyright", "rpg/"])
+    result = run_tool([sys.executable, "-m", "pyright", "rpg/"])
     if result.returncode != 0:
         # pyright might not be installed — warn but don't block
-        if "not found" in result.stderr.lower() or "no such file" in result.stderr.lower():
+        stderr_lower = result.stderr.lower()
+        if "no such file" in stderr_lower or "no module named" in stderr_lower:
             print("⚠  pyright not installed — skipping (install with: uv add --dev pyright)")
         else:
             print("❌ pyright rpg/ still has errors:")

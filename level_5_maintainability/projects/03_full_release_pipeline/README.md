@@ -73,7 +73,11 @@ Work through these in order. Run `uv run python check.py` after each step.
   `## [1.0.0]` section with bullet points for what this release includes.
 
 - [ ] **7. pre-commit** — create `.pre-commit-config.yaml` with ruff, ruff-format,
-  and mypy hooks. Run `uv run pre-commit install` then `uv run pre-commit run --all-files`.
+  and mypy hooks. Run `uv run pre-commit install` then
+  `uv run pre-commit run --files rpg.py --config .pre-commit-config.yaml`.
+  Use `--files`, not `--all-files`: this repo is a multi-level monorepo, and
+  `--all-files` runs on every file git tracks across every level, not just
+  this project — see Mission 08 for why that matters.
 
 - [ ] **8. GitHub Actions** — create `.github/workflows/ci.yml`. It must install uv,
   run ruff, mypy, and pytest on both Python 3.12 and 3.13 in a matrix.

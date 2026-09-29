@@ -65,8 +65,13 @@ Key fields:
    temporary environment and runs each configured hook.
 3. If any hook exits non-zero, the commit is aborted. Fix the errors, re-stage,
    and commit again.
-4. `pre-commit run --all-files` — runs all hooks on every file right now,
-   without needing to stage anything.
+4. `pre-commit run --all-files` — runs all hooks on every file *tracked by git
+   in the whole repository*, not just the current folder. `pre-commit run
+   --files <path>` — runs hooks on exactly the file(s) you name, regardless of
+   cwd or `--config`. In this course repo (one monorepo holding every level),
+   `--all-files` would run auto-fixing hooks like `ruff --fix` and
+   `ruff-format` across Levels 1–7. Always use `--files` here, scoped to this
+   mission's own file(s).
 
 ### Why pin `rev:`?
 
@@ -103,7 +108,7 @@ repos:
 Then verify it passes against `task.py`:
 
 ```bash
-pre-commit run --all-files --config .pre-commit-config.yaml
+pre-commit run --files task.py --config .pre-commit-config.yaml
 ```
 
 ---
@@ -140,7 +145,7 @@ Add `additional_dependencies` under mypy for any third-party packages that
 ### Step 3 — Run against task.py
 
 ```bash
-pre-commit run --all-files --config .pre-commit-config.yaml
+pre-commit run --files task.py --config .pre-commit-config.yaml
 ```
 
 All hooks should pass. If mypy fails, check the `additional_dependencies` list.
@@ -158,7 +163,7 @@ uv run python check.py
 1. Install pre-commit: `uv tool install pre-commit`
 2. Create `.pre-commit-config.yaml` in this folder with ruff + ruff-format + mypy hooks
 3. Pin each hook to a specific `rev:` tag
-4. Run `pre-commit run --all-files --config .pre-commit-config.yaml` — all hooks must pass
+4. Run `pre-commit run --files task.py --config .pre-commit-config.yaml` — all hooks must pass
 5. Run `uv run python check.py`
 
 ---
@@ -175,7 +180,7 @@ def compute_damage(atk: int, def_: int, roll: int) -> str:  # wrong return type
 Run pre-commit again:
 
 ```bash
-pre-commit run --all-files --config .pre-commit-config.yaml
+pre-commit run --files task.py --config .pre-commit-config.yaml
 ```
 
 Mypy will catch the return type mismatch immediately. Revert the change and
@@ -221,7 +226,7 @@ generation.
 | `mypy` hook | Catches type errors before they reach CI |
 | `rev:` pinning | Reproducible hook versions across the team |
 | `pre-commit install` | Run once per developer after cloning the repo |
-| `pre-commit run --all-files` | Run in CI to verify all files pass hooks |
+| `pre-commit run --all-files` | Run in CI on a normal single-project repo, where "all files" means "the whole project" — not applicable to this course's multi-level monorepo, which is why this mission uses `--files` instead |
 
 ---
 
@@ -234,5 +239,5 @@ generation.
 - [ ] `ruff-format` hook from `ruff-pre-commit` included
 - [ ] `mypy` hook from `mirrors-mypy` included
 - [ ] Every repo has a pinned `rev:` tag
-- [ ] `pre-commit run --all-files` passes against `task.py`
+- [ ] `pre-commit run --files task.py` passes against `task.py`
 - [ ] `uv run python check.py` prints `✅ Mission 08 complete!`

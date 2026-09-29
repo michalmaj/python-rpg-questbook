@@ -45,11 +45,17 @@ for keyword, label in required.items():
         raise SystemExit(1)
 print("✓ .pre-commit-config.yaml has repos, ruff, ruff-format, mypy, pinned revs")
 
-# ── pre-commit run --all-files passes ─────────────────────────────────────────
+# ── pre-commit run (scoped to this mission's task.py) passes ─────────────────
+#
+# Deliberately NOT --all-files: pre-commit's --all-files runs on every file
+# tracked by git in the whole repo (relative to the git root, regardless of
+# cwd or --config) — not "all files in this mission". On this monorepo that
+# means auto-fixing hooks (ruff --fix, ruff-format) would reformat files
+# across every level. --files scopes the run to exactly the file(s) named.
 
 try:
     result = subprocess.run(
-        ["pre-commit", "run", "--all-files", "--config", str(config)],
+        ["pre-commit", "run", "--files", "task.py", "--config", str(config)],
         capture_output=True, text=True, cwd=str(mission),
     )
 except FileNotFoundError:
@@ -57,11 +63,11 @@ except FileNotFoundError:
     print("   Install it first: uv tool install pre-commit")
     raise SystemExit(1)
 if result.returncode != 0:
-    print("❌ pre-commit run --all-files fails:")
+    print("❌ pre-commit run --files task.py fails:")
     print(result.stdout[-2000:])
     print(result.stderr[-500:])
     raise SystemExit(1)
-print("✓ pre-commit run --all-files passes")
+print("✓ pre-commit run --files task.py passes")
 
 update_progress("08_pre_commit")
 print("\n✅ Mission 08 complete!")

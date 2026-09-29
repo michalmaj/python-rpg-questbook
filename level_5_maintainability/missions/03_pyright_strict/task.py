@@ -197,7 +197,7 @@ def load_monsters() -> list[Monster]:
     try:
         with open(DATA_DIR / "monsters.json") as f:
             raw: dict[str, list[object]] = json.load(f)
-        monsters: list[Monster] = []
+        monsters = []  # TODO: pyright flags this — see Mission 03 README
         for entry in raw["monsters"]:
             try:
                 monsters.append(MonsterConfig.model_validate(entry).to_domain())
