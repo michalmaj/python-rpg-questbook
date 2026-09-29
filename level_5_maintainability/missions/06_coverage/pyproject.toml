@@ -14,9 +14,14 @@ pythonpath = ["."]
 #   1. tool.coverage.run  — what to measure
 #      source = ["rpg"]
 #      omit = ["test_*.py"]
+#      branch = true
 #
 #   2. tool.coverage.report  — how to display and enforce the threshold
-#      fail_under = 80
+#      fail_under = 100
 #      show_missing = true
 #
-# Then run: uv run pytest --cov=rpg --cov-report=term-missing
+# Then run: uv run pytest --cov=rpg --cov-branch --cov-report=term-missing
+#
+# The existing test suite already covers 98% of rpg.py (97% branch coverage)
+# before you write anything — there is exactly one real gap. Read the
+# "Missing" column, find it, and write one test that exercises it.

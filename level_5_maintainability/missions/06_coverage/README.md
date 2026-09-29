@@ -2,7 +2,7 @@
 
 ## Goal
 
-Measure which lines and branches of `rpg.py` your tests actually exercise. Configure `pytest-cov` and push coverage to ≥ 80%.
+Measure which lines and branches of `rpg.py` your tests actually exercise, find the one real gap the inherited test suite leaves open, and close it with a test that actually checks the result — not just one that runs the missing code.
 
 ---
 
@@ -11,6 +11,23 @@ Measure which lines and branches of `rpg.py` your tests actually exercise. Confi
 You have tests — but do they cover the corners? The goblin might die in the first hit, or survive and counterattack, or the hero's potions might already be empty. Without coverage measurement, you don't know which paths your tests never walk. Silent regressions hide in uncovered branches.
 
 `pytest-cov` maps every line executed during your test run and tells you exactly what was missed.
+
+### What coverage tells you — and what it doesn't
+
+- **Line coverage** answers: was this line executed at all, by any test?
+- **Branch coverage** answers a sharper question: for each `if`/`while`/etc., did a test take *both* outcomes — not just reach the line where the decision happens? A line can be "covered" by only ever taking one branch of it.
+- **A high number can help you find gaps** — that's what this mission uses it for.
+- **A high number does not prove your program is correct.** Coverage only tracks which code *ran*. A test with no assertion, or a wrong assertion, still counts as "covered" the moment the line executes:
+
+  ```python
+  def test_simulate_turn_both_survive(warrior, goblin):
+      simulate_turn(warrior, goblin, hero_roll=1, monster_roll=1)
+      # no assertion — this line is now "covered", but nothing was checked
+  ```
+
+  `check.py` in this mission specifically guards against that exact trap (see "Add It to the Game" below) — 100% coverage alone will not be enough.
+
+Treat a coverage threshold as a guardrail that catches *obviously* untested code, not as a certificate of quality.
 
 ---
 
@@ -74,14 +91,21 @@ Configure coverage in `pyproject.toml`:
 [tool.coverage.run]
 source = ["rpg"]        # which modules to measure
 omit = ["test_*.py"]   # exclude test files themselves
+branch = true           # track both outcomes of each decision, not just the line
 
 [tool.coverage.report]
-fail_under = 80         # minimum acceptable coverage
+fail_under = 100        # minimum acceptable coverage for this mission
 show_missing = true     # print missing line numbers in terminal
 ```
 
-`[tool.coverage.run]` controls *what gets measured*.
+`[tool.coverage.run]` controls *what gets measured* — `branch = true` is what turns on branch coverage instead of plain line coverage.
 `[tool.coverage.report]` controls *how results are displayed and enforced*.
+
+Run with branch coverage on the command line too — this repo's pytest-cov does not reliably pick up `branch = true` from `pyproject.toml` alone:
+
+```bash
+uv run pytest --cov=rpg --cov-branch --cov-report=term-missing
+```
 
 ---
 
@@ -114,6 +138,8 @@ rpg.py       2      0   100%
 
 ## Add It to the Game
 
+The test suite you inherited from M04/M05 already covers 98% of `rpg.py` (97% of branches) before you write a single new line. There is exactly one real gap — this mission is about finding and closing that one gap properly, not about hitting a percentage.
+
 ### Step 1 — Add coverage config to `pyproject.toml`
 
 Open `pyproject.toml`. Find the TODO comment and replace it with:
@@ -122,57 +148,59 @@ Open `pyproject.toml`. Find the TODO comment and replace it with:
 [tool.coverage.run]
 source = ["rpg"]
 omit = ["test_*.py"]
+branch = true
 
 [tool.coverage.report]
-fail_under = 80
+fail_under = 100
 show_missing = true
 ```
 
 ### Step 2 — Run coverage and read the report
 
 ```bash
-uv run pytest --cov=rpg --cov-report=term-missing
+uv run pytest --cov=rpg --cov-branch --cov-report=term-missing
 ```
 
-Look at the `Missing` column. Which lines are uncovered?
+Look at the `Missing` column — it names the one line that's never reached: `simulate_turn`'s "both survive" outcome (`return True, True`), for a turn where neither the hero nor the monster dies.
 
-### Step 3 — Add tests for missing branches
+### Step 3 — Write a test that actually checks it, not just runs it
 
-Common uncovered branches in `rpg.py`:
+```python
+def test_simulate_turn_both_survive(warrior: Hero, goblin: Monster) -> None:
+    hero_alive, monster_alive = simulate_turn(warrior, goblin, hero_roll=1, monster_roll=1)
+    assert hero_alive is True
+    assert monster_alive is True
+```
 
-- `simulate_turn` where both hero and monster survive (returns `True, True`)
-- `Monster.is_alive` property when monster hp is 0
-- `Monster.take_damage` when damage exceeds hp
-
-Add targeted tests until coverage reaches ≥ 80%.
+`check.py` does not stop at "coverage reached 100%". It also swaps in a version of `simulate_turn` where the "both survive" outcome is reported backwards, and re-runs your suite — if your new test only *calls* `simulate_turn` without asserting on `hero_alive`/`monster_alive`, coverage will read 100% but this check still fails, because nothing would have noticed the bug.
 
 ---
 
 ## Try It Yourself
 
-1. Add `[tool.coverage.run]` and `[tool.coverage.report]` to `pyproject.toml`.
-2. Run `uv run pytest --cov=rpg --cov-report=term-missing`.
-3. Identify the missing lines.
-4. Write tests to cover at least some of them.
+1. Add `[tool.coverage.run]` (with `branch = true`) and `[tool.coverage.report]` to `pyproject.toml`.
+2. Run `uv run pytest --cov=rpg --cov-branch --cov-report=term-missing`.
+3. Identify the missing line/branch.
+4. Write a test that exercises it *and* asserts on what it returns.
 5. Run `uv run python check.py` to verify.
 
 ---
 
 ## Break It
 
-Remove the `[tool.coverage.report]` section from `pyproject.toml`. Run `check.py`. You will see:
+Remove the `branch = true` line from `[tool.coverage.run]` in `pyproject.toml`. Run `check.py`. You will see:
 
 ```
-❌ [tool.coverage] section not found in pyproject.toml
+❌ [tool.coverage.run] must set branch = true
 ```
 
-Restore the section and re-run.
+Restore the line and re-run.
 
 ---
 
 ## Fix It
 
-Add the coverage sections back. Re-run `uv run python check.py`.
+Add `branch = true` back. Re-run `uv run python check.py`.
 
 ---
 
@@ -204,15 +232,16 @@ Now every PR shows a coverage delta — reviewers can see if new code is tested.
 | `compute_damage` branch (minimum = 1) | Edge-case guard in a business rule |
 | `simulate_turn` three outcomes | State machine with happy/sad/neutral paths |
 | `# pragma: no cover` | CLI entry points, debug helpers |
-| `fail_under = 80` | CI gate that blocks merging undertested code |
+| `fail_under = N` | CI gate that blocks merging undertested code — a guardrail, not a quality score |
 | `htmlcov/` report | PR review tool: "which lines did you add but not test?" |
 
 ---
 
 ## Checklist
 
-- [ ] `[tool.coverage.run]` section added to `pyproject.toml`
-- [ ] `[tool.coverage.report]` section added to `pyproject.toml`
-- [ ] `uv run pytest --cov=rpg --cov-report=term-missing` runs without errors
-- [ ] Coverage for `rpg.py` is ≥ 80%
+- [ ] `[tool.coverage.run]` section added to `pyproject.toml`, with `branch = true`
+- [ ] `[tool.coverage.report]` section added to `pyproject.toml`, with `fail_under = 100`
+- [ ] `uv run pytest --cov=rpg --cov-branch --cov-report=term-missing` runs without errors
+- [ ] Branch coverage for `rpg.py` is 100%
+- [ ] The new test asserts on `simulate_turn`'s actual return values for the "both survive" case — not just calling it
 - [ ] `uv run python check.py` prints `✅ Mission 06 complete!`
