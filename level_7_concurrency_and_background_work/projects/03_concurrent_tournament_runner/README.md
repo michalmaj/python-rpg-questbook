@@ -36,4 +36,12 @@ Then write at least **6 tests** in `tests/test_api.py` covering:
 uv run python check.py
 ```
 
-All 9 gates must pass.
+All gates must pass.
+
+---
+
+Quality habits still apply — run Ruff on the code you changed before considering the final project complete:
+
+```bash
+uv run python -m ruff check api/ tests/
+```

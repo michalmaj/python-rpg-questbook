@@ -101,7 +101,8 @@ app.dependency_overrides[get_job_repo] = lambda: check_repo
 app.dependency_overrides[get_worker] = lambda: check_worker
 
 client = TestClient(app, raise_server_exceptions=False)
-r = client.post("/tournaments", json={"battles": 20})
+BATTLES = 20
+r = client.post("/tournaments", json={"battles": BATTLES})
 if r.status_code != 202:
     print(f"❌ POST /tournaments should return 202, got {r.status_code}")
     app.dependency_overrides.clear()
@@ -114,7 +115,29 @@ if r.json().get("status") != "completed":
     print(f"❌ Job should be completed immediately with SyncWorker, got {r.json().get('status')}")
     app.dependency_overrides.clear()
     raise SystemExit(1)
-print("✓ API: POST /tournaments → 202, job completes instantly (SyncWorker)")
+
+# The result must reflect the actual tournament that ran — not just any dict
+# that happens to make the status look "completed". total_battles is
+# deterministic (it's the request's battles count); hero_wins/monster_wins
+# are random per-battle, so only their sum (not exact values) is checked.
+result = r.json().get("result")
+if not isinstance(result, dict):
+    print(f"❌ Job result should be a dict, got {result!r}")
+    app.dependency_overrides.clear()
+    raise SystemExit(1)
+if result.get("total_battles") != BATTLES:
+    print(f"❌ result['total_battles'] should be {BATTLES}, got {result.get('total_battles')!r}")
+    print("   The result must come from the real simulate_tournament() call, not a fabricated dict.")
+    app.dependency_overrides.clear()
+    raise SystemExit(1)
+hero_wins = result.get("hero_wins")
+monster_wins = result.get("monster_wins")
+if not isinstance(hero_wins, int) or not isinstance(monster_wins, int) or hero_wins + monster_wins != BATTLES:
+    print(f"❌ result hero_wins ({hero_wins!r}) + monster_wins ({monster_wins!r}) should equal {BATTLES}")
+    app.dependency_overrides.clear()
+    raise SystemExit(1)
+print(f"✓ API: POST /tournaments → 202, job completes instantly (SyncWorker), "
+      f"result matches the real simulation: {result}")
 
 r = client.get("/jobs/nonexistent")
 if r.status_code != 404:
