@@ -1,6 +1,9 @@
 """CLI for the Concurrent Tournament Runner."""
+import time
+import uuid
+
 import typer
-from api.dependencies import get_job_repo, get_simulation_service, get_worker
+from api.dependencies import get_job_repo, get_worker
 from jobs.jobs import JobStatus
 
 app = typer.Typer()
@@ -8,16 +11,42 @@ app = typer.Typer()
 
 @app.command()
 def start(battles: int = typer.Option(1000, "--battles", "-n")) -> None:
-    """Start a tournament in the background and print the job_id."""
-    svc = get_simulation_service()
+    """Run a tournament on the ProcessPool worker and print the result when done.
+
+    The worker runs on a daemon thread (see BackgroundWorker/ProcessPoolTournamentWorker
+    in jobs/jobs.py) — daemon threads are killed the moment their process exits. A
+    short-lived CLI invocation has no way to outlive itself, so this command waits for
+    the job to reach a terminal status before exiting. The job is still tracked through
+    the same job_id/JobRepository pattern the API uses: `status`/`report` afterward read
+    the same persisted, completed job from disk.
+    """
+    if battles <= 0:
+        typer.echo("battles must be a positive integer", err=True)
+        raise typer.Exit(1)
+
     repo = get_job_repo()
     worker = get_worker()
-    import uuid
     job_id = str(uuid.uuid4())
     repo.create(job_id)
-    worker.submit(job_id, lambda: svc.simulate_tournament(battles).to_dict())
+    worker.submit(job_id, battles)
     typer.echo(f"Tournament started: {job_id}")
-    typer.echo("Check status: rpg status <job_id>")
+
+    deadline = time.monotonic() + 120
+    job = repo.get(job_id)
+    while time.monotonic() < deadline:
+        job = repo.get(job_id)
+        if job.status in (JobStatus.completed, JobStatus.failed):
+            break
+        time.sleep(0.2)
+    else:
+        typer.echo(f"Tournament did not finish within 120s (job_id={job_id})", err=True)
+        raise typer.Exit(1)
+
+    if job.status == JobStatus.failed:
+        typer.echo(f"Tournament failed: {job.error}", err=True)
+        raise typer.Exit(1)
+    typer.echo(f"Tournament completed: {job.result}")
+    typer.echo(f"Check status: python cli.py status {job_id}")
 
 
 @app.command()
