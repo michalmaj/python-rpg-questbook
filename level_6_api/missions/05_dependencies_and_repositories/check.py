@@ -2,6 +2,7 @@
 """Check: Mission 05 — Dependencies and Repositories."""
 import json
 import sys
+import tempfile
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
@@ -103,37 +104,52 @@ if r.status_code != 200:
     raise SystemExit(1)
 print("✓ POST /battle/simulate → 200")
 
-# ── POST /sessions ────────────────────────────────────────────────────────────
+# ── session endpoints, isolated the same way the mission teaches ─────────────
+#
+# The real get_session_repo() writes to data/sessions/ — calling it directly
+# here would leave a real, untracked session file behind every time this
+# checker runs. Override it with a temp-directory-backed repo instead, exactly
+# like app.dependency_overrides in Mission 07's test fixture.
 
-r = client.post(
-    "/sessions",
-    json={"hero_name": "Ada", "hero_class": "warrior", "monster_name": "Goblin"},
-)
-if r.status_code != 201:
-    print(f"❌ POST /sessions returned {r.status_code} (expected 201): {r.text[:200]}")
+try:
+    from task.dependencies import get_session_repo  # type: ignore[import]
+    from task.rpg.repositories import SessionRepository  # type: ignore[import]
+except ImportError as exc:
+    print(f"❌ Cannot import get_session_repo / SessionRepository: {exc}")
     raise SystemExit(1)
-if "session_id" not in r.json():
-    print("❌ POST /sessions response missing 'session_id'")
-    raise SystemExit(1)
-session_id = r.json()["session_id"]
-print(f"✓ POST /sessions → 201, session_id={session_id[:8]}...")
 
-# ── GET /sessions/{session_id} ────────────────────────────────────────────────
+_tmp_sessions = Path(tempfile.mkdtemp())
+app.dependency_overrides[get_session_repo] = lambda: SessionRepository(_tmp_sessions)
+try:
+    r = client.post(
+        "/sessions",
+        json={"hero_name": "Ada", "hero_class": "warrior", "monster_name": "Goblin"},
+    )
+    if r.status_code != 201:
+        print(f"❌ POST /sessions returned {r.status_code} (expected 201): {r.text[:200]}")
+        raise SystemExit(1)
+    if "session_id" not in r.json():
+        print("❌ POST /sessions response missing 'session_id'")
+        raise SystemExit(1)
+    session_id = r.json()["session_id"]
+    print(f"✓ POST /sessions → 201, session_id={session_id[:8]}...")
 
-r = client.get(f"/sessions/{session_id}")
-if r.status_code != 200:
-    print(f"❌ GET /sessions/{'{id}'} returned {r.status_code}: {r.text[:200]}")
-    raise SystemExit(1)
-if "winner" not in r.json():
-    print("❌ GET /sessions/{id} response missing 'winner' field")
-    raise SystemExit(1)
-print("✓ GET /sessions/{id} → 200")
+    r = client.get(f"/sessions/{session_id}")
+    if r.status_code != 200:
+        print(f"❌ GET /sessions/{'{id}'} returned {r.status_code}: {r.text[:200]}")
+        raise SystemExit(1)
+    if "winner" not in r.json():
+        print("❌ GET /sessions/{id} response missing 'winner' field")
+        raise SystemExit(1)
+    print("✓ GET /sessions/{id} → 200")
 
-r = client.get("/sessions/nonexistent-id-12345")
-if r.status_code != 404:
-    print(f"❌ GET /sessions/nonexistent should return 404, got {r.status_code}")
-    raise SystemExit(1)
-print("✓ GET /sessions/nonexistent → 404")
+    r = client.get("/sessions/nonexistent-id-12345")
+    if r.status_code != 404:
+        print(f"❌ GET /sessions/nonexistent should return 404, got {r.status_code}")
+        raise SystemExit(1)
+    print("✓ GET /sessions/nonexistent → 404")
+finally:
+    app.dependency_overrides.clear()
 
 update_progress("05_dependencies_and_repositories")
 print("\n✅ Mission 05 complete!")
