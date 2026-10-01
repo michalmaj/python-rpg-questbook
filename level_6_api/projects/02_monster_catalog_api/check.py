@@ -62,7 +62,11 @@ def main() -> None:
         print("❌ task/ is not implemented yet — replace NotImplementedError with real code")
         raise SystemExit(1)
 
-    # ── 3. GET /monsters → 200, ≥2 monsters ──────────────────────────────────
+    # ── 3. GET /monsters → 200, matches the real provided catalog ───────────
+    # Not just "≥2 items" — a hardcoded fake list would pass a length-only
+    # check. The catalog is fixed/provided (task/repository.py's _CATALOG),
+    # so compare the actual response against it field-by-field, as a set
+    # (the API contract doesn't guarantee ordering).
     r = client.get("/monsters")
     if r.status_code != 200:
         print(f"❌ GET /monsters → {r.status_code}, expected 200")
@@ -72,7 +76,23 @@ def main() -> None:
     if not isinstance(monsters, list) or len(monsters) < 2:
         print(f"❌ GET /monsters must return list with ≥2 monsters, got {monsters}")
         raise SystemExit(1)
-    print(f"✓ GET /monsters → 200, {len(monsters)} monsters")
+
+    from task.repository import _CATALOG  # type: ignore[import]
+
+    expected = {
+        (entry["name"], entry["hp"], entry["atk"], entry["def_"])
+        for entry in _CATALOG
+    }
+    actual = {
+        (m.get("name"), m.get("hp"), m.get("atk"), m.get("def_"))
+        for m in monsters
+    }
+    if actual != expected:
+        print(f"❌ GET /monsters returned {sorted(actual)}, "
+              f"but the real catalog has {sorted(expected)}")
+        print("   Return the real monsters from the repository, not hardcoded/fake data.")
+        raise SystemExit(1)
+    print(f"✓ GET /monsters → 200, {len(monsters)} monsters matching the real catalog")
 
     # ── 4. GET /monsters/Goblin → 200 ────────────────────────────────────────
     r = client.get("/monsters/Goblin")

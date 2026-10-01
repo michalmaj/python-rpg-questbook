@@ -74,8 +74,10 @@ def main() -> None:
     print("✓ POST /heroes/preview with hp=-1 → 422 (Pydantic validation)")
 
     # ── 6. POST /battle/simulate valid → 200 + winner + rounds + hero_hp_remaining
+    # monster_name must match the request schema's Literal exactly (lowercase) —
+    # the catalog's display names (e.g. "Goblin") are a separate, internal concern.
     payload = {"hero": {"name": "Ada", "hp": 120, "atk": 15, "def_": 5},
-               "monster_name": "Goblin"}
+               "monster_name": "goblin"}
     r = client.post("/battle/simulate", json=payload)
     if r.status_code != 200:
         print(f"❌ POST /battle/simulate → {r.status_code}, expected 200")
@@ -90,6 +92,16 @@ def main() -> None:
         print(f"❌ winner must be 'hero' or 'monster', got {body['winner']!r}")
         raise SystemExit(1)
     print(f"✓ POST /battle/simulate → 200, winner={body['winner']!r}, rounds={body['rounds']}")
+
+    # ── 6b. POST /battle/simulate wrong case → 422 ───────────────────────────
+    # The Literal is case-sensitive lowercase — "Goblin" is not "goblin".
+    payload = {"hero": {"name": "Ada", "hp": 120, "atk": 15, "def_": 5},
+               "monster_name": "Goblin"}
+    r = client.post("/battle/simulate", json=payload)
+    if r.status_code != 422:
+        print(f"❌ Wrong-case monster_name 'Goblin' should return 422 (Literal is lowercase-only), got {r.status_code}")
+        raise SystemExit(1)
+    print("✓ POST /battle/simulate with wrong-case 'Goblin' → 422 (Pydantic Literal validation)")
 
     # ── 7. POST /battle/simulate unknown monster → 422 ───────────────────────
     # monster_name is a Literal — Pydantic rejects unknown values automatically
