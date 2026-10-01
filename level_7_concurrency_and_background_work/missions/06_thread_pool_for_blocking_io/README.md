@@ -43,7 +43,7 @@ with ThreadPoolExecutor(max_workers=workers) as pool:
 ## Key Insight
 
 - **Threads help I/O-bound work**: while one thread waits for a file read or write, another thread can start its own I/O. This overlaps I/O operations.
-- **Threads don't help CPU-bound work**: multiple threads on one CPU core don't run in parallel because the GIL (Global Interpreter Lock) prevents true parallelism. Use `ProcessPoolExecutor` for CPU-bound tasks (Mission 07).
+- **Threads don't help CPU-bound work**: for CPU-bound pure-Python work, the GIL (Global Interpreter Lock) prevents multiple threads in the same process from running Python bytecode in parallel. Use `ProcessPoolExecutor` for CPU-bound tasks (Mission 07).
 
 ## How to Check
 

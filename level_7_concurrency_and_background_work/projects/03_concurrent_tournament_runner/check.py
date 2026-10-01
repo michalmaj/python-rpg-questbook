@@ -233,6 +233,19 @@ if __name__ == "__main__":
                     raise SystemExit(1)
     print("✓ ProcessPoolTournamentWorker contains no lambda — pickle-safe")
 
+    # ── Gate 12: ruff check on the code you wrote (Level 5/6 habits still apply) ──
+    repo_root = Path(__file__).parents[3]
+    _ruff_scope = [str(project / "api"), str(project / "tests")]
+    _ruff_result = subprocess.run(
+        [sys.executable, "-m", "ruff", "check", *_ruff_scope, "--config", str(repo_root / "pyproject.toml")],
+        capture_output=True, text=True,
+    )
+    if _ruff_result.returncode != 0:
+        print("❌ ruff check api/ tests/ fails — fix the lint errors above:")
+        print(_ruff_result.stdout)
+        raise SystemExit(1)
+    print("✓ ruff check api/ tests/ passes")
+
     update_progress("03_concurrent_tournament_runner")
     print()
     print("✅ Boss fight complete! Concurrent Tournament Runner operational.")
