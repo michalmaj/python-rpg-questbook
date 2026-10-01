@@ -67,24 +67,91 @@ with tempfile.TemporaryDirectory() as tmp:
         raise SystemExit(1)
     print("✓ Exported Markdown contains '## Battle Report'")
 
-# verify ThreadPoolExecutor is actually used inside export_sessions_parallel
-import ast
+# ── Behavioral proof: the pool must actually be used to dispatch the work ────
+#
+# The functional test above would also pass for a fake that creates a
+# ThreadPoolExecutor, never calls submit()/map() on it, and silently falls
+# back to export_sessions_sequential(). Replace ThreadPoolExecutor with a
+# recording stand-in that executes work synchronously (so results stay
+# correct) but records every independent item handed to submit()/map().
 
-src = (Path(__file__).parent / "task.py").read_text()
-tree = ast.parse(src)
-parallel_func = next(
-    (n for n in ast.walk(tree) if isinstance(n, ast.FunctionDef) and n.name == "export_sessions_parallel"),
-    None,
-)
-if parallel_func is None:
-    print("❌ export_sessions_parallel not found in task.py")
-    raise SystemExit(1)
+import task as _task_mod
 
-func_src = ast.get_source_segment(src, parallel_func) or ""
-if "ThreadPoolExecutor" not in func_src:
-    print("❌ export_sessions_parallel must use ThreadPoolExecutor (found import but not used in the function body)")
-    raise SystemExit(1)
-print("✓ ThreadPoolExecutor used inside export_sessions_parallel")
+
+class _RecordingFuture:
+    def __init__(self, value=None, exc=None):
+        self._value = value
+        self._exc = exc
+
+    def result(self, timeout=None):
+        if self._exc is not None:
+            raise self._exc
+        return self._value
+
+
+class _RecordingThreadPoolExecutor:
+    """Drop-in stand-in for ThreadPoolExecutor: runs work inline, records items."""
+
+    instances: list = []
+
+    def __init__(self, max_workers=None, *args, **kwargs):
+        self.max_workers = max_workers
+        self.submitted_items: list = []
+        _RecordingThreadPoolExecutor.instances.append(self)
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc, tb):
+        return False
+
+    def submit(self, fn, *args, **kwargs):
+        self.submitted_items.append((fn, args, kwargs))
+        try:
+            return _RecordingFuture(value=fn(*args, **kwargs))
+        except Exception as exc:  # noqa: BLE001 - mirrors real Future semantics
+            return _RecordingFuture(exc=exc)
+
+    def map(self, fn, *iterables):
+        results = []
+        for call_args in zip(*iterables):
+            self.submitted_items.append((fn, call_args, {}))
+            results.append(fn(*call_args))
+        return iter(results)
+
+    def shutdown(self, wait=True, *args, **kwargs):
+        pass
+
+
+_RecordingThreadPoolExecutor.instances.clear()
+_original_executor = _task_mod.ThreadPoolExecutor
+_task_mod.ThreadPoolExecutor = _RecordingThreadPoolExecutor
+
+try:
+    with tempfile.TemporaryDirectory() as tmp2:
+        out_dir2 = Path(tmp2)
+        rec_results = export_sessions_parallel(session_ids, sessions_dir, out_dir2, workers=4)
+
+        total_items = sum(len(inst.submitted_items) for inst in _RecordingThreadPoolExecutor.instances)
+        if total_items == 0:
+            print("❌ ThreadPoolExecutor was created but never used (no submit()/map() calls).")
+            print("   Creating the pool isn't enough — you must hand it the work.")
+            raise SystemExit(1)
+        if total_items < 2:
+            print(f"❌ Only {total_items} independent work item was submitted to the pool.")
+            print("   Each session should be its own independent unit of work, not one bundled call.")
+            raise SystemExit(1)
+        if len(rec_results) != len(session_ids):
+            print(f"❌ export_sessions_parallel returned {len(rec_results)} paths, expected {len(session_ids)}")
+            raise SystemExit(1)
+        for path in rec_results:
+            if not Path(path).exists():
+                print(f"❌ Output file not created: {path}")
+                raise SystemExit(1)
+        print(f"✓ ThreadPoolExecutor actually used — {total_items} independent work items submitted, "
+              f"all {len(session_ids)} sessions exported correctly")
+finally:
+    _task_mod.ThreadPoolExecutor = _original_executor
 
 update_progress("06_thread_pool_for_blocking_io")
 print("\n✅ Mission 06 complete! ThreadPoolExecutor for I/O-bound work.")
