@@ -20,6 +20,7 @@ def update_progress(mission_id: str) -> None:
 
 
 try:
+    import task as _task_mod
     from task import time_tournament  # type: ignore[import]
 except ImportError as exc:
     print(f"❌ Cannot import time_tournament from task.py: {exc}")
@@ -33,6 +34,46 @@ except NotImplementedError:
     raise SystemExit(1)
 except Exception:
     pass  # any real error = student modified it, continue to actual checks
+
+# ── behavioral spy: time_tournament must actually call _svc.simulate_tournament ──
+#
+# A fake that just does `return {"battles": n, "time_seconds": 0.0, ...}`
+# without ever touching the service would still satisfy a shape-only check.
+# Wrap the real simulate_tournament with a spy that records how it was
+# called, but still delegates to the real implementation — so the timing
+# and result stay genuine.
+if not hasattr(_task_mod, "_svc"):
+    print("❌ task.py: expected module-level _svc (SimulationService) not found")
+    raise SystemExit(1)
+
+_spy_calls: list[int] = []
+_original_simulate = _task_mod._svc.simulate_tournament
+
+
+def _spy_simulate(n: int):
+    _spy_calls.append(n)
+    return _original_simulate(n)
+
+
+_task_mod._svc.simulate_tournament = _spy_simulate
+try:
+    _spy_calls.clear()
+    SPY_N = 7
+    spy_result = time_tournament(SPY_N)
+    if not _spy_calls:
+        print(f"❌ time_tournament({SPY_N}) never called _svc.simulate_tournament()")
+        print("   You can't measure a blocking call you don't actually make.")
+        raise SystemExit(1)
+    if SPY_N not in _spy_calls:
+        print(f"❌ time_tournament({SPY_N}) called simulate_tournament with {_spy_calls}, "
+              f"expected it to pass battles={SPY_N} through")
+        raise SystemExit(1)
+    if spy_result.get("battles") != SPY_N:
+        print(f"❌ time_tournament({SPY_N}) returned battles={spy_result.get('battles')!r}, expected {SPY_N}")
+        raise SystemExit(1)
+finally:
+    _task_mod._svc.simulate_tournament = _original_simulate
+print(f"✓ time_tournament() actually calls _svc.simulate_tournament(battles) — not hardcoded")
 
 # run the timing check
 result = time_tournament(50)
