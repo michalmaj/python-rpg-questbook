@@ -71,6 +71,10 @@ before you start:
   `damage_dealt == 0` because the hero healed instead of attacking, not
   because the hit was weak — mixing those zeros into the stats would
   understate real attack damage.
+- **Use NumPy for all four of `damage_stats`'s computations** — mean,
+  std, the 75th percentile, and the boolean-mask-based count — not only
+  for constructing the array; computing any of them with plain-Python
+  arithmetic over the original values skips the point of the task.
 
 ## Questions this answers
 
@@ -87,9 +91,11 @@ uv run python data_recall_checkpoint/check.py
 
 The checker runs every function against two different fixtures and checks
 the actual values — not your code's syntax. It also confirms `groupby` is
-really used in `win_rate_by_class` and that `np.percentile` is really called
-in `damage_stats`, since those two specific APIs are the point of this
-checkpoint.
+really used in `win_rate_by_class`, and that `damage_stats` really computes
+mean, std, the 75th percentile, and the boolean-mask count with NumPy
+(several equivalent NumPy spellings are accepted for each) rather than
+plain-Python arithmetic over a ceremonially-created array — since those are
+the specific techniques this checkpoint exists to reactivate.
 
 ---
 
