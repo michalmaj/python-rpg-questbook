@@ -156,6 +156,18 @@ External data is untrusted. Validate at boundaries, isolate persistence from dom
 
 ---
 
+## Data Recall Checkpoint
+
+**Prerequisite:** Level 3 complete
+
+You learned NumPy and Pandas in Level 1. The RPG now has a real, validated
+combat log (Level 3) — use those data skills again before moving on.
+No new concepts, 30–60 minutes.
+
+**Checkpoint:** [Combat Log Analytics](data_recall_checkpoint/README.md)
+
+---
+
 ## Level 4: Interfaces and Reports
 
 **Prerequisite:** Level 3 complete

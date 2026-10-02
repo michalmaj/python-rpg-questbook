@@ -16,6 +16,7 @@ REPO_ROOT = Path(__file__).parents[1]
 LEVEL1_ROOT = REPO_ROOT / "level_1_python_basics"
 LEVEL2_ROOT = REPO_ROOT / "level_2_oop_and_design"
 LEVEL3_ROOT = REPO_ROOT / "level_3_validation_and_persistence"
+DATA_CHECKPOINT_ROOT = REPO_ROOT / "data_recall_checkpoint"
 LEVEL4_ROOT = REPO_ROOT / "level_4_interfaces"
 LEVEL5_ROOT = REPO_ROOT / "level_5_maintainability"
 LEVEL6_ROOT = REPO_ROOT / "level_6_api"
@@ -210,6 +211,44 @@ def check_folder_structure(
                       f"MISSING: {label}/projects/{project_id}/{fname}")
 
 
+def check_data_checkpoint(root: Path) -> None:
+    """Verify the (flat, non-mission/project-shaped) Data Recall Checkpoint.
+
+    It has its own README/task.py/check.py/data files directly under its
+    root — not nested under missions/ or projects/ like a level — so it
+    doesn't fit check_folder_structure()'s convention.
+    """
+    for fname in ("README.md", "task.py", "check.py"):
+        fpath = root / fname
+        check(
+            fpath.exists(),
+            f"data_recall_checkpoint/{fname}",
+            f"MISSING: data_recall_checkpoint/{fname}",
+        )
+    for fname in ("combat_log_fixture.csv", "combat_log_fixture_variant.csv"):
+        fpath = root / "data" / fname
+        check(
+            fpath.exists(),
+            f"data_recall_checkpoint/data/{fname}",
+            f"MISSING: data_recall_checkpoint/data/{fname}",
+        )
+
+    check_py = root / "check.py"
+    if check_py.exists():
+        text = check_py.read_text()
+        rel = check_py.relative_to(REPO_ROOT)
+        check(
+            "raise SystemExit(1)" in text,
+            f"{rel}: has SystemExit(1)",
+            f"{rel}: MISSING raise SystemExit(1) in except block",
+        )
+        check(
+            '"uv", "run", "python"' not in text,
+            f"{rel}: no uv-run-python subprocess",
+            f"{rel}: uses ['uv','run','python',...] — change to sys.executable",
+        )
+
+
 def check_hygiene(level_root: Path, missions: list[str], projects: list[str]) -> None:
     all_checks = (
         [level_root / "missions" / m / "check.py" for m in missions]
@@ -325,6 +364,9 @@ check_folder_structure(LEVEL2_ROOT, L2_MISSIONS, L2_PROJECTS, L2_MISSION_FILE_EX
 print("Checking Level 3 folder structure…")
 check_folder_structure(LEVEL3_ROOT, L3_MISSIONS, L3_PROJECTS, L3_MISSION_FILE_EXCEPTIONS, "level_3")
 
+print("Checking Data Recall Checkpoint structure…")
+check_data_checkpoint(DATA_CHECKPOINT_ROOT)
+
 print("Checking Level 4 folder structure…")
 check_folder_structure(LEVEL4_ROOT, L4_MISSIONS, L4_PROJECTS, L4_MISSION_FILE_EXCEPTIONS, "level_4")
 
@@ -394,6 +436,7 @@ _level_checks = [
     (LEVEL1_ROOT, "level_1_python_basics", "Level 1"),
     (LEVEL2_ROOT, "level_2_oop_and_design", "Level 2"),
     (LEVEL3_ROOT, "level_3_validation_and_persistence", "Level 3"),
+    (DATA_CHECKPOINT_ROOT, "data_recall_checkpoint", "Data Recall Checkpoint"),
     (LEVEL4_ROOT, "level_4_interfaces", "Level 4"),
     (LEVEL5_ROOT, "level_5_maintainability", "Level 5"),
     (LEVEL6_ROOT, "level_6_api", "Level 6"),

@@ -5,11 +5,13 @@ REPO_ROOT = Path(__file__).parent.parent
 LEVEL1_ROOT = REPO_ROOT / "level_1_python_basics"
 LEVEL2_ROOT = REPO_ROOT / "level_2_oop_and_design"
 LEVEL3_ROOT = REPO_ROOT / "level_3_validation_and_persistence"
+DATA_CHECKPOINT_ROOT = REPO_ROOT / "data_recall_checkpoint"
 LEVEL4_ROOT = REPO_ROOT / "level_4_interfaces"
 
 LEVEL1_PROGRESS_FILE = LEVEL1_ROOT / ".progress"
 LEVEL2_PROGRESS_FILE = LEVEL2_ROOT / ".progress"
 LEVEL3_PROGRESS_FILE = LEVEL3_ROOT / ".progress"
+DATA_CHECKPOINT_PROGRESS_FILE = DATA_CHECKPOINT_ROOT / ".progress"
 LEVEL4_PROGRESS_FILE = LEVEL4_ROOT / ".progress"
 
 LEVEL5_ROOT = REPO_ROOT / "level_5_maintainability"
@@ -348,10 +350,38 @@ def print_level(
                 next_up_ref[0] = f"{level_prefix}/projects/{project_id}/README.md"
 
 
+def print_checkpoint(
+    name: str,
+    progress: dict,
+    checkpoint_id: str,
+    readme_path: str,
+    next_up_ref: list,
+) -> None:
+    """Print a single, flat (non-mission/project) course checkpoint.
+
+    Unlike a level, a checkpoint has no missions/projects subdirectory —
+    it's a single README/task.py/check.py unit, so it doesn't fit
+    print_level()'s path convention. Reuses the same "projects" progress
+    bucket so a checkpoint's completion is tracked the same way existing
+    mandatory units are.
+    """
+    print()
+    print(name)
+    print("─" * 40)
+    print()
+
+    status = progress.get("projects", {}).get(checkpoint_id, "not_started")
+    symbol = SYMBOLS[status]
+    print(f"  [{symbol}] {name}")
+    if status != "complete" and not next_up_ref[0]:
+        next_up_ref[0] = readme_path
+
+
 def main() -> None:
     l1_progress = load_progress(LEVEL1_PROGRESS_FILE)
     l2_progress = load_progress(LEVEL2_PROGRESS_FILE)
     l3_progress = load_progress(LEVEL3_PROGRESS_FILE)
+    data_checkpoint_progress = load_progress(DATA_CHECKPOINT_PROGRESS_FILE)
     l4_progress = load_progress(LEVEL4_PROGRESS_FILE)
     l5_progress = load_progress(LEVEL5_PROGRESS_FILE)
     l6_progress = load_progress(LEVEL6_PROGRESS_FILE)
@@ -369,6 +399,8 @@ def main() -> None:
                 "level_2_oop_and_design", next_up)
     print_level("Level 3: Validation and Persistence", LEVEL3_WORLDS, l3_progress,
                 "level_3_validation_and_persistence", next_up)
+    print_checkpoint("Data Recall Checkpoint", data_checkpoint_progress,
+                      "data_recall_checkpoint", "data_recall_checkpoint/README.md", next_up)
     print_level("Level 4: Interfaces and Reports", LEVEL4_WORLDS, l4_progress,
                 "level_4_interfaces", next_up)
     print_level("Level 5: Production Quality and Maintainability", LEVEL5_WORLDS, l5_progress,
