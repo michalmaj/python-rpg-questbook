@@ -11,9 +11,10 @@ For win_rate_by_class and damage_stats, Pandas' `groupby` and NumPy's array
 work are explicit learning objectives for this checkpoint (not just "produce
 the right numbers") — so those two functions also get a light technique
 gate on top of the behavioral one: an AST check that `groupby` is actually
-called inside win_rate_by_class, and a monkeypatch spy confirming
-`numpy.percentile` is actually called inside damage_stats. Neither gate
-cares about variable names, chaining style, or lambda usage.
+called inside win_rate_by_class, and a monkeypatch spy confirming that
+`numpy.percentile` or `numpy.quantile` (equivalent APIs for the same
+75th-percentile computation) is actually called inside damage_stats.
+Neither gate cares about variable names, chaining style, or lambda usage.
 """
 import ast
 import csv
@@ -175,31 +176,43 @@ def main() -> None:
             raise SystemExit(1)
         print(f"✓ [{fixture_name}] win_rate_by_class → {result}")
 
-        # ── Task 3: damage_stats (behavior + np.percentile technique gate) ─
+        # ── Task 3: damage_stats (behavior + percentile technique gate) ────
+        # np.percentile and np.quantile are equivalent NumPy APIs for the
+        # same 75th-percentile computation (README describes the operation,
+        # not one specific function name) — either one counts.
         import numpy as np
-        _percentile_calls: list = []
+        _percentile_used = False
         _original_percentile = np.percentile
+        _original_quantile = np.quantile
 
         def _percentile_spy(*args, **kwargs):
-            _percentile_calls.append((args, kwargs))
+            nonlocal _percentile_used
+            _percentile_used = True
             return _original_percentile(*args, **kwargs)
 
+        def _quantile_spy(*args, **kwargs):
+            nonlocal _percentile_used
+            _percentile_used = True
+            return _original_quantile(*args, **kwargs)
+
         np.percentile = _percentile_spy
+        np.quantile = _quantile_spy
         try:
             result = damage_stats(df)
         finally:
             np.percentile = _original_percentile
+            np.quantile = _original_quantile
 
         expected = _ground_truth_damage_stats(raw_rows)
         if not isinstance(result, dict) or not _dicts_close(result, expected, rel_tol=1e-3, abs_tol=1e-3):
             print(f"❌ [{fixture_name}] damage_stats: expected {expected}, got {result}")
             raise SystemExit(1)
-        if not _percentile_calls:
-            print(f"❌ [{fixture_name}] damage_stats: np.percentile was never called — "
-                  f"values must be computed with NumPy, not plain Python arithmetic "
-                  f"on a ceremonially-created array")
+        if not _percentile_used:
+            print(f"❌ [{fixture_name}] damage_stats: neither np.percentile nor np.quantile "
+                  f"was called — values must be computed with NumPy, not plain Python "
+                  f"arithmetic on a ceremonially-created array")
             raise SystemExit(1)
-        print(f"✓ [{fixture_name}] damage_stats → {result} (np.percentile confirmed used)")
+        print(f"✓ [{fixture_name}] damage_stats → {result} (np.percentile/np.quantile confirmed used)")
 
         # ── Task 4: rank_monsters_by_difficulty (behavior) ─────────────────
         result = rank_monsters_by_difficulty(df)
