@@ -95,13 +95,18 @@ level_7_concurrency_and_background_work/  ← asyncio, job_id, ThreadPoolExecuto
   starter_blocking_rpg_api/         ← blocking tournament API (your starting point)
   missions/                         ← 8 missions
   projects/                         ← P01 Async Quest Aggregator · P02 Background Report Queue · P03 boss fight
+
+final_analytics_epilogue/           ← mandatory epilogue: NumPy/Pandas on the finished system's own data
+                                       (no new concepts — 90-150 min, see COURSE_MAP.md)
 ```
 
 Each checkpoint project (`P01`, `P02`) is a standalone exercise that exercises the level's concepts.
 The boss fight (`P03`) is a full-size challenge that combines everything from the level.
 
 The `data_recall_checkpoint/` between Level 3 and Level 4 is mandatory, not optional — the course
-later ties data skills back together once more, after Level 7.
+later ties data skills back together once more, after Level 7, in the `final_analytics_epilogue/`.
+That epilogue is also mandatory: it's the course's actual conclusion, closing the "is the game
+balanced?" question Level 1 opened.
 
 ## Note on global commands
 

@@ -23,6 +23,9 @@ LEVEL6_PROGRESS_FILE = LEVEL6_ROOT / ".progress"
 LEVEL7_ROOT = REPO_ROOT / "level_7_concurrency_and_background_work"
 LEVEL7_PROGRESS_FILE = LEVEL7_ROOT / ".progress"
 
+EPILOGUE_ROOT = REPO_ROOT / "final_analytics_epilogue"
+EPILOGUE_PROGRESS_FILE = EPILOGUE_ROOT / ".progress"
+
 LEVEL1_WORLDS = [
     (
         "World 1: First Hero",
@@ -386,6 +389,7 @@ def main() -> None:
     l5_progress = load_progress(LEVEL5_PROGRESS_FILE)
     l6_progress = load_progress(LEVEL6_PROGRESS_FILE)
     l7_progress = load_progress(LEVEL7_PROGRESS_FILE)
+    epilogue_progress = load_progress(EPILOGUE_PROGRESS_FILE)
 
     print()
     print("Python RPG Questbook — Your Progress")
@@ -409,12 +413,15 @@ def main() -> None:
                 "level_6_api", next_up)
     print_level("Level 7: Concurrency and Background Work", LEVEL7_WORLDS, l7_progress,
                 "level_7_concurrency_and_background_work", next_up)
+    print_checkpoint("Final Analytics Epilogue", epilogue_progress,
+                      "final_analytics_epilogue", "final_analytics_epilogue/README.md", next_up)
 
     print()
     if next_up[0]:
         print(f"Next up: {next_up[0]}")
     else:
-        print("All levels complete! Open COURSE_MAP.md for what's next.")
+        print("Course complete! You've used NumPy and Pandas three times on real, "
+              "self-generated data. Open COURSE_MAP.md to see what's next.")
     print()
 
 
