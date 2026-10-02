@@ -1,0 +1,2507 @@
+{
+  "hero_class": "warrior",
+  "monster": "Goblin",
+  "matchup": "warrior_vs_Goblin",
+  "battles": [
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 2,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    },
+    {
+      "winner": "hero",
+      "rounds": 3,
+      "gold_earned": 10
+    }
+  ]
+}
