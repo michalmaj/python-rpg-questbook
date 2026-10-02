@@ -11,10 +11,20 @@ For win_rate_by_class and damage_stats, Pandas' `groupby` and NumPy's array
 work are explicit learning objectives for this checkpoint (not just "produce
 the right numbers") — so those two functions also get a light technique
 gate on top of the behavioral one: an AST check that `groupby` is actually
-called inside win_rate_by_class, and a monkeypatch spy confirming that
-`numpy.percentile` or `numpy.quantile` (equivalent APIs for the same
-75th-percentile computation) is actually called inside damage_stats.
-Neither gate cares about variable names, chaining style, or lambda usage.
+called inside win_rate_by_class, and for damage_stats, confirmation that all
+four recall objectives (mean, std, percentile/quantile, boolean mask +
+count) are done with real NumPy, not a ceremonially-created array followed
+by plain-Python arithmetic.
+
+Percentile/quantile is checked with a monkeypatch spy (proven reliable).
+Mean, std, and the mask+count pair are checked with a lightweight AST
+contract instead of a spy: `numpy.ndarray.mean`/`.std` are immutable C
+methods that cannot be monkeypatched, and patching only the module-level
+`np.mean`/`np.std` would miss the very common `arr.mean()`/`arr.std()`
+form used throughout this course — so a spy can't cover both call styles
+for these two. The AST contract explicitly accepts several equivalent
+forms per objective (see README) and does not care about variable names,
+argument style, or chaining order.
 """
 import ast
 import csv
@@ -112,6 +122,118 @@ def _function_uses_attr_call(source: str, fn_name: str, attr_name: str) -> bool:
                 if child.func.attr == attr_name:
                     return True
     return False
+
+
+# ── AST technique gate: damage_stats must do real NumPy work for mean,
+# std, and the boolean-mask-and-count pair (percentile/quantile is checked
+# separately, at runtime, via the spy in main()). See the module docstring
+# for why these three use AST instead of a spy.
+
+_NON_NUMPY_ATTR_RECEIVERS = {"statistics", "math"}
+
+
+def _find_function(tree: ast.AST, fn_name: str) -> ast.FunctionDef | None:
+    for node in ast.walk(tree):
+        if isinstance(node, ast.FunctionDef) and node.name == fn_name:
+            return node
+    return None
+
+
+def _has_real_reduction_call(fn_node: ast.AST, attr_name: str) -> bool:
+    """True if `<something>.<attr_name>(...)` appears, e.g. arr.mean() or np.mean(arr).
+
+    Both forms compile to Attribute-call nodes with the same `.attr`, so one
+    pattern covers both — but a handful of non-NumPy stdlib receivers
+    (`statistics.mean`, `math.*`) are excluded since they'd match the same
+    attribute name without doing any real array work.
+    """
+    for child in ast.walk(fn_node):
+        if not (isinstance(child, ast.Call) and isinstance(child.func, ast.Attribute)):
+            continue
+        if child.func.attr != attr_name:
+            continue
+        receiver = child.func.value
+        if isinstance(receiver, ast.Name) and receiver.id in _NON_NUMPY_ATTR_RECEIVERS:
+            continue
+        return True
+    return False
+
+
+_COMPREHENSION_TYPES = (ast.ListComp, ast.SetComp, ast.DictComp, ast.GeneratorExp)
+
+
+def _iter_non_comprehension(node: ast.AST):
+    """Like ast.walk, but doesn't descend into comprehensions.
+
+    A comparison like `v > p75` inside `sum(1 for v in values if v > p75)` is a
+    per-element Python filter over scalars, not a real NumPy boolean mask —
+    even though it's syntactically a Compare node, it must not count as one.
+    Excluding comprehension subtrees keeps that distinction without needing
+    real type information.
+    """
+    stack = [node]
+    while stack:
+        current = stack.pop()
+        if current is not node and isinstance(current, _COMPREHENSION_TYPES):
+            continue
+        yield current
+        stack.extend(ast.iter_child_nodes(current))
+
+
+def _has_boolean_mask_comparison(fn_node: ast.AST) -> bool:
+    """True if a real `>`/`<`/`>=`/`<=` comparison or np.greater/less(...) appears
+    outside of a Python comprehension (see _iter_non_comprehension)."""
+    compare_ops = (ast.Gt, ast.Lt, ast.GtE, ast.LtE)
+    for child in _iter_non_comprehension(fn_node):
+        if isinstance(child, ast.Compare) and any(isinstance(op, compare_ops) for op in child.ops):
+            return True
+        if (
+            isinstance(child, ast.Call)
+            and isinstance(child.func, ast.Attribute)
+            and child.func.attr in {"greater", "less", "greater_equal", "less_equal"}
+        ):
+            return True
+    return False
+
+
+def _has_mask_count(fn_node: ast.AST) -> bool:
+    """True if a count is taken with mask.sum(), np.count_nonzero(...), or len(...).
+
+    Doesn't require the len()/sum()/count_nonzero() argument to literally be
+    the mask expression (e.g. `high_damage = arr[mask]; len(high_damage)` is a
+    natural two-line idiom) — this check only confirms *a* NumPy-style count
+    operation exists; _has_boolean_mask_comparison (required alongside it)
+    is what confirms a real array mask was built in the first place.
+    """
+    for child in ast.walk(fn_node):
+        if not isinstance(child, ast.Call):
+            continue
+        if isinstance(child.func, ast.Attribute) and child.func.attr in {"sum", "count_nonzero"}:
+            return True
+        if isinstance(child.func, ast.Name) and child.func.id == "len" and len(child.args) == 1:
+            return True
+    return False
+
+
+def _damage_stats_numpy_gaps(source: str) -> list[str]:
+    """Return a list of missing NumPy recall objectives in damage_stats (empty = all present)."""
+    fn_node = _find_function(ast.parse(source), "damage_stats")
+    if fn_node is None:
+        return ["damage_stats function not found"]
+
+    gaps = []
+    if not _has_real_reduction_call(fn_node, "mean"):
+        gaps.append("mean must be a real NumPy reduction (arr.mean() or np.mean(arr)), "
+                     "not plain-Python arithmetic")
+    if not _has_real_reduction_call(fn_node, "std"):
+        gaps.append("std must be a real NumPy reduction (arr.std() or np.std(arr)), "
+                     "not plain-Python arithmetic")
+    if not (_has_boolean_mask_comparison(fn_node) and _has_mask_count(fn_node)):
+        gaps.append("high_damage_count must come from a real NumPy boolean mask over the "
+                     "array (e.g. arr > p75 or np.greater(...)) counted with a NumPy op "
+                     "(mask.sum(), np.count_nonzero(...), or len(arr[mask])), not a Python "
+                     "loop/comprehension over the original values")
+    return gaps
 
 
 FIXTURES = [
@@ -230,6 +352,15 @@ def main() -> None:
               "produces the same numbers but skips the learning objective of this task")
         raise SystemExit(1)
     print("✓ win_rate_by_class uses pandas groupby")
+
+    # ── technique gate: damage_stats must do real NumPy work throughout ──
+    gaps = _damage_stats_numpy_gaps(src)
+    if gaps:
+        print("❌ damage_stats does not use NumPy for all four recall objectives:")
+        for gap in gaps:
+            print(f"   - {gap}")
+        raise SystemExit(1)
+    print("✓ damage_stats uses real NumPy for mean, std, and the boolean mask + count")
 
     update_progress()
     print("\n✅ Data Recall Checkpoint complete! Pandas and NumPy are back online.")
