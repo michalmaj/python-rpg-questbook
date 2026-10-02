@@ -21,6 +21,7 @@ LEVEL4_ROOT = REPO_ROOT / "level_4_interfaces"
 LEVEL5_ROOT = REPO_ROOT / "level_5_maintainability"
 LEVEL6_ROOT = REPO_ROOT / "level_6_api"
 LEVEL7_ROOT = REPO_ROOT / "level_7_concurrency_and_background_work"
+EPILOGUE_ROOT = REPO_ROOT / "final_analytics_epilogue"
 
 # ── Level 1 content ───────────────────────────────────────────────────────────
 
@@ -249,6 +250,52 @@ def check_data_checkpoint(root: Path) -> None:
         )
 
 
+def check_epilogue(root: Path) -> None:
+    """Verify the (flat, non-mission/project-shaped) Final Analytics Epilogue.
+
+    Same shape as the Data Recall Checkpoint — its own README/task.py/
+    check.py/data files directly under its root, plus an author-only
+    scripts/generate_fixtures.py students never run.
+    """
+    for fname in ("README.md", "task.py", "check.py"):
+        fpath = root / fname
+        check(
+            fpath.exists(),
+            f"final_analytics_epilogue/{fname}",
+            f"MISSING: final_analytics_epilogue/{fname}",
+        )
+    for fname in (
+        "deep_dive_battles.json", "deep_dive_battles_variant.json",
+        "tournament_history.csv", "tournament_history_variant.csv",
+    ):
+        fpath = root / "data" / fname
+        check(
+            fpath.exists(),
+            f"final_analytics_epilogue/data/{fname}",
+            f"MISSING: final_analytics_epilogue/data/{fname}",
+        )
+    check(
+        (root / "scripts" / "generate_fixtures.py").exists(),
+        "final_analytics_epilogue/scripts/generate_fixtures.py",
+        "MISSING: final_analytics_epilogue/scripts/generate_fixtures.py",
+    )
+
+    check_py = root / "check.py"
+    if check_py.exists():
+        text = check_py.read_text()
+        rel = check_py.relative_to(REPO_ROOT)
+        check(
+            "raise SystemExit(1)" in text,
+            f"{rel}: has SystemExit(1)",
+            f"{rel}: MISSING raise SystemExit(1) in except block",
+        )
+        check(
+            '"uv", "run", "python"' not in text,
+            f"{rel}: no uv-run-python subprocess",
+            f"{rel}: uses ['uv','run','python',...] — change to sys.executable",
+        )
+
+
 def check_hygiene(level_root: Path, missions: list[str], projects: list[str]) -> None:
     all_checks = (
         [level_root / "missions" / m / "check.py" for m in missions]
@@ -379,6 +426,9 @@ check_folder_structure(LEVEL6_ROOT, L6_MISSIONS, L6_PROJECTS, L6_MISSION_FILE_EX
 print("Checking Level 7 folder structure…")
 check_folder_structure(LEVEL7_ROOT, L7_MISSIONS, L7_PROJECTS, L7_MISSION_FILE_EXCEPTIONS, "level_7")
 
+print("Checking Final Analytics Epilogue structure…")
+check_epilogue(EPILOGUE_ROOT)
+
 print("Checking check.py hygiene (Level 1)…")
 check_hygiene(LEVEL1_ROOT, L1_MISSIONS, L1_PROJECTS)
 
@@ -441,6 +491,7 @@ _level_checks = [
     (LEVEL5_ROOT, "level_5_maintainability", "Level 5"),
     (LEVEL6_ROOT, "level_6_api", "Level 6"),
     (LEVEL7_ROOT, "level_7_concurrency_and_background_work", "Level 7"),
+    (EPILOGUE_ROOT, "final_analytics_epilogue", "Final Analytics Epilogue"),
 ]
 for level_root, level_dir, label in _level_checks:
     if not level_root.exists():
