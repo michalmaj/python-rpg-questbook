@@ -42,7 +42,12 @@ _service = BattleService(_repo)
 # ── Fixture A: Deep Dive — ~500 battles of one fixed matchup ───────────────
 
 DEEP_DIVE_PRIMARY = {"hero_class": HeroClass.warrior, "monster": "Goblin", "seed": 20240501, "n": 500}
-DEEP_DIVE_VARIANT = {"hero_class": HeroClass.rogue, "monster": "Goblin", "seed": 20240502, "n": 500}
+# A genuinely opposite-outcome matchup (hero loses every time, not just a
+# different hero-wins matchup) — confirmed by the quality-gate audit that
+# warrior_vs_Dragon has hero_win_rate == 0.0 for this frozen L7 stat table,
+# unlike the previous rogue_vs_Goblin variant, which also always won and so
+# couldn't distinguish a hardcoded hero_win_rate=1.0 from a real one.
+DEEP_DIVE_VARIANT = {"hero_class": HeroClass.warrior, "monster": "Dragon", "seed": 20240502, "n": 500}
 
 
 def generate_deep_dive(hero_class: HeroClass, monster: str, seed: int, n: int) -> dict:
@@ -79,11 +84,15 @@ HISTORY_PRIMARY_SEED = 310120
 # Variant: same 9 matchups, same total run count (45), but a different
 # tournament organizer chose to run more battles against the matchups they
 # were curious about — a deliberately different, still-45-run allocation.
-# (Every individual matchup's win/loss outcome in this frozen domain is
-# fully determined by hero-class-vs-monster stats, not by how many runs are
-# spent on it — confirmed empirically, see final report — so this is the
-# legitimate lever for making the tournament's aggregate conclusions differ
-# between primary and variant without fabricating any battle outcome.)
+# Every individual matchup's win/loss outcome in this frozen domain is fully
+# determined by hero-class-vs-monster stats, not by how many runs are spent
+# on it (confirmed empirically — see the quality-gate audit) — so this
+# weighting gives win_rate_by_class() a genuinely different second dataset
+# to run on, but it does NOT and cannot change per-monster or per-matchup
+# conclusions (hardest_monster, longest_matchup, one_sided_matchup_count):
+# those depend only on which matchup is which, not on run counts. Hardcode
+# detection for monster/matchup-level functions instead comes from the
+# checker's behavioral subset probes (see check.py), not from this variant.
 HISTORY_VARIANT_RUN_COUNTS = {
     (HeroClass.warrior, "Goblin"): 3, (HeroClass.warrior, "Orc"): 3, (HeroClass.warrior, "Dragon"): 9,
     (HeroClass.mage, "Goblin"): 7, (HeroClass.mage, "Orc"): 7, (HeroClass.mage, "Dragon"): 1,

@@ -1,2507 +1,2507 @@
 {
-  "hero_class": "rogue",
-  "monster": "Goblin",
-  "matchup": "rogue_vs_Goblin",
+  "hero_class": "warrior",
+  "monster": "Dragon",
+  "matchup": "warrior_vs_Dragon",
   "battles": [
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 3,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 3,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 3,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 3,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 3,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 3,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 3,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 3,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 3,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 3,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 3,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 3,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 3,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 3,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 3,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 3,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 3,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 3,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 3,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 3,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 3,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 3,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 3,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 3,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 3,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 3,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 3,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 3,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 3,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 3,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 3,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 3,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 3,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 3,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 3,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 3,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 3,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 3,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 3,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 3,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 3,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 3,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 8,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     },
     {
-      "winner": "hero",
-      "rounds": 2,
-      "gold_earned": 10
+      "winner": "monster",
+      "rounds": 7,
+      "gold_earned": 0
     }
   ]
 }
