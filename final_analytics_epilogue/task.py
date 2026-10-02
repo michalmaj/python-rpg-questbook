@@ -134,22 +134,31 @@ def unfavorable_matchups(df: pd.DataFrame) -> list[str]:
     raise NotImplementedError
 
 
-def balance_conclusions(df: pd.DataFrame) -> dict[str, str]:
-    """Three headline conclusions about this tournament's balance.
+def balance_conclusions(df: pd.DataFrame) -> dict[str, str | int]:
+    """Three headline conclusions about the tournament history in `df`.
 
     Return a dict with exactly these keys:
     - "hardest_monster": monster with the lowest average hero_win_rate
-    - "most_balanced_class": hero_class whose average hero_win_rate is
-      closest to 0.5
-    - "most_one_sided_matchup": matchup whose average hero_win_rate is
-      furthest from 0.5 (in either direction)
+    - "longest_matchup": matchup with the highest average avg_rounds —
+      this measures fight LENGTH, not difficulty; don't conflate the two
+    - "one_sided_matchup_count": how many matchups in `df` have an average
+      hero_win_rate of exactly 0.0 or exactly 1.0 (a completely one-sided
+      matchup, in either direction)
+
+    These must work on `df` as given — not assume it's the full 9-matchup
+    history. A caller may pass a smaller slice (e.g. only a few matchups);
+    "hardest_monster" and "longest_matchup" are about whichever monsters/
+    matchups are actually present in `df`, and "one_sided_matchup_count"
+    is a count within `df`, not a fixed global number.
 
     No correlation or inferential statistics — these are plain groupby
-    aggregations compared against 0.5.
+    aggregations.
 
     TODO:
-    - compute per-monster, per-class, and per-matchup average hero_win_rate
-    - pick each of the three conclusions as described above
+    - group by monster, average hero_win_rate per group → hardest_monster
+    - group by matchup, average avg_rounds per group → longest_matchup
+    - group by matchup, average hero_win_rate per group, count how many
+      groups equal 0.0 or 1.0 → one_sided_matchup_count
     - return the three answers in a dict
     """
     raise NotImplementedError
@@ -165,7 +174,9 @@ def build_final_report(deep_dive_path: Path, history_path: Path) -> dict[str, ob
     Return a dict with exactly these keys:
     - "deep_dive": the deep_dive_stats() dict
     - "matrix_summary": the battle_matrix_summary() dict
-    - "win_rate_by_class": the win_rate_by_class() dict
+    - "win_rate_by_class": the win_rate_by_class() dict — mean win rate
+      observed in this recorded history, not a claim about inherent class
+      balance (five runs per matchup is a small sample)
     - "monster_ranking": the rank_monsters() list
     - "unfavorable_matchups": the unfavorable_matchups() list
     - "conclusions": the balance_conclusions() dict

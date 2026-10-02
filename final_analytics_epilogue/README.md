@@ -33,11 +33,19 @@ aggregated to one row per run). Columns:
 run_id, hero_class, monster, matchup, battles, hero_wins, hero_win_rate, avg_rounds, avg_gold
 ```
 
-Each `_variant` file has the same shape but comes from a genuinely
-different tournament configuration — different numbers, and for the
-history file, a different answer to "which class is most balanced."
-Hardcoded answers that happen to match the primary fixture will fail on
-the variant.
+`data/deep_dive_battles_variant.json` is a genuinely opposite matchup —
+if the primary matchup is a sure win for the hero, the variant is a sure
+loss, or vice versa. Everything about it (win rate, rounds, gold) differs
+from the primary matchup, not just the numbers.
+
+`data/tournament_history_variant.csv` has the same 9 matchups but a
+different (still genuinely run) allocation of tournament runs across
+them, so the win-rate-by-class numbers it produces are real and different
+from the primary file's. It does **not** change which monster is hardest,
+which matchup is longest, or how many matchups are one-sided — in this
+combat model those are fixed by which class fights which monster, not by
+how many runs you spend on it (see the note below on why `check.py` tests
+those three with real data *subsets* instead).
 
 ## Cheat-sheet (you've seen all of this before)
 
@@ -77,7 +85,7 @@ def load_tournament_history(path: Path) -> pd.DataFrame: ...
 def win_rate_by_class(df: pd.DataFrame) -> dict[str, float]: ...
 def rank_monsters(df: pd.DataFrame) -> list[str]: ...
 def unfavorable_matchups(df: pd.DataFrame) -> list[str]: ...
-def balance_conclusions(df: pd.DataFrame) -> dict[str, str]: ...
+def balance_conclusions(df: pd.DataFrame) -> dict[str, str | int]: ...
 ```
 
 **Synthesis:**
@@ -99,21 +107,39 @@ before you start:
 - **`win_rate_by_class`, `rank_monsters`, and `unfavorable_matchups` must
   use pandas' `groupby`.** A `.unique()` loop can produce similar numbers,
   but `groupby` is what this task exists to reactivate.
-- **`balance_conclusions` uses only plain groupby aggregation compared
-  against 0.5** — no correlation, no inferential statistics.
+- **`balance_conclusions` must work on whatever `df` it's given** — not
+  assume it's always the full 9-matchup history. The checker calls it on
+  smaller real slices too, to confirm it's a genuine, general computation
+  and not special-cased to one fixture.
+- **`win_rate_by_class`'s numbers describe this recorded history**, not
+  an inherent property of a hero class — five tournament runs per matchup
+  is a small sample.
 - **`build_final_report` should call the functions above**, not
   recompute anything by hand.
 
 ## Questions this answers
 
-1. Which monster is hardest, by average hero win rate?
-2. Which hero class is, on average, closest to a 50/50 fight?
-3. Which matchup is the most one-sided?
-4. In the deep-dive matchup: are quick hero wins (2 rounds or fewer)
-   common or rare?
+1. Which monster is hardest, by observed hero win rate?
+2. How many matchups in this tournament history are completely
+   one-sided (hero always wins, or hero always loses)?
+3. Which matchup takes the longest on average?
+4. In the deep-dive matchup: how often does the hero win, and how often
+   is it a quick win (2 rounds or fewer)?
 
 No correlation, no statistical tests, no confidence intervals, no ML —
-just groupby, comparisons, and arithmetic against 0.5.
+just groupby, comparisons, and arithmetic.
+
+A note before you start: an earlier version of this epilogue also asked
+"which hero class is closest to 50/50?" and "which matchup is the *most*
+one-sided?" Both turned out to be bad questions for this dataset — every
+matchup here is either a sure win or a sure loss, so "most one-sided" has
+no real answer (every matchup is tied for it), and "closest to 50/50"
+mostly measures how many runs you happened to record, not anything about
+the hero class. Analytics sometimes reveals that the model itself is
+highly deterministic. When a planned metric turns out not to distinguish
+any of your cases, the right move is to change the question — not to
+force an answer out of it. That's question 2 above: instead of ranking
+something that doesn't vary, count it.
 
 ## Side quest (optional, not checked)
 
@@ -133,13 +159,20 @@ really used in the three Pandas grouping functions, and that
 percentile/quantile, boolean-mask work, and axis aggregation with NumPy —
 since those specific techniques are the point of this epilogue.
 
+`balance_conclusions`, `rank_monsters`, and `unfavorable_matchups` are
+also run on a few smaller slices of the real primary history (e.g. only
+the Orc and Dragon rows, or only one hero class's rows) — genuine rows,
+just fewer of them. A correct, general implementation produces the right
+answer for whatever data it's given; one that's quietly hardcoded to the
+full 9-matchup fixture won't.
+
 ## Is the game balanced?
 
 Once your functions pass, look at what they actually returned —
 `balance_conclusions`, `rank_monsters`, `unfavorable_matchups`, and the
-deep-dive quick-win rate. Form your own answer from those numbers. There's
-no single "correct" essay here; the data is the point, not a sentence to
-match.
+deep-dive win/quick-win rates. Form your own answer from those numbers.
+There's no single "correct" essay here; the data is the point, not a
+sentence to match.
 
 ---
 

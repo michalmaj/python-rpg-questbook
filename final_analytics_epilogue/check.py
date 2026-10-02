@@ -4,10 +4,20 @@ Behavioral checker: every function is run against TWO fixture pairs
 (primary and variant — one pair for the deep-dive JSON, one pair for the
 tournament-history CSV) and compared against ground truth computed
 independently with stdlib `json`/`csv`/`statistics`/`math` — never by
-re-running the student's own pandas or NumPy code. The variant fixtures
-were generated from a genuinely different (but equally real) tournament
-configuration, so hardcoded answers that happen to match the primary
-fixtures fail on the variant.
+re-running the student's own pandas or NumPy code. The deep-dive variant
+is a genuinely opposite-outcome matchup (hero always loses, not just a
+different hero-wins matchup), so a hardcoded deep-dive answer fails there.
+
+The primary/variant HISTORY pair alone can't catch every hardcode: a
+quality-gate audit found that in this frozen combat model, hardest_monster,
+rank_monsters, and unfavorable_matchups are mathematically invariant to any
+run-count reweighting (every matchup's win rate is deterministically 0.0 or
+1.0, regardless of how many runs are spent on it). Rather than statically
+analyzing whether a groupby's result is "really used" (fragile, and out of
+scope), those three functions are additionally exercised on controlled
+SLICES of the real primary tournament_history.csv — genuine rows, just a
+subset — chosen so a function that's actually generic must produce a
+different, slice-specific answer. See "Behavioral subset probes" below.
 
 NumPy array work (ndarray, reductions, percentile/quantile, boolean masks,
 2D/axis aggregation) and Pandas `groupby` are explicit learning objectives
@@ -85,10 +95,10 @@ def _load_history_raw(path: Path) -> list[dict]:
         return list(csv.DictReader(f))
 
 
-def _grouped_mean(rows: list[dict], key: str) -> dict[str, float]:
+def _grouped_mean(rows: list[dict], key: str, value_field: str = "hero_win_rate") -> dict[str, float]:
     groups: dict[str, list[float]] = defaultdict(list)
     for row in rows:
-        groups[row[key]].append(float(row["hero_win_rate"]))
+        groups[row[key]].append(float(row[value_field]))
     return {k: statistics.mean(v) for k, v in groups.items()}
 
 
@@ -107,17 +117,22 @@ def _ground_truth_unfavorable(rows: list[dict]) -> list[str]:
     return [k for k, _ in sorted(worse, key=lambda kv: (kv[1], kv[0]))]
 
 
-def _ground_truth_conclusions(rows: list[dict]) -> dict[str, str]:
-    class_rates = _grouped_mean(rows, "hero_class")
+def _ground_truth_conclusions(rows: list[dict]) -> dict[str, str | int]:
+    """Works on any row subset — not just the full fixture. hardest_monster
+    and longest_matchup are about whichever monsters/matchups are present
+    in `rows`; one_sided_matchup_count is a count within `rows`."""
     monster_rates = _grouped_mean(rows, "monster")
-    matchup_rates = _grouped_mean(rows, "matchup")
+    matchup_rounds = _grouped_mean(rows, "matchup", value_field="avg_rounds")
+    matchup_win_rates = _grouped_mean(rows, "matchup")
     hardest_monster = min(sorted(monster_rates.items()), key=lambda kv: kv[1])[0]
-    most_balanced_class = min(sorted(class_rates.items()), key=lambda kv: abs(kv[1] - 0.5))[0]
-    most_one_sided_matchup = max(sorted(matchup_rates.items()), key=lambda kv: abs(kv[1] - 0.5))[0]
+    longest_matchup = max(sorted(matchup_rounds.items()), key=lambda kv: kv[1])[0]
+    one_sided_count = sum(
+        1 for v in matchup_win_rates.values() if math.isclose(v, 0.0, abs_tol=1e-9) or math.isclose(v, 1.0, abs_tol=1e-9)
+    )
     return {
         "hardest_monster": hardest_monster,
-        "most_balanced_class": most_balanced_class,
-        "most_one_sided_matchup": most_one_sided_matchup,
+        "longest_matchup": longest_matchup,
+        "one_sided_matchup_count": one_sided_count,
     }
 
 
@@ -350,11 +365,20 @@ def main() -> None:
         if list(wins.astype(int)) != expected_wins:
             print(f"❌ [{fixture_name}] load_battle_arrays: wins array does not match winner data")
             raise SystemExit(1)
+        if sorted(set(wins.astype(int).tolist())) not in ([0], [1], [0, 1]):
+            print(f"❌ [{fixture_name}] load_battle_arrays: wins must be 1/0 indicators, "
+                  f"got values {sorted(set(wins.tolist()))}")
+            raise SystemExit(1)
         expected_rounds = [b["rounds"] for b in raw_battles]
         if list(rounds.astype(int)) != expected_rounds:
             print(f"❌ [{fixture_name}] load_battle_arrays: rounds array does not match rounds data")
             raise SystemExit(1)
-        print(f"✓ [{fixture_name}] load_battle_arrays → 3 ndarrays, shape ({len(raw_battles)},)")
+        expected_gold = [b["gold_earned"] for b in raw_battles]
+        if list(gold.astype(int)) != expected_gold:
+            print(f"❌ [{fixture_name}] load_battle_arrays: gold array does not match gold_earned data")
+            raise SystemExit(1)
+        print(f"✓ [{fixture_name}] load_battle_arrays → 3 ndarrays, shape ({len(raw_battles)},), "
+              f"wins/rounds/gold values all verified")
 
         expected_stats = _ground_truth_deep_dive_stats(raw_battles)
         result = deep_dive_stats(wins, rounds)
@@ -371,10 +395,12 @@ def main() -> None:
         print(f"✓ [{fixture_name}] battle_matrix_summary → {matrix_result}")
 
     # ── Pandas tournament-history checks ─────────────────────────────────
+    history_by_fixture: dict[str, tuple[list[dict], pd.DataFrame]] = {}
     for fixture_name, fixture_path in FIXTURES_HISTORY:
         raw_rows = _load_history_raw(fixture_path)
 
         df = load_tournament_history(fixture_path)
+        history_by_fixture[fixture_name] = (raw_rows, df)
         if not isinstance(df, pd.DataFrame):
             print(f"❌ [{fixture_name}] load_tournament_history must return a DataFrame, got {type(df)}")
             raise SystemExit(1)
@@ -410,6 +436,103 @@ def main() -> None:
             print(f"❌ [{fixture_name}] balance_conclusions: expected {expected_conclusions}, got {conclusions_result}")
             raise SystemExit(1)
         print(f"✓ [{fixture_name}] balance_conclusions → {conclusions_result}")
+
+    # ── Behavioral subset probes ──────────────────────────────────────────
+    # The primary/variant fixture pair alone can't catch a hardcoded answer
+    # for a function whose TRUE value happens to be identical on both (the
+    # quality-gate audit found hardest_monster, rank_monsters, and
+    # unfavorable_matchups are mathematically invariant to any run-count
+    # reweighting in this frozen domain). Instead of statically analyzing
+    # whether a groupby's result is "really used" (fragile, and explicitly
+    # out of scope), every real row below is a genuine row from the primary
+    # tournament_history.csv — these are controlled SLICES of real data,
+    # not fabricated numbers — chosen so a function that's actually generic
+    # (not special-cased to the full 9-matchup fixture) must produce a
+    # different, slice-specific answer.
+    primary_raw_rows, primary_df = history_by_fixture["primary"]
+
+    def _subset(predicate):
+        rows = [r for r in primary_raw_rows if predicate(r)]
+        mask = primary_df.apply(lambda row: predicate(row.to_dict()), axis=1)
+        return rows, primary_df[mask].reset_index(drop=True)
+
+    # A: rank_monsters on a real Orc+Dragon-only slice, and a single-monster slice.
+    rows_od, df_od = _subset(lambda r: r["monster"] in ("Orc", "Dragon"))
+    expected_od = _ground_truth_rank_monsters(rows_od)
+    result_od = list(rank_monsters(df_od))
+    if result_od != expected_od:
+        print(f"❌ [subset: Orc+Dragon] rank_monsters: expected {expected_od}, got {result_od}")
+        raise SystemExit(1)
+    print(f"✓ [subset: Orc+Dragon] rank_monsters → {result_od}")
+
+    rows_orc, df_orc = _subset(lambda r: r["monster"] == "Orc")
+    expected_orc = _ground_truth_rank_monsters(rows_orc)
+    result_orc = list(rank_monsters(df_orc))
+    if result_orc != expected_orc:
+        print(f"❌ [subset: Orc only] rank_monsters: expected {expected_orc}, got {result_orc}")
+        raise SystemExit(1)
+    print(f"✓ [subset: Orc only] rank_monsters → {result_orc}")
+
+    # B: hardest_monster via balance_conclusions on the same Orc-only slice —
+    # the only monster present must be "hardest" by elimination.
+    expected_hardest_orc = _ground_truth_conclusions(rows_orc)["hardest_monster"]
+    result_hardest_orc = balance_conclusions(df_orc).get("hardest_monster")
+    if result_hardest_orc != expected_hardest_orc:
+        print(f"❌ [subset: Orc only] balance_conclusions.hardest_monster: "
+              f"expected {expected_hardest_orc!r}, got {result_hardest_orc!r}")
+        raise SystemExit(1)
+    print(f"✓ [subset: Orc only] balance_conclusions.hardest_monster → {result_hardest_orc!r}")
+
+    # C: unfavorable_matchups on a warrior_vs_Goblin + warrior_vs_Dragon slice,
+    # and on a slice with the unfavorable one removed (expect []).
+    rows_wgd, df_wgd = _subset(lambda r: r["matchup"] in ("warrior_vs_Goblin", "warrior_vs_Dragon"))
+    expected_wgd = _ground_truth_unfavorable(rows_wgd)
+    result_wgd = list(unfavorable_matchups(df_wgd))
+    if result_wgd != expected_wgd:
+        print(f"❌ [subset: warrior_vs_Goblin+Dragon] unfavorable_matchups: "
+              f"expected {expected_wgd}, got {result_wgd}")
+        raise SystemExit(1)
+    print(f"✓ [subset: warrior_vs_Goblin+Dragon] unfavorable_matchups → {result_wgd}")
+
+    rows_wg, df_wg = _subset(lambda r: r["matchup"] == "warrior_vs_Goblin")
+    expected_wg = _ground_truth_unfavorable(rows_wg)
+    result_wg = list(unfavorable_matchups(df_wg))
+    if result_wg != expected_wg:
+        print(f"❌ [subset: warrior_vs_Goblin only] unfavorable_matchups: "
+              f"expected {expected_wg}, got {result_wg}")
+        raise SystemExit(1)
+    print(f"✓ [subset: warrior_vs_Goblin only] unfavorable_matchups → {result_wg}")
+
+    # D: longest_matchup on a slice excluding the full-fixture's longest
+    # matchup — must find the next-longest real matchup in the remaining data.
+    rows_no_longest, df_no_longest = _subset(lambda r: r["matchup"] != "warrior_vs_Dragon")
+    expected_longest_sub = _ground_truth_conclusions(rows_no_longest)["longest_matchup"]
+    result_longest_sub = balance_conclusions(df_no_longest).get("longest_matchup")
+    if result_longest_sub != expected_longest_sub:
+        print(f"❌ [subset: no warrior_vs_Dragon] balance_conclusions.longest_matchup: "
+              f"expected {expected_longest_sub!r}, got {result_longest_sub!r}")
+        raise SystemExit(1)
+    print(f"✓ [subset: no warrior_vs_Dragon] balance_conclusions.longest_matchup → {result_longest_sub!r}")
+
+    # E: one_sided_matchup_count on a real 3-matchup slice (all of warrior's).
+    rows_warrior, df_warrior = _subset(lambda r: r["hero_class"] == "warrior")
+    expected_count_sub = _ground_truth_conclusions(rows_warrior)["one_sided_matchup_count"]
+    result_count_sub = balance_conclusions(df_warrior).get("one_sided_matchup_count")
+    if result_count_sub != expected_count_sub:
+        print(f"❌ [subset: warrior only] balance_conclusions.one_sided_matchup_count: "
+              f"expected {expected_count_sub!r}, got {result_count_sub!r}")
+        raise SystemExit(1)
+    print(f"✓ [subset: warrior only] balance_conclusions.one_sided_matchup_count → {result_count_sub!r}")
+
+    # F: win_rate_by_class on a slice where mage's average genuinely differs
+    # from the full-fixture dict (mage rows excluding mage_vs_Orc).
+    rows_mage_sub, df_mage_sub = _subset(lambda r: r["hero_class"] == "mage" and r["matchup"] != "mage_vs_Orc")
+    expected_mage_sub = _ground_truth_win_rate_by_class(rows_mage_sub)
+    result_mage_sub = win_rate_by_class(df_mage_sub)
+    if not isinstance(result_mage_sub, dict) or not _values_close(result_mage_sub, expected_mage_sub):
+        print(f"❌ [subset: mage minus Orc] win_rate_by_class: expected {expected_mage_sub}, got {result_mage_sub}")
+        raise SystemExit(1)
+    print(f"✓ [subset: mage minus Orc] win_rate_by_class → {result_mage_sub}")
 
     # ── Final synthesis checks (paired primary/variant scenarios) ────────
     scenarios = [
