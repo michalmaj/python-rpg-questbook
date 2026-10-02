@@ -73,6 +73,9 @@ level_3_validation_and_persistence/ ← Pydantic, repository pattern, SQLite
   missions/                         ← 7 missions
   projects/                         ← P01 Validated Bestiary · P02 Save Slot Manager · P03 boss fight
 
+data_recall_checkpoint/             ← mandatory checkpoint: NumPy/Pandas recall on the real combat log
+                                       (no new concepts — 30-60 min, see COURSE_MAP.md)
+
 level_4_interfaces/                 ← CLI (Typer), logging, Rich output, reports, entry points
   starter_verbose_rpg/              ← the interface-smelly app you will improve
   missions/                         ← 6 missions
@@ -96,6 +99,9 @@ level_7_concurrency_and_background_work/  ← asyncio, job_id, ThreadPoolExecuto
 
 Each checkpoint project (`P01`, `P02`) is a standalone exercise that exercises the level's concepts.
 The boss fight (`P03`) is a full-size challenge that combines everything from the level.
+
+The `data_recall_checkpoint/` between Level 3 and Level 4 is mandatory, not optional — the course
+later ties data skills back together once more, after Level 7.
 
 ## Note on global commands
 
