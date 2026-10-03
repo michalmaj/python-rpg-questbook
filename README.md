@@ -56,11 +56,11 @@ uv run python level_1_python_basics/missions/01_hero_stats/check.py
 
 ## Course structure
 
-Seven levels, each with focused missions and two checkpoint projects before the boss fight:
+Seven levels combine focused missions with larger projects and boss fights:
 
 ```
 level_1_python_basics/              ← Python fundamentals through terminal RPG + data analysis
-  missions/                         ← 20 focused exercises (one concept each)
+  missions/                         ← 23 focused exercises (one concept each)
   projects/                         ← 5 boss fights that combine what you learned
 
 level_2_oop_and_design/             ← OOP, refactoring, design patterns

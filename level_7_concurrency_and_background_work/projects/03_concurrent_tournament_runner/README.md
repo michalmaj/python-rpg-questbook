@@ -45,3 +45,7 @@ Quality habits still apply — run Ruff on the code you changed before consideri
 ```bash
 uv run python -m ruff check api/ tests/
 ```
+
+---
+
+Level 7 complete. One mandatory step remains: the [Final Analytics Epilogue](../../../final_analytics_epilogue/README.md) returns to the balance question from Level 1, now using data from the finished RPG.
