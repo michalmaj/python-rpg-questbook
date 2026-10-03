@@ -8,6 +8,8 @@ The game loads monsters from a JSON file. It saves the hero to disk. It logs com
 
 Level 3 fixes this. You will learn how to validate data at system boundaries, separate persistence from game logic, and make it easy to swap one storage backend for another.
 
+This level also includes `starter_raw_rpg/` — a prepared RPG starter (not literally the file you'd have produced in Level 2) with those exact problems already labeled in its comments. You won't edit it directly; each mission works in its own self-contained files, though Mission 07 references it for a config example. Open `starter_raw_rpg/main.py` early if you want to see what each mission is about to fix.
+
 ## The central lesson
 
 ```
