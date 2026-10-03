@@ -170,7 +170,7 @@ No new concepts, 30–60 minutes.
 
 ## Level 4: Interfaces and Reports
 
-**Prerequisite:** Level 3 complete
+**Prerequisite:** Level 3 complete, Data Recall Checkpoint complete
 
 The game has domain logic, validation, and persistence.
 Now it needs a real interface: CLI commands, logging, readable terminal output, and reports.

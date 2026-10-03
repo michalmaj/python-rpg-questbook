@@ -121,7 +121,7 @@ Uncomment and complete each test function:
 ### Step 3: Run the checker
 
 ```bash
-python check.py
+uv run python check.py
 ```
 
 ---
@@ -187,4 +187,4 @@ def test_combat_always_hits(monkeypatch):
 - [ ] `conftest.py` has `@pytest.fixture` for `warrior`, `goblin`, and `make_hero`
 - [ ] `test_combat.py` has at least 5 `def test_` functions (all uncommented)
 - [ ] All tests pass: `pytest -v`
-- [ ] `python check.py` prints `✅ Mission 04 complete!`
+- [ ] `uv run python check.py` prints `✅ Mission 04 complete!`
